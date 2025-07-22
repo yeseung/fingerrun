@@ -1,0 +1,1116 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>핑거런 | 압도적인 디자인과 성능의 타자연습을 경험해보세요.</title>
+    <link rel="icon" type="image/svg+xml" href="../images/finger-run-logo.svg">
+
+    <!-- SEO 메타태그 -->
+    <meta name="description" content="택배 이름을 정확하게 타이핑해서 택배를 올바르게 분류하는 한글 타자게임. 물류 시뮬레이션과 정확성 훈련을 동시에!">
+    <meta name="keywords" content="한글 택배 분류, 택배 타자게임, 한글타자게임, 물류 시뮬레이션, 무료 타자게임, 온라인 타자게임, 택배게임, 타자게임">
+    <meta name="author" content="FingerRun">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph (SNS 공유) -->
+    <meta property="og:title" content="한글 택배 분류 게임 | 핑거런">
+    <meta property="og:description" content="택배 이름을 정확하게 타이핑해서 택배를 올바르게 분류하는 한글 타자게임!">
+    <meta property="og:url" content="https://fingerrun.com/Korean/game-delivery.html">
+    <meta property="og:type" content="website">
+
+    <!-- 추가 SEO -->
+    <link rel="canonical" href="https://fingerrun.com/Korean/game-delivery.html">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Navigation - 기존과 동일하게 수정 */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 0.8rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-menu a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            padding: 0.5rem 0;
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-menu li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-menu li:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1rem;
+            color: #333;
+            border-radius: 0;
+            font-weight: 400;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+            color: #667eea;
+            transform: none;
+            padding-left: 1.2rem;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .game-container {
+            width: 90%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .game-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 0 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border-radius: 15px;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            min-width: 100px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .timer-warning {
+            background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+            animation: warning-pulse 1s infinite;
+        }
+
+        @keyframes warning-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .conveyor-belt {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(180deg, #4b5563 0%, #374151 50%, #1f2937 100%);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .conveyor-belt::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(255, 255, 255, 0.1) 10px,
+                    rgba(255, 255, 255, 0.1) 20px
+            );
+            animation: conveyor-move 2s linear infinite;
+        }
+
+        @keyframes conveyor-move {
+            from { transform: translateX(0); }
+            to { transform: translateX(-20px); }
+        }
+
+        .package {
+            position: absolute;
+            top: 20px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            color: white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            animation: package-move 8s linear infinite;
+        }
+
+        .package:hover {
+            transform: scale(1.05);
+        }
+
+        .package::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 20px;
+            right: 20px;
+            height: 3px;
+            background: #92400e;
+            border-radius: 2px;
+        }
+
+        .package::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            bottom: 20px;
+            left: -5px;
+            width: 3px;
+            background: #92400e;
+            border-radius: 2px;
+        }
+
+        @keyframes package-move {
+            from {
+                right: -100px;
+                transform: translateY(0);
+            }
+            to {
+                right: 100%;
+                transform: translateY(0);
+            }
+        }
+
+        .package-falling {
+            animation: package-fall 1s ease-in forwards !important;
+        }
+
+        @keyframes package-fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(200px) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .word-input {
+            flex: 1;
+            padding: 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 500;
+            outline: none;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .word-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .submit-btn {
+            padding: 20px 30px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .control-btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .reset-btn {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .game-over-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ef4444;
+            margin-bottom: 20px;
+        }
+
+        .modal-score {
+            font-size: 20px;
+            color: #374151;
+            margin-bottom: 30px;
+        }
+
+        .modal-btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .modal-btn.restart-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .modal-btn.restart-btn:hover {
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .modal-btn.exit-btn {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .modal-btn.exit-btn:hover {
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .success-animation {
+            animation: success-pop 0.5s ease-out;
+        }
+
+        @keyframes success-pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .queue-warning {
+            background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+            animation: warning-pulse 1s infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .nav-menu a {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.8rem;
+            }
+
+            .dropdown-menu {
+                min-width: 150px;
+                font-size: 0.8rem;
+            }
+
+            .dropdown-menu a {
+                padding: 0.5rem 0.8rem;
+            }
+
+            .game-container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            .game-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .stat-item {
+                padding: 10px;
+            }
+
+            .input-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<!-- Navigation -->
+<nav>
+    <div class="nav-container">
+        <a href="../index.html" class="logo">⌨️ FingerRun</a>
+        <ul class="nav-menu">
+            <li><a href="../index.html">소개</a></li>
+            <li>
+                <a href="#korean">
+                    한글 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="practice.html">자음 연습</a>
+                    <a href="practice.html">모음 연습</a>
+                    <a href="practice.html">단어 연습</a>
+                    <a href="practice.html">문장 연습</a>
+                </div>
+            </li>
+            <li>
+                <a href="#english">
+                    영어 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="../English/practice.html">알파벳 연습</a>
+                    <a href="../English/practice.html">영어 단어 연습</a>
+                    <a href="../English/practice.html">영어 문장 연습</a>
+                </div>
+            </li>
+            <li>
+                <a href="#games">
+                    타자게임
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="game-mole.html">두더지 잡기 (한글)</a>
+                    <a href="../English/game-mole.html">두더지 잡기 (영어)</a>
+                    <a href="game-plane.html">비행기 조종 (한글)</a>
+                    <a href="../English/game-plane.html">비행기 조종 (영어)</a>
+                    <a href="game-delivery.html">택배 분류 (한글)</a>
+                    <a href="../English/game-delivery.html">택배 분류 (영어)</a>
+                </div>
+            </li>
+            <li>
+                <a href="#certificate">
+                    자격증
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="../Certificate/word-processor.html">워드프로세서</a>
+                </div>
+            </li>
+            <li><a href="../contact.html">문의하기</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="main-content">
+    <div class="game-container">
+        <div class="game-header">
+            <h1 class="game-title">🚚 택배 타자게임</h1>
+            <p>60초를 버티며 컨베이어 벨트 위의 택배를 처리하세요!</p>
+        </div>
+
+        <div class="game-stats">
+            <div class="stat-item" id="timer-container">
+                <span class="stat-value" id="timer">60</span>
+                <span class="stat-label">남은 시간</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="missed">0</span>
+                <span class="stat-label">놓친 택배</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="level">1</span>
+                <span class="stat-label">단계 (10단계)</span>
+            </div>
+        </div>
+
+        <div class="conveyor-belt" id="conveyor">
+            <!-- 택배들이 여기에 동적으로 생성됩니다 -->
+        </div>
+
+        <div class="input-container">
+            <input type="text" class="word-input" id="wordInput"
+                   placeholder="택배의 단어를 입력하세요... (스페이스바로 처리)" disabled>
+            <button class="submit-btn" id="submitBtn" onclick="checkWord()">처리</button>
+        </div>
+
+        <div class="game-controls">
+            <button class="control-btn start-btn" onclick="startGame()">게임 시작</button>
+        </div>
+    </div>
+</div>
+
+<div class="game-over-modal" id="gameOverModal">
+    <div class="modal-content">
+        <h2 class="modal-title">GAME OVER</h2>
+        <p class="modal-score">도달 단계: <span id="finalLevel">1</span>단계</p>
+        <div class="modal-buttons">
+            <button class="modal-btn restart-btn" onclick="restartFromLevel1()">다시하기</button>
+            <button class="modal-btn exit-btn" onclick="exitGame()">나가기</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let gameState = {
+        isPlaying: false,
+        level: 1,
+        maxLevel: 10,
+        packages: [],
+        packageId: 0,
+        spawnInterval: null,
+        gameSpeed: 8000,
+        isGameCompleted: false,
+        processedPackages: 0,
+        timer: 60,
+        gameTimer: null,
+        globalUsedWords: [] // 게임 전체에서 사용된 단어들
+    };
+
+    // 1~2단계: 1~3글자 단어들 (200개)
+    const level1Words = [
+        // 1글자
+        '밥', '물', '빵', '꽃', '나', '너', '차', '집', '말', '돈', '손', '눈', '귀', '입', '코', '발', '머리', '몸', '등', '배',
+        '문', '창', '책', '펜', '공', '달', '별', '해', '땅', '하늘', '바다', '산', '강', '나무', '풀', '돌', '모래', '불', '얼음', '바람',
+        // 2글자
+        '사과', '바나나', '딸기', '수박', '포도', '배', '감', '귤', '복숭아', '자두', '키위', '망고', '레몬', '오렌지', '체리', '살구', '참외', '멜론', '석류', '감자',
+        '당근', '양파', '마늘', '생강', '무', '배추', '상추', '시금치', '브로콜리', '오이', '토마토', '고추', '파프리카', '가지', '호박', '옥수수', '콩', '팥', '쌀', '보리',
+        '강아지', '고양이', '토끼', '다람쁐', '햄스터', '거북이', '앵무새', '금붕어', '사자', '호랑이', '코끼리', '기린', '원숭이', '판다', '코알라', '캥거루', '펭귄', '돌고래', '고래', '상어',
+        '빨강', '파랑', '노랑', '초록', '보라', '주황', '분홍', '갈색', '검정', '하양', '회색', '연두', '하늘색', '자주색', '금색', '은색', '청색', '적색', '황색', '녹색',
+        // 3글자
+        '컴퓨터', '마우스', '키보드', '모니터', '스피커', '카메라', '핸드폰', '태블릿', '냉장고', '세탁기', '에어컨', '청소기', '오븐', '토스터', '믹서기', '다리미', '선풍기', '히터', '가습기', '제습기',
+        '자동차', '버스', '지하철', '택시', '자전거', '오토바이', '기차', '비행기', '배', '요트', '헬기', '트럭', '구급차', '소방차', '경찰차', '스쿠터', '보트', '잠수함', '로켓', '우주선',
+        '연필', '지우개', '자', '가위', '풀', '테이프', '노트', '공책', '교과서', '사전', '펜', '볼펜', '형광펜', '마커', '크레용', '색연필', '붓', '물감', '도화지', '스케치북',
+        '축구', '야구', '농구', '배구', '테니스', '탁구', '골프', '수영', '태권도', '유도', '검도', '복싱', '레슬링', '체조', '육상', '볼링', '스키', '스케이트', '배드민턴', '하키',
+        '책상', '의자', '침대', '소파', '옷장', '서랍', '거울', '시계', '램프', '쿠션', '커튼', '카펫', '베개', '이불', '담요', '수건', '비누', '샴푸', '칫솔', '치약'
+    ];
+
+    // 3~5단계: 3~5글자 단어들 (200개)
+    const level2Words = [
+        '햄버거', '치즈버거', '불고기', '갈비', '삼겹살', '목살', '등심', '김치찌개', '된장찌개', '부대찌개', '순두부찌개', '미역국', '콩나물국', '비빔밥', '볶음밥', '카레라이스', '오므라이스', '덮밥', '마제소바', '스파게티',
+        '라자냐', '피자', '리조또', '파스타', '샐러드', '티셔츠', '셔츠', '바지', '치마', '원피스', '자켓', '코트', '스웨터', '가디건', '후드티', '청바지', '반바지', '운동복', '잠옷', '속옷',
+        '양말', '신발', '운동화', '구두', '샌들', '독서', '영화감상', '음악감상', '그림그리기', '사진찍기', '요리', '등산', '여행', '캠핑', '낚시', '골프', '볼링', '당구', '보드게임', '카드게임',
+        '퍼즐', '레고', '프라모델', '뜨개질', '병원', '약국', '의원', '한의원', '치과', '안과', '내과', '외과', '정형외과', '피부과', '산부인과', '소아과', '감기', '독감', '두통', '복통',
+        '치통', '요통', '근육통', '마트', '편의점', '백화점', '쇼핑몰', '시장', '슈퍼마켓', '서점', '문구점', '옷가게', '신발가게', '화장품가게', '꽃가게', '빵집', '카페', '식당', '레스토랑', '패스트푸드',
+        '치킨집', '아버지', '어머니', '형', '누나', '동생', '할아버지', '할머니', '삼촌', '이모', '고모', '외삼촌', '사촌', '친구', '선배', '후배', '봄', '여름', '가을', '겨울',
+        '장마', '태풍', '눈보라', '폭우', '가뭄', '홍수', '지진', '화산', '해일', '온실효과', '기후변화', '환경보호', '재활용', '분리수거', '에너지절약', '신재생에너지', '태양광', '풍력', '수력', '지열',
+        '바이오연료', '전기자동차', '하이브리드카', '친환경', '지속가능', '탄소중립', '온실가스', '의사', '간호사', '교사', '경찰관', '소방관', '요리사', '디자이너', '개발자', '기자', '작가',
+        '화가', '음악가', '가수', '배우', '운동선수', '파일럿', '승무원', '판사', '변호사', '회계사', '건축가', '엔지니어', '과학자', '연구원', '농부', '어부', '목수', '미용사', '택시기사', '버스기사',
+        '초등학교', '중학교', '고등학교', '대학교', '유치원', '어린이집', '도서관', '박물관', '미술관', '과학관', '체육관', '운동장', '교실', '화장실', '급식실', '보건실', '음악실', '미술실', '과학실', '컴퓨터실'
+    ];
+
+    // 6~8단계: 5~7글자 단어들 (200개)
+    const level3Words = [
+        '컴퓨터게임', '인터넷쇼핑', '스마트폰게임', '태블릿컴퓨터', '노트북컴퓨터', '데스크톱', '웹프로그래밍', '어플리케이션', '소프트웨어개발', '하드웨어설계', '와이파이연결', '블루투스연결', '클라우드서비스', '빅데이터분석', '인공지능개발',
+        '로봇제작', '드론조종', '가상현실게임', '증강현실', '사물인터넷', '자율주행자동차', '전기자동차충전', '하이브리드자동차', '수소연료전지', '태양광발전소', '풍력발전소', '수력발전소', '지열발전소', '원자력발전소', '화력발전소',
+        '환경친화적기술', '재활용기술', '폐기물처리', '수질정화시설', '대기오염방지', '소음공해방지', '토양오염방지', '방사능오염방지', '화학물질관리', '유해물질처리',
+        '친환경건축', '그린빌딩', '에코하우스', '제로에너지하우스', '스마트홈시스템', '홈오토메이션', '보안시스템', '화재경보시스템', '침입감지시스템', '원격제어시스템',
+        '음성인식기술', '얼굴인식기술', '지문인식기술', '홍채인식기술', '생체인식기술', '암호화기술', '정보보안기술', '사이버보안', '네트워크보안', '데이터보안',
+        '개인정보보호', '프라이버시보호', '디지털포렌식', '해킹방지기술', '바이러스백신', '방화벽설치', '침입차단시스템', '취약점분석', '보안위협대응', '사이버테러대응',
+        '의료진단기술', '영상진단기술', '유전자검사', '혈액검사', '소변검사', '심전도검사', '뇌파검사', '초음파검사', '엑스레이촬영', '컴퓨터단층촬영',
+        '자기공명영상', '양전자방출단층촬영', '내시경검사', '조직검사', '수술로봇', '레이저수술', '미세수술', '성형수술', '심장수술', '뇌수술',
+        '안과수술', '정형외과수술', '산부인과수술', '소아과수술', '응급의학', '집중치료', '재활의학', '한방의학', '통합의학', '줄기세포치료',
+        '유전자치료', '면역치료', '항암치료', '방사선치료', '화학요법', '표적치료', '정밀의료', '맞춤형치료', '원격진료', '디지털헬스케어',
+        '웨어러블헬스케어', '모바일헬스', '텔레메디신', '헬스케어빅데이터'
+    ];
+
+    // 9~10단계: 7~8글자 단어들 (200개)
+    const level4Words = [
+        '디지털트랜스포메이션', '인더스트리포점영', '스마트팩토리시스템', '사물인터넷플랫폼', '빅데이터분석플랫폼', '인공지능머신러닝', '딥러닝알고리즘', '자연어처리기술', '컴퓨터비전기술', '음성인식기술개발',
+        '로봇프로세스자동화', '클라우드컴퓨팅서비스', '엣지컴퓨팅기술', '양자컴퓨팅기술', '블록체인기술활용', '암호화폐거래시스템', '디지털자산관리', '핀테크서비스개발', '모바일결제시스템', '전자상거래플랫폼',
+        '옴니채널마케팅', '개인화추천시스템', '고객관계관리시스템', '기업자원계획시스템', '공급망관리시스템', '재고관리시스템', '품질관리시스템', '프로젝트관리시스템', '지식관리시스템', '문서관리시스템',
+        '협업플랫폼서비스', '화상회의시스템', '원격근무솔루션', '가상사무실구축', '디지털워크플레이스', '스마트오피스구축', '무인자동화시스템', '로봇자동화라인', '산업용로봇시스템', '서비스로봇개발',
+        '자율주행차기술', '전기자동차배터리', '수소연료전지차', '커넥티드카기술', '차량공유서비스', '모빌리티서비스', '스마트교통시스템', '지능형교통시스템', '교통빅데이터', '교통최적화시스템',
+        '스마트시티구축', '디지털트윈기술', '도시빅데이터', '스마트그리드', '에너지관리시스템', '스마트미터링', '에너지효율화', '신재생에너지통합', '마이크로그리드', '에너지저장시스템',
+        '스마트홈플랫폼', '홈오토메이션시스템', '음성제어시스템', '스마트가전제품', '홈시큐리티시스템', '스마트도어락', '실내공기질관리', '스마트조명시스템', '온도습도제어', '에너지모니터링',
+        '헬스케어플랫폼', '디지털헬스케어', '원격의료시스템', '웨어러블디바이스', '헬스케어빅데이터', '의료인공지능', '의료영상분석', '정밀의료시스템', '맞춤형치료법', '유전자분석기술'
+    ];
+
+    function getRandomWord() {
+        let availableWords;
+        if (gameState.level <= 2) {
+            availableWords = level1Words;
+        } else if (gameState.level <= 5) {
+            availableWords = level2Words;
+        } else if (gameState.level <= 8) {
+            availableWords = level3Words;
+        } else {
+            availableWords = level4Words;
+        }
+
+        // 전체 게임에서 사용되지 않은 단어들만 필터링
+        const unusedWords = availableWords.filter(word => !gameState.globalUsedWords.includes(word));
+
+        // 사용 가능한 단어가 없다면 (모든 단어를 사용했다면)
+        if (unusedWords.length === 0) {
+            // 현재 레벨에서만 사용된 단어 목록 초기화
+            const currentLevelUsedWords = gameState.globalUsedWords.filter(word => availableWords.includes(word));
+            // 현재 레벨 단어들을 글로벌 사용 목록에서 제거
+            gameState.globalUsedWords = gameState.globalUsedWords.filter(word => !availableWords.includes(word));
+            return availableWords[Math.floor(Math.random() * availableWords.length)];
+        }
+
+        // 사용되지 않은 단어 중에서 랜덤 선택
+        const selectedWord = unusedWords[Math.floor(Math.random() * unusedWords.length)];
+        // 선택된 단어를 글로벌 사용된 단어 목록에 추가
+        gameState.globalUsedWords.push(selectedWord);
+        return selectedWord;
+    }
+
+    function createPackage() {
+        const word = getRandomWord();
+        const package = {
+            id: gameState.packageId++,
+            word: word,
+            element: null
+        };
+
+        const packageElement = document.createElement('div');
+        packageElement.className = 'package';
+        packageElement.textContent = word;
+        packageElement.style.animationDuration = `${gameState.gameSpeed}ms`;
+        packageElement.id = `package-${package.id}`;
+
+        document.getElementById('conveyor').appendChild(packageElement);
+        package.element = packageElement;
+        gameState.packages.push(package);
+        updateQueue();
+
+        setTimeout(() => {
+            if (package.element && package.element.parentNode && gameState.isPlaying) {
+                removePackage(package.id);
+                gameState.processedPackages++;
+                updateQueue();
+
+                if (gameState.processedPackages >= 3) {
+                    gameOver();
+                }
+            }
+        }, gameState.gameSpeed);
+    }
+
+    function removePackage(packageId) {
+        const packageIndex = gameState.packages.findIndex(p => p.id === packageId);
+        if (packageIndex !== -1) {
+            const package = gameState.packages[packageIndex];
+            if (package.element && package.element.parentNode) {
+                package.element.parentNode.removeChild(package.element);
+            }
+            gameState.packages.splice(packageIndex, 1);
+            updateQueue();
+        }
+    }
+
+    function updateQueue() {
+        document.getElementById('missed').textContent = gameState.processedPackages;
+        const queueElement = document.getElementById('missed').parentElement;
+        if (gameState.processedPackages >= 2) {
+            queueElement.classList.add('queue-warning');
+        } else {
+            queueElement.classList.remove('queue-warning');
+        }
+    }
+
+    function updateTimer() {
+        document.getElementById('timer').textContent = gameState.timer;
+        const timerElement = document.getElementById('timer-container');
+        if (gameState.timer <= 10) {
+            timerElement.classList.add('timer-warning');
+        } else {
+            timerElement.classList.remove('timer-warning');
+        }
+    }
+
+    function startLevelTimer() {
+        gameState.timer = 60;
+        updateTimer();
+        gameState.gameTimer = setInterval(() => {
+            gameState.timer--;
+            updateTimer();
+            if (gameState.timer <= 0) {
+                levelCompleted();
+            }
+        }, 1000);
+    }
+
+    function checkWord() {
+        if (!gameState.isPlaying) return;
+
+        const input = document.getElementById('wordInput');
+        const inputWord = input.value.trim();
+
+        if (inputWord === '') return;
+
+        const targetPackage = gameState.packages[0];
+        if (targetPackage && targetPackage.word === inputWord) {
+            targetPackage.element.classList.add('package-falling');
+            setTimeout(() => {
+                removePackage(targetPackage.id);
+            }, 1000);
+        }
+
+        input.value = '';
+    }
+
+    function levelCompleted() {
+        if (gameState.level >= gameState.maxLevel) {
+            gameCompleted();
+            return;
+        }
+
+        gameState.isPlaying = false;
+        if (gameState.spawnInterval) {
+            clearInterval(gameState.spawnInterval);
+            gameState.spawnInterval = null;
+        }
+        if (gameState.gameTimer) {
+            clearInterval(gameState.gameTimer);
+            gameState.gameTimer = null;
+        }
+
+        document.getElementById('wordInput').disabled = true;
+
+        const modal = document.getElementById('gameOverModal');
+        const title = modal.querySelector('.modal-title');
+        const scoreText = modal.querySelector('.modal-score');
+        const buttonsContainer = modal.querySelector('.modal-buttons');
+
+        title.textContent = '🎉 COMPLETE!';
+        title.style.color = '#10b981';
+        scoreText.innerHTML = `${gameState.level}단계 완료!<br>60초를 버텨냈습니다!`;
+
+        buttonsContainer.innerHTML = `
+                <button class="modal-btn restart-btn" onclick="nextLevel()">다음단계</button>
+                <button class="modal-btn exit-btn" onclick="exitGame()">나가기</button>
+            `;
+
+        modal.style.display = 'flex';
+    }
+
+    function nextLevel() {
+        gameState.level++;
+        document.getElementById('level').textContent = gameState.level;
+        gameState.gameSpeed = Math.max(4000, gameState.gameSpeed - 400);
+        gameState.usedWords = [];
+
+        gameState.packages.forEach(package => {
+            if (package.element && package.element.parentNode) {
+                package.element.parentNode.removeChild(package.element);
+            }
+        });
+        gameState.packages = [];
+        gameState.processedPackages = 0;
+        updateQueue();
+
+        document.getElementById('gameOverModal').style.display = 'none';
+
+        gameState.isPlaying = true;
+        document.getElementById('wordInput').disabled = false;
+        document.getElementById('wordInput').focus();
+
+        startLevelTimer();
+        createPackage();
+        gameState.spawnInterval = setInterval(createPackage, Math.max(1500, 3500 - gameState.level * 200));
+    }
+
+    function gameCompleted() {
+        gameState.isPlaying = false;
+        gameState.isGameCompleted = true;
+
+        if (gameState.spawnInterval) {
+            clearInterval(gameState.spawnInterval);
+            gameState.spawnInterval = null;
+        }
+        if (gameState.gameTimer) {
+            clearInterval(gameState.gameTimer);
+            gameState.gameTimer = null;
+        }
+
+        document.getElementById('wordInput').disabled = true;
+
+        const modal = document.getElementById('gameOverModal');
+        const title = modal.querySelector('.modal-title');
+        const scoreText = modal.querySelector('.modal-score');
+        const buttonsContainer = modal.querySelector('.modal-buttons');
+
+        title.textContent = '🎉 ALL COMPLETE!';
+        title.style.color = '#10b981';
+        scoreText.innerHTML = `모든 10단계를 클리어했습니다!<br>축하합니다!`;
+
+        buttonsContainer.innerHTML = `
+                <button class="modal-btn restart-btn" onclick="restartFromLevel1()">다시하기</button>
+                <button class="modal-btn exit-btn" onclick="exitGame()">나가기</button>
+            `;
+
+        modal.style.display = 'flex';
+    }
+
+    function restartFromLevel1() {
+        resetGame();
+        document.getElementById('gameOverModal').style.display = 'none';
+    }
+
+    function gameOver() {
+        gameState.isPlaying = false;
+
+        if (gameState.spawnInterval) {
+            clearInterval(gameState.spawnInterval);
+            gameState.spawnInterval = null;
+        }
+        if (gameState.gameTimer) {
+            clearInterval(gameState.gameTimer);
+            gameState.gameTimer = null;
+        }
+
+        document.getElementById('wordInput').disabled = true;
+
+        const modal = document.getElementById('gameOverModal');
+        const title = modal.querySelector('.modal-title');
+        const scoreText = modal.querySelector('.modal-score');
+        const buttonsContainer = modal.querySelector('.modal-buttons');
+
+        title.textContent = 'GAME OVER';
+        title.style.color = '#ef4444';
+        scoreText.innerHTML = `도달 단계: ${gameState.level}단계<br>3개의 택배를 놓쳤습니다.`;
+
+        buttonsContainer.innerHTML = `
+                <button class="modal-btn restart-btn" onclick="restartFromLevel1()">다시하기</button>
+                <button class="modal-btn exit-btn" onclick="exitGame()">나가기</button>
+            `;
+
+        modal.style.display = 'flex';
+    }
+
+    function startGame() {
+        if (gameState.isPlaying) return;
+
+        gameState.isPlaying = true;
+        document.getElementById('wordInput').disabled = false;
+        document.getElementById('wordInput').focus();
+
+        startLevelTimer();
+        createPackage();
+        gameState.spawnInterval = setInterval(createPackage, 3500 - gameState.level * 200);
+    }
+
+    function resetGame() {
+        gameState.isPlaying = false;
+        gameState.level = 1;
+        gameState.packages = [];
+        gameState.packageId = 0;
+        gameState.gameSpeed = 8000;
+        gameState.isGameCompleted = false;
+        gameState.processedPackages = 0;
+        gameState.timer = 60;
+        gameState.globalUsedWords = [];
+
+        if (gameState.spawnInterval) {
+            clearInterval(gameState.spawnInterval);
+            gameState.spawnInterval = null;
+        }
+        if (gameState.gameTimer) {
+            clearInterval(gameState.gameTimer);
+            gameState.gameTimer = null;
+        }
+
+        document.getElementById('timer').textContent = '60';
+        document.getElementById('missed').textContent = '0';
+        document.getElementById('level').textContent = '1';
+        document.getElementById('wordInput').value = '';
+        document.getElementById('wordInput').disabled = true;
+        document.getElementById('conveyor').innerHTML = '';
+
+        document.getElementById('missed').parentElement.classList.remove('queue-warning');
+        document.getElementById('timer-container').classList.remove('timer-warning');
+    }
+
+    function closeModal() {
+        document.getElementById('gameOverModal').style.display = 'none';
+    }
+
+    function exitGame() {
+        closeModal();
+        resetGame();
+    }
+
+    // 네비게이션 함수들
+    function switchKoreanMode(mode) {
+        const modeNames = {
+            'consonant': '자음',
+            'vowel': '모음',
+            'word': '단어',
+            'sentence': '문장'
+        };
+        alert('한글 ' + modeNames[mode] + ' 연습을 시작합니다!');
+    }
+
+    function switchEnglishMode(mode) {
+        const modeNames = {
+            'alphabet': '알파벳',
+            'word': '단어',
+            'sentence': '문장'
+        };
+        alert('영어 ' + modeNames[mode] + ' 연습을 시작합니다!');
+    }
+
+    function playKoreanMoleGame() {
+        alert('한글 두더지 잡기 게임을 시작합니다!');
+    }
+
+    function playEnglishMoleGame() {
+        alert('영어 두더지 잡기 게임을 시작합니다!');
+    }
+
+    function playKoreanPlaneGame() {
+        alert('한글 비행기 조종 게임을 시작합니다!');
+    }
+
+    function playEnglishPlaneGame() {
+        alert('영어 비행기 조종 게임을 시작합니다!');
+    }
+
+    function playKoreanDeliveryGame() {
+        alert('한글 택배 분류 게임을 시작합니다!');
+    }
+
+    function playEnglishDeliveryGame() {
+        alert('영어 택배 분류 게임을 시작합니다!');
+    }
+
+    // 키보드 이벤트 처리
+    document.getElementById('wordInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            checkWord();
+        }
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.code === 'Space' && gameState.isPlaying) {
+            e.preventDefault();
+            checkWord();
+        }
+    });
+
+    // 네비게이션 스크롤 효과
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 100) {
+            nav.style.background = 'rgba(255, 255, 255, 0.98)';
+        } else {
+            nav.style.background = 'rgba(255, 255, 255, 0.95)';
+        }
+    });
+
+    // 부드러운 스크롤링
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href && href !== '#') {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+
+    // 초기 상태 설정
+    document.addEventListener('DOMContentLoaded', function() {
+        resetGame();
+    });
+</script>
+</body>
+</html>

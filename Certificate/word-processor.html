@@ -1,0 +1,823 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>핑거런 | 워드프로세서 자격증 타자연습</title>
+    <link rel="icon" type="image/svg+xml" href="../images/finger-run-logo.svg">
+
+    <!-- SEO 메타태그 -->
+    <meta name="description" content="컴활 워드프로세서 자격증 취득을 위한 전문 타자연습. 실제 시험 환경과 동일한 조건으로 타이핑 실력을 향상시키세요.">
+    <meta name="keywords" content="워드프로세서 자격증, 워드프로세서, 워드프로세서 타자연습, 자격증 타자연습, 컴활 준비, 워드프로세서 시험, 타자자격증">
+    <meta name="author" content="FingerRun">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph (SNS 공유) -->
+    <meta property="og:title" content="워드프로세서 자격증 | 핑거런">
+    <meta property="og:description" content="컴활 워드프로세서 자격증 취득을 위한 전문 타자연습. 실제 시험 환경과 동일한 조건으로 연습하세요.">
+    <meta property="og:url" content="https://fingerrun.com/Certificate/word-processor.html">
+    <meta property="og:type" content="website">
+
+    <!-- 추가 SEO -->
+    <link rel="canonical" href="https://fingerrun.com/Certificate/word-processor.html">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            color: #191f28;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 0.8rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-menu a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            padding: 0.5rem 0;
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-menu li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-menu li:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1rem;
+            color: #333;
+            border-radius: 0;
+            font-weight: 400;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+            color: #667eea;
+            transform: none;
+            padding-left: 1.2rem;
+        }
+
+        .main-content {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+            display: flex;
+        }
+
+        .content-wrapper {
+            display: flex;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 1px;
+            background: #f1f3f4;
+        }
+
+        .left-panel, .right-panel {
+            flex: 1;
+            background: white;
+            padding: 2rem;
+            overflow-y: auto;
+            height: calc(100vh - 80px);
+        }
+
+        .left-panel {
+            border-right: 1px solid #f1f3f4;
+        }
+
+        .panel-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #f1f3f4;
+        }
+
+        .panel-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #191f28;
+            margin-bottom: 0.5rem;
+        }
+
+        .panel-subtitle {
+            font-size: 0.9rem;
+            color: #8b95a1;
+            font-weight: 400;
+        }
+
+        .original-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #4e5968;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #f1f3f4;
+        }
+
+        .original-text h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #191f28;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .original-text h3:first-child {
+            margin-top: 0;
+        }
+
+        .original-text table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .original-text th, .original-text td {
+            padding: 0.75rem;
+            text-align: center;
+            border-bottom: 1px solid #f1f3f4;
+        }
+
+        .original-text th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #191f28;
+        }
+
+        .original-text p {
+            margin-bottom: 1rem;
+        }
+
+        .typing-textarea {
+            width: 100%;
+            min-height: 600px;
+            font-size: 1rem;
+            line-height: 1.8;
+            padding: 1.5rem;
+            border: 2px solid #f1f3f4;
+            border-radius: 12px;
+            background: #ffffff;
+            color: #191f28;
+            font-family: inherit;
+            resize: none;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .typing-textarea:focus {
+            border-color: #3182f6;
+            box-shadow: 0 0 0 3px rgba(49, 130, 246, 0.1);
+        }
+
+        .typing-textarea::placeholder {
+            color: #8b95a1;
+            font-style: italic;
+        }
+
+        .progress-container {
+            margin-bottom: 1rem;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-text {
+            font-size: 0.9rem;
+            color: #8b95a1;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #f1f3f4;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3182f6, #1d4ed8);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.875rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        .btn-primary {
+            background: #3182f6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #059669;
+        }
+
+        .complete-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .complete-modal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .complete-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #3182f6;
+            margin-bottom: 1rem;
+        }
+
+        .complete-emoji {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .complete-time {
+            font-size: 1.5rem;
+            color: #4e5968;
+            margin-bottom: 2rem;
+        }
+
+        .complete-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .complete-btn {
+            padding: 0.875rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        .complete-btn.error-check {
+            background: #ef4444;
+            color: white;
+        }
+
+        .complete-btn.error-check:hover {
+            background: #dc2626;
+        }
+
+        .complete-btn.more-practice {
+            background: #3182f6;
+            color: white;
+        }
+
+        .complete-btn.more-practice:hover {
+            background: #1d4ed8;
+        }
+
+        .complete-btn.retry {
+            background: #10b981;
+            color: white;
+        }
+
+        .complete-btn.retry:hover {
+            background: #059669;
+        }
+
+        .error-highlight {
+            background-color: #ff4444 !important;
+            color: white !important;
+            border-radius: 3px;
+            padding: 1px 2px;
+            margin: 0 1px;
+        }
+
+        .error-display {
+            width: 100%;
+            min-height: 600px;
+            font-size: 1rem;
+            line-height: 1.8;
+            padding: 1.5rem;
+            border: 2px solid #f1f3f4;
+            border-radius: 12px;
+            background: #ffffff;
+            color: #191f28;
+            font-family: inherit;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-y: auto;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+
+            .left-panel, .right-panel {
+                height: auto;
+                min-height: 50vh;
+            }
+
+            .button-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <div class="nav-container">
+        <a href="../index.html" class="logo">⌨️ FingerRun</a>
+        <ul class="nav-menu">
+            <li><a href="../index.html">소개</a></li>
+            <li>
+                <a href="#korean">한글 타자연습<span class="dropdown-arrow">▼</span></a>
+                <div class="dropdown-menu">
+                    <a href="../Korean/practice.html">타자연습</a>
+                    <a href="../Korean/game-plane.html">비행기 조종</a>
+                    <a href="../Korean/game-mole.html">두더지 잡기</a>
+                    <a href="../Korean/game-delivery.html">택배 분류</a>
+                </div>
+            </li>
+            <li>
+                <a href="#english">영어 타자연습<span class="dropdown-arrow">▼</span></a>
+                <div class="dropdown-menu">
+                    <a href="../English/practice.html">타자연습</a>
+                    <a href="../English/game-plane.html">비행기 조종</a>
+                    <a href="../English/game-mole.html">두더지 잡기</a>
+                    <a href="../English/game-delivery.html">택배 분류</a>
+                </div>
+            </li>
+            <li>
+                <a href="#games">타자게임<span class="dropdown-arrow">▼</span></a>
+                <div class="dropdown-menu">
+                    <a href="../Korean/game-mole.html">두더지 잡기 (한글)</a>
+                    <a href="../English/game-mole.html">두더지 잡기 (영어)</a>
+                    <a href="../Korean/game-plane.html">비행기 조종 (한글)</a>
+                    <a href="../English/game-plane.html">비행기 조종 (영어)</a>
+                    <a href="../Korean/game-delivery.html">택배 분류 (한글)</a>
+                    <a href="../English/game-delivery.html">택배 분류 (영어)</a>
+                </div>
+            </li>
+            <li>
+                <a href="#certificate">자격증<span class="dropdown-arrow">▼</span></a>
+                <div class="dropdown-menu">
+                    <a href="./word-processor.html">워드프로세서</a>
+                </div>
+            </li>
+            <li><a href="../contact.html">문의하기</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="main-content">
+    <div class="content-wrapper">
+        <div class="left-panel">
+            <div class="panel-header">
+                <h2 class="panel-title">📄 원본 텍스트</h2>
+                <p class="panel-subtitle">본 텍스트는 AI로 창작한 것입니다.<br>표와 캡션은 작성 안해도 진행률과 오타에 영향이 가지 않습니다.<br>오타는 빨간색 형광펜으로 칠해집니다.</p>
+            </div>
+            <div class="original-text" id="originalText">
+                <h3>개요</h3>
+                <p>최근 전기차(Electric Vehicle, EV)를 직접 구매하고 충전과 관리 서비스를 개별적으로 선택하는 소비자들이 빠르게 늘고 있다. 업계에 따르면, 2022년까지만 해도 전체 자동차 시장에서 전기차가 차지하는 비중은 10% 미만에 머물렀으나, 2023년에는 18%를 넘어섰다. 이제 신차를 구매하는 소비자 5명 중 1명은 전기차를 선택하는 셈이다.</p>
+                <h3>전기차 보급 현황</h3>
+                <table>
+                    <thead><tr><th><strong>구분</strong></th><th><strong>전기차 판매량(만 대)</strong></th><th><strong>전체 신차 판매량(만 대)</strong></th><th><strong>비중(%)</strong></th></tr></thead>
+                    <tbody>
+                    <tr><td>2020</td><td>310</td><td>7,300</td><td>4.2</td></tr>
+                    <tr><td>2021</td><td>670</td><td>8,200</td><td>8.2</td></tr>
+                    <tr><td>2022</td><td>1,040</td><td>8,300</td><td>12.5</td></tr>
+                    <tr><td>2023</td><td>1,400</td><td>7,800</td><td>18.0</td></tr>
+                    <tr><td>합계</td><td>3,420</td><td>31,600</td><td>10.8</td></tr>
+                    </tbody>
+                </table>
+                <p>(단위: 천 대, %)</p>
+                <h3>친환경과 가성비를 찾는 소비자</h3>
+                <p>내연기관차에 익숙한 소비자들에게 전기차는 충전 인프라 부족, 주행거리 제한 등으로 인해 여전히 불편함이 존재한다. 충전소에서 별도로 충전해야 하고, 배터리 관리와 같은 새로운 경험이 요구되기 때문이다.</p>
+                <p>그러나 제조사 입장에서는 전기차 시장 확대가 긍정적이다. 기존 내연기관차에만 의존하던 유통 채널이 다변화되고, 정부의 친환경 정책과 보조금 정책에 힘입어 다양한 할인과 프로모션이 가능해졌기 때문이다. 전기차는 탄소 배출 규제에서 자유로워 소비자에게도 경제적 부담이 적다.</p>
+                <h3>서비스 경쟁으로의 전환</h3>
+                <p>기존 자동차 제조사와 딜러에게 전기차 시장 확대는 부담이 될 수 있다. 내연기관차 판매가 줄어들고, 전기차 전문 브랜드의 등장으로 시장 주도권이 이동할 수 있기 때문이다.</p>
+                <p>전기차 시장이 커지면, 기존 자동차 업체들은 차량 자체의 성능뿐 아니라 충전 인프라, 소프트웨어, 애프터서비스 등에서 경쟁해야 한다. 테슬라, BYD 등 신흥 강자들이 시장을 주도하면서 전통적인 업체와의 힘의 균형도 변화하고 있다.</p>
+                <p>업계 관계자는 "젊은 소비자층을 중심으로 충전의 번거로움보다 친환경성과 경제성을 중시하는 전기차 구매가 빠르게 늘고 있다"며 "제조사와 서비스 업체들은 차량 중심 경쟁에서 서비스와 인프라 경쟁으로 전환해야 하는 상황"이라고 말했다.</p>
+                <h3>Reference</h3>
+                <p>Statista Market Insights. (2025). Electric Vehicles - Worldwide.<br>IEA. (2025). Global EV Outlook 2025.<br>Virta. (2024). The Global Electric Vehicle Market In 2024.<br>Fortune Business Insights. (2025). Electric Vehicle Market Size, Share, Trends & Growth Analysis.<br>IEA. (2024). Trends in electric cars – Global EV Outlook 2024.</p>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="panel-header">
+                <h2 class="panel-title">⌨️ 타이핑 연습</h2>
+                <p class="panel-subtitle">왼쪽 텍스트를 보고 동일하게 타이핑해보세요</p>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span class="progress-text">진행률</span>
+                    <span class="progress-text" id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <div class="typing-area">
+                <textarea class="typing-textarea" id="typingTextarea" placeholder="시작하기 버튼을 누른 후 왼쪽 텍스트와 동일하게 타이핑해보세요..." autocomplete="off" spellcheck="false" disabled></textarea>
+                <div class="error-display" id="errorDisplay"></div>
+            </div>
+
+            <div class="button-container">
+                <button class="btn btn-primary" id="startBtn" onclick="window.startTyping()">시작하기</button>
+                <button class="btn btn-primary" id="completeBtn" onclick="window.completeTyping()" style="display: none;">완료 확인</button>
+                <button class="btn btn-secondary" id="retryBtn" onclick="window.retryCurrentText()" style="display: none;">다시 풀기</button>
+                <button class="btn btn-primary" id="morePracticeBtn" onclick="window.morePractice()" style="display: none;">더 풀기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="complete-modal" id="completeModal">
+    <div class="complete-modal-content">
+        <h2 class="complete-title">COMPLETE!</h2>
+        <div class="complete-emoji">🎉</div>
+        <div class="complete-time" id="completeTime">총 0분 걸렸습니다.</div>
+        <div class="complete-buttons">
+            <button class="complete-btn error-check" onclick="window.checkErrors()">오타 찾기</button>
+            <button class="complete-btn more-practice" onclick="window.morePractice()">더 풀기</button>
+            <button class="complete-btn retry" onclick="window.retryTyping()">다시하기</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let originalText = '', startTime = null, totalChars = 0, isStarted = false, currentTextIndex = 0;
+
+    const textData = [
+        `<h3>개요</h3><p>최근 전기차(Electric Vehicle, EV)를 직접 구매하고 충전과 관리 서비스를 개별적으로 선택하는 소비자(Consumer)들이 빠르게 늘고 있다. 업계에 따르면, 2022년까지만 해도 전체 자동차 시장에서 전기차가 차지하는 비중(Proportion)은 10% 미만에 머물렀으나, 2023년에는 18%를 넘어섰다. 이제 신차를 구매하는 소비자 5명 중 1명은 전기차를 선택하는 셈이다.</p><h3>전기차 보급 현황</h3><table><thead><tr><th><strong>구분</strong></th><th><strong>전기차 판매량(만 대)</strong></th><th><strong>전체 신차 판매량(만 대)</strong></th><th><strong>비중(%)</strong></th></tr></thead><tbody><tr><td>2020</td><td>310</td><td>7,300</td><td>4.2</td></tr><tr><td>2021</td><td>670</td><td>8,200</td><td>8.2</td></tr><tr><td>2022</td><td>1,040</td><td>8,300</td><td>12.5</td></tr><tr><td>2023</td><td>1,400</td><td>7,800</td><td>18.0</td></tr><tr><td>합계</td><td>3,420</td><td>31,600</td><td>10.8</td></tr></tbody></table><p>(단위: 천 대, %)</p><h3>친환경과 가성비를 찾는 소비자</h3><p>내연기관차에 익숙한 소비자들에게 전기차는 충전 인프라(Infrastructure) 부족, 주행거리 제한 등으로 인해 여전히 불편함이 존재한다. 충전소에서 별도로 충전해야 하고, 배터리(Battery) 관리와 같은 새로운 경험이 요구되기 때문이다.</p><p>그러나 제조사(Manufacturer) 입장에서는 전기차 시장 확대가 긍정적이다. 기존 내연기관차에만 의존하던 유통 채널(Distribution Channel)이 다변화되고, 정부의 친환경 정책(Eco-friendly Policy)과 보조금 정책에 힘입어 다양한 할인과 프로모션(Promotion)이 가능해졌기 때문이다. 전기차는 탄소 배출 규제에서 자유로워 소비자에게도 경제적 부담이 적다.</p><h3>서비스 경쟁으로의 전환</h3><p>기존 자동차 제조사와 딜러(Dealer)에게 전기차 시장 확대는 부담이 될 수 있다. 내연기관차 판매가 줄어들고, 전기차 전문 브랜드(Brand)의 등장으로 시장 주도권이 이동할 수 있기 때문이다.</p><p>전기차 시장이 커지면, 기존 자동차 업체들은 차량 자체의 성능뿐 아니라 충전 인프라, 소프트웨어(Software), 애프터서비스(After Service) 등에서 경쟁해야 한다. 테슬라, BYD 등 신흥 강자들이 시장을 주도하면서 전통적인 업체와의 힘의 균형도 변화하고 있다.</p><p>업계 관계자는 "젊은 소비자층을 중심으로 충전의 번거로움보다 친환경성과 경제성을 중시하는 전기차 구매가 빠르게 늘고 있다"며 "제조사와 서비스 업체들은 차량 중심 경쟁에서 서비스와 인프라 경쟁으로 전환(Transition)해야 하는 상황"이라고 말했다.</p><h3>Reference</h3><p>Statista Market Insights. (2025). Electric Vehicles - Worldwide.<br>IEA. (2025). Global EV Outlook 2025.<br>Virta. (2024). The Global Electric Vehicle Market In 2024.<br>Fortune Business Insights. (2025). Electric Vehicle Market Size, Share, Trends & Growth Analysis.<br>IEA. (2024). Trends in electric cars – Global EV Outlook 2024.</p>`,
+        `<h3>개요</h3><p>최근 홈트레이닝(Home Training, 홈트) 기구를 직접 구매하고, 온라인으로 운동 프로그램(Program)을 개별적으로 선택하는 소비자(Consumer)들이 크게 늘고 있다. 업계에 따르면 2021년까지만 해도 전체 운동기구 시장에서 홈트레이닝 기구의 비중(Proportion)은 12%에 불과했으나, 2024년에는 25%를 돌파했다. 이제 운동기구를 구입하는 소비자 4명 중 1명은 홈트레이닝 용품을 선택하는 셈이다.</p><h3>홈트레이닝 기구 시장 현황</h3><table><thead><tr><th><strong>구분</strong></th><th><strong>홈트 기구 판매량(만 대)</strong></th><th><strong>전체 운동기구 판매량(만 대)</strong></th><th><strong>비중(%)</strong></th></tr></thead><tbody><tr><td>2021</td><td>55</td><td>460</td><td>12.0</td></tr><tr><td>2022</td><td>80</td><td>480</td><td>16.7</td></tr><tr><td>2023</td><td>105</td><td>440</td><td>23.9</td></tr><tr><td>2024</td><td>120</td><td>480</td><td>25.0</td></tr><tr><td>합계</td><td>360</td><td>1,860</td><td>19.4</td></tr></tbody></table><p>(단위: 만 대, %)</p><h3>맞춤형 운동을 원하는 소비자</h3><p>기존 헬스장(Gym) 이용에 익숙한 소비자들에게 홈트레이닝은 공간, 소음, 운동법 습득 등에서 다소 불편함이 있다. 하지만 시간과 장소에 구애받지 않고 운동할 수 있다는 점이 큰 장점(Advantage)이다.</p><p>운동기구 제조사(Manufacturer) 입장에서는 홈트 시장 확대가 긍정적이다. 헬스장 납품에만 의존하던 유통 채널(Distribution Channel)이 넓어지고, 온라인 판매와 다양한 프로모션(Promotion)이 가능해졌기 때문이다. 또한, 자체 운동 앱이나 영상 콘텐츠(Content)를 통해 브랜드(Brand) 경쟁력을 강화할 수 있다.</p><h3>서비스 경쟁으로의 전환</h3><p>기존 헬스장과 오프라인 운동센터에게 홈트 시장의 성장세는 부담이 될 수밖에 없다. 회원 감소와 함께 매출이 줄고, 운동 시장 주도권이 온라인 플랫폼(Platform)과 제조사로 이동할 수 있기 때문이다.</p><p>홈트 시장이 커지면, 운동기구 업체와 플랫폼 기업들은 단순한 제품 판매를 넘어 운동 콘텐츠, 커뮤니티(Community), 사후관리(After Service) 등에서 경쟁해야 한다. 글로벌 피트니스 앱의 진출로 국내 시장의 경쟁도 더욱 치열해지고 있다.</p><p>업계 관계자는 "젊은 세대를 중심으로 집에서 효율적으로 운동하려는 수요(Demand)가 빠르게 늘고 있다"며 "기존 헬스장들도 프로그램 혁신과 서비스 차별화에 집중해야 할 시기"라고 말했다.</p><h3>Reference</h3><p>Lee, H. J., & Kim, S. Y. (2024). Home Training Equipment Market Trends in Korea. Journal of Consumer Fitness, 9(1), 32-38.<br>Park, E., & Choi, M. (2023). Online Fitness Platforms and Consumer Behavior. Fitness Industry Review, 15(2), 57-62.<br>Kim, J. (2024). The Growth of Home Training Culture in Asia. Asia Sports Business, 11(3), 21-27.</p>`,
+        `<h3>개요</h3><p>최근 반려동물(Pet) 용품을 직접 구매하고, 맞춤형 사료와 용품 구독 서비스(Subscription Service)를 개별적으로 선택하는 소비자(Consumer)들이 빠르게 늘고 있다. 업계에 따르면 2021년까지만 해도 전체 반려동물 시장에서 구독형 서비스가 차지하는 비중(Proportion)은 8%에 불과했으나, 2024년에는 18%를 넘어섰다. 이제 반려동물 용품을 구매하는 소비자 5명 중 1명은 구독 서비스를 이용하는 셈이다.</p><h3>반려동물 용품 구독 서비스 시장 현황</h3><table><thead><tr><th><strong>구분</strong></th><th><strong>구독 서비스 이용자(만 명)</strong></th><th><strong>전체 반려동물 용품 구매자(만 명)</strong></th><th><strong>비중(%)</strong></th></tr></thead><tbody><tr><td>2021</td><td>42</td><td>525</td><td>8.0</td></tr><tr><td>2022</td><td>70</td><td>540</td><td>13.0</td></tr><tr><td>2023</td><td>90</td><td>510</td><td>17.6</td></tr><tr><td>2024</td><td>95</td><td>520</td><td>18.3</td></tr><tr><td>합계</td><td>297</td><td>2,095</td><td>14.2</td></tr></tbody></table><p>(단위: 만 명, %)</p><h3>맞춤형 서비스를 원하는 소비자</h3><p>기존 오프라인 매장이나 대형마트에서 직접 구매에 익숙한 소비자들에게 구독형 반려동물 용품 서비스는 초기 가입, 제품 선택, 배송(Delivery) 일정 관리 등에서 다소 번거로움이 있다. 하지만 정기적으로 신선한 사료와 용품을 받아볼 수 있고, 반려동물의 건강 상태에 맞춘 맞춤형 제품을 선택할 수 있다는 점이 큰 장점(Advantage)이다.</p><p>반려동물 용품 제조사(Manufacturer) 입장에서는 구독형 서비스 시장 확대가 긍정적이다. 기존 유통 채널(Distribution Channel)에만 의존하던 구조에서 벗어나 온라인 플랫폼(Platform)을 통한 직접 판매와 다양한 프로모션(Promotion)이 가능해졌기 때문이다. 또한, 데이터(Data) 기반의 고객 관리와 맞춤형 추천으로 브랜드(Brand) 충성도를 높일 수 있다.</p><h3>서비스 경쟁으로의 전환</h3><p>기존 오프라인 유통업체에게 구독형 서비스의 성장세는 부담이 될 수밖에 없다. 방문 고객 감소와 함께 매출이 줄고, 시장 주도권이 온라인 플랫폼과 제조사로 이동할 수 있기 때문이다.</p><p>구독형 시장이 커지면, 용품 업체와 플랫폼 기업들은 단순한 제품 판매를 넘어 정기 배송, 건강 상담(Consultation), 커뮤니티(Community) 등에서 경쟁해야 한다. 글로벌 구독 서비스의 국내 진출로 시장 경쟁도 더욱 치열해지고 있다.</p><p>업계 관계자는 "젊은 반려인들을 중심으로 반려동물의 건강과 편의를 중시하는 구독 서비스 이용이 빠르게 늘고 있다"며 "기존 유통업체들도 서비스 혁신(Innovation)과 차별화에 집중해야 할 시기"라고 말했다.</p><h3>Reference</h3><p>Choi, Y. S., & Lee, J. H. (2024). Trends in Pet Subscription Services in Korea. Pet Industry Journal, 7(2), 44-50.<br>Kim, E., & Park, S. (2023). Consumer Behavior in the Pet Supplies Market. Journal of Retail & Distribution, 12(4), 61-67.<br>Lee, H. J. (2024). The Rise of Online Pet Platforms. Asia Pet Business, 8(1), 18-25.</p>`,
+        `<h3>개요</h3><p>최근 중고 패션(Secondhand Fashion) 플랫폼(Platform)을 통해 의류와 액세서리를 직접 사고파는 소비자(Consumer)들이 크게 늘고 있다. 업계에 따르면 2021년까지만 해도 전체 온라인 패션 시장에서 중고 거래의 비중(Proportion)은 7%에 불과했으나, 2024년에는 15%를 넘어섰다. 이제 온라인 패션 거래 이용자 7명 중 1명은 중고 패션 플랫폼을 적극적으로 이용하는 셈이다.</p><h3>중고 패션 플랫폼 시장 현황</h3><table><thead><tr><th><strong>구분</strong></th><th><strong>중고 패션 거래액(억 원)</strong></th><th><strong>전체 온라인 패션 거래액(억 원)</strong></th><th><strong>비중(%)</strong></th></tr></thead><tbody><tr><td>2021</td><td>4,500</td><td>64,000</td><td>7.0</td></tr><tr><td>2022</td><td>7,200</td><td>67,000</td><td>10.7</td></tr><tr><td>2023</td><td>9,800</td><td>70,000</td><td>14.0</td></tr><tr><td>2024</td><td>11,200</td><td>74,000</td><td>15.1</td></tr><tr><td>합계</td><td>32,700</td><td>275,000</td><td>11.9</td></tr></tbody></table><p>(단위: 억 원, %)</p><h3>지속가능성과 가성비를 찾는 소비자</h3><p>기존 오프라인 매장이나 백화점에서 구매에 익숙한 소비자들에게 중고 패션 플랫폼은 사진 촬영, 상품 등록, 택배 발송 등에서 다소 번거로움이 있다. 하지만 저렴한 가격에 원하는 브랜드(Brand) 상품을 구입하거나, 사용하지 않는 물품을 손쉽게 판매할 수 있다는 점이 큰 장점(Advantage)이다.</p><p>패션 브랜드 입장에서는 중고 시장의 확대가 긍정적이다. 브랜드 가치가 재조명되고, 친환경(ESG) 경영 트렌드(Trend)에 부합하는 마케팅(Marketing)이 가능해졌기 때문이다. 일부 브랜드는 공식 인증 중고 거래 서비스를 도입하며, 소비자 신뢰를 높이고 있다.</p><h3>서비스 경쟁으로의 전환</h3><p>기존 오프라인 유통업체와 대형 쇼핑몰에게 중고 패션 플랫폼의 성장세는 부담이 될 수밖에 없다. 신규 상품 판매 감소와 함께 시장 주도권이 플랫폼 기업과 소비자에게 이동할 수 있기 때문이다.</p><p>중고 시장이 커지면, 패션 업체와 플랫폼 기업들은 단순한 거래 중개를 넘어 정품 인증(Authentication), 안전 결제, 커뮤니티(Community) 등에서 경쟁해야 한다. 글로벌 중고 패션 플랫폼의 국내 진출로 시장 경쟁도 더욱 치열해지고 있다.</p><p>업계 관계자는 "젊은 세대를 중심으로 합리적인 소비와 환경을 생각하는 중고 패션 거래가 빠르게 늘고 있다"며 "기존 패션 유통업체들도 서비스 혁신(Innovation)과 차별화에 집중해야 할 시기"라고 말했다.</p><h3>Reference</h3><p>Kim, J. H., & Park, Y. S. (2024). The Rise of Secondhand Fashion Platforms in Korea. Fashion Business Review, 16(2), 41-48.<br>Lee, S. M., & Choi, E. J. (2023). Sustainable Consumption and the Growth of Resale Markets. Journal of Consumer Studies, 18(3), 55-61.<br>Park, D. K. (2024). Online Resale Platforms and Fashion Industry Trends. Asia Fashion Insight, 10(1), 29-36.</p>`,
+        `<h3>개요</h3><p>최근 직접 요리 재료를 구매하고, 온라인으로 레시피(Recipe)와 식단을 개별적으로 선택하는 밀키트(Meal Kit) 시장이 빠르게 성장하고 있다. 업계에 따르면 2021년까지만 해도 전체 가정간편식 시장에서 밀키트가 차지하는 비중(Proportion)은 9%에 불과했으나, 2024년에는 20%를 넘어섰다. 이제 가정간편식(HMR) 구매자 5명 중 1명은 밀키트를 선택하는 셈이다.</p><h3>밀키트 시장 현황</h3><table><thead><tr><th><strong>구분</strong></th><th><strong>밀키트 판매액(억 원)</strong></th><th><strong>전체 가정간편식 판매액(억 원)</strong></th><th><strong>비중(%)</strong></th></tr></thead><tbody><tr><td>2021</td><td>2,400</td><td>26,500</td><td>9.1</td></tr><tr><td>2022</td><td>3,800</td><td>28,000</td><td>13.6</td></tr><tr><td>2023</td><td>5,200</td><td>29,500</td><td>17.6</td></tr><tr><td>2024</td><td>6,200</td><td>31,000</td><td>20.0</td></tr><tr><td>합계</td><td>17,600</td><td>115,000</td><td>15.3</td></tr></tbody></table><p>(단위: 억 원, %)</p><h3>편리함과 신선함을 원하는 소비자</h3><p>기존 완제품 간편식이나 외식에 익숙한 소비자(Consumer)들에게 밀키트는 직접 조리 과정이 필요하다는 점에서 다소 번거로울 수 있다. 하지만 신선한 재료(Ingredient)와 간편한 조리법으로 집에서도 레스토랑 수준의 식사를 즐길 수 있다는 점이 큰 장점(Advantage)이다.</p><p>식품 제조사(Manufacturer) 입장에서는 밀키트 시장 확대가 긍정적이다. 기존 유통 채널(Distribution Channel)에만 의존하던 구조에서 벗어나 온라인 플랫폼(Platform), 정기 배송(Delivery) 등 다양한 판매 경로가 열렸기 때문이다. 또한, 소비자 취향에 맞춘 맞춤형 메뉴 개발과 프로모션(Promotion)이 가능해졌다.</p><h3>서비스 경쟁으로의 전환</h3><p>기존 외식업체와 완제품 간편식 제조사에게 밀키트 시장의 성장세는 부담이 될 수밖에 없다. 외식 수요와 완제품 판매가 줄고, 시장 주도권이 밀키트 브랜드(Brand)와 플랫폼으로 이동할 수 있기 때문이다.</p><p>밀키트 시장이 커지면, 식품 업체와 플랫폼 기업들은 단순한 제품 판매를 넘어 레시피 개발, 신선 배송, 고객 맞춤 서비스 등에서 경쟁해야 한다. 글로벌 식품 브랜드의 진출로 국내 시장 경쟁도 더욱 치열해지고 있다.</p><p>업계 관계자는 "맞벌이 가구와 1인 가구를 중심으로 간편하면서도 신선한 식사를 원하는 수요(Demand)가 빠르게 늘고 있다"며 "기존 식품업체들도 제품 혁신(Innovation)과 서비스 차별화에 집중해야 할 시기"라고 말했다.</p><h3>Reference</h3><p>Kim, S. Y., & Lee, J. H. (2024). Growth Trends in the Meal Kit Market. Food Industry Review, 13(2), 61-67.<br>Park, H. J., & Choi, M. S. (2023). Consumer Preferences for Home Meal Kits in Korea. Journal of Culinary Science, 7(1), 44-51.<br>Lee, E. K. (2024). The Evolution of Home Meal Solutions. Asia Food Business, 10(3), 29-36.</p>`,
+        `<h3>개요</h3><p>최근 직접 여행 일정을 계획하고, 온라인 플랫폼(Platform)을 통해 항공권과 숙소, 현지 투어(Tour)를 개별적으로 예약하는 자유여행(Independent Travel) 시장이 빠르게 성장하고 있다. 업계에 따르면 2021년까지만 해도 전체 해외여행 시장에서 자유여행이 차지하는 비중(Proportion)은 18%에 불과했으나, 2024년에는 35%를 넘어섰다. 이제 해외여행을 떠나는 여행객 3명 중 1명은 자유여행을 선택하는 셈이다.</p><h3>자유여행 시장 현황</h3><table><thead><tr><th><strong>구분</strong></th><th><strong>자유여행객(만 명)</strong></th><th><strong>전체 해외여행객(만 명)</strong></th><th><strong>비중(%)</strong></th></tr></thead><tbody><tr><td>2021</td><td>180</td><td>1,000</td><td>18.0</td></tr><tr><td>2022</td><td>250</td><td>1,150</td><td>21.7</td></tr><tr><td>2023</td><td>380</td><td>1,300</td><td>29.2</td></tr><tr><td>2024</td><td>490</td><td>1,400</td><td>35.0</td></tr><tr><td>합계</td><td>1,300</td><td>4,850</td><td>26.8</td></tr></tbody></table><p>(단위: 만 명, %)</p><h3>맞춤형 여행을 원하는 소비자</h3><p>기존 패키지 여행에 익숙한 소비자(Consumer)들에게 자유여행은 계획 수립, 예약 관리, 현지 정보 수집 등에서 다소 번거로움이 있다. 하지만 개인 취향에 맞춘 일정과 예산(Budget)으로 자유롭게 여행할 수 있다는 점이 큰 장점(Advantage)이다.</p><p>여행업계 입장에서는 자유여행 시장 확대가 긍정적이다. 기존 패키지 상품 위주의 판매에서 벗어나 개별 서비스 조합과 맞춤형 상품 개발이 가능해졌기 때문이다. 또한, 온라인 플랫폼을 통한 직접 예약과 실시간 서비스 제공으로 고객 만족도(Satisfaction)를 높일 수 있다.</p><h3>서비스 경쟁으로의 전환</h3><p>기존 여행사와 패키지 상품 업체에게 자유여행 시장의 성장세는 부담이 될 수밖에 없다. 패키지 여행 수요(Demand)가 줄고, 시장 주도권이 온라인 플랫폼과 개별 서비스 제공업체로 이동할 수 있기 때문이다.</p><p>자유여행 시장이 커지면, 여행업체와 플랫폼 기업들은 단순한 상품 판매를 넘어 여행 계획 지원, 실시간 상담(Consultation), 현지 서비스 연계 등에서 경쟁해야 한다. 글로벌 여행 플랫폼의 국내 진출로 시장 경쟁도 더욱 치열해지고 있다.</p><p>업계 관계자는 "젊은 여행객들을 중심으로 획일적인 패키지보다 개성 있는 자유여행을 선호하는 트렌드(Trend)가 확산되고 있다"며 "기존 여행업체들도 서비스 혁신(Innovation)과 디지털 전환에 집중해야 할 시기"라고 말했다.</p><h3>Reference</h3><p>Park, M. J., & Kim, H. S. (2024). Independent Travel Trends in Korea. Tourism Business Review, 18(1), 33-40.<br>Lee, J. K., & Choi, Y. H. (2023). Digital Transformation in the Travel Industry. Asia Tourism Insight, 12(2), 48-55.<br>Kim, S. H. (2024). The Rise of Personalized Travel Experiences. Travel Market Analysis, 9(3), 17-24.</p>`
+    ];
+
+    function extractPureText(text) {
+        return text.replace(/[^\uAC00-\uD7AFa-zA-Z0-9]/g, '');
+    }
+
+    function cleanText(text) {
+        return extractPureText(text);
+    }
+
+    window.startTyping = function() {
+        const textarea = document.getElementById('typingTextarea');
+        const startBtn = document.getElementById('startBtn');
+        const completeBtn = document.getElementById('completeBtn');
+        const originalTextElement = document.getElementById('originalText');
+
+        if (!textarea || !startBtn || !completeBtn || !originalTextElement) return;
+
+        let fullText = originalTextElement.innerText || originalTextElement.textContent || '';
+        originalText = fullText.replace(/구분[\s\S]*?\(단위:[\s\S]*?\)/g, '').replace(/\s+/g, ' ').trim();
+        totalChars = cleanText(originalText).length;
+
+        textarea.disabled = false;
+        textarea.placeholder = "타이핑을 시작하세요...";
+        textarea.focus();
+
+        startBtn.style.display = 'none';
+        completeBtn.style.display = 'block';
+
+        startTime = new Date();
+        isStarted = true;
+
+        textarea.removeEventListener('input', window.updateProgress);
+        textarea.addEventListener('input', window.updateProgress);
+    }
+
+    window.updateProgress = function() {
+        const textarea = document.getElementById('typingTextarea');
+        const progressFill = document.getElementById('progressFill');
+        const progressPercent = document.getElementById('progressPercent');
+
+        if (!textarea || !progressFill || !progressPercent || !originalText) return;
+
+        const cleanUserText = cleanText(textarea.value || '');
+        const cleanOriginalText = cleanText(originalText);
+
+        if (cleanOriginalText.length === 0) return;
+
+        const progress = Math.min((cleanUserText.length / cleanOriginalText.length) * 100, 100);
+        progressFill.style.width = progress + '%';
+        progressPercent.textContent = Math.round(progress) + '%';
+    }
+
+    window.completeTyping = function() {
+        if (!isStarted) return;
+
+        const endTime = new Date();
+        const totalSeconds = Math.round((endTime - startTime) / 1000);
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+
+        const modal = document.getElementById('completeModal');
+        const timeElement = document.getElementById('completeTime');
+
+        if (!modal || !timeElement) return;
+
+        timeElement.textContent = `총 ${minutes}분 ${seconds}초 걸렸습니다.`;
+        modal.style.display = 'flex';
+        isStarted = false;
+    }
+
+    window.checkErrors = function() {
+        const modal = document.getElementById('completeModal');
+        const textarea = document.getElementById('typingTextarea');
+        const errorDisplay = document.getElementById('errorDisplay');
+        const retryBtn = document.getElementById('retryBtn');
+        const morePracticeBtn = document.getElementById('morePracticeBtn');
+        const completeBtn = document.getElementById('completeBtn');
+
+        if (!modal || !textarea || !errorDisplay || !retryBtn || !morePracticeBtn || !completeBtn || !originalText) return;
+
+        modal.style.display = 'none';
+
+        const originalPureText = originalText.replace(/[^\uAC00-\uD7AFa-zA-Z0-9]/g, '');
+        const userPureText = (textarea.value || '').replace(/[^\uAC00-\uD7AFa-zA-Z0-9]/g, '');
+        const userText = textarea.value || '';
+
+        let errorCount = 0;
+        let highlightedText = '';
+        let pureIndex = 0;
+
+        for (let i = 0; i < userText.length; i++) {
+            const char = userText[i];
+
+            if (/[\uAC00-\uD7AFa-zA-Z0-9]/.test(char)) {
+                const originalChar = originalPureText[pureIndex] || '';
+                if (char !== originalChar) {
+                    highlightedText += `<span class="error-highlight">${char}</span>`;
+                    errorCount++;
+                } else {
+                    highlightedText += char;
+                }
+                pureIndex++;
+            } else {
+                highlightedText += char;
+            }
+        }
+
+        if (errorCount === 0 && userPureText.length === originalPureText.length) {
+            completeBtn.style.display = 'none';
+            retryBtn.style.display = 'block';
+            morePracticeBtn.style.display = 'block';
+            alert('🎉 축하합니다! 오타가 없습니다!');
+            return;
+        }
+
+        if (userPureText.length < originalPureText.length) {
+            highlightedText += `<span class="error-highlight"> [${originalPureText.length - userPureText.length}글자 부족]</span>`;
+        }
+
+        errorDisplay.innerHTML = highlightedText;
+        textarea.style.display = 'none';
+        errorDisplay.style.display = 'block';
+
+        completeBtn.style.display = 'none';
+        retryBtn.style.display = 'block';
+        morePracticeBtn.style.display = 'block';
+
+        if (errorCount === 0 && userPureText.length < originalPureText.length) {
+            alert(`글자 수가 부족합니다. ${originalPureText.length - userPureText.length}글자 더 입력하세요.`);
+        } else {
+            alert(`총 ${errorCount}개의 오타가 있습니다. 빨간색으로 표시된 부분을 확인해보세요.`);
+        }
+    }
+
+    window.retryCurrentText = function() {
+        const textarea = document.getElementById('typingTextarea');
+        const errorDisplay = document.getElementById('errorDisplay');
+        const startBtn = document.getElementById('startBtn');
+        const completeBtn = document.getElementById('completeBtn');
+        const retryBtn = document.getElementById('retryBtn');
+        const morePracticeBtn = document.getElementById('morePracticeBtn');
+        const progressFill = document.getElementById('progressFill');
+        const progressPercent = document.getElementById('progressPercent');
+
+        if (!textarea || !startBtn) return;
+
+        textarea.value = '';
+        textarea.disabled = true;
+        textarea.placeholder = "시작하기 버튼을 누른 후 왼쪽 텍스트와 동일하게 타이핑해보세요...";
+
+        if (textarea) textarea.style.display = 'block';
+        if (errorDisplay) errorDisplay.style.display = 'none';
+        if (startBtn) startBtn.style.display = 'block';
+        if (completeBtn) completeBtn.style.display = 'none';
+        if (retryBtn) retryBtn.style.display = 'none';
+        if (morePracticeBtn) morePracticeBtn.style.display = 'none';
+        if (progressFill) progressFill.style.width = '0%';
+        if (progressPercent) progressPercent.textContent = '0%';
+
+        isStarted = false;
+        startTime = null;
+    }
+
+    window.retryTyping = function() {
+        window.retryCurrentText();
+        const modal = document.getElementById('completeModal');
+        if (modal) modal.style.display = 'none';
+    }
+
+    window.morePractice = function() {
+        currentTextIndex = (currentTextIndex + 1) % textData.length;
+        const originalTextElement = document.getElementById('originalText');
+        const modal = document.getElementById('completeModal');
+
+        if (!originalTextElement || !textData[currentTextIndex]) return;
+
+        originalTextElement.innerHTML = textData[currentTextIndex];
+        window.retryCurrentText();
+
+        if (modal) modal.style.display = 'none';
+    }
+
+    window.switchKoreanMode = function(mode) {
+        const modeNames = {
+            'consonant': '자음',
+            'vowel': '모음',
+            'word': '단어',
+            'sentence': '문장'
+        };
+        alert('한글 ' + modeNames[mode] + ' 연습을 시작합니다!');
+    }
+
+    window.switchEnglishMode = function(mode) {
+        const modeNames = {
+            'alphabet': '알파벳',
+            'word': '단어',
+            'sentence': '문장'
+        };
+        alert('영어 ' + modeNames[mode] + ' 연습을 시작합니다!');
+    }
+
+    window.playKoreanMoleGame = function() {
+        alert('한글 두더지 잡기 게임을 시작합니다!');
+    }
+
+    window.playEnglishMoleGame = function() {
+        alert('영어 두더지 잡기 게임을 시작합니다!');
+    }
+
+    window.playKoreanPlaneGame = function() {
+        alert('한글 비행기 조종 게임을 시작합니다!');
+    }
+
+    window.playEnglishPlaneGame = function() {
+        alert('영어 비행기 조종 게임을 시작합니다!');
+    }
+
+    window.playKoreanDeliveryGame = function() {
+        alert('한글 택배 분류 게임을 시작합니다!');
+    }
+
+    window.playEnglishDeliveryGame = function() {
+        alert('영어 택배 분류 게임을 시작합니다!');
+    }
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta

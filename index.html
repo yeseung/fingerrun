@@ -1,0 +1,1106 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                                                      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T9HC454Z');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QSEYCFK83"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-7QSEYCFK83');
+    </script>
+
+    <!-- 알림 차단 스크립트 -->
+    <script>
+        // 모든 알림 요청 차단
+        if ('Notification' in window) {
+            Notification.requestPermission = function() {
+                return Promise.resolve('denied');
+            };
+        }
+    </script>
+
+    <meta name="naver-site-verification" content="9b1a5da708f6729d4b69fab5b2d7e182d75492a3" />
+
+    <!-- SEO 메타태그 -->
+    <title>핑거런 | 타자연습 사이트</title>
+    <meta name="description" content="압도적인 디자인과 성능으로 타자속도와 정확성을 UP! 한글타자연습, 영어타자연습, 타자게임 제공.">
+    <meta name="keywords" content="타자연습, 한글타자연습, 영어타자연습, 타자게임, 타자연습게임, 타자연습 사이트, 핑거런, 영어타자연습 사이트, 한글타자연습 무료">
+    <meta name="author" content="FingerRun">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/svg+xml" href="./images/finger-run-logo.svg">
+    <link rel="shortcut icon" type="image/svg+xml" href="./images/finger-run-logo.svg">
+    <link rel="apple-touch-icon" href="./images/finger-run-logo.svg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⌨️</text></svg>">
+
+    <!-- Open Graph (SNS 공유) -->
+    <meta property="og:title" content="핑거런 | 타자연습 사이트">
+    <meta property="og:description" content="압도적인 디자인과 성능으로 타자속도와 정확성을 UP! | 한글타자연습, 영어타자연습, 타자게임">
+    <meta property="og:url" content="https://fingerrun.com">
+    <meta property="og:type" content="website">
+
+    <!-- 추가 SEO -->
+    <link rel="canonical" href="https://fingerrun.com">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": ["WebApplication", "EducationalOrganization"],
+            "name": "핑거런",
+            "alternateName": "FingerRun",
+            "description": "압도적인 디자인과 성능으로 타자속도와 정확성을 UP! | 한글타자연습, 영어타자연습, 타자게임",
+            "url": "https://fingerrun.com",
+            "applicationCategory": "EducationApplication",
+            "operatingSystem": "Any",
+            "browserRequirements": "Requires JavaScript",
+            "hasCourse": [
+                {
+                    "@type": "Course",
+                    "name": "한글 타자연습",
+                    "description": "한글 타이핑 속도와 정확도를 UP! | 한글타자연습, 영어타자연습, 타자게임",
+                    "educationalCredentialAwarded": "수료증",
+                    "educationalLevel": "Beginner to Advanced",
+                    "provider": {
+                        "@type": "Organization",
+                        "name": "FingerRun",
+                        "url": "https://fingerrun.com"
+                    },
+                    "hasCourseInstance": {
+                        "@type": "CourseInstance",
+                        "courseMode": "online",
+                        "courseWorkload": "PT2H",
+                        "instructor": {
+                            "@type": "Organization",
+                            "name": "FingerRun"
+                        }
+                    },
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "KRW",
+                        "availability": "https://schema.org/InStock",
+                        "category": "Free"
+                    }
+                },
+                {
+                    "@type": "Course",
+                    "name": "영어 타자연습",
+                    "description": "영어 타이핑 속도와 정확도를 UP! | 한글타자연습, 영어타자연습, 타자게임",
+                    "educationalCredentialAwarded": "수료증",
+                    "educationalLevel": "Beginner to Advanced",
+                    "provider": {
+                        "@type": "Organization",
+                        "name": "FingerRun",
+                        "url": "https://fingerrun.com"
+                    },
+                    "hasCourseInstance": {
+                        "@type": "CourseInstance",
+                        "courseMode": "online",
+                        "courseWorkload": "PT2H",
+                        "instructor": {
+                            "@type": "Organization",
+                            "name": "FingerRun"
+                        }
+                    },
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "KRW",
+                        "availability": "https://schema.org/InStock",
+                        "category": "Free"
+                    }
+                }
+            ]
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 0.8rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-menu a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* 드롭다운 화살표 */
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        /* 드롭다운 메뉴 */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            padding: 0.5rem 0;
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-menu li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-menu li:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1rem;
+            color: #333;
+            border-radius: 0;
+            font-weight: 400;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+            color: #667eea;
+            transform: none;
+            padding-left: 1.2rem;
+        }
+
+        /* 드롭다운 구분선 */
+        .dropdown-divider {
+            height: 1px;
+            background: #e2e8f0;
+            margin: 0.3rem 0;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 2rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section - 하얀색 배경 + 스카이블루 글자 + 키보드 테마 */
+        .hero {
+            text-align: center;
+            padding: 4rem 0 2rem 0;
+            background: #ffffff !important;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 25% 25%, rgba(135, 206, 235, 0.05) 0%, transparent 30%), radial-gradient(circle at 75% 75%, rgba(135, 206, 235, 0.03) 0%, transparent 35%);
+            opacity: 0.4;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.8) 0%, transparent 30%);
+            opacity: 0.7;
+        }
+
+        /* 떠다니는 키보드 키들 - 어두운 회색 */
+        .floating-keys {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .key {
+            position: absolute;
+            background: rgba(75, 85, 99, 0.15);
+            border: 2px solid rgba(75, 85, 99, 0.3);
+            border-radius: 8px;
+            padding: 0.5rem 0.8rem;
+            font-family: 'Segoe UI', monospace;
+            font-weight: 600;
+            color: rgba(55, 65, 81, 0.7);
+            animation: float-key 6s ease-in-out infinite;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 8px rgba(75, 85, 99, 0.1);
+        }
+
+        .key:nth-child(1) {
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+            font-size: 1.2rem;
+        }
+
+        .key:nth-child(2) {
+            top: 25%;
+            right: 15%;
+            animation-delay: 1s;
+            font-size: 1rem;
+        }
+
+        .key:nth-child(3) {
+            top: 45%;
+            left: 5%;
+            animation-delay: 2s;
+            font-size: 1.1rem;
+        }
+
+        .key:nth-child(4) {
+            top: 35%;
+            right: 8%;
+            animation-delay: 3s;
+            font-size: 0.9rem;
+        }
+
+        .key:nth-child(5) {
+            top: 60%;
+            left: 20%;
+            animation-delay: 4s;
+            font-size: 1rem;
+        }
+
+        .key:nth-child(6) {
+            top: 55%;
+            right: 25%;
+            animation-delay: 5s;
+            font-size: 1.2rem;
+        }
+
+        @keyframes float-key {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+                opacity: 0.9;
+            }
+        }
+
+        /* 타이핑 커서 효과 - 어두운 회색 */
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background: #4b5563;
+            margin-left: 2px;
+            animation: blink 1s infinite;
+            position: relative;
+            top: 0.1em;
+        }
+
+        @keyframes blink {
+            0%, 50% {
+                opacity: 1;
+            }
+            51%, 100% {
+                opacity: 0;
+            }
+        }
+
+        .scroll-arrow {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #87CEEB !important;
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        .scroll-arrow:first-of-type {
+            bottom: 50px;
+        }
+
+        .scroll-arrow:last-of-type {
+            bottom: 30px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(135deg, #87CEEB 0%, #7cc4e8 25%, #71bae5 50%, #66b0e2 75%, #5ba6df 100%) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+            font-weight: 700;
+            text-shadow: none !important;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+            color: #4a5568 !important;
+            font-weight: 500;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+
+        /* Features Section */
+        .features {
+            background: white;
+            padding: 4rem 0;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Typing Games Section */
+        .typing-games {
+            background: white;
+            padding: 4rem 0;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .games-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .games-header h2 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .games-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .game-card {
+            background: #f8f9fa;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            border-color: #667eea;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .game-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .game-content {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .game-content h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .game-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .game-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .game-features li {
+            padding: 0.3rem 0;
+            color: #555;
+        }
+
+        .game-features li::before {
+            content: '✓';
+            color: #4caf50;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .play-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .play-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(51, 51, 51, 0.95);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            display: none;
+        }
+
+        .footer-contact {
+            text-align: left;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer-contact p:first-child {
+            color: #87CEEB;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-contact p {
+            color: #e2e8f0;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 0.5rem;
+                flex-wrap: nowrap;
+            }
+
+            .nav-menu a {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.8rem;
+            }
+
+            .dropdown-menu {
+                min-width: 150px;
+                font-size: 0.8rem;
+            }
+
+            .dropdown-menu a {
+                padding: 0.5rem 0.8rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .features-grid, .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-container {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .games-grid {
+                gap: 2rem;
+            }
+
+            .game-card {
+                min-width: 280px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .footer-contact {
+                text-align: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero, .features, .typing-games {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T9HC454Z"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- Navigation -->
+<nav>
+    <div class="nav-container">
+        <a href="./index.html" class="logo">⌨️ FingerRun</a>
+        <ul class="nav-menu">
+            <li><a href="./index.html">소개</a></li>
+            <li>
+                <a href="#korean">
+                    한글 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="./Korean/practice.html" onclick="switchKoreanMode('consonant')">자음연습</a>
+                    <a href="./Korean/practice.html" onclick="switchKoreanMode('vowel')">모음연습</a>
+                    <a href="./Korean/practice.html" onclick="switchKoreanMode('word')">단어연습</a>
+                    <a href="./Korean/practice.html" onclick="switchKoreanMode('sentence')">문장연습</a>
+                </div>
+            </li>
+            <li>
+                <a href="#english">
+                    영어 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="./English/practice.html" onclick="switchEnglishMode('alphabet')">알파벳연습</a>
+                    <a href="./English/practice.html" onclick="switchEnglishMode('word')">단어연습</a>
+                    <a href="./English/practice.html" onclick="switchEnglishMode('sentence')">문장연습</a>
+                </div>
+            </li>
+            <li>
+                <a href="#games">
+                    타자게임
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="./Korean/game-mole.html">두더지 잡기 (한글)</a>
+                    <a href="./English/game-mole.html">두더지 잡기 (영어)</a>
+                    <a href="./Korean/game-plane.html">비행기 조종 (한글)</a>
+                    <a href="./English/game-plane.html">비행기 조종 (영어)</a>
+                    <a href="./Korean/game-delivery.html">택배 분류 (한글)</a>
+                    <a href="./English/game-delivery.html">택배 분류 (영어)</a>
+                </div>
+            </li>
+            <li>
+                <a href="#certificate">
+                    자격증
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="./Certificate/word-processor.html">워드프로세서</a>
+                </div>
+            </li>
+            <li><a href="./contact.html">문의하기</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <!-- 떠다니는 키보드 키들 -->
+        <div class="floating-keys">
+            <div class="key">Q</div>
+            <div class="key">W</div>
+            <div class="key">E</div>
+            <div class="key">R</div>
+            <div class="key">T</div>
+            <div class="key">Y</div>
+        </div>
+        <div class="container">
+            <h1>빠르고 정확한 타이핑을 배우세요<span class="typing-cursor"></span></h1>
+            <p>전문적인 타자연습 프로그램으로 타이핑 실력을 향상시키세요</p>
+        </div>
+        <div class="scroll-arrow" onclick="scrollToFeatures()">
+            ⬇
+        </div>
+        <div class="scroll-arrow" onclick="scrollToFeatures()">
+            ⬇
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 style="text-align: center; color: #667eea; font-size: 2.5rem; margin-bottom: 1rem;">압도적인 타이핑 연습</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>정확성 향상</h3>
+                    <p>체계적인 연습을 통해 타이핑 정확도를 크게 향상시킬 수 있습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>속도 증가</h3>
+                    <p>단계별 훈련으로 분당 타자수를 효과적으로 늘려보세요.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>실시간 분석</h3>
+                    <p>타이핑 속도, 정확도를 실시간으로 확인할 수 있습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>재미 향상</h3>
+                    <p>다양한 게임과 재미있는 요소로 지루하지 않게 학습할 수 있습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔤</div>
+                    <h3>영어 타자 연습</h3>
+                    <p>영어 알파벳부터 복잡한 문장까지 단계별로 체계적으로 학습하세요.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔥</div>
+                    <h3>동기부여</h3>
+                    <p>성취감과 도전 의식을 불러일으키는 다양한 동기부여 시스템을 제공합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Typing Games Section -->
+    <section id="games" class="typing-games">
+        <div class="container">
+            <div class="games-header">
+                <h2>재미있는 타자게임</h2>
+                <p>게임을 통해 즐겁게 타이핑 실력을 향상시키세요. 다양한 게임으로 지루하지 않게 연습할 수 있습니다.</p>
+            </div>
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image">
+                        🐹
+                    </div>
+                    <div class="game-content">
+                        <h3>한글 두더지 잡기</h3>
+                        <p>나타나는 두더지에 적힌 한글 단어를 빠르게 타이핑해서 잡는 클래식 게임입니다.</p>
+                        <ul class="game-features">
+                            <li>10단계 난이도</li>
+                            <li>실시간 점수</li>
+                            <li>재미있는 애니메이션</li>
+                            <li>단어 암기 효과</li>
+                        </ul>
+                        <a href="./Korean/game-mole.html" class="play-button" title="한글 두더지 잡기 타자게임">한글 두더지 잡기 시작</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        🎯
+                    </div>
+                    <div class="game-content">
+                        <h3>영어 두더지 잡기</h3>
+                        <p>영어 단어로 두더지를 잡으며 영어 타이핑과 단어 실력을 동시에 늘려보세요.</p>
+                        <ul class="game-features">
+                            <li>10단계 난이도</li>
+                            <li>다양한 영어 단어</li>
+                            <li>학습 효과적</li>
+                            <li>레벨별 단어 분류</li>
+                        </ul>
+                        <a href="./English/game-mole.html" class="play-button" title="영어 두더지 잡기 타자게임">영어 두더지 잡기 시작</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        📦
+                    </div>
+                    <div class="game-content">
+                        <h3>한글 택배 분류</h3>
+                        <p>택배이름을 정확하게 타이핑해서 택배를 옳게 분류해보세요.</p>
+                        <ul class="game-features">
+                            <li>물류 시뮬레이션</li>
+                            <li>정확성 훈련</li>
+                            <li>적용 학습</li>
+                            <li>집중력 강화</li>
+                        </ul>
+                        <a href="./Korean/game-delivery.html" class="play-button" title="한글 택배 분류 타자게임">한글 택배 분류 시작</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        📮
+                    </div>
+                    <div class="game-content">
+                        <h3>영어 택배 분류</h3>
+                        <p>택배이름을 정확하게 타이핑해서 택배를 옳게 분류해보세요.</p>
+                        <ul class="game-features">
+                            <li>영어 주소 학습</li>
+                            <li>영어 향상</li>
+                            <li>정확성 중점</li>
+                            <li>글로벌 감각</li>
+                        </ul>
+                        <a href="./English/game-delivery.html" class="play-button" title="영어 택배 분류 타자게임">영어 택배 분류 시작</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        ✈️
+                    </div>
+                    <div class="game-content">
+                        <h3>한글 비행기 조종</h3>
+                        <p>한글 단어를 타이핑해서 비행기를 조종하며 장애물을 피하는 스릴 넘치는 게임입니다.</p>
+                        <ul class="game-features">
+                            <li>실시간 비행 액션</li>
+                            <li>장애물 회피 미션</li>
+                            <li>한글 단어 학습</li>
+                            <li>반응속도 향상</li>
+                        </ul>
+                        <a href="./Korean/game-plane.html" class="play-button" title="한글 비행기 조종 타자게임">한글 비행기 조종 시작</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image">
+                        🛩️
+                    </div>
+                    <div class="game-content">
+                        <h3>영어 비행기 조종</h3>
+                        <p>영어 단어를 빠르게 타이핑해서 비행기를 조종하고 장애물을 피해보세요.</p>
+                        <ul class="game-features">
+                            <li>스릴 넘치는 비행</li>
+                            <li>영어 단어 마스터</li>
+                            <li>실시간 액션</li>
+                            <li>집중력 향상</li>
+                        </ul>
+                        <a href="./English/game-plane.html" class="play-button" title="영어 비행기 조종 타자게임">영어 비행기 조종 시작</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer id="contact">
+    <div class="container">
+        <div class="footer-bottom">
+            <div class="footer-contact">
+                <p>&copy; 2025 FingerRun. 모든 권리 보유.</p>
+                <p>빠르고 정확한 타이핑의 시작, FingerRun과 함께하세요! ⌨️</p>
+                <p>문의: fingerrun@naver.com</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // 페이지 로드 시 강제로 스타일 적용
+    window.addEventListener('load', () => {
+        // 하얀색 배경 적용
+        const heroSection = document.querySelector('.hero');
+        if (heroSection) {
+            heroSection.style.background = '#ffffff';
+        }
+
+        // 제목에 스카이블루 그라데이션 적용
+        const heroTitle = document.querySelector('.hero h1');
+        if (heroTitle) {
+            heroTitle.style.background = 'linear-gradient(135deg, #87CEEB 0%, #7cc4e8 25%, #71bae5 50%, #66b0e2 75%, #5ba6df 100%)';
+            heroTitle.style.webkitBackgroundClip = 'text';
+            heroTitle.style.webkitTextFillColor = 'transparent';
+            heroTitle.style.backgroundClip = 'text';
+        }
+
+        // 스크롤 화살표 스카이블루로 적용
+        const scrollArrows = document.querySelectorAll('.scroll-arrow');
+        scrollArrows.forEach(arrow => {
+            arrow.style.color = '#87CEEB';
+        });
+
+        document.body.style.opacity = '0';
+        document.body.style.transition = 'opacity 0.5s ease-in';
+        setTimeout(() => {
+            document.body.style.opacity = '1';
+        }, 100);
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href && href !== '#') {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+
+    // Game functions - 더 이상 alert 대신 실제 링크로 이동
+    function playKoreanMoleGame() {
+        window.location.href = './Korean/game-mole.html';
+    }
+
+    function playEnglishMoleGame() {
+        window.location.href = './English/game-mole.html';
+    }
+
+    function playKoreanDeliveryGame() {
+        window.location.href = './Korean/game-delivery.html';
+    }
+
+    function playEnglishDeliveryGame() {
+        window.location.href = './English/game-delivery.html';
+    }
+
+    function playKoreanPlaneGame() {
+        window.location.href = './Korean/game-plane.html';
+    }
+
+    function playEnglishPlaneGame() {
+        window.location.href = './English/game-plane.html';
+    }
+
+    // Scroll to features function
+    function scrollToFeatures() {
+        document.querySelector('.features').scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+
+    // Add scroll effect to navigation
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 100) {
+            nav.style.background = 'rgba(255, 255, 255, 0.98)';
+        } else {
+            nav.style.background = 'rgba(255, 255, 255, 0.95)';
+        }
+    });
+
+    // 한글 모드 전환 함수
+    function switchKoreanMode(mode) {
+        localStorage.setItem('koreanMode', mode);
+        window.location.href = './Korean/practice.html';
+    }
+
+    // 영어 모드 전환 함수
+    function switchEnglishMode(mode) {
+        localStorage.setItem('englishMode', mode);
+        window.location.href = './English/practice.html';
+    }
+</script>
+</body>
+</html>

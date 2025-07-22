@@ -1,0 +1,1280 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                                                      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T9HC454Z');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>핑거런 | 압도적인 디자인과 성능의 타자연습을 경험해보세요.</title>
+    <link rel="icon" type="image/svg+xml" href="../images/finger-run-logo.svg">
+
+    <!-- SEO 메타태그 -->
+    <meta name="description" content="재미있는 한글 두더지 잡기 타자게임으로 타이핑 실력을 향상시키세요. 10단계 난이도, 실시간 점수, 단어 암기 효과까지!">
+    <meta name="keywords" content="한글 두더지 잡기, 타자게임, 한글타자게임, 타이핑게임, 무료 타자게임, 온라인 타자게임, 두더지게임, 한글게임">
+    <meta name="author" content="FingerRun">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph (SNS 공유) -->
+    <meta property="og:title" content="한글 두더지 잡기 게임 | 핑거런">
+    <meta property="og:description" content="재미있는 한글 두더지 잡기 타자게임으로 타이핑 실력을 향상시키세요. 10단계 난이도로 즐겁게 학습!">
+    <meta property="og:url" content="https://fingerrun.com/Korean/game-mole.html">
+    <meta property="og:type" content="website">
+
+    <!-- 추가 SEO -->
+    <link rel="canonical" href="https://fingerrun.com/Korean/game-mole.html">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 0.8rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-menu a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            padding: 0.5rem 0;
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-menu li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-menu li:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1rem;
+            color: #333;
+            border-radius: 0;
+            font-weight: 400;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+            color: #667eea;
+            transform: none;
+            padding-left: 1.2rem;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e1b4b, #7c3aed, #ec4899);
+            overflow-x: hidden;
+            padding-top: 80px;
+            zoom: 0.85;
+        }
+
+        .container {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px 20px 0 20px;
+            position: relative;
+        }
+
+        .background-animation {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .bg-blob {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.2;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .bg-blob:nth-child(1) {
+            top: -160px;
+            left: -160px;
+            background: #a855f7;
+        }
+
+        .bg-blob:nth-child(2) {
+            bottom: -160px;
+            right: -160px;
+            background: #ec4899;
+            animation-delay: -2s;
+        }
+
+        .bg-blob:nth-child(3) {
+            top: 160px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4f46e5;
+            animation-delay: -4s;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #fbbf24, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            text-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 24px 32px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            min-width: 120px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #d1d5db;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #a855f7;
+        }
+
+        .stat-value.blue {
+            color: #3b82f6;
+        }
+
+        .stat-value.red {
+            color: #ef4444;
+        }
+
+        .stat-value.orange {
+            color: #f97316;
+        }
+
+        .game-field-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .game-field {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .game-board {
+            position: relative;
+            width: 100%;
+            height: 800px;
+            background: linear-gradient(135deg, #10b981, #059669, #0d9488);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: inset 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 구멍 스타일 */
+        .hole {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, #000 30%, #451a03 70%, #92400e 100%);
+            border-radius: 50%;
+            box-shadow: inset 0 8px 20px rgba(0, 0, 0, 0.8), 0 4px 16px rgba(0, 0, 0, 0.6);
+            border: 6px solid #92400e;
+            transform: translate(-50%, -50%);
+            transition: transform 0.3s ease;
+        }
+
+        .hole::after {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            right: 10%;
+            bottom: 10%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1), transparent);
+            border-radius: 50%;
+        }
+
+        /* 두더지 스타일 */
+        .mole {
+            position: absolute;
+            transition: all 0.3s ease-out;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            animation: mole-appear 0.5s ease-out;
+        }
+
+        .mole.hit {
+            animation: mole-hit 0.5s ease-out;
+            opacity: 0.6;
+            transform: translate(-50%, -30%) scale(0.75);
+        }
+
+        .mole-body {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d97706, #92400e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+            border: 5px solid #f59e0b;
+            cursor: pointer;
+        }
+
+        .mole-label {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            color: #1f2937;
+            padding: 13px 19px;
+            border-radius: 19px;
+            font-size: 2.24rem;
+            font-weight: 700;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+            border: 4px solid #3b82f6;
+            white-space: nowrap;
+            z-index: 120;
+        }
+
+        .mole-label::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 12px solid #3b82f6;
+        }
+
+        .hammer {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4rem;
+            animation: bounce 0.5s ease-out;
+            z-index: 110;
+        }
+
+        /* 장식 요소들 */
+        .decoration {
+            position: absolute;
+            font-size: 1.2rem;
+            opacity: 0.6;
+            animation: pulse 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .flower {
+            color: #f472b6;
+        }
+
+        .mushroom {
+            color: #ef4444;
+        }
+
+        .tree {
+            color: #22c55e;
+            font-size: 1.5rem;
+        }
+
+        /* 입력 섹션 스타일 */
+        .input-section {
+            margin: 20px 0;
+        }
+
+        .typing-area {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .typing-title {
+            font-size: 1.5rem;
+            color: #e5e7eb;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .typing-input {
+            width: 100%;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            min-height: 60px;
+            background: linear-gradient(135deg, #fef3c7, #fed7aa);
+            border-radius: 16px;
+            padding: 16px 32px;
+            border: 3px solid #fbbf24;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .typing-input:focus {
+            border-color: #f59e0b;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25), 0 0 0 3px rgba(251, 191, 36, 0.3);
+        }
+
+        .typing-instructions {
+            background: rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 10px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #e5e7eb;
+            margin-top: 16px;
+        }
+
+        .instruction-kbd {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            margin: 0 4px;
+        }
+
+        /* 메뉴 스타일 */
+        .game-menu {
+            margin: 20px 0;
+        }
+
+        .menu-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .menu-header {
+            font-size: 2rem;
+            color: #e5e7eb;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .menu-description {
+            background: rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #e5e7eb;
+            margin-bottom: 24px;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .start-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .result-emoji {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .result-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .result-title.game-over {
+            color: #ef4444;
+        }
+
+        .result-title.complete {
+            color: #10b981;
+        }
+
+        .result-text {
+            font-size: 1.25rem;
+            color: #e5e7eb;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .final-score {
+            font-weight: 900;
+            color: #ef4444;
+            font-size: 1.3em;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .result-btn {
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .result-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .result-btn.restart {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .result-btn.next {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+        }
+
+        .result-btn.exit {
+            background: linear-gradient(135deg, #6b7280, #4b5563);
+        }
+
+        .menu-hidden {
+            display: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes mole-appear {
+            0% { transform: translate(-50%, -50%) scale(0.3); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        @keyframes mole-hit {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -30%) scale(1.2); }
+            100% { transform: translate(-50%, -30%) scale(0.75); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 0.5rem;
+            }
+
+            .nav-menu a {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.8rem;
+            }
+
+            .dropdown-menu {
+                min-width: 150px;
+                font-size: 0.8rem;
+            }
+
+            .dropdown-menu a {
+                padding: 0.5rem 0.8rem;
+            }
+
+            .title {
+                font-size: 2.5rem;
+            }
+
+            .stats-container {
+                gap: 16px;
+            }
+
+            .stat-card {
+                padding: 16px 24px;
+                min-width: 100px;
+            }
+
+            .stat-value {
+                font-size: 1.5rem;
+            }
+
+            .game-board {
+                height: 650px;
+            }
+
+            .hole {
+                width: 120px;
+                height: 120px;
+            }
+
+            .mole-body {
+                width: 80px;
+                height: 80px;
+                font-size: 2.5rem;
+            }
+
+            .mole-label {
+                font-size: 1.76rem;
+                padding: 10px 16px;
+                top: -35px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<!-- Navigation -->
+<nav>
+    <div class="nav-container">
+        <a href="../index.html" class="logo">⌨️ FingerRun</a>
+        <ul class="nav-menu">
+            <li><a href="../index.html">소개</a></li>
+            <li>
+                <a href="#korean">
+                    한글 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="practice.html">자음 연습</a>
+                    <a href="practice.html">모음 연습</a>
+                    <a href="practice.html">단어 연습</a>
+                    <a href="practice.html">문장 연습</a>
+                </div>
+            </li>
+            <li>
+                <a href="#english">
+                    영어 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="../English/practice.html">알파벳 연습</a>
+                    <a href="../English/practice.html">영어 단어 연습</a>
+                    <a href="../English/practice.html">영어 문장 연습</a>
+                </div>
+            </li>
+            <li>
+                <a href="#games">
+                    타자게임
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="game-mole.html">두더지 잡기</a>
+                    <a href="game-plane.html">비행기 조종</a>
+                    <a href="game-delivery.html">택배 분류</a>
+                </div>
+            </li>
+            <li>
+                <a href="#certificate">
+                    자격증
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="../Certificate/word-processor.html">워드프로세서</a>
+                </div>
+            </li>
+            <li><a href="../contact.html">문의하기</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="background-animation">
+        <div class="bg-blob"></div>
+        <div class="bg-blob"></div>
+        <div class="bg-blob"></div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1 class="title">🎯 두더지 타자 게임</h1>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-label">레벨</div>
+                <div class="stat-value" id="level">1</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">점수</div>
+                <div class="stat-value blue" id="score">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">시간</div>
+                <div class="stat-value red" id="time">60초</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">놓친 횟수</div>
+                <div class="stat-value orange" id="missed">0/3</div>
+            </div>
+        </div>
+
+        <div class="game-field-container">
+            <div class="game-field">
+                <div class="game-board" id="gameBoard">
+                    <!-- 구멍들을 HTML에 직접 생성 -->
+                    <div class="hole" style="left: 15%; top: 20%;" data-hole-index="0"></div>
+                    <div class="hole" style="left: 38.33%; top: 20%;" data-hole-index="1"></div>
+                    <div class="hole" style="left: 61.66%; top: 20%;" data-hole-index="2"></div>
+                    <div class="hole" style="left: 85%; top: 20%;" data-hole-index="3"></div>
+                    <div class="hole" style="left: 15%; top: 50%;" data-hole-index="4"></div>
+                    <div class="hole" style="left: 38.33%; top: 50%;" data-hole-index="5"></div>
+                    <div class="hole" style="left: 61.66%; top: 50%;" data-hole-index="6"></div>
+                    <div class="hole" style="left: 85%; top: 50%;" data-hole-index="7"></div>
+                    <div class="hole" style="left: 15%; top: 80%;" data-hole-index="8"></div>
+                    <div class="hole" style="left: 38.33%; top: 80%;" data-hole-index="9"></div>
+                    <div class="hole" style="left: 61.66%; top: 80%;" data-hole-index="10"></div>
+                    <div class="hole" style="left: 85%; top: 80%;" data-hole-index="11"></div>
+
+                    <!-- 장식 요소들 -->
+                    <div class="decoration flower" style="left: 10%; top: 15%;">🌸</div>
+                    <div class="decoration flower" style="left: 90%; top: 25%;">🌸</div>
+                    <div class="decoration flower" style="left: 25%; top: 85%;">🌸</div>
+                    <div class="decoration mushroom" style="left: 75%; top: 85%;">🍄</div>
+                    <div class="decoration tree" style="left: 5%; top: 70%;">🌳</div>
+                    <div class="decoration tree" style="left: 95%; top: 70%;">🌳</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-section" id="inputSection">
+            <div class="typing-area">
+                <div class="typing-title">⌨️ 현재 입력 ⌨️</div>
+                <input type="text" id="gameInput" class="typing-input" placeholder="두더지 이름을 타이핑하세요..." autocomplete="off">
+                <div class="typing-instructions">
+                    <strong>💡 게임 방법:</strong> 정확히 입력하고<br><kbd class="instruction-kbd">스페이스</kbd>를 누르세요!
+                </div>
+            </div>
+        </div>
+
+        <div class="game-menu" id="gameMenu">
+            <div class="menu-box">
+                <div id="startMenu">
+                    <div class="menu-header">🎮 게임 준비 🎮</div>
+                    <div class="menu-description">
+                        <strong>💡 게임 방법:</strong> 나타나는 두더지의 이름을 타이핑하고<br><kbd class="instruction-kbd">스페이스</kbd>를 누르세요!
+                    </div>
+                    <button class="start-btn" onclick="startGame()">게임 시작</button>
+                </div>
+
+                <div id="gameOverMenu" class="menu-hidden">
+                    <div class="result-emoji">💥</div>
+                    <div class="result-title game-over">GAME OVER!</div>
+                    <div class="result-text">
+                        두더지를 <span id="finalMissed">0</span>번 놓쳤습니다.<br>
+                        최종 점수: <span class="final-score" id="finalScore">0</span>점
+                    </div>
+                    <div class="button-group">
+                        <button class="result-btn restart" onclick="startGame()">다시하기</button>
+                        <button class="result-btn exit" onclick="resetGame()">나가기</button>
+                    </div>
+                </div>
+
+                <div id="completeMenu" class="menu-hidden">
+                    <div class="result-emoji">🎉</div>
+                    <div class="result-title complete">COMPLETE!</div>
+                    <div class="result-text">
+                        축하합니다! 60초를 버텨냈습니다!<br>
+                        최종 점수: <span class="final-score" id="finalScoreComplete">0</span>점
+                    </div>
+                    <div class="button-group">
+                        <button class="result-btn next" id="nextLevelBtn" onclick="nextLevel()">다음 레벨</button>
+                        <button class="result-btn restart" onclick="startGame()">재시작</button>
+                        <button class="result-btn exit" onclick="resetGame()">나가기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 게임 상태
+    let gameState = {
+        moles: [],
+        score: 0,
+        gameTime: 60,
+        isGameActive: false,
+        currentInput: '',
+        missedCount: 0,
+        state: 'waiting',
+        currentLevel: 1,
+        usedWords: new Set(),
+        moleIdCounter: 0,
+        timers: {
+            game: null,
+            spawn: null,
+            check: null
+        }
+    };
+
+    // 레벨별 단어 (1글자부터 8글자까지 다양한 분야)
+    const wordsByLevel = {
+        1: ['물', '밥', '집', '차', '꽃', '별', '달', '새', '돌', '풀', '소', '말', '개', '고', '닭', '빵', '우유', '사탕', '모자', '신발'],
+        2: ['엄마', '아빠', '형님', '누나', '할머니', '할아버지', '사과', '바나나', '딸기', '포도', '축구', '농구', '수영', '달리기', '친구', '선생님', '학교', '병원', '공원', '교회'],
+        3: ['컴퓨터', '텔레비전', '냉장고', '세탁기', '청소기', '에어컨', '피아노', '기타', '고양이', '강아지', '햄버거', '스파게티', '초콜릿', '아이스크림', '김치찌개', '된장찌개', '칫솔', '수건', '가방', '연필'],
+        4: ['김치볶음밥', '불고기', '갈비탕', '삼계탕', '냉면', '비빔밥', '떡볶이', '삼겹살', '산딸기', '자전거', '오토바이', '자동차', '기차', '비행기', '헬리콥터', '축구선수', '야구선수', '농구선수', '수영선수', '골프선수'],
+        5: ['스마트폰', '노트북', '태블릿', '마우스', '키보드', '모니터', '프린터', '바이올린', '드럼세트', '하모니카', '아코디언', '트럼펫', '첼로', '플루트', '클라리넷', '오보에', '심포니', '발레리나', '무용가', '성악가'],
+        6: ['김치찌개밥', '삼겹살구이', '갈비찜', '불고기전골', '냉면사리', '비빔냉면', '잔치국수', '라면사리', '볶음밥', '피자토스트', '샌드위치', '햄버거세트', '치킨너겟', '감자튀김', '딸기케이크', '초콜릿파이', '바닐라라떼', '아메리카노', '카푸치노', '마카로니'],
+        7: ['스마트워치', '가상현실기기', '인공지능로봇', '드론배송', '전기자동차', '하이브리드카', '태양광패널', '풍력발전기', '원자력발전', '수력발전소', '지열발전소', '바이오연료', '수소연료전지', '리튬배터리', '양자컴퓨터', '슈퍼컴퓨터', '클라우드서버', '빅데이터분석', '블록체인기술', '사이버보안'],
+        8: ['인공지능기술', '머신러닝', '딥러닝기술', '빅데이터', '사물인터넷', '블록체인', '클라우드컴퓨팅', '가상현실기술', '증강현실기술', '자율주행차', '스마트시티', '디지털트윈', '메타버스', '로봇공학', '바이오기술', '유전자편집', '줄기세포치료', '정밀의학', '나노기술', '양자암호화'],
+        9: ['인공지능기술', '머신러닝알고', '딥러닝신경망', '빅데이터분석', '사물인터넷기술', '블록체인기술', '클라우드컴퓨팅', '가상현실헤드셋', '증강현실안경', '자율주행자동차', '스마트시티기술', '디지털트윈기술', '메타버스플랫폼', '로봇공학기술', '바이오테크놀로지', '유전자편집기술', '줄기세포치료법', '정밀의학기술', '나노기술응용', '양자암호화기술', '핵융합발전기술', '태양광발전시스템', '풍력발전시스템', '수소연료전지차', '전기자동차배터리', '리튬이온배터리', '슈퍼컴퓨터시스템', '양자컴퓨터기술', '사이버보안기술', '네트워크보안'],
+        10: ['데이터사이언스', '인공신경망기술', '컴퓨터비전기술', '자연어처리기술', '음성인식시스템', '이미지처리기술', '패턴인식알고리즘', '기계학습모델', '통계분석시스템', '예측분석모델', '비즈니스인텔리전스', '소프트웨어개발', '모바일앱개발', '웹개발프레임워크', '데이터베이스관리', '클라우드아키텍처', '마이크로서비스', 'API개발플랫폼', '프론트엔드개발', '백엔드시스템개발', '풀스택개발자', '데브옵스엔지니어', '시스템아키텍트', '네트워크엔지니어', '보안전문가자격', '프로젝트매니저', '제품기획전문가', '사용자경험디자인', '사용자인터페이스', '그래픽디자인']
+    };
+
+    // 난이도별 게임 설정
+    const difficultySettings = {
+        easy: { moleLifetime: 5000, spawnInterval: 3000, maxMoles: 2 },
+        medium: { moleLifetime: 4000, spawnInterval: 2500, maxMoles: 3 },
+        hard: { moleLifetime: 3000, spawnInterval: 2000, maxMoles: 3 },
+        expert: { moleLifetime: 2500, spawnInterval: 1800, maxMoles: 3 }
+    };
+
+    // 현재 레벨의 난이도 설정 가져오기
+    function getDifficultySettings(level) {
+        if (level <= 2) return difficultySettings.easy;
+        if (level <= 5) return difficultySettings.medium;
+        if (level <= 8) return difficultySettings.hard;
+        return difficultySettings.expert;
+    }
+
+    // 초기화
+    function init() {
+        createGameBoard();
+        setupEventListeners();
+        updateUI();
+        showWaitingScreen();
+    }
+
+    // 게임 보드 생성
+    function createGameBoard() {
+        // HTML에 이미 구멍들이 생성되어 있으므로 추가 작업 불필요
+        createDecorations();
+    }
+
+    // 장식 요소 생성
+    function createDecorations() {
+        // HTML에 이미 장식 요소들이 생성되어 있으므로 추가 작업 불필요
+    }
+
+    // 이벤트 리스너 설정
+    function setupEventListeners() {
+        const gameInput = document.getElementById('gameInput');
+        gameInput.addEventListener('input', (e) => {
+            if (gameState.isGameActive && gameState.state === 'playing') {
+                gameState.currentInput = e.target.value;
+            }
+        });
+
+        gameInput.addEventListener('keydown', (e) => {
+            if (gameState.isGameActive && gameState.state === 'playing' && e.code === 'Space') {
+                e.preventDefault();
+                checkMoleHit();
+            }
+        });
+    }
+
+    // 두더지 맞추기 체크
+    function checkMoleHit() {
+        const targetMole = gameState.moles.find(mole =>
+            mole.name === gameState.currentInput && !mole.isHit
+        );
+
+        if (targetMole) {
+            hitMole(targetMole);
+            gameState.score += 10;
+        }
+
+        gameState.currentInput = '';
+        document.getElementById('gameInput').value = '';
+        updateUI();
+    }
+
+    // 두더지 맞추기
+    function hitMole(mole) {
+        mole.isHit = true;
+        const moleElement = document.querySelector(`[data-mole-id="${mole.id}"]`);
+        if (moleElement) {
+            moleElement.classList.add('hit');
+            const hammer = document.createElement('div');
+            hammer.className = 'hammer';
+            hammer.textContent = '🔨';
+            moleElement.appendChild(hammer);
+
+            setTimeout(() => {
+                removeMole(mole.id);
+            }, 500);
+        }
+    }
+
+    // 두더지 생성
+    function createMole() {
+        const words = wordsByLevel[gameState.currentLevel] || wordsByLevel[1];
+        let availableWords = words.filter(word => !gameState.usedWords.has(word));
+
+        // 사용 가능한 단어가 없으면 다른 레벨 단어 사용
+        if (availableWords.length === 0) {
+            const allWords = [];
+            for (let level = 1; level <= 10; level++) {
+                if (level !== gameState.currentLevel && wordsByLevel[level]) {
+                    allWords.push(...wordsByLevel[level]);
+                }
+            }
+            availableWords = allWords.filter(word => !gameState.usedWords.has(word));
+        }
+
+        // 정말로 모든 단어가 없는 경우
+        if (availableWords.length === 0) {
+            availableWords = words; // 현재 레벨 단어만 재사용
+        }
+
+        const word = availableWords[Math.floor(Math.random() * availableWords.length)];
+        const position = Math.floor(Math.random() * 12);
+
+        const existingMole = gameState.moles.find(mole =>
+            mole.position === position && !mole.isHit
+        );
+
+        if (existingMole) {
+            return null;
+        }
+
+        const mole = {
+            id: ++gameState.moleIdCounter,
+            name: word,
+            position: position,
+            isHit: false,
+            createdAt: Date.now()
+        };
+
+        gameState.usedWords.add(word);
+        gameState.moles.push(mole);
+        addMoleToDOM(mole);
+
+        return mole;
+    }
+
+    // DOM에 두더지 추가
+    function addMoleToDOM(mole) {
+        const gameBoard = document.getElementById('gameBoard');
+        const row = Math.floor(mole.position / 4);
+        const col = mole.position % 4;
+
+        const moleElement = document.createElement('div');
+        moleElement.className = 'mole';
+        moleElement.setAttribute('data-mole-id', mole.id);
+        moleElement.style.left = `${15 + col * 23.33}%`;
+        moleElement.style.top = `${20 + row * 30}%`;
+
+        moleElement.innerHTML = `
+                <div class="mole-body">🐹</div>
+                <div class="mole-label">${mole.name}</div>
+            `;
+
+        gameBoard.appendChild(moleElement);
+    }
+
+    // 두더지 제거
+    function removeMole(moleId) {
+        const moleIndex = gameState.moles.findIndex(mole => mole.id === moleId);
+        if (moleIndex !== -1) {
+            gameState.moles.splice(moleIndex, 1);
+        }
+
+        const moleElement = document.querySelector(`[data-mole-id="${moleId}"]`);
+        if (moleElement) {
+            moleElement.remove();
+        }
+    }
+
+    // 두더지 스폰
+    function spawnMole() {
+        if (!gameState.isGameActive || gameState.state !== 'playing') return;
+
+        const settings = getDifficultySettings(gameState.currentLevel);
+        const activeMoles = gameState.moles.filter(mole => !mole.isHit);
+
+        if (activeMoles.length < settings.maxMoles) {
+            createMole();
+        }
+    }
+
+    // 놓친 두더지 체크
+    function checkMissedMoles() {
+        if (!gameState.isGameActive) return;
+
+        const now = Date.now();
+        const molesToRemove = [];
+        const settings = getDifficultySettings(gameState.currentLevel);
+        const moleLifetime = settings.moleLifetime;
+
+        gameState.moles.forEach(mole => {
+            if (!mole.isHit && now - mole.createdAt > moleLifetime) {
+                molesToRemove.push(mole.id);
+                gameState.missedCount++;
+            }
+        });
+
+        molesToRemove.forEach(moleId => {
+            removeMole(moleId);
+        });
+
+        if (gameState.missedCount >= 3) {
+            endGame('gameOver');
+        }
+
+        updateUI();
+    }
+
+    // 게임 시작
+    function startGame() {
+        gameState.isGameActive = true;
+        gameState.state = 'playing';
+        gameState.gameTime = 60;
+        gameState.missedCount = 0;
+        gameState.moles = [];
+        gameState.currentInput = '';
+        gameState.score = 0;
+        gameState.moleIdCounter = 0;
+
+        clearAllTimers();
+
+        const gameBoard = document.getElementById('gameBoard');
+        const existingMoles = gameBoard.querySelectorAll('.mole');
+        existingMoles.forEach(mole => mole.remove());
+
+        document.getElementById('gameInput').value = '';
+
+        gameState.timers.game = setInterval(() => {
+            gameState.gameTime--;
+            updateUI();
+            if (gameState.gameTime <= 0) {
+                endGame('complete');
+            }
+        }, 1000);
+
+        const settings = getDifficultySettings(gameState.currentLevel);
+        gameState.timers.spawn = setInterval(spawnMole, settings.spawnInterval);
+        gameState.timers.check = setInterval(checkMissedMoles, 1000);
+
+        updateUI();
+        showGameScreen();
+
+        setTimeout(() => {
+            document.getElementById('gameInput').focus();
+        }, 100);
+    }
+
+    // 게임 종료
+    function endGame(result) {
+        gameState.isGameActive = false;
+        gameState.state = result;
+
+        clearAllTimers();
+
+        const gameBoard = document.getElementById('gameBoard');
+        const existingMoles = gameBoard.querySelectorAll('.mole');
+        existingMoles.forEach(mole => mole.remove());
+
+        gameState.moles = [];
+        gameState.currentInput = '';
+        document.getElementById('gameInput').value = '';
+
+        updateUI();
+        showEndScreen(result);
+    }
+
+    // 게임 리셋
+    function resetGame() {
+        clearAllTimers();
+
+        gameState.isGameActive = false;
+        gameState.state = 'waiting';
+        gameState.score = 0;
+        gameState.gameTime = 60;
+        gameState.missedCount = 0;
+        gameState.currentLevel = 1;
+        gameState.moles = [];
+        gameState.usedWords.clear();
+        gameState.currentInput = '';
+
+        const gameBoard = document.getElementById('gameBoard');
+        const existingMoles = gameBoard.querySelectorAll('.mole');
+        existingMoles.forEach(mole => mole.remove());
+
+        document.getElementById('gameInput').value = '';
+
+        updateUI();
+        showWaitingScreen();
+    }
+
+    // 다음 레벨
+    function nextLevel() {
+        gameState.currentLevel = Math.min(gameState.currentLevel + 1, 10);
+        gameState.gameTime = 60;
+        gameState.missedCount = 0;
+        gameState.moles = [];
+        gameState.currentInput = '';
+
+        const gameBoard = document.getElementById('gameBoard');
+        const existingMoles = gameBoard.querySelectorAll('.mole');
+        existingMoles.forEach(mole => mole.remove());
+
+        document.getElementById('gameInput').value = '';
+
+        startGame();
+    }
+
+    // 모든 타이머 정리
+    function clearAllTimers() {
+        Object.values(gameState.timers).forEach(timer => {
+            if (timer) {
+                clearInterval(timer);
+            }
+        });
+        gameState.timers = { game: null, spawn: null, check: null };
+    }
+
+    // UI 업데이트
+    function updateUI() {
+        document.getElementById('level').textContent = gameState.currentLevel;
+        document.getElementById('score').textContent = gameState.score;
+        document.getElementById('time').textContent = gameState.gameTime + '초';
+        document.getElementById('missed').textContent = gameState.missedCount + '/3';
+
+        const missedElement = document.getElementById('missed');
+        if (gameState.missedCount >= 2) {
+            missedElement.style.color = '#ef4444';
+        } else {
+            missedElement.style.color = '#f97316';
+        }
+    }
+
+    // 화면 전환 함수들
+    function showWaitingScreen() {
+        document.getElementById('inputSection').style.display = 'none';
+        document.getElementById('startMenu').style.display = 'block';
+        document.getElementById('gameOverMenu').style.display = 'none';
+        document.getElementById('completeMenu').style.display = 'none';
+    }
+
+    function showGameScreen() {
+        document.getElementById('inputSection').style.display = 'block';
+        document.getElementById('startMenu').style.display = 'none';
+        document.getElementById('gameOverMenu').style.display = 'none';
+        document.getElementById('completeMenu').style.display = 'none';
+    }
+
+    function showEndScreen(result) {
+        document.getElementById('inputSection').style.display = 'none';
+        document.getElementById('startMenu').style.display = 'none';
+
+        if (result === 'gameOver') {
+            document.getElementById('finalMissed').textContent = gameState.missedCount;
+            document.getElementById('finalScore').textContent = gameState.score;
+            document.getElementById('gameOverMenu').style.display = 'block';
+            document.getElementById('completeMenu').style.display = 'none';
+        } else if (result === 'complete') {
+            document.getElementById('finalScoreComplete').textContent = gameState.score;
+            const nextLevelBtn = document.getElementById('nextLevelBtn');
+            if (gameState.currentLevel >= 10) {
+                nextLevelBtn.style.display = 'none';
+            } else {
+                nextLevelBtn.style.display = 'inline-block';
+            }
+            document.getElementById('gameOverMenu').style.display = 'none';
+            document.getElementById('completeMenu').style.display = 'block';
+        }
+    }
+
+    // 네비게이션 효과
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 100) {
+            nav.style.background = 'rgba(255, 255, 255, 0.98)';
+        } else {
+            nav.style.background = 'rgba(255, 255, 255, 0.95)';
+        }
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href && href !== '#') {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+
+    // 페이지 로드 시 초기화
+    window.onload = function() {
+        init();
+    };
+</script>
+</body>
+</html>

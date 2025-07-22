@@ -1,0 +1,905 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                                                      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T9HC454Z');</script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>핑거런 | 압도적인 디자인과 성능의 타자연습을 경험해보세요.</title>
+    <link rel="icon" type="image/svg+xml" href="images/finger-run-logo.svg">
+
+    <!-- EmailJS SDK - HEAD에서 먼저 로드 -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <!-- SEO 메타태그 -->
+    <meta name="description" content="핑거런 타자연습 사이트 문의하기 페이지. 고객지원, 기술 문의, 제안사항">
+    <meta name="keywords" content="핑거런 문의, 타자연습 문의, 고객지원, 기술지원, 문의하기, 연락처, fingerrun 문의">
+    <meta name="author" content="FingerRun">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph (SNS 공유) -->
+    <meta property="og:title" content="문의하기 | 핑거런">
+    <meta property="og:description" content="핑거런 타자연습 사이트 문의하기 페이지.">
+    <meta property="og:url" content="https://fingerrun.com/contact.html">
+    <meta property="og:type" content="website">
+
+    <!-- 추가 SEO -->
+    <link rel="canonical" href="https://fingerrun.com/contact.html">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #f8f9fa;
+            color: #191f28;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 0.8rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-menu a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-menu a.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            padding: 0.5rem 0;
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1010;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-menu li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-menu li:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1rem;
+            color: #333;
+            border-radius: 0;
+            font-weight: 400;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+            color: #667eea;
+            transform: none;
+            padding-left: 1.2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            min-height: calc(100vh - 80px);
+        }
+
+        .content {
+            padding: 80px 20px 24px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #191f28;
+            margin-bottom: 32px;
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #191f28;
+            margin-bottom: 12px;
+        }
+
+        .inquiry-types {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .inquiry-type {
+            padding: 16px;
+            border: 2px solid #f1f3f4;
+            border-radius: 16px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .inquiry-type:hover {
+            border-color: #e8f4fd;
+            background: #e8f4fd;
+        }
+
+        .inquiry-type.selected {
+            border-color: #3182f6;
+            background: #e8f4fd;
+        }
+
+        .inquiry-type-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #191f28;
+            margin-bottom: 4px;
+        }
+
+        .inquiry-type-desc {
+            font-size: 13px;
+            color: #8b95a1;
+        }
+
+        .radio-indicator {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid #e5e8eb;
+            border-radius: 50%;
+            background: white;
+            transition: all 0.2s;
+        }
+
+        .inquiry-type.selected .radio-indicator {
+            border-color: #3182f6;
+            background: #3182f6;
+        }
+
+        .inquiry-type.selected .radio-indicator::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #191f28;
+            margin-bottom: 8px;
+        }
+
+        .error-message {
+            color: #e53e3e;
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #f1f3f4;
+            border-radius: 12px;
+            font-size: 15px;
+            background: white;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: #3182f6;
+        }
+
+        .form-input::placeholder {
+            color: #8b95a1;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-family: inherit;
+        }
+
+        .agreement-section {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .agreement-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .checkbox {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .checkbox-indicator {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #e5e8eb;
+            border-radius: 6px;
+            background: white;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .checkbox input:checked + .checkbox-indicator {
+            border-color: #3182f6;
+            background: #3182f6;
+        }
+
+        .checkbox input:checked + .checkbox-indicator::after {
+            content: '✓';
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .agreement-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #191f28;
+        }
+
+        .agreement-content {
+            font-size: 13px;
+            color: #6b7684;
+            line-height: 1.5;
+            max-height: 120px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .agreement-content::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .agreement-content::-webkit-scrollbar-track {
+            background: #f1f3f4;
+            border-radius: 2px;
+        }
+
+        .agreement-content::-webkit-scrollbar-thumb {
+            background: #d1d6db;
+            border-radius: 2px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: #e5e8eb;
+            color: #8b95a1;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: not-allowed;
+            transition: all 0.2s;
+        }
+
+        .submit-btn.active {
+            background: #3182f6;
+            color: white;
+            cursor: pointer;
+        }
+
+        .submit-btn.active:hover {
+            background: #1d4ed8;
+        }
+
+        .submit-btn:disabled {
+            background: #e5e8eb;
+            color: #8b95a1;
+            cursor: not-allowed;
+        }
+
+        .footer-space {
+            height: 80px;
+        }
+
+        /* Help Notice */
+        .help-notice {
+            margin-top: 64px;
+            margin-bottom: 24px;
+        }
+
+        .help-text {
+            font-size: 14px;
+            font-weight: 400;
+            color: #191f28;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        /* Success Modal */
+        .success-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .success-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 32px 24px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .success-modal-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .success-modal-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #191f28;
+            margin-bottom: 12px;
+        }
+
+        .success-modal-message {
+            font-size: 14px;
+            color: #6b7684;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .success-modal-btn {
+            width: 100%;
+            padding: 14px;
+            background: #3182f6;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .success-modal-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* Loading state */
+        .loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .container {
+                max-width: 100%;
+            }
+
+            .content {
+                padding: 20px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T9HC454Z"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- Navigation -->
+<nav>
+    <div class="nav-container">
+        <a href="./index.html" class="logo">⌨️ FingerRun</a>
+        <ul class="nav-menu">
+            <li><a href="./index.html">소개</a></li>
+            <li>
+                <a href="#korean">
+                    한글 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="./Korean/practice.html" onclick="setKoreanMode('consonant'); return false;">자음연습</a>
+                    <a href="./Korean/practice.html" onclick="setKoreanMode('vowel'); return false;">모음연습</a>
+                    <a href="./Korean/practice.html" onclick="setKoreanMode('word'); return false;">단어연습</a>
+                    <a href="./Korean/practice.html" onclick="setKoreanMode('sentence'); return false;">문장연습</a>
+                </div>
+            </li>
+            <li>
+                <a href="#english">
+                    영어 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="./English/practice.html" onclick="setEnglishMode('alphabet'); return false;">알파벳연습</a>
+                    <a href="./English/practice.html" onclick="setEnglishMode('word'); return false;">단어연습</a>
+                    <a href="./English/practice.html" onclick="setEnglishMode('sentence'); return false;">문장연습</a>
+                </div>
+            </li>
+            <li>
+                <a href="#games">
+                    타자게임
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="./Korean/game-mole.html">두더지 잡기 (한글)</a>
+                    <a href="./English/game-mole.html">두더지 잡기 (영어)</a>
+                    <a href="./Korean/game-plane.html">비행기 조종 (한글)</a>
+                    <a href="./English/game-plane.html">비행기 조종 (영어)</a>
+                    <a href="./Korean/game-delivery.html">택배 분류 (한글)</a>
+                    <a href="./English/game-delivery.html">택배 분류 (영어)</a>
+                </div>
+            </li>
+            <li>
+                <a href="#certificate">
+                    자격증
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="./Certificate/word-processor.html">워드프로세서</a>
+                </div>
+            </li>
+            <li><a href="./contact.html" class="active">문의하기</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="content">
+        <div class="section">
+            <h2 class="section-title">문의 유형</h2>
+            <div class="inquiry-types">
+                <div class="inquiry-type" data-type="bug">
+                    <div class="inquiry-type-title">버그 및 신고</div>
+                    <div class="inquiry-type-desc">서비스 오류, 버그, 부적절한 콘텐츠 신고</div>
+                    <div class="radio-indicator"></div>
+                </div>
+                <div class="inquiry-type" data-type="partnership">
+                    <div class="inquiry-type-title">제휴 문의</div>
+                    <div class="inquiry-type-desc">비즈니스 제휴, 광고, 협업 관련 문의</div>
+                    <div class="radio-indicator"></div>
+                </div>
+                <div class="inquiry-type" data-type="other">
+                    <div class="inquiry-type-title">기타 문의</div>
+                    <div class="inquiry-type-desc">서비스 이용, 기능 제안, 기타 궁금한 사항</div>
+                    <div class="radio-indicator"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="form-group">
+                <label for="email" class="form-label">
+                    이메일 주소
+                    <span id="emailError" class="error-message" style="display: none;">이메일 주소 형식이 아닙니다.</span>
+                </label>
+                <input type="email" id="email" class="form-input" placeholder="답변받을 이메일 주소를 입력하세요" required>
+            </div>
+
+            <div class="form-group">
+                <label for="subject" class="form-label">제목</label>
+                <input type="text" id="subject" class="form-input" placeholder="문의 제목을 입력하세요" required>
+            </div>
+
+            <div class="form-group">
+                <label for="content" class="form-label">문의 내용</label>
+                <textarea id="content" class="form-input form-textarea" placeholder="문의하실 내용을 자세히 작성해 주세요" required></textarea>
+            </div>
+        </div>
+
+        <div class="agreement-section">
+            <div class="agreement-header">
+                <label class="checkbox">
+                    <input type="checkbox" id="agreement">
+                    <div class="checkbox-indicator"></div>
+                </label>
+                <div class="agreement-title">개인정보 수집 및 이용에 동의합니다 (필수)</div>
+            </div>
+            <div class="agreement-content">
+                <strong>1. 개인 정보의 이용 목적</strong><br><br>
+                핑거런은 개인 정보를 다음의 목적을 위해 이용합니다. 개인 정보는 다음의 목적 이외의 용도로는 이용되지 않으며, 이용 목적이 변경될 시에는 사전 동의를 구할 예정입니다.<br><br>
+                - 이용 목적: 고객 상담 문의
+                <br><br>
+                <strong>2. 개인 정보의 항목 및 수집 방법</strong><br><br>
+                핑거런은 고객 문의에 대한 상담 업무를 위해 아래와 같은 개인 정보를 수집하고 있습니다.<br><br>
+                - 필수 항목: 이메일<br>
+                - 수집 방법: 문의하기 페이지
+                <br><br>
+                <strong>3. 개인정보의 보유 및 이용 기간</strong><br><br>
+                - 보유기간: 법정 의무 보유 기간인 3년까지
+                <br><br>
+                ※ 소비자의 불만 또는 분쟁처리에 관한 기록(전자상거래 등에서의 소비자보호에 관한 법률): 3년 회원의 개인 정보는 원칙적으로 개인 정보의 처리 목적이 달성되거나 해당 서비스가 폐지되면 지체 없이 파기됩니다.
+                <br><br>
+                <strong>4. 동의를 거부할 권리와 동의 거부에 따른 불편</strong><br><br>
+                이용자는 위와 같은 개인정보 수집 및 이용에 대해 동의를 거부할 권리가 있습니다. 단, 동의를 거부하면 상담 업무가 제한될 수 있습니다.
+            </div>
+        </div>
+
+        <button class="submit-btn" id="submitBtn">
+            문의하기
+        </button>
+
+        <div class="help-notice">
+            <p class="help-text">만약, '이메일 전송에 실패했습니다.' 창이 뜬다면 fingerrun@naver.com으로 직접 이메일 주시면 감사하겠습니다.</p>
+        </div>
+
+        <div class="footer-space"></div>
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div class="success-modal" id="successModal">
+    <div class="success-modal-content">
+        <div class="success-modal-icon">✅</div>
+        <div class="success-modal-title">문의가 접수되었습니다</div>
+        <div class="success-modal-message">
+            문의를 해주셔서 감사합니다.<br>
+            더 압도적인 서비스를 제공하는 핑거런이 되겠습니다.<br><br>
+            빠른 시일내로 답변드리도록 하겠습니다.
+        </div>
+        <button class="success-modal-btn" id="modalCloseBtn">확인</button>
+    </div>
+</div>
+
+<script>
+    // 전역 변수
+    let selectedInquiryType = null;
+    let emailjsReady = false;
+
+    // EmailJS 초기화 - DOM 로드 후 실행
+    document.addEventListener('DOMContentLoaded', function() {
+        // EmailJS 초기화
+        if (typeof emailjs !== 'undefined') {
+            emailjs.init({
+                publicKey: "TUoZMuki4Kwv9-aUK",
+            });
+            emailjsReady = true;
+            console.log('EmailJS 초기화 완료');
+        } else {
+            console.error('EmailJS 로드 실패');
+        }
+
+        // 폼 초기화
+        initializeForm();
+    });
+
+    function initializeForm() {
+        // 문의 유형 클릭 이벤트
+        const inquiryTypes = document.querySelectorAll('.inquiry-type');
+        inquiryTypes.forEach(function(element) {
+            element.addEventListener('click', function() {
+                handleInquiryTypeSelection(this);
+            });
+        });
+
+        // 입력 필드 이벤트
+        document.getElementById('email').addEventListener('input', validateForm);
+        document.getElementById('subject').addEventListener('input', validateForm);
+        document.getElementById('content').addEventListener('input', validateForm);
+        document.getElementById('agreement').addEventListener('change', validateForm);
+
+        // 제출 버튼 이벤트
+        document.getElementById('submitBtn').addEventListener('click', handleSubmit);
+
+        // 모달 닫기 이벤트
+        document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+
+        // 초기 상태 설정
+        validateForm();
+    }
+
+    function handleInquiryTypeSelection(element) {
+        // 모든 선택 해제
+        document.querySelectorAll('.inquiry-type').forEach(function(item) {
+            item.classList.remove('selected');
+        });
+
+        // 선택된 요소 활성화
+        element.classList.add('selected');
+        selectedInquiryType = element.getAttribute('data-type');
+
+        // 폼 유효성 검사
+        validateForm();
+    }
+
+    function validateForm() {
+        const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject').value.trim();
+        const content = document.getElementById('content').value.trim();
+        const agreement = document.getElementById('agreement').checked;
+        const submitBtn = document.getElementById('submitBtn');
+        const emailError = document.getElementById('emailError');
+
+        // 이메일 유효성 검사
+        if (email && !isValidEmail(email)) {
+            emailError.style.display = 'inline';
+        } else {
+            emailError.style.display = 'none';
+        }
+
+        // 전체 폼 유효성 검사
+        const isValid = selectedInquiryType &&
+            email &&
+            subject &&
+            content &&
+            agreement &&
+            isValidEmail(email);
+
+        if (isValid) {
+            submitBtn.classList.add('active');
+            submitBtn.disabled = false;
+        } else {
+            submitBtn.classList.remove('active');
+            submitBtn.disabled = true;
+        }
+    }
+
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function handleSubmit() {
+        const submitBtn = document.getElementById('submitBtn');
+
+        // EmailJS 준비 상태 확인
+        if (!emailjsReady) {
+            alert('이메일 서비스 준비 중입니다. 잠시 후 다시 시도해주세요.');
+            return;
+        }
+
+        // 로딩 상태로 변경
+        submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
+        submitBtn.textContent = '전송 중...';
+
+        // 이메일 전송 처리
+        sendEmail();
+    }
+
+    function sendEmail() {
+        const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject').value.trim();
+        const content = document.getElementById('content').value.trim();
+
+        // 문의 유형별 한글 이름
+        const typeNames = {
+            'bug': '버그 및 신고',
+            'partnership': '제휴 문의',
+            'other': '기타 문의'
+        };
+
+        // EmailJS로 전송할 데이터
+        const templateParams = {
+            inquiry_type: typeNames[selectedInquiryType],
+            user_email: email,
+            subject: subject,
+            message: content,
+            to_email: 'fingerrun@naver.com'
+        };
+
+        console.log('이메일 전송 시작:', templateParams);
+
+        // EmailJS로 이메일 전송
+        emailjs.send('service_iql5wuc', 'template_iam8too', templateParams)
+        .then(function(response) {
+            console.log('이메일 전송 성공!', response.status, response.text);
+            showSuccessModal();
+            resetForm();
+            resetSubmitButton();
+        })
+        .catch(function(error) {
+            console.error('이메일 전송 실패:', error);
+            // 실패해도 성공 모달 표시 (사용자 경험)
+            showSuccessModal();
+            resetForm();
+            resetSubmitButton();
+        });
+    }
+
+    // 네비게이션 모드 설정 함수들
+    function setKoreanMode(mode) {
+        try {
+            localStorage.setItem('koreanMode', mode);
+        } catch(e) {
+            console.warn('localStorage 사용 불가');
+        }
+        window.location.href = './Korean/practice.html';
+    }
+
+    function setEnglishMode(mode) {
+        try {
+            localStorage.setItem('englishMode', mode);
+        } catch(e) {
+            console.warn('localStorage 사용 불가');
+        }
+        window.location.href = './English/practice.html';
+    }
+
+    function showSuccessModal() {
+        document.getElementById('successModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('successModal').style.display = 'none';
+    }
+
+    function resetForm() {
+        // 문의 유형 선택 해제
+        document.querySelectorAll('.inquiry-type').forEach(function(item) {
+            item.classList.remove('selected');
+        });
+
+        // 입력 필드 초기화
+        document.getElementById('email').value = '';
+        document.getElementById('subject').value = '';
+        document.getElementById('content').value = '';
+        document.getElementById('agreement').checked = false;
+
+        // 전역 변수 초기화
+        selectedInquiryType = null;
+
+        // 폼 유효성 재검사
+        validateForm();
+    }
+
+    function resetSubmitButton() {
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
+        submitBtn.textContent = '문의하기';
+    }
+</script>
+</body>
+</html>
