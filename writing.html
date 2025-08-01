@@ -1,0 +1,1031 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QSEYCFK83"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-7QSEYCFK83');
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>필사 | 핑거런</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 0.8rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-menu a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            padding: 0.5rem 0;
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-menu li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-menu li:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1rem;
+            color: #333;
+            border-radius: 0;
+            font-weight: 400;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+            color: #667eea;
+            transform: none;
+            padding-left: 1.2rem;
+        }
+
+        .main-container {
+            margin-top: 80px;
+            padding: 2rem 0;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .page-description {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .content-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .content-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .tab-menu {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            background: #f8f9fa;
+            color: #667eea;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid transparent;
+        }
+
+        .tab-btn:hover {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .content-area {
+            text-align: center;
+            margin-bottom: 3rem;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tab-content {
+            display: none;
+            width: 100%;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .notice-list {
+            width: 100%;
+            text-align: left;
+        }
+
+        .notice-item {
+            padding: 2rem 0;
+            border-bottom: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .notice-item:last-child {
+            border-bottom: none;
+        }
+
+        .notice-item:hover {
+            background: #f8f9fa;
+            padding-left: 1rem;
+            border-radius: 10px;
+        }
+
+        .notice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .notice-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .notice-author {
+            color: #999;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .notice-content {
+            color: #666;
+            line-height: 1.6;
+            margin-top: 1rem;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .pagination-btn {
+            background: #f8f9fa;
+            border: 2px solid #e2e8f0;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .pagination-btn:disabled {
+            background: #f8f9fa;
+            color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .page-info {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .custom-area {
+            text-align: left;
+        }
+
+        .input-section {
+            margin-bottom: 3rem;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .custom-textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            resize: vertical;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .custom-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .button-container {
+            text-align: right;
+        }
+
+        .practice-section {
+            padding-top: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .original-text {
+            background: #f8f9fa;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            white-space: pre-line;
+        }
+
+        .typing-area {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .typing-input {
+            width: 100%;
+            min-height: 200px;
+            padding: 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            resize: vertical;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .typing-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 800px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+            margin: 0;
+            flex: 1;
+            margin-right: 1rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .modal-author {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #999;
+            font-style: italic;
+        }
+
+        .modal-body {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            white-space: pre-line;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: #e9ecef;
+            color: #333;
+            transform: scale(1.1);
+        }
+
+        .complete-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+        }
+
+        .complete-modal.active {
+            display: flex;
+        }
+
+        .complete-modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideDown 0.5s ease;
+        }
+
+        .complete-modal-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        .complete-modal-text {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .complete-modal-close {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .complete-modal-close:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        .start-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 0.5rem;
+            }
+
+            .nav-menu a {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.8rem;
+            }
+
+            .content-container {
+                padding: 2rem;
+                margin: 1rem 0;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .tab-menu {
+                gap: 10px;
+            }
+
+            .tab-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .main-container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <div class="nav-container">
+        <a href="./index.html" class="logo">⌨️ FingerRun</a>
+        <ul class="nav-menu">
+            <li><a href="./notices.html">공지사항</a></li>
+            <li>
+                <a href="#korean">
+                    한글 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="./Korean/practice.html" onclick="switchKoreanMode('consonant')">자음연습</a>
+                    <a href="./Korean/practice.html" onclick="switchKoreanMode('vowel')">모음연습</a>
+                    <a href="./Korean/practice.html" onclick="switchKoreanMode('word')">단어연습</a>
+                    <a href="./Korean/practice.html" onclick="switchKoreanMode('sentence')">문장연습</a>
+                </div>
+            </li>
+            <li>
+                <a href="#english">
+                    영어 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="./English/practice.html" onclick="switchEnglishMode('alphabet')">알파벳연습</a>
+                    <a href="./English/practice.html" onclick="switchEnglishMode('word')">단어연습</a>
+                    <a href="./English/practice.html" onclick="switchEnglishMode('sentence')">문장연습</a>
+                </div>
+            </li>
+            <li>
+                <a href="#games">
+                    타자게임
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="./Korean/game-mole.html">두더지 잡기 (한글)</a>
+                    <a href="./English/game-mole.html">두더지 잡기 (영어)</a>
+                    <a href="./Korean/game-plane.html">비행기 조종 (한글)</a>
+                    <a href="./English/game-plane.html">비행기 조종 (영어)</a>
+                    <a href="./Korean/game-delivery.html">택배 분류 (한글)</a>
+                    <a href="./English/game-delivery.html">택배 분류 (영어)</a>
+                </div>
+            </li>
+            <li><a href="./writing.html">필사</a></li>
+            <li>
+                <a href="#certificate">
+                    자격증
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="./Certificate/word-processor.html">워드프로세서</a>
+                </div>
+            </li>
+            <li><a href="./contact.html">문의하기</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="main-container">
+    <div class="page-header">
+        <h1 class="page-title">필사</h1>
+        <p class="page-description">예로부터 필사는 훌륭한 문장을 손으로 옮기며 그 뜻을 되새기는 수련법으로,<br>문해력과 사고력, 표현력을 길러주는 깊이 있는 공부로 여겨져 왔다.</p>
+    </div>
+
+    <div class="content-container">
+        <div class="tab-menu">
+            <button class="tab-btn active" onclick="switchTab('literature')">문학</button>
+            <button class="tab-btn" onclick="switchTab('quotes')">명언</button>
+            <button class="tab-btn" onclick="switchTab('custom')">커스텀</button>
+        </div>
+
+        <div class="content-area">
+            <div class="tab-content active" id="literature">
+                <div class="notice-list" id="literatureList"></div>
+                <div class="pagination">
+                    <button class="pagination-btn" id="literaturePrev" onclick="previousPage('literature')">&lt;</button>
+                    <span class="page-info" id="literaturePageInfo">1 | 6</span>
+                    <button class="pagination-btn" id="literatureNext" onclick="nextPage('literature')">&gt;</button>
+                </div>
+            </div>
+
+            <div class="tab-content" id="quotes">
+                <div class="notice-list" id="quotesList"></div>
+                <div class="pagination">
+                    <button class="pagination-btn" id="quotesPrev" onclick="previousPage('quotes')">&lt;</button>
+                    <span class="page-info" id="quotesPageInfo">1 | 7</span>
+                    <button class="pagination-btn" id="quotesNext" onclick="nextPage('quotes')">&gt;</button>
+                </div>
+            </div>
+
+            <div class="tab-content" id="custom">
+                <div class="custom-area">
+                    <div class="input-section" id="inputSection">
+                        <label class="input-label">필사할 글을 입력하세요</label>
+                        <textarea class="custom-textarea" id="customText" placeholder="여기에 필사하고 싶은 글을 입력하세요..."></textarea>
+                        <div class="button-container">
+                            <button class="start-btn" onclick="startPractice()">필사 시작하기</button>
+                        </div>
+                    </div>
+
+                    <div class="practice-section" id="practiceSection" style="display: none;">
+                        <div class="original-text" id="originalText"></div>
+                        <div class="typing-area">
+                            <textarea class="typing-input" id="typingInput" placeholder="위의 글을 그대로 따라 써보세요..."></textarea>
+                        </div>
+                        <div class="button-container" style="display: flex; gap: 1rem; justify-content: space-between;">
+                            <button class="start-btn" onclick="finishCustomPractice()">필사 완료</button>
+                            <button class="start-btn" onclick="resetPractice()">다시 입력하기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="practiceModal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="hideModal()">&times;</button>
+        <div class="modal-header">
+            <h2 class="modal-title" id="modalTitle">필사 연습</h2>
+        </div>
+        <div class="modal-body">
+            <div class="original-text" id="modalOriginalText"></div>
+            <div class="typing-area" style="margin-bottom: 0.5rem;">
+                <textarea class="typing-input" id="modalTypingInput" placeholder="위의 글을 그대로 따라 써보세요..."></textarea>
+            </div>
+            <div style="text-align: center; margin-top: 0.5rem;">
+                <button class="start-btn" onclick="finishModalPractice()">필사 완료</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="complete-modal" id="completeModal">
+    <div class="complete-modal-content">
+        <div class="complete-modal-title">COMPLETE! 🎉</div>
+        <div class="complete-modal-text" id="completeModalText"></div>
+        <button class="complete-modal-close" onclick="hideCompleteModal()">확인</button>
+    </div>
+</div>
+
+<script>
+    var currentText = '';
+    var currentMotivation = '';
+    var literaturePage = 1;
+    var quotesPage = 1;
+    var itemsPerPage = 5;
+
+    var literatureData = [
+        { title: '봄', author: '윤동주', preview: '봄은 고양이로다 나비처럼 가볍고 씨앗처럼 작고 꽃잎처럼 부드럽다...', content: '봄은 고양이로다\n나비처럼 가볍고\n씨앗처럼 작고\n꽃잎처럼 부드럽다\n\n봄은 고양이로다\n새들이 지저귀고\n바람이 속삭이고\n햇살이 춤춘다', motivation: '아름다운 봄처럼, 당신의 마음도 새로운 시작으로 가득하길 바랍니다.' },
+        { title: '사랑', author: '한용운', preview: '님은 갔습니다 아아 사랑하는 나의 님은 갔습니다...', content: '님은 갔습니다\n아아 사랑하는 나의 님은 갔습니다\n푸른 산빛을 깨치고\n단풍나무 숲을 향하여\n난 작은 길을 걸어서\n차마 떨치고 갔습니다', motivation: '진정한 사랑은 기다림 속에서 더욱 빛을 발합니다.' },
+        { title: '청춘', author: '김소월', preview: '청춘은 다시 오지 않는다 한번 간 청춘은 다시 돌아오지 않는다...', content: '청춘은 다시 오지 않는다\n한번 간 청춘은\n다시 돌아오지 않는다\n\n아름다운 시절이여\n영원히 가거라\n우리들의 꿈과 함께', motivation: '지금 이 순간을 소중히 여기세요. 당신의 청춘은 바로 지금입니다.' },
+        { title: '별 헤는 밤', author: '윤동주', preview: '계절이 지나가는 하늘에는 가을로 가득 찬 별들이 있습니다...', content: '계절이 지나가는 하늘에는\n가을로 가득 찬 별들이 있습니다\n\n나는 아무 걱정도 없이\n가을 속의 별들을 다 헤일듯합니다', motivation: '어려움 속에서도 별을 바라보는 마음을 잃지 마세요.' },
+        { title: '산유화', author: '김소월', preview: '산에는 꽃 피네 꽃이 피네 갈 봄 여름 없이 꽃이 피네...', content: '산에는 꽃 피네\n꽃이 피네\n갈 봄 여름 없이\n꽃이 피네', motivation: '작은 것에서도 아름다움을 찾는 당신의 마음이 소중합니다.' },
+        { title: '진달래꽃', author: '김소월', preview: '나 보기가 역겨워 가실 때에는 말없이 고이 보내 드리오리다...', content: '나 보기가 역겨워\n가실 때에는\n말없이 고이 보내 드리오리다\n\n영변에 약산\n진달래꽃\n아름 따다 가실 길에 뿌리오리다', motivation: '아름다운 이별도 사랑의 한 모습입니다.' },
+        { title: '서시', author: '윤동주', preview: '죽는 날까지 하늘을 우러러 한 점 부끄럼이 없기를...', content: '죽는 날까지 하늘을 우러러\n한 점 부끄럼이 없기를\n잎새에 이는 바람에도\n나는 괴로워했다', motivation: '부끄럽지 않은 하루하루를 살아가세요.' },
+        { title: '국화 옆에서', author: '서정주', preview: '한 송이의 국화꽃을 피우기 위해 봄부터 소쩍새는...', content: '한 송이의 국화꽃을 피우기 위해\n봄부터 소쩍새는\n그렇게 울었나 보다', motivation: '작은 꽃 한 송이에도 온 우주의 정성이 담겨있습니다.' },
+        { title: '홀로 선 나무', author: '정호승', preview: '홀로 서 있는 나무를 보면 내 마음이 울적해진다...', content: '홀로 서 있는 나무를 보면\n내 마음이 울적해진다\n저 나무도 나처럼\n외로울까', motivation: '혼자여도 당당하게 서 있는 당신이 아름답습니다.' },
+        { title: '풀', author: '김수영', preview: '풀이 눕는다 비를 몰아오는 동풍에 눕는다...', content: '풀이 눕는다\n비를 몰아오는 동풍에 눕는다\n풀은 눕고 울고 일어선다\n바람보다 빠른 것은 없다', motivation: '넘어져도 다시 일어서는 당신의 의지를 응원합니다.' },
+        { title: '길', author: '윤동주', preview: '잃어버렸습니다 무엇을 어디서 어떻게 잃었는지 몰라...', content: '잃어버렸습니다\n무엇을 어디서 어떻게 잃었는지 몰라\n\n두 손이 주머니를 더듬어도 주머니 안엔 아무것도 없습니다', motivation: '길을 잃었을 때가 새로운 길을 찾을 수 있는 기회입니다.' },
+        { title: '고향', author: '정지용', preview: '고향에 돌아온 날 밤에 내 백골이 따라와 한방에 누웠다...', content: '고향에 돌아온 날 밤에\n내 백골이 따라와 한방에 누웠다\n\n어둠 속에서 나는 나를 보았다\n추억은 따뜻한 남쪽으로 흘렀다', motivation: '고향은 언제나 마음 속에 있습니다.' },
+        { title: '엄마야 누나야', author: '김소월', preview: '엄마야 누나야 강변 살자 뜰에는 반짝이는 금모래빛...', content: '엄마야 누나야 강변 살자\n뜰에는 반짝이는 금모래빛\n뒷문 밖에는 갈잎의 노래', motivation: '가족의 사랑은 세상에서 가장 소중한 보물입니다.' },
+        { title: '향수', author: '정지용', preview: '넓은 벌 동쪽 끝으로 옛이야기 지줄대는 실개천이 휘돌아 나가고...', content: '넓은 벌 동쪽 끝으로\n옛이야기 지줄대는 실개천이 휘돌아 나가고\n얼룩백이 황소가\n해설피 금빛 게으른 울음을 우는 곳', motivation: '추억은 마음의 양식이 되어 우리를 지탱해줍니다.' },
+        { title: '그리움', author: '나희덕', preview: '그리움은 가슴에 쌓이는 눈이다 펄펄 내려 쌓이는...', content: '그리움은 가슴에 쌓이는 눈이다\n펄펄 내려 쌓이는\n한 송이 한 송이가\n모두 사람 얼굴이다', motivation: '그리움이 있다는 것은 사랑했다는 증거입니다.' },
+        { title: '행복', author: '나태주', preview: '자세히 보아야 예쁘다 오래 보아야 사랑스럽다...', content: '자세히 보아야 예쁘다\n오래 보아야 사랑스럽다\n너도 그렇다', motivation: '작은 것에서 발견하는 아름다움이 진정한 행복입니다.' },
+        { title: '희망', author: '정호승', preview: '사람은 누구나 마음속에 한 그루의 나무를 키우고 있다...', content: '사람은 누구나\n마음속에 한 그루의 나무를 키우고 있다\n그 나무는 희망이라고 부른다', motivation: '당신의 마음 속 희망의 나무가 무성하게 자라나기를 바랍니다.' },
+        { title: '사랑법', author: '정호승', preview: '첫째, 아무 조건 없이 사랑하라 둘째, 기다리는 법을 배워라...', content: '첫째, 아무 조건 없이 사랑하라\n둘째, 기다리는 법을 배워라\n셋째, 상처받는 것을 두려워하지 마라', motivation: '진정한 사랑을 아는 당신이 아름답습니다.' },
+        { title: '감사', author: '도종환', preview: '고맙습니다 당신이 있어서 고맙습니다...', content: '고맙습니다\n당신이 있어서 고맙습니다\n세상이 이렇게 아름다워서\n고맙습니다', motivation: '감사하는 마음이 더 많은 행복을 불러옵니다.' },
+        { title: '꿈', author: '기형도', preview: '꿈을 키우는 것은 절망을 키우는 것 그러므로 꿈꾸어라...', content: '꿈을 키우는 것은 절망을 키우는 것\n그러므로 꿈꾸어라\n절망을 딛고 일어서라', motivation: '꿈이 있는 한 절망은 희망의 씨앗일 뿐입니다.' },
+        { title: '바다', author: '이육사', preview: '바다는 육지의 그리움이다 바다가 울면 육지가 아프다...', content: '바다는 육지의 그리움이다\n바다가 울면 육지가 아프다\n\n파도 치는 바다를 보며\n나는 무엇을 그리워하는가', motivation: '그리움의 깊이만큼 사랑이 자라납니다.' },
+        { title: '산', author: '조지훈', preview: '산은 웅장하다 산은 고요하다 산은 영원하다...', content: '산은 웅장하다\n산은 고요하다\n산은 영원하다\n\n산 같은 마음으로\n세상을 바라보리라', motivation: '산처럼 흔들리지 않는 마음을 가지세요.' },
+        { title: '강', author: '박목월', preview: '강은 흐른다 밤낮으로 쉬지 않고 흐른다...', content: '강은 흐른다\n밤낮으로 쉬지 않고 흐른다\n\n강물처럼 흘러가는 세월\n강물처럼 흘러가는 인생', motivation: '강물처럼 자연스럽게 흘러가는 삶을 살아보세요.' },
+        { title: '달', author: '윤동주', preview: '밤마다 뜨는 달을 보며 나는 생각한다...', content: '밤마다 뜨는 달을 보며\n나는 생각한다\n\n저 달은 언제부터\n우리를 지켜보았을까', motivation: '변하지 않는 것들이 주는 위로를 느껴보세요.' },
+        { title: '새', author: '김춘수', preview: '새가 난다 하늘 높이 자유롭게 난다...', content: '새가 난다\n하늘 높이 자유롭게 난다\n\n새처럼 자유로운 영혼이\n되고 싶다', motivation: '자유로운 영혼으로 높이 날아오르세요.' },
+        { title: '꽃', author: '김춘수', preview: '내가 그의 이름을 불러주기 전에는 그는 다만 하나의 몸짓에 지나지 않았다...', content: '내가 그의 이름을 불러주기 전에는\n그는 다만 하나의 몸짓에 지나지 않았다\n\n내가 그의 이름을 불러주었을 때\n그는 나에게로 와서 꽃이 되었다', motivation: '이름을 불러주는 것만으로도 세상은 아름다워집니다.' },
+        { title: '비', author: '정지용', preview: '비가 온다 촉촉한 비가 온다...', content: '비가 온다\n촉촉한 비가 온다\n\n비는 하늘의 눈물\n비는 땅의 축복', motivation: '때로는 눈물도 축복이 될 수 있습니다.' },
+        { title: '눈', author: '이상', preview: '눈이 온다 하얀 눈이 펄펄 온다...', content: '눈이 온다\n하얀 눈이 펄펄 온다\n\n세상이 하얗게 변하면\n마음도 깨끗해진다', motivation: '순수한 마음으로 세상을 바라보세요.' },
+        { title: '바람', author: '서정주', preview: '바람이 분다 시원한 바람이 분다...', content: '바람이 분다\n시원한 바람이 분다\n\n바람은 자유의 메신저\n바람은 변화의 전령', motivation: '변화의 바람을 두려워하지 마세요.' },
+        { title: '나무', author: '신경림', preview: '나무는 서 있다 묵묵히 그 자리에 서 있다...', content: '나무는 서 있다\n묵묵히 그 자리에 서 있다\n\n나무의 인내를 배우자\n나무의 성실함을 배우자', motivation: '묵묵히 자신의 자리를 지키는 당신이 소중합니다.' }
+    ];
+
+    var quotesData = [
+        { title: '오늘의 가치', author: '소포클레스', preview: '내가 헛되이 보낸 오늘은 어제 죽은 이가 그토록 갈망하던 내일이다...', content: '내가 헛되이 보낸 오늘은\n어제 죽은 이가 그토록 갈망하던 내일이다', motivation: '오늘을 소중히 여기는 당신이 진정 현명합니다.' },
+        { title: '부의 비밀', author: '워렌 버핏', preview: '잠자는 동안에도 돈이 들어오는 방법을 찾아내지 못한다면 당신은 죽을때까지 일만 해야할것이다...', content: '잠자는 동안에도 돈이 들어오는 방법을\n찾아내지 못한다면\n당신은 죽을때까지 일만 해야할것이다', motivation: '현명한 투자와 시스템이 자유를 만듭니다.' },
+        { title: '도전의 가치', author: '홍정욱', preview: '가장 슬픈 인생은 오류로 얼룩진 삶이 아니라 아무것도 시도하지 않은 삶이다...', content: '가장 슬픈 인생은 오류로 얼룩진 삶이 아니라\n아무것도 시도하지 않은 삶이다', motivation: '실수를 두려워하지 않는 당신이 용감합니다.' },
+        { title: '새로운 시작', author: '권성욱', preview: '가보지 않은 길에 대한 두려움도 크지만, 기대감은 발걸음을 재촉합니다...', content: '가보지 않은 길에 대한 두려움도 크지만\n기대감은 발걸음을 재촉합니다', motivation: '새로운 길을 걷는 당신의 용기가 아름답습니다.' },
+        { title: '몰입의 힘', author: '알렉산더 왕', preview: '한번이라도 어딘가에 몰두해본 경험이 없는 사람이라면 절대 채용하지 않는다...', content: '한번이라도 어딘가에 몰두해본 경험이 없는 사람이라면\n절대 채용하지 않는다', motivation: '몰입할 줄 아는 당신의 열정이 성공을 만듭니다.' },
+        { title: '꿈의 현실화', author: '엘론 머스크', preview: '불가능해 보이는 일을 가능하게 만드는 것이 진정한 혁신이다...', content: '불가능해 보이는 일을 가능하게 만드는 것이\n진정한 혁신이다\n\n한계는 마음속에만 존재한다\n기술은 인류의 문제를 해결하기 위해 존재한다\n미래를 예측하는 가장 좋은 방법은 미래를 창조하는 것이다', motivation: '불가능을 가능으로 만드는 당신이 혁신가입니다.' },
+        { title: '실행의 중요성', author: '마크 저커버그', preview: '완벽을 기다리지 말고 일단 시작하라 나중에 개선하면 된다...', content: '완벽을 기다리지 말고 일단 시작하라\n나중에 개선하면 된다', motivation: '완벽보다 실행이 더 중요함을 아시는군요.' },
+        { title: '기회의 정의', author: '오프라 윈프리', preview: '기회는 준비된 자에게만 온다는 말은 틀렸다 기회는 기회를 만드는 자에게 온다...', content: '기회는 준비된 자에게만 온다는 말은 틀렸다\n기회는 기회를 만드는 자에게 온다\n\n운명을 기다리지 말고 운명을 창조하라\n성공은 우연이 아니라 선택의 결과다\n당신의 삶을 바꿀 수 있는 사람은 오직 당신뿐이다', motivation: '기회를 만들어가는 당신이 진정한 리더입니다.' },
+        { title: '성장 마인드셋', author: '캐롤 드웩', preview: '실패는 학습의 기회이지 능력의 한계가 아니다...', content: '실패는 학습의 기회이지 능력의 한계가 아니다\n\n고정된 마인드셋은 성장을 막는다\n도전을 피하는 것은 발전을 포기하는 것이다\n노력하는 과정 자체가 성공이다', motivation: '성장하는 마인드를 가진 당신이 무한한 가능성을 가졌습니다.' },
+        { title: '시간 투자', author: '빌 게이츠', preview: '대부분의 사람들은 1년 안에 할 수 있는 일은 과대평가하고 10년 안에 할 수 있는 일은 과소평가한다...', content: '대부분의 사람들은 1년 안에 할 수 있는 일은 과대평가하고\n10년 안에 할 수 있는 일은 과소평가한다\n\n장기적 관점에서 생각하라\n복리의 힘은 시간과 함께 폭발적으로 증가한다\n지속적인 개선이 혁명적 변화를 만든다', motivation: '장기적 관점을 가진 당신이 진정한 성공자가 될 것입니다.' },
+        { title: '성공의 비밀', author: '아인슈타인', preview: '성공한 사람이 되려고 노력하지 말고, 가치 있는 사람이 되려고 노력하라...', content: '성공한 사람이 되려고 노력하지 말고\n가치 있는 사람이 되려고 노력하라', motivation: '가치 있는 삶을 사는 당신이 진정한 성공자입니다.' },
+        { title: '행복의 정의', author: '아리스토텔레스', preview: '행복은 마음의 상태가 아니라 행동이다...', content: '행복은 마음의 상태가 아니라 행동이다', motivation: '행복한 행동이 행복한 인생을 만듭니다.' },
+        { title: '도전의 의미', author: '넬슨 만델라', preview: '실패란 넘어지는 것이 아니라 넘어진 곳에 머무르는 것이다...', content: '실패란 넘어지는 것이 아니라\n넘어진 곳에 머무르는 것이다\n\n용기 있는 자는 실패를 두려워하지 않는다\n실패는 성공의 어머니이고\n도전은 성장의 기회이다\n매번 넘어질 때마다 더 강해진다', motivation: '넘어져도 일어서는 당신의 용기가 빛납니다.' },
+        { title: '시간의 가치', author: '벤자민 프랭클린', preview: '시간을 사랑하라 시간은 인생을 구성하는 재료다...', content: '시간을 사랑하라\n시간은 인생을 구성하는 재료다', motivation: '지금 이 순간이 가장 소중한 시간입니다.' },
+        { title: '변화의 힘', author: '마하트마 간디', preview: '당신이 보고 싶은 변화가 되어라...', content: '당신이 보고 싶은 변화가 되어라', motivation: '작은 변화가 세상을 바꿉니다.' },
+        { title: '용기의 정의', author: '마야 안젤루', preview: '용기는 두려움이 없는 것이 아니라 두려움보다 중요한 것이 있다고 판단하는 것이다...', content: '용기는 두려움이 없는 것이 아니라\n두려움보다 중요한 것이 있다고 판단하는 것이다\n\n진정한 용기는 완벽함에서 나오지 않는다\n연약함을 인정하고도 앞으로 나아가는 것\n실수를 두려워하지 않고 도전하는 것\n그것이 바로 용기다', motivation: '당신의 용기가 누군가에게 희망이 됩니다.' },
+        { title: '사랑의 정의', author: '테레사 수녀', preview: '사랑의 반대는 미움이 아니라 무관심이다...', content: '사랑의 반대는 미움이 아니라 무관심이다', motivation: '관심을 가지는 것부터 사랑이 시작됩니다.' },
+        { title: '학습의 중요성', author: '공자', preview: '배우고 때때로 익히면 또한 기쁘지 아니한가...', content: '배우고 때때로 익히면 또한 기쁘지 아니한가\n\n지식은 나누면 나눌수록 커진다\n배움에는 끝이 없고 나이의 제한도 없다\n오늘 배운 한 가지가 내일의 지혜가 된다\n가르치는 것은 두 번 배우는 것이다', motivation: '배움을 즐기는 당신이 지혜로운 사람입니다.' },
+        { title: '인내의 가치', author: '토마스 에디슨', preview: '천재는 1%의 영감과 99%의 노력으로 이루어진다...', content: '천재는 1%의 영감과 99%의 노력으로 이루어진다', motivation: '꾸준한 노력이 천재를 만듭니다.' },
+        { title: '긍정의 힘', author: '윈스턴 처칠', preview: '비관주의자는 모든 기회에서 어려움을 보고, 낙관주의자는 모든 어려움에서 기회를 본다...', content: '비관주의자는 모든 기회에서 어려움을 보고\n낙관주의자는 모든 어려움에서 기회를 본다\n\n어둠 속에서도 별은 빛난다\n폭풍이 지나가면 더 푸른 하늘이 온다\n절망의 끝에서 희망이 시작된다\n긍정적인 마음이 불가능을 가능으로 만든다', motivation: '긍정적인 당신의 마음이 기적을 만듭니다.' },
+        { title: '자신감', author: '헨리 포드', preview: '할 수 있다고 생각하든 할 수 없다고 생각하든, 당신이 옳다...', content: '할 수 있다고 생각하든 할 수 없다고 생각하든, 당신이 옳다', motivation: '자신을 믿는 마음이 가능성을 현실로 만듭니다.' },
+        { title: '친절', author: '달라이 라마', preview: '친절하라 당신이 만나는 모든 사람들이 힘든 싸움을 하고 있다...', content: '친절하라\n당신이 만나는 모든 사람들이 힘든 싸움을 하고 있다\n\n작은 친절이 큰 변화를 만든다\n따뜻한 말 한마디가 하루를 바꾼다\n미소는 세상에서 가장 아름다운 언어다\n친절은 약함이 아니라 강함의 표현이다', motivation: '당신의 친절이 세상을 더 따뜻하게 만듭니다.' },
+        { title: '성장', author: '랄프 왈도 에머슨', preview: '어제의 당신보다 나은 사람이 되어라...', content: '어제의 당신보다 나은 사람이 되어라', motivation: '매일 성장하는 당신이 자랑스럽습니다.' },
+        { title: '목표', author: '지그 지글러', preview: '목표 없는 삶은 목적지 없는 여행과 같다...', content: '목표 없는 삶은 목적지 없는 여행과 같다\n\n명확한 목표는 인생의 나침반이다\n작은 목표를 이루면 큰 꿈에 가까워진다\n목표는 꿈에 날짜를 적어놓은 것이다\n계획 없는 목표는 단순한 소망일 뿐이다', motivation: '명확한 목표가 당신을 성공으로 이끕니다.' },
+        { title: '열정', author: '스티브 잡스', preview: '당신의 일을 사랑하라 이것이 위대한 일을 하는 유일한 방법이다...', content: '당신의 일을 사랑하라\n이것이 위대한 일을 하는 유일한 방법이다', motivation: '열정이 있는 곳에 위대함이 있습니다.' },
+        { title: '인생', author: '존 레논', preview: '인생은 당신이 다른 계획을 세우느라 바쁠 때 일어나는 일이다...', content: '인생은 당신이 다른 계획을 세우느라 바쁠 때 일어나는 일이다\n\n인생의 아름다움은 예측할 수 없음에 있다\n모든 순간이 선물이고 기회다\n과거는 경험이고 미래는 희망이다\n현재는 우리가 가진 유일한 시간이다', motivation: '지금 이 순간을 소중히 여기세요.' },
+        { title: '지혜', author: '소크라테스', preview: '나는 내가 모른다는 것을 안다...', content: '나는 내가 모른다는 것을 안다', motivation: '겸손함이 진정한 지혜의 시작입니다.' },
+        { title: '평화', author: '마틴 루터 킹', preview: '어둠은 어둠을 몰아낼 수 없다 오직 빛만이 그것을 할 수 있다...', content: '어둠은 어둠을 몰아낼 수 없다\n오직 빛만이 그것을 할 수 있다\n\n미움은 미움으로 이길 수 없다\n사랑만이 미움을 이길 수 있다\n폭력은 문제를 해결하지 못한다\n대화와 이해만이 진정한 평화를 가져온다', motivation: '당신의 빛이 세상의 어둠을 밝혀줍니다.' },
+        { title: '희망', author: '헬렌 켈러', preview: '비관은 기분에서 나오고 낙관은 의지에서 나온다...', content: '비관은 기분에서 나오고 낙관은 의지에서 나온다', motivation: '강한 의지로 희망을 선택하는 당신이 멋집니다.' },
+        { title: '감사', author: '오프라 윈프리', preview: '감사는 당신이 가진 것을 충분하게 만든다...', content: '감사는 당신이 가진 것을 충분하게 만든다\n\n감사하는 마음은 행복의 열쇠다\n작은 것에 감사할 줄 알면 큰 복이 온다\n감사는 과거를 의미 있게 하고\n현재에 평화를 가져다주며 미래에 대한 비전을 만든다', motivation: '감사하는 마음이 더 많은 축복을 부릅니다.' },
+        { title: '실패', author: '마이클 조던', preview: '나는 계속해서 실패했다 그래서 성공했다...', content: '나는 계속해서 실패했다 그래서 성공했다', motivation: '실패는 성공의 든든한 발판입니다.' },
+        { title: '자유', author: '빅터 프랭클', preview: '모든 것을 빼앗길 수 있지만 한 가지는 빼앗기지 않는다 자신의 태도를 선택할 자유...', content: '모든 것을 빼앗길 수 있지만 한 가지는 빼앗기지 않는다\n자신의 태도를 선택할 자유\n\n상황을 바꿀 수 없다면 그에 대한 태도를 바꿔라\n고통은 피할 수 없지만 고통으로 인한 괴로움은 선택이다\n자유는 외부 조건이 아니라 내적 선택에서 온다', motivation: '선택의 자유가 있는 당신이 진정 자유로운 사람입니다.' },
+        { title: '단순함', author: '레오나르도 다빈치', preview: '단순함은 정교함의 극치다...', content: '단순함은 정교함의 극치다', motivation: '단순함 속에서 진정한 아름다움을 찾으셨군요.' },
+        { title: '진실', author: '마크 트웨인', preview: '진실을 말하라 그러면 기억할 것이 적어진다...', content: '진실을 말하라 그러면 기억할 것이 적어진다\n\n진실은 때로 아프지만 항상 치유한다\n거짓말은 진실보다 빨리 달리지만\n진실이 결국 따라잡는다\n정직한 삶이 가장 편안한 삶이다', motivation: '진실한 당신의 마음이 가장 아름답습니다.' }
+    ];
+
+    function switchTab(tabName) {
+        var tabs = document.querySelectorAll('.tab-btn');
+        var contents = document.querySelectorAll('.tab-content');
+
+        for (var i = 0; i < tabs.length; i++) {
+            tabs[i].classList.remove('active');
+        }
+        for (var i = 0; i < contents.length; i++) {
+            contents[i].classList.remove('active');
+        }
+
+        event.target.classList.add('active');
+        document.getElementById(tabName).classList.add('active');
+    }
+
+    function displayItems(type, page) {
+        var data = type === 'literature' ? literatureData : quotesData;
+        var listElement = document.getElementById(type + 'List');
+        var startIndex = (page - 1) * itemsPerPage;
+        var endIndex = startIndex + itemsPerPage;
+        var pageItems = data.slice(startIndex, endIndex);
+
+        listElement.innerHTML = '';
+
+        for (var i = 0; i < pageItems.length; i++) {
+            var item = pageItems[i];
+            var itemElement = document.createElement('div');
+            itemElement.className = 'notice-item';
+
+            (function(itemData) {
+                itemElement.addEventListener('click', function() {
+                    showModal(itemData);
+                });
+            })(item);
+
+            itemElement.innerHTML = '<div class="notice-header"><div class="notice-title">' + item.title + '</div><div class="notice-author">' + item.author + '</div></div><div class="notice-content">' + item.preview + '</div>';
+
+            listElement.appendChild(itemElement);
+        }
+    }
+
+    function updatePagination(type) {
+        var data = type === 'literature' ? literatureData : quotesData;
+        var totalPages = Math.ceil(data.length / itemsPerPage);
+        var currentPageNum = type === 'literature' ? literaturePage : quotesPage;
+
+        document.getElementById(type + 'PageInfo').textContent = currentPageNum + ' | ' + totalPages;
+        document.getElementById(type + 'Prev').disabled = currentPageNum === 1;
+        document.getElementById(type + 'Next').disabled = currentPageNum === totalPages;
+    }
+
+    function previousPage(type) {
+        var currentPageNum = type === 'literature' ? literaturePage : quotesPage;
+        if (currentPageNum > 1) {
+            if (type === 'literature') {
+                literaturePage--;
+                displayItems('literature', literaturePage);
+                updatePagination('literature');
+            } else {
+                quotesPage--;
+                displayItems('quotes', quotesPage);
+                updatePagination('quotes');
+            }
+        }
+    }
+
+    function nextPage(type) {
+        var data = type === 'literature' ? literatureData : quotesData;
+        var totalPages = Math.ceil(data.length / itemsPerPage);
+        var currentPageNum = type === 'literature' ? literaturePage : quotesPage;
+
+        if (currentPageNum < totalPages) {
+            if (type === 'literature') {
+                literaturePage++;
+                displayItems('literature', literaturePage);
+                updatePagination('literature');
+            } else {
+                quotesPage++;
+                displayItems('quotes', quotesPage);
+                updatePagination('quotes');
+            }
+        }
+    }
+
+    function showModal(item) {
+        document.getElementById('modalTitle').innerHTML = '<span>' + item.title + '</span><span class="modal-author">' + item.author + '</span>';
+        document.getElementById('modalOriginalText').textContent = item.content;
+        document.getElementById('modalTypingInput').value = '';
+
+        currentText = item.content;
+        currentMotivation = item.motivation;
+
+        document.getElementById('practiceModal').classList.add('active');
+    }
+
+    function hideModal() {
+        document.getElementById('practiceModal').classList.remove('active');
+    }
+
+    function finishModalPractice() {
+        var typedText = document.getElementById('modalTypingInput').value;
+        if (typedText.trim() === '') {
+            alert('먼저 텍스트를 입력해주세요.');
+            return;
+        }
+
+        document.getElementById('completeModalText').textContent = currentMotivation;
+        document.getElementById('completeModal').classList.add('active');
+        document.getElementById('modalTypingInput').value = '';
+    }
+
+    function finishCustomPractice() {
+        var typedText = document.getElementById('typingInput').value;
+        if (typedText.trim() === '') {
+            alert('먼저 텍스트를 입력해주세요.');
+            return;
+        }
+
+        document.getElementById('completeModalText').textContent = '당신이 걷는 모든 길을 응원합니다.';
+        document.getElementById('completeModal').classList.add('active');
+        document.getElementById('typingInput').value = '';
+    }
+
+    function hideCompleteModal() {
+        document.getElementById('completeModal').classList.remove('active');
+    }
+
+    function startPractice() {
+        var customText = document.getElementById('customText').value.trim();
+        if (customText === '') {
+            alert('필사할 글을 입력해주세요.');
+            return;
+        }
+
+        document.getElementById('originalText').textContent = customText;
+        document.getElementById('typingInput').value = '';
+        document.getElementById('inputSection').style.display = 'none';
+        document.getElementById('practiceSection').style.display = 'block';
+    }
+
+    function resetPractice() {
+        document.getElementById('customText').value = '';
+        document.getElementById('inputSection').style.display = 'block';
+        document.getElementById('practiceSection').style.display = 'none';
+    }
+
+    function switchKoreanMode(mode) {
+        localStorage.setItem('koreanMode', mode);
+        window.location.href = './Korean/practice.html';
+    }
+
+    function switchEnglishMode(mode) {
+        localStorage.setItem('englishMode', mode);
+        window.location.href = './English/practice.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        displayItems('literature', 1);
+        displayItems('quotes', 1);
+        updatePagination('literature');
+        updatePagination('quotes');
+
+        document.getElementById('practiceModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideModal();
+            }
+        });
+
+        document.getElementById('completeModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideCompleteModal();
+            }
+        });
+
+        window.addEventListener('scroll', function() {
+            var nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    });
+</script>
+</body>
+</html>
