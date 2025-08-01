@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta name="google-adsense-account" content="ca-pub-5657188598576847">
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -37,8 +39,8 @@
 
     <!-- SEO 메타태그 -->
     <title>핑거런 | 타자연습 사이트</title>
-    <meta name="description" content="압도적인 디자인과 성능으로 타자속도와 정확성을 UP! 한글타자연습, 영어타자연습, 타자게임 제공.">
-    <meta name="keywords" content="타자연습, 한글타자연습, 영어타자연습, 타자게임, 타자연습게임, 타자연습 사이트, 핑거런, 영어타자연습 사이트, 한글타자연습 무료">
+    <meta name="description" content="압도적인 디자인과 성능으로 타자속도와 정확성을 UP! 한글타자연습, 영어타자연습, 타자게임, 필사, 워드프로세서 연습기능 제공.">
+    <meta name="keywords" content="타자연습, 한글타자연습, 영어타자연습, 타자게임, 타자연습게임, 타자연습 사이트, 핑거런, 영어타자연습 사이트, 한글타자연습, 필사, 워드프로세서 무료">
     <meta name="author" content="FingerRun">
     <meta name="robots" content="index, follow">
     <link rel="icon" type="image/svg+xml" href="./images/finger-run-logo.svg">
@@ -374,6 +376,22 @@
             font-size: 1.2rem;
         }
 
+        .key:nth-child(7) {
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: 1.5s;
+            font-size: 1.1rem;
+        }
+
+        .key:nth-child(8) {
+            top: 50%;
+            right: 50%;
+            transform: translateX(50%);
+            animation-delay: 3.5s;
+            font-size: 1rem;
+        }
+
         @keyframes float-key {
             0%, 100% {
                 transform: translateY(0px) rotate(0deg);
@@ -480,6 +498,238 @@
             box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
         }
 
+        /* 타자연습 소개 섹션 */
+        .typing-practice-section {
+            padding: 4rem 0;
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .practice-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .practice-header {
+            text-align: center;
+            width: 100%;
+        }
+
+        .practice-header h2 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .practice-header p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 0;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .practice-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            width: 100%;
+        }
+
+        .practice-demo {
+            flex: 1;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-screen {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            min-height: 300px;
+            border: 2px solid #e2e8f0;
+            position: relative;
+        }
+
+        .demo-title {
+            font-size: 1.2rem;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .demo-text-display {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            border: 2px solid #e2e8f0;
+        }
+
+        .demo-char {
+            margin: 2px;
+            padding: 4px 6px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .demo-char.correct {
+            background: linear-gradient(45deg, #4caf50, #45a049);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .demo-char.current {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            animation: demo-pulse 1.5s infinite;
+        }
+
+        @keyframes demo-pulse {
+            0%, 100% { opacity: 1; transform: scale(1.1); }
+            50% { opacity: 0.7; transform: scale(1.2); }
+        }
+
+        .demo-keyboard {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 3px;
+            margin-top: 1rem;
+        }
+
+        .demo-key {
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            padding: 0.3rem;
+            text-align: center;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #495057;
+            transition: all 0.3s ease;
+        }
+
+        .demo-key.active {
+            background: linear-gradient(145deg, #ff6b6b, #ff5252);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .demo-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .demo-stat {
+            text-align: center;
+        }
+
+        .demo-stat-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .demo-stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .practice-info {
+            flex: 1;
+            text-align: center;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .features-list li:hover {
+            background: #e3f2fd;
+            transform: translateY(-2px);
+        }
+
+        .features-list .feature-icon {
+            margin-right: 1rem;
+            width: 40px;
+            text-align: center;
+        }
+
+        .features-list .feature-text {
+            flex: 1;
+            text-align: center;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.2rem;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .practice-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .practice-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
         /* Features Section */
         .features {
             background: white;
@@ -517,9 +767,12 @@
             box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
         }
 
-        .feature-icon {
+        .feature-card .feature-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .feature-card h3 {
@@ -620,6 +873,503 @@
             color: #4caf50;
             font-weight: bold;
             margin-right: 0.5rem;
+        }
+
+        /* 비행기 조종 데모 스타일 */
+        .plane-game-demo {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: linear-gradient(180deg, #4A90E2 0%, #87CEEB 50%, #98FB98 100%);
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        .demo-sky {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .demo-cloud {
+            position: absolute;
+            width: 30px;
+            height: 15px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            animation: demo-cloud-move 8s linear infinite;
+        }
+
+        .demo-cloud::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 5px;
+            width: 15px;
+            height: 15px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+        }
+
+        .demo-cloud::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            right: 5px;
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+        }
+
+        .demo-cloud-1 {
+            top: 20%;
+            animation-delay: 0s;
+        }
+
+        .demo-cloud-2 {
+            top: 60%;
+            animation-delay: -4s;
+        }
+
+        .demo-cloud-3 {
+            top: 40%;
+            animation-delay: -6s;
+        }
+
+        @keyframes demo-cloud-move {
+            from { right: -50px; }
+            to { right: 100%; }
+        }
+
+        .demo-plane {
+            position: absolute;
+            left: 15%;
+            font-size: 2rem;
+            z-index: 10;
+            animation: demo-plane-avoid-obstacles 4s ease-in-out infinite;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            transition: all 0.3s ease;
+        }
+
+        @keyframes demo-plane-avoid-obstacles {
+            0% {
+                top: 25%;
+                transform: rotate(-3deg);
+            }
+            25% {
+                top: 65%;
+                transform: rotate(8deg);
+            }
+            50% {
+                top: 35%;
+                transform: rotate(-5deg);
+            }
+            75% {
+                top: 45%;
+                transform: rotate(2deg);
+            }
+            100% {
+                top: 25%;
+                transform: rotate(-3deg);
+            }
+        }
+
+        .demo-obstacle {
+            position: absolute;
+            right: 0;
+            width: 15px;
+            background: linear-gradient(180deg, #2c3e50, #34495e, #2c3e50);
+            border-radius: 3px;
+            animation: demo-obstacle-move 4s linear infinite;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .demo-obstacle-top {
+            top: 0;
+            height: 45%;
+            animation-delay: 0s;
+        }
+
+        .demo-obstacle-bottom {
+            bottom: 0;
+            height: 40%;
+            animation-delay: -1.33s;
+        }
+
+        .demo-obstacle-both-top {
+            top: 0;
+            height: 30%;
+            animation-delay: -2.67s;
+        }
+
+        .demo-obstacle-both-bottom {
+            bottom: 0;
+            height: 35%;
+            animation-delay: -2.67s;
+        }
+
+        @keyframes demo-obstacle-move {
+            from { right: -20px; opacity: 1; }
+            to { right: 100%; opacity: 1; }
+        }
+
+        .plane-demo-ui {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            z-index: 15;
+            backdrop-filter: blur(5px);
+        }
+
+        .plane-demo-level,
+        .plane-demo-timer {
+            margin-bottom: 3px;
+        }
+
+        /* 택배 분류 데모 스타일 - 실제 화면과 동일하게 */
+        .delivery-game-demo {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem;
+            position: relative;
+            background: linear-gradient(135deg, #8b5fbf, #6d4c9f);
+            border-radius: 0;
+            overflow: hidden;
+            gap: 1rem;
+        }
+
+        .delivery-demo-stats {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .delivery-stat-card {
+            background: #3b82f6;
+            color: white;
+            padding: 0.4rem 0.5rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);
+            min-width: 32px;
+        }
+
+        .delivery-stat-value {
+            font-size: 0.9rem;
+            display: block;
+        }
+
+        .delivery-stat-label {
+            font-size: 0.45rem;
+            opacity: 0.9;
+        }
+
+        .delivery-demo-conveyor {
+            width: 70%;
+            height: 55px;
+            background: linear-gradient(180deg, #4b5563 0%, #374151 50%, #1f2937 100%);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .delivery-demo-conveyor::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 4px,
+                    rgba(255, 255, 255, 0.1) 4px,
+                    rgba(255, 255, 255, 0.1) 8px
+            );
+            animation: delivery-conveyor-move 2s linear infinite;
+        }
+
+        @keyframes delivery-conveyor-move {
+            from { transform: translateX(0); }
+            to { transform: translateX(-8px); }
+        }
+
+        .delivery-demo-package {
+            position: absolute;
+            top: 10px;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.5rem;
+            color: white;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+            animation: delivery-package-move 6s linear infinite;
+        }
+
+        .delivery-demo-package::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 8px;
+            right: 8px;
+            height: 2px;
+            background: #92400e;
+            border-radius: 1px;
+        }
+
+        .delivery-demo-package::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            bottom: 8px;
+            left: -2px;
+            width: 2px;
+            background: #92400e;
+            border-radius: 1px;
+        }
+
+        .delivery-demo-package-2 {
+            animation-delay: -3s;
+        }
+
+        @keyframes delivery-package-move {
+            from {
+                right: -50px;
+            }
+            to {
+                right: 100%;
+            }
+        }
+
+        .delivery-demo-input {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            width: 60%;
+        }
+
+        .delivery-demo-input-box {
+            background: white;
+            padding: 0.5rem 0.7rem;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1f2937;
+            text-align: center;
+            border: 2px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            width: 80px;
+            height: 30px;
+            min-width: 80px;
+            max-width: 80px;
+            min-height: 30px;
+            max-height: 30px;
+            flex: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        .delivery-demo-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 0.5rem 0.8rem;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+        }
+
+        /* 두더지 잡기 데모 스타일 */
+        .mole-game-demo {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            position: relative;
+            background: linear-gradient(135deg, #10b981, #059669, #0d9488);
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        /* 잔디 장식 요소들 - 전체 구역 */
+        .mole-game-demo::before {
+            content: '🌱 🌿 🍀 🌱 🌾 🌿 🍀 🌱 🌿 🌾 🍀 🌱 🌿 🍀 🌱 🌾 🌿 🍀 🌱 🌿 🌾 🍀 🌱 🌿 🍀 🌱 🌾 🌿 🍀 🌱 🌿 🌾 🍀 🌱 🌿 🍀 🌱 🌾 🌿 🍀 🌱 🌿 🌾 🍀 🌱 🌿 🍀 🌱 🌾 🌿 🍀 🌱 🌿 🌾';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: space-around;
+            font-size: 0.6rem;
+            opacity: 0.3;
+            line-height: 1.2;
+            word-spacing: 4px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .mole-game-demo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 15px;
+            background: repeating-linear-gradient(
+                    90deg,
+                    #22c55e 0px,
+                    #16a34a 1px,
+                    #15803d 2px,
+                    #22c55e 3px
+            );
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .demo-moles-container {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .demo-mole-hole {
+            position: relative;
+            width: 45px;
+            height: 45px;
+            background: radial-gradient(circle, #000 30%, #451a03 70%, #92400e 100%);
+            border-radius: 50%;
+            border: 3px solid #92400e;
+            box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.8), 0 2px 8px rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .demo-mole-hole::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            right: 15%;
+            bottom: 15%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1), transparent);
+            border-radius: 50%;
+        }
+
+        .demo-mole {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .demo-mole.active .demo-mole-body {
+            animation: demo-mole-bounce 2s infinite;
+        }
+
+        .demo-mole.completed .demo-mole-body {
+            transform: scale(0.8);
+            opacity: 0.7;
+        }
+
+        .demo-mole-body {
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .demo-mole-label {
+            position: absolute;
+            top: -32px;
+            background: white;
+            color: #1f2937;
+            padding: 3px 6px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border: 2px solid #3b82f6;
+            white-space: nowrap;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .demo-mole-label::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #3b82f6;
+        }
+
+        .demo-mole-label.completed {
+            border-color: #22c55e;
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .demo-mole-label.completed::after {
+            border-top-color: #22c55e;
+        }
+
+        .demo-progress-text {
+            font-size: 0.8rem;
+            color: white;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0.3rem 0.6rem;
+            border-radius: 10px;
+            font-weight: 600;
+            position: relative;
+            z-index: 10;
+        }
+
+        @keyframes demo-mole-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
         }
 
         .play-button {
@@ -732,6 +1482,27 @@
             .footer-contact {
                 text-align: center;
             }
+
+            .practice-container {
+                gap: 2rem;
+            }
+
+            .practice-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .practice-header h2 {
+                font-size: 2rem;
+            }
+
+            .demo-screen {
+                min-height: 250px;
+            }
+
+            .demo-screen {
+                min-height: 250px;
+            }
         }
 
         /* Animations */
@@ -746,7 +1517,7 @@
             }
         }
 
-        .hero, .features, .typing-games {
+        .hero, .features, .typing-games, .typing-practice-section {
             animation: fadeInUp 0.8s ease-out;
         }
     </style>
@@ -757,11 +1528,12 @@
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <!-- Navigation -->
+<!-- Navigation -->
 <nav>
     <div class="nav-container">
         <a href="./index.html" class="logo">⌨️ FingerRun</a>
         <ul class="nav-menu">
-            <li><a href="./index.html">소개</a></li>
+            <li><a href="./notices.html">공지사항</a></li>
             <li>
                 <a href="#korean">
                     한글 타자연습
@@ -769,9 +1541,9 @@
                 </a>
                 <div class="dropdown-menu">
                     <a href="./Korean/practice.html" onclick="switchKoreanMode('consonant')">자음연습</a>
-                    <a href="./Korean/practice.html" onclick="switchKoreanMode('vowel')">모음연습</a>
-                    <a href="./Korean/practice.html" onclick="switchKoreanMode('word')">단어연습</a>
-                    <a href="./Korean/practice.html" onclick="switchKoreanMode('sentence')">문장연습</a>
+                    <a href="./Korean/practice.html" onclick="switchKoreanMode('vowel')">모음 연습</a>
+                    <a href="./Korean/practice.html" onclick="switchKoreanMode('word')">단어 연습</a>
+                    <a href="./Korean/practice.html" onclick="switchKoreanMode('sentence')">문장 연습</a>
                 </div>
             </li>
             <li>
@@ -799,6 +1571,7 @@
                     <a href="./English/game-delivery.html">택배 분류 (영어)</a>
                 </div>
             </li>
+            <li><a href="../writing.html">필사</a></li>
             <li>
                 <a href="#certificate">
                     자격증
@@ -825,16 +1598,170 @@
             <div class="key">R</div>
             <div class="key">T</div>
             <div class="key">Y</div>
+            <div class="key">U</div>
+            <div class="key">I</div>
         </div>
         <div class="container">
             <h1>빠르고 정확한 타이핑을 배우세요<span class="typing-cursor"></span></h1>
             <p>전문적인 타자연습 프로그램으로 타이핑 실력을 향상시키세요</p>
         </div>
-        <div class="scroll-arrow" onclick="scrollToFeatures()">
+        <div class="scroll-arrow" onclick="scrollToSection('.typing-practice-korean')">
             ⬇
         </div>
-        <div class="scroll-arrow" onclick="scrollToFeatures()">
+        <div class="scroll-arrow" onclick="scrollToSection('.typing-practice-korean')">
             ⬇
+        </div>
+    </section>
+
+    <!-- 한글 타자연습 소개 섹션 -->
+    <section id="korean" class="typing-practice-section typing-practice-korean">
+        <div class="practice-container">
+            <div class="practice-header">
+                <h2>한글 타자연습</h2>
+                <p>체계적인 한글 타이핑 연습으로 정확도와 속도를 동시에 향상시키세요.<br>자음부터 문장까지 단계별 학습 시스템을 제공합니다.</p>
+            </div>
+            <div class="practice-content">
+                <div class="practice-demo">
+                    <div class="demo-screen">
+                        <div class="demo-title">한글 타자연습</div>
+                        <div class="demo-text-display" id="koreanDemoDisplay">
+                            <span class="demo-char correct">안</span>
+                            <span class="demo-char correct">녕</span>
+                            <span class="demo-char correct">하</span>
+                            <span class="demo-char current">세</span>
+                            <span class="demo-char">요</span>
+                        </div>
+                        <div class="demo-keyboard">
+                            <div class="demo-key">ㅂ</div>
+                            <div class="demo-key">ㅈ</div>
+                            <div class="demo-key">ㄷ</div>
+                            <div class="demo-key">ㄱ</div>
+                            <div class="demo-key active">ㅅ</div>
+                            <div class="demo-key">ㅛ</div>
+                            <div class="demo-key">ㅕ</div>
+                            <div class="demo-key">ㅑ</div>
+                            <div class="demo-key">ㅐ</div>
+                            <div class="demo-key">ㅔ</div>
+                        </div>
+                        <div class="demo-stats">
+                            <div class="demo-stat">
+                                <div class="demo-stat-value" id="koreanAccuracy">95%</div>
+                                <div class="demo-stat-label">정확도</div>
+                            </div>
+                            <div class="demo-stat">
+                                <div class="demo-stat-value" id="koreanSpeed">280</div>
+                                <div class="demo-stat-label">타자/분</div>
+                            </div>
+                            <div class="demo-stat">
+                                <div class="demo-stat-value" id="koreanProgress">7/10</div>
+                                <div class="demo-stat-label">진행률</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-info">
+                    <ul class="features-list">
+                        <li>
+                            <div class="feature-text">
+                                <div class="feature-title">단계별 학습 시스템</div>
+                                <div class="feature-desc">자음→모음→단어→문장 순서로 체계적 학습</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-text">
+                                <div class="feature-title">실시간 시각적 피드백</div>
+                                <div class="feature-desc">키보드 하이라이트와 글자별 색상 변화</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-text">
+                                <div class="feature-title">정밀한 통계 추적</div>
+                                <div class="feature-desc">정확도, 타자속도, 진행률 실시간 측정</div>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="./Korean/practice.html" class="practice-button">한글 타자연습 시작하기 →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 영어 타자연습 소개 섹션 -->
+    <section id="english" class="typing-practice-section typing-practice-english">
+        <div class="practice-container">
+            <div class="practice-header">
+                <h2>영어 타자연습</h2>
+                <p>체계적인 영어 타자 연습으로 정확도와 속도를 동시에 향상시키세요.<br>알파벳부터 문장까지 단계별 학습 시스템을 제공합니다.</p>
+            </div>
+            <div class="practice-content">
+                <div class="practice-info">
+                    <ul class="features-list">
+                        <li>
+                            <div class="feature-text">
+                                <div class="feature-title">3단계 점진적 학습</div>
+                                <div class="feature-desc">알파벳→단어→문장 순서로 체계적 영어학습</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-text">
+                                <div class="feature-title">실시간 시각적 피드백</div>
+                                <div class="feature-desc">키보드 하이라이트와 문자별 상태 표시</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="feature-text">
+                                <div class="feature-title">정확한 통계 측정</div>
+                                <div class="feature-desc">CPM 속도 측정과 세션별 평균 제공</div>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="./English/practice.html" class="practice-button">영어 타자연습 시작하기 →</a>
+                </div>
+                <div class="practice-demo">
+                    <div class="demo-screen">
+                        <div class="demo-title">영어 타자연습</div>
+                        <div class="demo-text-display" id="englishDemoDisplay">
+                            <span class="demo-char correct">H</span>
+                            <span class="demo-char correct">e</span>
+                            <span class="demo-char correct">l</span>
+                            <span class="demo-char correct">l</span>
+                            <span class="demo-char current">o</span>
+                            <span class="demo-char"> </span>
+                            <span class="demo-char">W</span>
+                            <span class="demo-char">o</span>
+                            <span class="demo-char">r</span>
+                            <span class="demo-char">l</span>
+                            <span class="demo-char">d</span>
+                        </div>
+                        <div class="demo-keyboard">
+                            <div class="demo-key">Q</div>
+                            <div class="demo-key">W</div>
+                            <div class="demo-key">E</div>
+                            <div class="demo-key">R</div>
+                            <div class="demo-key">T</div>
+                            <div class="demo-key">Y</div>
+                            <div class="demo-key">U</div>
+                            <div class="demo-key">I</div>
+                            <div class="demo-key active">O</div>
+                            <div class="demo-key">P</div>
+                        </div>
+                        <div class="demo-stats">
+                            <div class="demo-stat">
+                                <div class="demo-stat-value" id="englishAccuracy">98%</div>
+                                <div class="demo-stat-label">정확도</div>
+                            </div>
+                            <div class="demo-stat">
+                                <div class="demo-stat-value" id="englishSpeed">320</div>
+                                <div class="demo-stat-label">타자/분</div>
+                            </div>
+                            <div class="demo-stat">
+                                <div class="demo-stat-value" id="englishProgress">5/10</div>
+                                <div class="demo-stat-label">진행률</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -864,14 +1791,14 @@
                     <p>다양한 게임과 재미있는 요소로 지루하지 않게 학습할 수 있습니다.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔤</div>
-                    <h3>영어 타자 연습</h3>
-                    <p>영어 알파벳부터 복잡한 문장까지 단계별로 체계적으로 학습하세요.</p>
+                    <div class="feature-icon">✍️</div>
+                    <h3>필사</h3>
+                    <p>문학, 명언, 커스텀으로 지혜로운 작가들과 글로 대화를 나눠보세요.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔥</div>
-                    <h3>동기부여</h3>
-                    <p>성취감과 도전 의식을 불러일으키는 다양한 동기부여 시스템을 제공합니다.</p>
+                    <div class="feature-icon">🏆</div>
+                    <h3>타자연습</h3>
+                    <p>체계적인 통계 분석과 함께 단계별 연습으로 압도적인 타자 실력을 키워보세요.</p>
                 </div>
             </div>
         </div>
@@ -887,7 +1814,38 @@
             <div class="games-grid">
                 <div class="game-card">
                     <div class="game-image">
-                        🐹
+                        <!-- 두더지 잡기 데모 화면 -->
+                        <div class="mole-game-demo">
+                            <div class="demo-moles-container">
+                                <div class="demo-mole-hole">
+                                    <div class="demo-mole active" id="demoMole1">
+                                        <div class="demo-mole-body">🐹</div>
+                                        <div class="demo-mole-label" id="demoMoleText1">사과</div>
+                                    </div>
+                                </div>
+                                <div class="demo-mole-hole">
+                                    <div class="demo-mole" id="demoMole2">
+                                        <div class="demo-mole-body">🐹</div>
+                                        <div class="demo-mole-label" id="demoMoleText2">바나나</div>
+                                    </div>
+                                </div>
+                                <div class="demo-mole-hole">
+                                    <div class="demo-mole" id="demoMole3">
+                                        <div class="demo-mole-body">🐹</div>
+                                        <div class="demo-mole-label" id="demoMoleText3">딸기</div>
+                                    </div>
+                                </div>
+                                <div class="demo-mole-hole">
+                                    <div class="demo-mole" id="demoMole4">
+                                        <div class="demo-mole-body">🐹</div>
+                                        <div class="demo-mole-label" id="demoMoleText4">포도</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="demo-progress-text">
+                                현재 입력: <span id="demoCurrentInput">사</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="game-content">
                         <h3>한글 두더지 잡기</h3>
@@ -903,7 +1861,38 @@
                 </div>
                 <div class="game-card">
                     <div class="game-image">
-                        🎯
+                        <!-- 영어 두더지 잡기 데모 화면 -->
+                        <div class="mole-game-demo">
+                            <div class="demo-moles-container">
+                                <div class="demo-mole-hole">
+                                    <div class="demo-mole active" id="englishDemoMole1">
+                                        <div class="demo-mole-body">🐹</div>
+                                        <div class="demo-mole-label" id="englishDemoMoleText1">apple</div>
+                                    </div>
+                                </div>
+                                <div class="demo-mole-hole">
+                                    <div class="demo-mole" id="englishDemoMole2">
+                                        <div class="demo-mole-body">🐹</div>
+                                        <div class="demo-mole-label" id="englishDemoMoleText2">banana</div>
+                                    </div>
+                                </div>
+                                <div class="demo-mole-hole">
+                                    <div class="demo-mole" id="englishDemoMole3">
+                                        <div class="demo-mole-body">🐹</div>
+                                        <div class="demo-mole-label" id="englishDemoMoleText3">cherry</div>
+                                    </div>
+                                </div>
+                                <div class="demo-mole-hole">
+                                    <div class="demo-mole" id="englishDemoMole4">
+                                        <div class="demo-mole-body">🐹</div>
+                                        <div class="demo-mole-label" id="englishDemoMoleText4">grape</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="demo-progress-text">
+                                Current Input: <span id="englishDemoCurrentInput">ap</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="game-content">
                         <h3>영어 두더지 잡기</h3>
@@ -919,7 +1908,39 @@
                 </div>
                 <div class="game-card">
                     <div class="game-image">
-                        📦
+                        <!-- 한글 택배 분류 데모 화면 -->
+                        <div class="delivery-game-demo">
+                            <div class="delivery-demo-stats">
+                                <div class="delivery-stat-card">
+                                    <div class="delivery-stat-value" id="deliveryDemoTimer">56</div>
+                                    <div class="delivery-stat-label">남은 시간</div>
+                                </div>
+                                <div class="delivery-stat-card">
+                                    <div class="delivery-stat-value" id="deliveryDemoMissed">0</div>
+                                    <div class="delivery-stat-label">놓친 택배</div>
+                                </div>
+                                <div class="delivery-stat-card">
+                                    <div class="delivery-stat-value" id="deliveryDemoLevel">1</div>
+                                    <div class="delivery-stat-label">단계 (10단계)</div>
+                                </div>
+                            </div>
+
+                            <div class="delivery-demo-conveyor">
+                                <div class="delivery-demo-package" id="deliveryDemoPackage1">
+                                    <span id="deliveryDemoPackageText1">컴퓨터</span>
+                                </div>
+                                <div class="delivery-demo-package delivery-demo-package-2" id="deliveryDemoPackage2">
+                                    <span id="deliveryDemoPackageText2">구급차</span>
+                                </div>
+                            </div>
+
+                            <div class="delivery-demo-input">
+                                <div class="delivery-demo-input-box">
+                                    <span id="deliveryDemoCurrentInput">컴퓨</span>
+                                </div>
+                                <div class="delivery-demo-btn">처리</div>
+                            </div>
+                        </div>
                     </div>
                     <div class="game-content">
                         <h3>한글 택배 분류</h3>
@@ -935,7 +1956,39 @@
                 </div>
                 <div class="game-card">
                     <div class="game-image">
-                        📮
+                        <!-- 영어 택배 분류 데모 화면 -->
+                        <div class="delivery-game-demo">
+                            <div class="delivery-demo-stats">
+                                <div class="delivery-stat-card">
+                                    <div class="delivery-stat-value" id="englishDeliveryDemoTimer">58</div>
+                                    <div class="delivery-stat-label">Time Left</div>
+                                </div>
+                                <div class="delivery-stat-card">
+                                    <div class="delivery-stat-value" id="englishDeliveryDemoMissed">0</div>
+                                    <div class="delivery-stat-label">Missed</div>
+                                </div>
+                                <div class="delivery-stat-card">
+                                    <div class="delivery-stat-value" id="englishDeliveryDemoLevel">1</div>
+                                    <div class="delivery-stat-label">Level (10)</div>
+                                </div>
+                            </div>
+
+                            <div class="delivery-demo-conveyor">
+                                <div class="delivery-demo-package" id="englishDeliveryDemoPackage1">
+                                    <span id="englishDeliveryDemoPackageText1">computer</span>
+                                </div>
+                                <div class="delivery-demo-package delivery-demo-package-2" id="englishDeliveryDemoPackage2">
+                                    <span id="englishDeliveryDemoPackageText2">phone</span>
+                                </div>
+                            </div>
+
+                            <div class="delivery-demo-input">
+                                <div class="delivery-demo-input-box">
+                                    <span id="englishDeliveryDemoCurrentInput">comp</span>
+                                </div>
+                                <div class="delivery-demo-btn">Submit</div>
+                            </div>
+                        </div>
                     </div>
                     <div class="game-content">
                         <h3>영어 택배 분류</h3>
@@ -951,7 +2004,33 @@
                 </div>
                 <div class="game-card">
                     <div class="game-image">
-                        ✈️
+                        <!-- 한글 비행기 조종 데모 화면 -->
+                        <div class="plane-game-demo">
+                            <div class="demo-sky">
+                                <div class="demo-cloud demo-cloud-1"></div>
+                                <div class="demo-cloud demo-cloud-2"></div>
+                                <div class="demo-cloud demo-cloud-3"></div>
+                            </div>
+
+                            <div class="demo-plane" id="planeDemoPlane">
+                                🛩️
+                            </div>
+
+                            <!-- 첫 번째 장애물: 위쪽만 -->
+                            <div class="demo-obstacle demo-obstacle-top"></div>
+
+                            <!-- 두 번째 장애물: 아래쪽만 -->
+                            <div class="demo-obstacle demo-obstacle-bottom"></div>
+
+                            <!-- 세 번째 장애물: 위아래 동시 -->
+                            <div class="demo-obstacle demo-obstacle-both-top"></div>
+                            <div class="demo-obstacle demo-obstacle-both-bottom"></div>
+
+                            <div class="plane-demo-ui">
+                                <div class="plane-demo-level">레벨: <span id="planeDemoLevel">2</span></div>
+                                <div class="plane-demo-timer">시간: <span id="planeDemoTimer">45</span></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="game-content">
                         <h3>한글 비행기 조종</h3>
@@ -967,7 +2046,33 @@
                 </div>
                 <div class="game-card">
                     <div class="game-image">
-                        🛩️
+                        <!-- 영어 비행기 조종 데모 화면 -->
+                        <div class="plane-game-demo">
+                            <div class="demo-sky">
+                                <div class="demo-cloud demo-cloud-1"></div>
+                                <div class="demo-cloud demo-cloud-2"></div>
+                                <div class="demo-cloud demo-cloud-3"></div>
+                            </div>
+
+                            <div class="demo-plane" id="englishPlaneDemoPlane">
+                                🛩️
+                            </div>
+
+                            <!-- 첫 번째 장애물: 위쪽만 -->
+                            <div class="demo-obstacle demo-obstacle-top"></div>
+
+                            <!-- 두 번째 장애물: 아래쪽만 -->
+                            <div class="demo-obstacle demo-obstacle-bottom"></div>
+
+                            <!-- 세 번째 장애물: 위아래 동시 -->
+                            <div class="demo-obstacle demo-obstacle-both-top"></div>
+                            <div class="demo-obstacle demo-obstacle-both-bottom"></div>
+
+                            <div class="plane-demo-ui">
+                                <div class="plane-demo-level">Level: <span id="englishPlaneDemoLevel">3</span></div>
+                                <div class="plane-demo-timer">Time: <span id="englishPlaneDemoTimer">42</span></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="game-content">
                         <h3>영어 비행기 조종</h3>
@@ -1000,6 +2105,109 @@
 </footer>
 
 <script>
+    // 타임랩스 효과를 위한 데모 데이터
+    const koreanDemoTexts = ['안녕하세요', '한글타자연습', '정확도향상', '속도증가', '단계별학습'];
+    const englishDemoTexts = ['Hello World', 'English Typing', 'Speed Training', 'Accuracy', 'Practice Mode'];
+
+    let koreanIndex = 0;
+    let englishIndex = 0;
+    let koreanCharIndex = 0;
+    let englishCharIndex = 0;
+
+    // 한글 데모 애니메이션
+    function animateKoreanDemo() {
+        const display = document.getElementById('koreanDemoDisplay');
+        const currentText = koreanDemoTexts[koreanIndex];
+
+        display.innerHTML = '';
+
+        for (let i = 0; i < currentText.length; i++) {
+            const span = document.createElement('span');
+            span.className = 'demo-char';
+            span.textContent = currentText[i];
+
+            if (i < koreanCharIndex) {
+                span.classList.add('correct');
+            } else if (i === koreanCharIndex) {
+                span.classList.add('current');
+            }
+
+            display.appendChild(span);
+        }
+
+        koreanCharIndex++;
+        if (koreanCharIndex > currentText.length) {
+            koreanCharIndex = 0;
+            koreanIndex = (koreanIndex + 1) % koreanDemoTexts.length;
+
+            // 통계 업데이트
+            const accuracy = Math.floor(Math.random() * 10) + 90;
+            const speed = Math.floor(Math.random() * 50) + 250;
+            const progress = Math.floor(Math.random() * 10) + 1;
+
+            document.getElementById('koreanAccuracy').textContent = accuracy + '%';
+            document.getElementById('koreanSpeed').textContent = speed;
+            document.getElementById('koreanProgress').textContent = progress + '/10';
+        }
+    }
+
+    // 영어 데모 애니메이션
+    function animateEnglishDemo() {
+        const display = document.getElementById('englishDemoDisplay');
+        const currentText = englishDemoTexts[englishIndex];
+
+        display.innerHTML = '';
+
+        for (let i = 0; i < currentText.length; i++) {
+            const span = document.createElement('span');
+            span.className = 'demo-char';
+            span.textContent = currentText[i];
+
+            if (i < englishCharIndex) {
+                span.classList.add('correct');
+            } else if (i === englishCharIndex) {
+                span.classList.add('current');
+            }
+
+            display.appendChild(span);
+        }
+
+        englishCharIndex++;
+        if (englishCharIndex > currentText.length) {
+            englishCharIndex = 0;
+            englishIndex = (englishIndex + 1) % englishDemoTexts.length;
+
+            // 통계 업데이트
+            const accuracy = Math.floor(Math.random() * 5) + 95;
+            const speed = Math.floor(Math.random() * 80) + 300;
+            const progress = Math.floor(Math.random() * 10) + 1;
+
+            document.getElementById('englishAccuracy').textContent = accuracy + '%';
+            document.getElementById('englishSpeed').textContent = speed;
+            document.getElementById('englishProgress').textContent = progress + '/10';
+        }
+    }
+
+    // 키보드 하이라이트 애니메이션
+    function animateKeyboard() {
+        const koreanKeys = document.querySelectorAll('.typing-practice-korean .demo-key');
+        const englishKeys = document.querySelectorAll('.typing-practice-english .demo-key');
+
+        // 모든 키 비활성화
+        [...koreanKeys, ...englishKeys].forEach(key => key.classList.remove('active'));
+
+        // 랜덤 키 활성화
+        if (koreanKeys.length > 0) {
+            const randomKorean = Math.floor(Math.random() * koreanKeys.length);
+            koreanKeys[randomKorean].classList.add('active');
+        }
+
+        if (englishKeys.length > 0) {
+            const randomEnglish = Math.floor(Math.random() * englishKeys.length);
+            englishKeys[randomEnglish].classList.add('active');
+        }
+    }
+
     // 페이지 로드 시 강제로 스타일 적용
     window.addEventListener('load', () => {
         // 하얀색 배경 적용
@@ -1028,6 +2236,215 @@
         setTimeout(() => {
             document.body.style.opacity = '1';
         }, 100);
+
+        // 두더지 잡기 데모 애니메이션
+        const moleGameDemoWords = ['사과', '바나나', '딸기', '포도', '수박', '귤', '복숭아', '체리'];
+        let moleGameDemoIndex = 0;
+        let moleGameInputIndex = 0;
+
+        function animateMoleGameDemo() {
+            const currentWord = moleGameDemoWords[moleGameDemoIndex];
+            const currentInput = currentWord.substring(0, moleGameInputIndex);
+
+            // 현재 입력 업데이트
+            document.getElementById('demoCurrentInput').textContent = currentInput || '';
+
+            // 두더지 상태 업데이트
+            const mole1 = document.getElementById('demoMole1');
+            const mole2 = document.getElementById('demoMole2');
+            const mole3 = document.getElementById('demoMole3');
+            const mole4 = document.getElementById('demoMole4');
+            const text1 = document.getElementById('demoMoleText1');
+            const text2 = document.getElementById('demoMoleText2');
+            const text4 = document.getElementById('demoMoleText4');
+
+            // 현재 활성 두더지 텍스트 업데이트
+            text1.textContent = currentWord;
+
+            // 다른 두더지들 텍스트 업데이트
+            const otherWords = moleGameDemoWords.filter((word, index) => index !== moleGameDemoIndex);
+            text2.textContent = otherWords[0] || '바나나';
+            text4.textContent = otherWords[1] || '포도';
+
+            moleGameInputIndex++;
+            if (moleGameInputIndex > currentWord.length + 1) {
+                // 완료된 두더지로 변경
+                mole1.classList.remove('active');
+                mole1.classList.add('completed');
+                mole1.querySelector('.demo-mole-body').textContent = '🔨';
+                mole1.querySelector('.demo-mole-label').classList.add('completed');
+
+                // 다음 단어로 이동
+                setTimeout(() => {
+                    moleGameDemoIndex = (moleGameDemoIndex + 1) % moleGameDemoWords.length;
+                    moleGameInputIndex = 0;
+
+                    // 두더지 상태 리셋
+                    mole1.classList.remove('completed');
+                    mole1.classList.add('active');
+                    mole1.querySelector('.demo-mole-body').textContent = '🐹';
+                    mole1.querySelector('.demo-mole-label').classList.remove('completed');
+                }, 1000);
+            }
+        }
+
+        // 한글 택배 분류 데모 애니메이션
+        const deliveryGameDemoWords = ['컴퓨터', '구급차', '냉장고', '세탁기', '텔레비전', '자동차', '헬리콥터', '에어컨'];
+        let deliveryGameDemoIndex = 0;
+        let deliveryGameInputIndex = 0;
+
+        function animateDeliveryGameDemo() {
+            const currentWord = deliveryGameDemoWords[deliveryGameDemoIndex];
+            const currentInput = currentWord.substring(0, deliveryGameInputIndex);
+
+            // 현재 입력 업데이트
+            const currentInputElement = document.getElementById('deliveryDemoCurrentInput');
+            if (currentInputElement) {
+                currentInputElement.textContent = currentInput || '';
+            }
+
+            // 택배 텍스트 업데이트
+            const package1Text = document.getElementById('deliveryDemoPackageText1');
+            const package2Text = document.getElementById('deliveryDemoPackageText2');
+
+            if (package1Text && package2Text) {
+                package1Text.textContent = currentWord;
+
+                // 다른 택배 텍스트
+                const otherWords = deliveryGameDemoWords.filter((word, index) => index !== deliveryGameDemoIndex);
+                package2Text.textContent = otherWords[0] || '구급차';
+            }
+
+            deliveryGameInputIndex++;
+            if (deliveryGameInputIndex > currentWord.length + 1) {
+                // 다음 단어로 이동
+                deliveryGameDemoIndex = (deliveryGameDemoIndex + 1) % deliveryGameDemoWords.length;
+                deliveryGameInputIndex = 0;
+
+                // 통계 업데이트
+                const timer = Math.floor(Math.random() * 20) + 45;
+                const level = Math.floor(Math.random() * 3) + 1;
+                const missed = Math.floor(Math.random() * 2);
+
+                const timerElement = document.getElementById('deliveryDemoTimer');
+                const levelElement = document.getElementById('deliveryDemoLevel');
+                const missedElement = document.getElementById('deliveryDemoMissed');
+
+                if (timerElement) timerElement.textContent = timer;
+                if (levelElement) levelElement.textContent = level;
+                if (missedElement) missedElement.textContent = missed;
+            }
+        }
+
+        // 영어 두더지 잡기 데모 애니메이션
+        const englishMoleGameDemoWords = ['apple', 'banana', 'cherry', 'grape', 'orange', 'lemon', 'peach', 'berry'];
+        let englishMoleGameDemoIndex = 0;
+        let englishMoleGameInputIndex = 0;
+
+        function animateEnglishMoleGameDemo() {
+            const currentWord = englishMoleGameDemoWords[englishMoleGameDemoIndex];
+            const currentInput = currentWord.substring(0, englishMoleGameInputIndex);
+
+            // 현재 입력 업데이트
+            document.getElementById('englishDemoCurrentInput').textContent = currentInput || '';
+
+            // 두더지 상태 업데이트
+            const mole1 = document.getElementById('englishDemoMole1');
+            const mole2 = document.getElementById('englishDemoMole2');
+            const mole3 = document.getElementById('englishDemoMole3');
+            const mole4 = document.getElementById('englishDemoMole4');
+            const text1 = document.getElementById('englishDemoMoleText1');
+            const text2 = document.getElementById('englishDemoMoleText2');
+            const text3 = document.getElementById('englishDemoMoleText3');
+            const text4 = document.getElementById('englishDemoMoleText4');
+
+            // 현재 활성 두더지 텍스트 업데이트
+            text1.textContent = currentWord;
+
+            // 다른 두더지들 텍스트 업데이트
+            const otherWords = englishMoleGameDemoWords.filter((word, index) => index !== englishMoleGameDemoIndex);
+            text2.textContent = otherWords[0] || 'banana';
+            text3.textContent = otherWords[1] || 'cherry';
+            text4.textContent = otherWords[2] || 'grape';
+
+            englishMoleGameInputIndex++;
+            if (englishMoleGameInputIndex > currentWord.length + 1) {
+                // 완료된 두더지로 변경
+                mole1.classList.remove('active');
+                mole1.classList.add('completed');
+                mole1.querySelector('.demo-mole-body').textContent = '🔨';
+                mole1.querySelector('.demo-mole-label').classList.add('completed');
+
+                // 다음 단어로 이동
+                setTimeout(() => {
+                    englishMoleGameDemoIndex = (englishMoleGameDemoIndex + 1) % englishMoleGameDemoWords.length;
+                    englishMoleGameInputIndex = 0;
+
+                    // 두더지 상태 리셋
+                    mole1.classList.remove('completed');
+                    mole1.classList.add('active');
+                    mole1.querySelector('.demo-mole-body').textContent = '🐹';
+                    mole1.querySelector('.demo-mole-label').classList.remove('completed');
+                }, 1000);
+            }
+        }
+
+        // 영어 택배 분류 데모 애니메이션
+        const englishDeliveryGameDemoWords = ['computer', 'phone', 'keyboard', 'monitor', 'speaker', 'camera', 'tablet', 'printer'];
+        let englishDeliveryGameDemoIndex = 0;
+        let englishDeliveryGameInputIndex = 0;
+
+        function animateEnglishDeliveryGameDemo() {
+            const currentWord = englishDeliveryGameDemoWords[englishDeliveryGameDemoIndex];
+            const currentInput = currentWord.substring(0, englishDeliveryGameInputIndex);
+
+            // 현재 입력 업데이트
+            const currentInputElement = document.getElementById('englishDeliveryDemoCurrentInput');
+            if (currentInputElement) {
+                currentInputElement.textContent = currentInput || '';
+            }
+
+            // 택배 텍스트 업데이트
+            const package1Text = document.getElementById('englishDeliveryDemoPackageText1');
+            const package2Text = document.getElementById('englishDeliveryDemoPackageText2');
+
+            if (package1Text && package2Text) {
+                package1Text.textContent = currentWord;
+
+                // 다른 택배 텍스트
+                const otherWords = englishDeliveryGameDemoWords.filter((word, index) => index !== englishDeliveryGameDemoIndex);
+                package2Text.textContent = otherWords[0] || 'phone';
+            }
+
+            englishDeliveryGameInputIndex++;
+            if (englishDeliveryGameInputIndex > currentWord.length + 1) {
+                // 다음 단어로 이동
+                englishDeliveryGameDemoIndex = (englishDeliveryGameDemoIndex + 1) % englishDeliveryGameDemoWords.length;
+                englishDeliveryGameInputIndex = 0;
+
+                // 통계 업데이트
+                const timer = Math.floor(Math.random() * 20) + 45;
+                const level = Math.floor(Math.random() * 3) + 1;
+                const missed = Math.floor(Math.random() * 2);
+
+                const timerElement = document.getElementById('englishDeliveryDemoTimer');
+                const levelElement = document.getElementById('englishDeliveryDemoLevel');
+                const missedElement = document.getElementById('englishDeliveryDemoMissed');
+
+                if (timerElement) timerElement.textContent = timer;
+                if (levelElement) levelElement.textContent = level;
+                if (missedElement) missedElement.textContent = missed;
+            }
+        }
+
+        // 데모 애니메이션 시작 (3배속)
+        setInterval(animateKoreanDemo, 200); // 200ms 간격으로 빠르게
+        setInterval(animateEnglishDemo, 250); // 250ms 간격으로 빠르게
+        setInterval(animateKeyboard, 300); // 300ms 간격으로 키보드 하이라이트
+        setInterval(animateMoleGameDemo, 400); // 400ms 간격으로 두더지 게임 데모
+        setInterval(animateEnglishMoleGameDemo, 450); // 450ms 간격으로 영어 두더지 게임 데모
+        setInterval(animateDeliveryGameDemo, 500); // 500ms 간격으로 택배 분류 게임 데모
+        setInterval(animateEnglishDeliveryGameDemo, 550); // 550ms 간격으로 영어 택배 분류 게임 데모
     });
 
     // Smooth scrolling for navigation links
@@ -1046,6 +2463,17 @@
             }
         });
     });
+
+    // 특정 섹션으로 스크롤하는 함수
+    function scrollToSection(selector) {
+        const element = document.querySelector(selector);
+        if (element) {
+            element.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
 
     // Game functions - 더 이상 alert 대신 실제 링크로 이동
     function playKoreanMoleGame() {
@@ -1072,14 +2500,6 @@
         window.location.href = './English/game-plane.html';
     }
 
-    // Scroll to features function
-    function scrollToFeatures() {
-        document.querySelector('.features').scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-    }
-
     // Add scroll effect to navigation
     window.addEventListener('scroll', () => {
         const nav = document.querySelector('nav');
@@ -1101,6 +2521,32 @@
         localStorage.setItem('englishMode', mode);
         window.location.href = './English/practice.html';
     }
+
+    // 인터섹션 옵저버를 이용한 스크롤 애니메이션
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -10% 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // 모든 섹션을 관찰 대상에 추가
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('.typing-practice-section, .features, .typing-games');
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            observer.observe(section);
+        });
+    });
 </script>
 </body>
 </html>
