@@ -1,0 +1,1102 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QSEYCFK83"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7QSEYCFK83');
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>핑거런 | 택배 분류 타자게임 (Package Typing Game)</title>
+    <link rel="icon" type="image/svg+xml" href="../images/finger-run-logo.svg">
+
+    <!-- SEO 메타태그 (통합) -->
+    <meta name="description" content="핑거런 택배 분류 게임. 한글 및 영어 모드를 지원하며, 택배 이름을 정확하게 타이핑하여 분류하는 물류 시뮬레이션 타자 게임입니다.">
+    <meta name="keywords" content="한글 타자게임, 영어 타자게임, 택배 분류 게임, Package Typing Game, FingerRun, 물류 시뮬레이션">
+    <meta name="author" content="FingerRun">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="택배 분류 게임 (한글/영어) | 핑거런">
+    <meta property="og:description" content="택배 이름을 정확하게 타이핑해서 택배를 올바르게 분류하는 타자게임! 한글/영어 모드 지원.">
+    <meta property="og:type" content="website">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+        }
+
+        .nav-menu li { position: relative; }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 0.8rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-menu a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .dropdown-arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            padding: 0.5rem 0;
+            min-width: 180px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-menu li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-menu li:hover .dropdown-arrow { transform: rotate(180deg); }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1rem;
+            color: #333;
+            border-radius: 0;
+            font-weight: 400;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+            color: #667eea;
+            transform: none;
+            padding-left: 1.2rem;
+        }
+
+        @media (max-width: 900px) {
+            .nav-menu { display: none; }
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .game-container {
+            width: 90%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .game-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        /* Mode Switcher Buttons - NEW */
+        .mode-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0 25px 0;
+            background: #f1f5f9;
+            padding: 5px;
+            border-radius: 30px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mode-btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: #64748b;
+        }
+
+        .mode-btn:hover {
+            background: rgba(255,255,255,0.5);
+        }
+
+        .mode-btn.active {
+            background: white;
+            color: #3b82f6;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px 10px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border-radius: 15px;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            min-width: 80px;
+            flex: 1;
+            margin: 0 5px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .timer-warning {
+            background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+            animation: warning-pulse 1s infinite;
+        }
+
+        @keyframes warning-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .conveyor-belt {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(180deg, #4b5563 0%, #374151 50%, #1f2937 100%);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .conveyor-belt::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(255, 255, 255, 0.1) 10px,
+                    rgba(255, 255, 255, 0.1) 20px
+            );
+            animation: conveyor-move 2s linear infinite;
+        }
+
+        @keyframes conveyor-move {
+            from { transform: translateX(0); }
+            to { transform: translateX(-20px); }
+        }
+
+        .package {
+            position: absolute;
+            top: 20px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            color: white;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            animation: package-move 8s linear infinite;
+            padding: 5px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            font-family: 'Courier New', monospace, 'Malgun Gothic';
+        }
+
+        .package:hover { transform: scale(1.05); }
+
+        .package::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 20px;
+            right: 20px;
+            height: 3px;
+            background: #92400e;
+            border-radius: 2px;
+        }
+
+        .package::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            bottom: 20px;
+            left: -5px;
+            width: 3px;
+            background: #92400e;
+            border-radius: 2px;
+        }
+
+        @keyframes package-move {
+            from { right: -100px; transform: translateY(0); }
+            to { right: 100%; transform: translateY(0); }
+        }
+
+        .package-falling {
+            animation: package-fall 1s ease-in forwards !important;
+        }
+
+        @keyframes package-fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(200px) rotate(180deg); opacity: 0; }
+        }
+
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .word-input {
+            flex: 1;
+            padding: 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 500;
+            outline: none;
+            transition: all 0.3s ease;
+            background: white;
+            font-family: 'Courier New', monospace, 'Malgun Gothic';
+        }
+
+        .word-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .submit-btn {
+            padding: 20px 30px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            white-space: nowrap;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .control-btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .reset-btn {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .control-btn:hover { transform: translateY(-2px); }
+
+        .game-over-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ef4444;
+            margin-bottom: 20px;
+        }
+
+        .modal-score {
+            font-size: 20px;
+            color: #374151;
+            margin-bottom: 30px;
+        }
+
+        .modal-btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .modal-btn.restart-btn { background: linear-gradient(135deg, #10b981, #059669); }
+        .modal-btn.exit-btn { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .modal-btn:hover { transform: translateY(-2px); }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .queue-warning {
+            background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+            animation: warning-pulse 1s infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu { flex-wrap: wrap; gap: 0.5rem; }
+            .nav-menu a { padding: 0.4rem 0.6rem; font-size: 0.8rem; }
+            .game-container { width: 95%; padding: 15px; }
+            .game-stats { flex-direction: column; gap: 10px; }
+            .stat-item { padding: 10px; }
+            .input-container { flex-direction: column; }
+        }
+    </style>
+</head>
+
+<body>
+<!-- Navigation -->
+<nav>
+    <div class="nav-container">
+        <!-- 메인으로 나가기 (상위 폴더로 이동) -->
+        <a href="../index.html" class="logo">⌨️ FingerRun</a>
+        <ul class="nav-menu">
+            <!-- 상위 폴더에 있는 공지사항 -->
+            <li><a href="../notices.html">공지사항</a></li>
+
+            <li>
+                <a href="../Korean/practice.html">
+                    한글 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="../Korean/practice.html">자음 연습</a>
+                    <a href="../Korean/practice.html">모음 연습</a>
+                    <a href="../Korean/practice.html">단어 연습</a>
+                    <a href="../Korean/practice.html">문장 연습</a>
+                </div>
+            </li>
+
+            <li>
+                <a href="../English/practice.html">
+                    영어 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="../English/practice.html">알파벳 연습</a>
+                    <a href="../English/practice.html">단어 연습</a>
+                    <a href="../English/practice.html">문장 연습</a>
+                </div>
+            </li>
+
+            <li>
+                <a href="delivery.html">
+                    타자게임
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="delivery.html">택배 분류</a>
+                    <a href="mole.html">두더지 잡기</a>
+                    <a href="plane.html">비행기 조종</a>
+                    <a href="tank.html">탱크 폭격</a>
+                </div>
+            </li>
+
+            <li><a href="../writing.html">필사</a></li>
+
+            <li>
+                <a href="../Certificate/word-processor.html">
+                    자격증
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="../Certificate/word-processor.html">워드프로세서</a>
+                </div>
+            </li>
+
+            <li><a href="../contact.html">문의하기</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="main-content">
+    <div class="game-container">
+        <div class="game-header">
+            <h1 class="game-title" id="ui-title">📦 택배 타자게임</h1>
+            <p id="ui-desc">60초를 버티며 컨베이어 벨트 위의 택배를 처리하세요!</p>
+
+            <!-- Mode Switcher -->
+            <div class="mode-switcher">
+                <button class="mode-btn active" id="btn-korean" onclick="setGameMode('Korean')">한글 모드</button>
+                <button class="mode-btn" id="btn-english" onclick="setGameMode('English')">English Mode</button>
+            </div>
+        </div>
+
+        <div class="game-stats">
+            <div class="stat-item" id="timer-container">
+                <span class="stat-value" id="timer">60</span>
+                <span class="stat-label" id="ui-stat-time">남은 시간</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="missed">0</span>
+                <span class="stat-label" id="ui-stat-missed">놓친 택배</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="level">1</span>
+                <span class="stat-label" id="ui-stat-level">단계 (10단계)</span>
+            </div>
+        </div>
+
+        <div class="conveyor-belt" id="conveyor">
+            <!-- Packages will be dynamically created here -->
+        </div>
+
+        <div class="input-container">
+            <input type="text" class="word-input" id="wordInput"
+                   placeholder="택배의 단어를 입력하세요... (스페이스바로 처리)" disabled>
+            <button class="submit-btn" id="submitBtn" onclick="checkWord()">처리</button>
+        </div>
+
+        <div class="game-controls">
+            <button class="control-btn start-btn" id="btn-start" onclick="startGame()">게임 시작</button>
+            <button class="control-btn reset-btn" id="btn-reset" onclick="resetGame()">초기화</button>
+        </div>
+    </div>
+</div>
+
+<div class="game-over-modal" id="gameOverModal">
+    <div class="modal-content">
+        <h2 class="modal-title">GAME OVER</h2>
+        <p class="modal-score" id="modal-score-text">도달 단계: <span id="finalLevel">1</span>단계</p>
+        <div class="modal-buttons" id="modal-buttons">
+            <!-- Dynamically populated -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- Game Configuration & State ---
+    let currentMode = 'Korean'; // 'Korean' or 'English'
+
+    const uiText = {
+        Korean: {
+            title: "📦 택배 타자게임",
+            desc: "60초를 버티며 컨베이어 벨트 위의 택배를 처리하세요!",
+            statTime: "남은 시간",
+            statMissed: "놓친 택배",
+            statLevel: "단계 (10단계)",
+            placeholder: "택배의 단어를 입력하세요... (스페이스바로 처리)",
+            btnSubmit: "처리",
+            btnStart: "게임 시작",
+            btnReset: "초기화",
+            modalTitleOver: "GAME OVER",
+            modalTitleClear: "🎉 완벽해요!",
+            modalScoreOver: "도달 단계: ",
+            modalScoreClear: "모든 10단계를 클리어했습니다!",
+            btnRetry: "다시하기",
+            btnNext: "다음 단계",
+            btnExit: "나가기",
+            msgLevelClear: "단계 완료!",
+            msgMissedSuffix: "개의 택배를 놓쳤습니다."
+        },
+        English: {
+            title: "📦 Package Typing Game",
+            desc: "Process packages on the conveyor belt!",
+            statTime: "Time Left",
+            statMissed: "Missed",
+            statLevel: "Level (1-10)",
+            placeholder: "Type the word... (Press Space to submit)",
+            btnSubmit: "Submit",
+            btnStart: "Start Game",
+            btnReset: "Reset Game",
+            modalTitleOver: "GAME OVER",
+            modalTitleClear: "🎉 COMPLETE!",
+            modalScoreOver: "Reached Level: ",
+            modalScoreClear: "All levels completed!",
+            btnRetry: "Try Again",
+            btnNext: "Next Level",
+            btnExit: "Exit",
+            msgLevelClear: "Level Complete!",
+            msgMissedSuffix: " packages missed."
+        }
+    };
+
+    // --- Word Lists (Combined) ---
+
+    // Korean Words
+    const kor_level1Words = [
+        '밥', '물', '빵', '꽃', '나', '너', '차', '집', '말', '돈', '손', '눈', '귀', '입', '코', '발', '머리', '몸', '등', '배',
+        '문', '창', '책', '펜', '공', '달', '별', '해', '땅', '하늘', '바다', '산', '강', '나무', '풀', '돌', '모래', '불', '얼음', '바람',
+        '사과', '바나나', '딸기', '수박', '포도', '배', '감', '귤', '복숭아', '자두', '키위', '망고', '레몬', '오렌지', '체리', '살구', '참외', '멜론', '석류', '감자',
+        '당근', '양파', '마늘', '생강', '무', '배추', '상추', '시금치', '브로콜리', '오이', '토마토', '고추', '파프리카', '가지', '호박', '옥수수', '콩', '팥', '쌀', '보리',
+        '컴퓨터', '마우스', '키보드', '모니터', '스피커', '카메라', '핸드폰', '태블릿', '냉장고', '세탁기'
+    ];
+    const kor_level2Words = [
+        '햄버거', '치즈버거', '불고기', '갈비', '삼겹살', '목살', '등심', '김치찌개', '된장찌개', '부대찌개', '순두부찌개', '미역국', '콩나물국', '비빔밥', '볶음밥', '카레라이스',
+        '티셔츠', '셔츠', '바지', '치마', '원피스', '자켓', '코트', '스웨터', '가디건', '후드티', '청바지', '반바지', '운동복', '잠옷', '속옷',
+        '독서', '영화감상', '음악감상', '그림그리기', '사진찍기', '요리', '등산', '여행', '캠핑', '낚시', '골프', '볼링', '당구', '보드게임', '카드게임',
+        '학교', '병원', '약국', '은행', '우체국', '경찰서', '소방서', '도서관', '박물관', '미술관', '영화관', '공원', '놀이터', '수영장', '체육관',
+        '지하철', '버스', '택시', '기차', '비행기', '자전거', '오토바이', '트럭', '배', '자동차'
+    ];
+    const kor_level3Words = [
+        '컴퓨터게임', '인터넷쇼핑', '스마트폰게임', '태블릿컴퓨터', '노트북컴퓨터', '데스크톱', '웹프로그래밍', '어플리케이션', '소프트웨어개발', '하드웨어설계',
+        '환경친화적기술', '재활용기술', '폐기물처리', '수질정화시설', '대기오염방지', '소음공해방지', '토양오염방지', '방사능오염방지', '화학물질관리', '유해물질처리',
+        '의료진단기술', '영상진단기술', '유전자검사', '혈액검사', '소변검사', '심전도검사', '뇌파검사', '초음파검사', '엑스레이촬영', '컴퓨터단층촬영',
+        '인공지능', '머신러닝', '딥러닝', '빅데이터', '클라우드', '사물인터넷', '블록체인', '가상현실', '증강현실', '메타버스',
+        '지속가능성', '친환경', '에너지절약', '탄소중립', '기후변화', '생태계보호', '자원순환', '녹색성장', '신재생에너지', '환경보호'
+    ];
+    const kor_level4Words = [
+        '디지털트랜스포메이션', '인더스트리포점영', '스마트팩토리시스템', '사물인터넷플랫폼', '빅데이터분석플랫폼', '인공지능머신러닝', '딥러닝알고리즘', '자연어처리기술',
+        '로봇프로세스자동화', '클라우드컴퓨팅서비스', '엣지컴퓨팅기술', '양자컴퓨팅기술', '블록체인기술활용', '암호화폐거래시스템', '디지털자산관리', '핀테크서비스개발',
+        '자율주행차기술', '전기자동차배터리', '수소연료전지차', '커넥티드카기술', '차량공유서비스', '모빌리티서비스', '스마트교통시스템', '지능형교통시스템',
+        '스마트시티구축', '디지털트윈기술', '사이버보안시스템', '네트워크보안솔루션', '정보보호관리체계', '개인정보보호법', '데이터프라이버시', '클라우드보안기술',
+        '바이오테크놀로지', '유전자가위기술', '줄기세포치료제', '면역항암제개발', '정밀의료서비스', '디지털헬스케어', '원격의료시스템', '웨어러블헬스기기'
+    ];
+
+    // English Words
+    const eng_beginnerWords = [
+        'cat', 'dog', 'car', 'run', 'big', 'fun', 'sun', 'hat', 'bat', 'bag',
+        'cup', 'pen', 'box', 'toy', 'map', 'egg', 'red', 'blue', 'tree', 'book',
+        'fish', 'bird', 'cake', 'ball', 'duck', 'frog', 'moon', 'star', 'door', 'hand',
+        'foot', 'head', 'nose', 'eye', 'ear', 'milk', 'gold', 'fire', 'wind', 'rain',
+        'love', 'baby', 'home', 'park', 'food', 'play', 'game', 'time', 'work', 'good'
+    ];
+    const eng_easyWords = [
+        'house', 'water', 'friend', 'school', 'happy', 'music', 'paper', 'phone', 'table', 'chair',
+        'green', 'white', 'black', 'money', 'light', 'sound', 'world', 'think', 'learn', 'write',
+        'clean', 'beach', 'ocean', 'smile', 'heart', 'brain', 'sweet', 'fresh', 'quick', 'smart',
+        'bread', 'apple', 'grape', 'lemon', 'onion', 'pizza', 'party', 'dance', 'dream', 'sleep',
+        'river', 'cloud', 'storm', 'night', 'space', 'earth', 'power', 'peace', 'story', 'watch'
+    ];
+    const eng_mediumWords = [
+        'beautiful', 'important', 'computer', 'keyboard', 'language', 'surprise', 'together', 'mountain',
+        'remember', 'breakfast', 'birthday', 'question', 'children', 'vacation', 'elephant', 'sandwich',
+        'hospital', 'business', 'problem', 'picture', 'service', 'parking', 'weather', 'library',
+        'calendar', 'internet', 'software', 'hardware', 'security', 'database', 'platform', 'solution',
+        'creative', 'positive', 'negative', 'absolute', 'relative', 'physical', 'chemical', 'natural'
+    ];
+    const eng_hardWords = [
+        'education', 'technology', 'psychology', 'philosophy', 'restaurant', 'government', 'environment',
+        'opportunity', 'organization', 'relationship', 'championship', 'photography', 'university',
+        'development', 'responsibility', 'communication', 'construction', 'information', 'international',
+        'application', 'integration', 'performance', 'requirement', 'measurement', 'improvement', 'maintenance',
+        'significant', 'appropriate', 'independent', 'traditional', 'professional', 'intellectual', 'contemporary'
+    ];
+    const eng_expertWords = [
+        'extraordinary', 'pronunciation', 'massachusetts', 'incomprehensible', 'responsibilities',
+        'characteristics', 'acknowledgment', 'embarrassment', 'pharmaceutical', 'entrepreneurship',
+        'architecture', 'archaeological', 'chronological', 'electromagnetic', 'meteorological',
+        'cardiovascular', 'gastrointestinal', 'ophthalmologist', 'neuropsychology', 'biotechnology',
+        'nanotechnology', 'cryptocurrency', 'biochemistry', 'astrophysics', 'thermodynamics',
+        'photosynthesis', 'metamorphosis', 'anthropomorphic', 'differentiation', 'implementation'
+    ];
+
+    let gameState = {
+        isPlaying: false,
+        level: 1,
+        maxLevel: 10,
+        packages: [],
+        packageId: 0,
+        spawnInterval: null,
+        gameSpeed: 8000,
+        isGameCompleted: false,
+        processedPackages: 0,
+        timer: 60,
+        gameTimer: null,
+        globalUsedWords: []
+    };
+
+    // --- Core Functions ---
+
+    function setGameMode(mode) {
+        currentMode = mode;
+
+        // Toggle Button UI
+        document.getElementById('btn-korean').classList.toggle('active', mode === 'Korean');
+        document.getElementById('btn-english').classList.toggle('active', mode === 'English');
+
+        // Update Text UI
+        updateUI();
+
+        // Reset Game Logic completely to prevent mixed languages
+        resetGame();
+    }
+
+    function updateUI() {
+        const t = uiText[currentMode];
+        document.getElementById('ui-title').textContent = t.title;
+        document.getElementById('ui-desc').textContent = t.desc;
+        document.getElementById('ui-stat-time').textContent = t.statTime;
+        document.getElementById('ui-stat-missed').textContent = t.statMissed;
+        document.getElementById('ui-stat-level').textContent = t.statLevel;
+        document.getElementById('wordInput').placeholder = t.placeholder;
+        document.getElementById('submitBtn').textContent = t.btnSubmit;
+        document.getElementById('btn-start').textContent = t.btnStart;
+        document.getElementById('btn-reset').textContent = t.btnReset;
+        document.documentElement.lang = currentMode === 'Korean' ? 'ko' : 'en';
+    }
+
+    function getRandomWord() {
+        let availableWords;
+
+        if (currentMode === 'Korean') {
+            if (gameState.level <= 2) availableWords = kor_level1Words;
+            else if (gameState.level <= 5) availableWords = kor_level2Words;
+            else if (gameState.level <= 8) availableWords = kor_level3Words;
+            else availableWords = kor_level4Words;
+        } else { // English
+            if (gameState.level <= 2) availableWords = eng_beginnerWords;
+            else if (gameState.level <= 4) availableWords = eng_easyWords;
+            else if (gameState.level <= 6) availableWords = eng_mediumWords;
+            else if (gameState.level <= 8) availableWords = eng_hardWords;
+            else availableWords = eng_expertWords;
+        }
+
+        const unusedWords = availableWords.filter(word => !gameState.globalUsedWords.includes(word));
+
+        if (unusedWords.length === 0) {
+            // Remove current level words from global used list to recycle them
+            gameState.globalUsedWords = gameState.globalUsedWords.filter(word => !availableWords.includes(word));
+            return availableWords[Math.floor(Math.random() * availableWords.length)];
+        }
+
+        const selectedWord = unusedWords[Math.floor(Math.random() * unusedWords.length)];
+        gameState.globalUsedWords.push(selectedWord);
+        return selectedWord;
+    }
+
+    function createPackage() {
+        const word = getRandomWord();
+        const package = {
+            id: gameState.packageId++,
+            word: word,
+            element: null
+        };
+
+        const packageElement = document.createElement('div');
+        packageElement.className = 'package';
+        packageElement.textContent = word;
+        packageElement.style.animationDuration = `${gameState.gameSpeed}ms`;
+        packageElement.id = `package-${package.id}`;
+
+        // Adjust font size for English words if they are long
+        if (currentMode === 'English') {
+            if (word.length > 15) packageElement.style.fontSize = '12px';
+            else if (word.length > 10) packageElement.style.fontSize = '14px';
+        }
+
+        document.getElementById('conveyor').appendChild(packageElement);
+        package.element = packageElement;
+        gameState.packages.push(package);
+        updateQueue();
+
+        setTimeout(() => {
+            if (package.element && package.element.parentNode && gameState.isPlaying) {
+                removePackage(package.id);
+                gameState.processedPackages++;
+                updateQueue();
+
+                if (gameState.processedPackages >= 3) {
+                    gameOver();
+                }
+            }
+        }, gameState.gameSpeed);
+    }
+
+    function removePackage(packageId) {
+        const packageIndex = gameState.packages.findIndex(p => p.id === packageId);
+        if (packageIndex !== -1) {
+            const package = gameState.packages[packageIndex];
+            if (package.element && package.element.parentNode) {
+                package.element.parentNode.removeChild(package.element);
+            }
+            gameState.packages.splice(packageIndex, 1);
+            updateQueue();
+        }
+    }
+
+    function updateQueue() {
+        document.getElementById('missed').textContent = gameState.processedPackages;
+        const queueElement = document.getElementById('missed').parentElement;
+        if (gameState.processedPackages >= 2) {
+            queueElement.classList.add('queue-warning');
+        } else {
+            queueElement.classList.remove('queue-warning');
+        }
+    }
+
+    function updateTimer() {
+        document.getElementById('timer').textContent = gameState.timer;
+        const timerElement = document.getElementById('timer-container');
+        if (gameState.timer <= 10) {
+            timerElement.classList.add('timer-warning');
+        } else {
+            timerElement.classList.remove('timer-warning');
+        }
+    }
+
+    function startLevelTimer() {
+        gameState.timer = 60;
+        updateTimer();
+        gameState.gameTimer = setInterval(() => {
+            gameState.timer--;
+            updateTimer();
+            if (gameState.timer <= 0) {
+                levelCompleted();
+            }
+        }, 1000);
+    }
+
+    function checkWord() {
+        if (!gameState.isPlaying) return;
+
+        const input = document.getElementById('wordInput');
+        const inputWord = input.value.trim();
+
+        if (inputWord === '') return;
+
+        const targetPackage = gameState.packages[0];
+        if (targetPackage && targetPackage.word === inputWord) {
+            targetPackage.element.classList.add('package-falling');
+            setTimeout(() => {
+                removePackage(targetPackage.id);
+            }, 1000);
+        }
+
+        input.value = '';
+    }
+
+    function levelCompleted() {
+        if (gameState.level >= gameState.maxLevel) {
+            gameCompleted();
+            return;
+        }
+
+        stopGameLogic();
+        document.getElementById('wordInput').disabled = true;
+
+        const modal = document.getElementById('gameOverModal');
+        const title = modal.querySelector('.modal-title');
+        const scoreText = modal.querySelector('.modal-score');
+        const buttonsContainer = modal.querySelector('.modal-buttons');
+        const t = uiText[currentMode];
+
+        title.textContent = t.modalTitleClear; // "Level Complete" or "완벽해요"
+        title.style.color = '#10b981';
+        scoreText.innerHTML = `${gameState.level} ${t.msgLevelClear}<br>60s Cleared!`;
+
+        buttonsContainer.innerHTML = `
+                <button class="modal-btn restart-btn" onclick="nextLevel()">${t.btnNext}</button>
+                <button class="modal-btn exit-btn" onclick="exitGame()">${t.btnExit}</button>
+            `;
+
+        modal.style.display = 'flex';
+    }
+
+    function nextLevel() {
+        gameState.level++;
+        document.getElementById('level').textContent = gameState.level;
+        gameState.gameSpeed = Math.max(4000, gameState.gameSpeed - 400);
+        gameState.globalUsedWords = []; // Reset used words for new level if desired, or keep to force unique words
+
+        // Clear current packages
+        gameState.packages.forEach(package => {
+            if (package.element && package.element.parentNode) {
+                package.element.parentNode.removeChild(package.element);
+            }
+        });
+        gameState.packages = [];
+        gameState.processedPackages = 0;
+        updateQueue();
+
+        document.getElementById('gameOverModal').style.display = 'none';
+
+        gameState.isPlaying = true;
+        document.getElementById('wordInput').disabled = false;
+        document.getElementById('wordInput').focus();
+
+        startLevelTimer();
+        createPackage();
+        gameState.spawnInterval = setInterval(createPackage, Math.max(1500, 3500 - gameState.level * 200));
+    }
+
+    function gameCompleted() {
+        stopGameLogic();
+        document.getElementById('wordInput').disabled = true;
+
+        const modal = document.getElementById('gameOverModal');
+        const title = modal.querySelector('.modal-title');
+        const scoreText = modal.querySelector('.modal-score');
+        const buttonsContainer = modal.querySelector('.modal-buttons');
+        const t = uiText[currentMode];
+
+        title.textContent = "🎉 ALL COMPLETE!";
+        title.style.color = '#10b981';
+        scoreText.innerHTML = t.modalScoreClear;
+
+        buttonsContainer.innerHTML = `
+                <button class="modal-btn restart-btn" onclick="restartFromLevel1()">${t.btnRetry}</button>
+                <button class="modal-btn exit-btn" onclick="exitGame()">${t.btnExit}</button>
+            `;
+
+        modal.style.display = 'flex';
+    }
+
+    function restartFromLevel1() {
+        resetGame();
+        document.getElementById('gameOverModal').style.display = 'none';
+    }
+
+    function gameOver() {
+        stopGameLogic();
+        document.getElementById('wordInput').disabled = true;
+
+        const modal = document.getElementById('gameOverModal');
+        const title = modal.querySelector('.modal-title');
+        const scoreText = modal.querySelector('.modal-score');
+        const buttonsContainer = modal.querySelector('.modal-buttons');
+        const t = uiText[currentMode];
+
+        title.textContent = t.modalTitleOver;
+        title.style.color = '#ef4444';
+        scoreText.innerHTML = `${t.modalScoreOver} ${gameState.level}<br>3 ${t.msgMissedSuffix}`;
+
+        buttonsContainer.innerHTML = `
+                <button class="modal-btn restart-btn" onclick="restartFromLevel1()">${t.btnRetry}</button>
+                <button class="modal-btn exit-btn" onclick="exitGame()">${t.btnExit}</button>
+            `;
+
+        modal.style.display = 'flex';
+    }
+
+    function stopGameLogic() {
+        gameState.isPlaying = false;
+        if (gameState.spawnInterval) {
+            clearInterval(gameState.spawnInterval);
+            gameState.spawnInterval = null;
+        }
+        if (gameState.gameTimer) {
+            clearInterval(gameState.gameTimer);
+            gameState.gameTimer = null;
+        }
+    }
+
+    function startGame() {
+        if (gameState.isPlaying) return;
+
+        gameState.isPlaying = true;
+        document.getElementById('wordInput').disabled = false;
+        document.getElementById('wordInput').focus();
+
+        startLevelTimer();
+        createPackage();
+        gameState.spawnInterval = setInterval(createPackage, 3500 - gameState.level * 200);
+    }
+
+    function resetGame() {
+        stopGameLogic();
+
+        gameState.level = 1;
+        gameState.packages = [];
+        gameState.packageId = 0;
+        gameState.gameSpeed = 8000;
+        gameState.isGameCompleted = false;
+        gameState.processedPackages = 0;
+        gameState.timer = 60;
+        gameState.globalUsedWords = [];
+
+        document.getElementById('timer').textContent = '60';
+        document.getElementById('missed').textContent = '0';
+        document.getElementById('level').textContent = '1';
+        document.getElementById('wordInput').value = '';
+        document.getElementById('wordInput').disabled = true;
+        document.getElementById('conveyor').innerHTML = '';
+
+        document.getElementById('missed').parentElement.classList.remove('queue-warning');
+        document.getElementById('timer-container').classList.remove('timer-warning');
+    }
+
+    function closeModal() {
+        document.getElementById('gameOverModal').style.display = 'none';
+    }
+
+    function exitGame() {
+        closeModal();
+        resetGame();
+        window.location.href = '../index.html';
+    }
+
+    // --- Event Listeners ---
+
+    // Keypress for input
+    document.getElementById('wordInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            checkWord();
+        }
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.code === 'Space' && gameState.isPlaying) {
+            e.preventDefault();
+            checkWord();
+        }
+    });
+
+    // Navigation scroll effect
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 100) {
+            nav.style.background = 'rgba(255, 255, 255, 0.98)';
+        } else {
+            nav.style.background = 'rgba(255, 255, 255, 0.95)';
+        }
+    });
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+        resetGame();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,811 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QSEYCFK83"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-7QSEYCFK83');
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>핑거런 | 비행기 조종 타자게임</title>
+    <link rel="icon" type="image/svg+xml" href="../images/finger-run-logo.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Orbitron:wght@500;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans KR', sans-serif; background: #0f172a; overflow: hidden; height: 100vh; padding-top: 80px; user-select: none; }
+
+        /* --- Navigation (FingerRun Standard) --- */
+        nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1); height: 80px; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; height: 100%; }
+        .logo { font-size: 1.8rem; font-weight: bold; color: #667eea; text-decoration: none; }
+        .nav-menu { display: flex; list-style: none; gap: 1rem; }
+        .nav-menu li { position: relative; }
+        .nav-menu a { text-decoration: none; color: #333; font-weight: 500; padding: 0.5rem 0.8rem; border-radius: 25px; transition: all 0.3s; font-size: 0.9rem; display: flex; align-items: center; gap: 0.3rem; }
+        .nav-menu a:hover { background: #667eea; color: white; transform: translateY(-2px); }
+        .dropdown-arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
+        .dropdown-menu { position: absolute; top: 100%; left: 0; background: white; box-shadow: 0 8px 25px rgba(0,0,0,0.15); border-radius: 10px; padding: 0.5rem 0; min-width: 220px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s; z-index: 1001; border: 1px solid rgba(0,0,0,0.1); }
+        .nav-menu li:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .nav-menu li:hover .dropdown-arrow { transform: rotate(180deg); }
+        .dropdown-menu a { display: block; padding: 0.7rem 1rem; }
+        .dropdown-menu a:hover { background: #f8f9fa; color: #667eea; padding-left: 1.2rem; }
+
+        /* --- Game Container --- */
+        #gameContainer { position: relative; width: 100vw; height: calc(100vh - 80px); overflow: hidden; }
+        #gameCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        /* --- Plane (CSS Art) --- */
+        #plane { position: absolute; left: 100px; top: 50%; width: 100px; height: 40px; z-index: 10; transition: transform 0.1s linear; display: none; will-change: top, transform; }
+        #plane .body { position: absolute; top: 10px; left: 0; width: 100%; height: 20px; background: linear-gradient(to bottom, #cfd8dc 0%, #90a4ae 50%, #607d8b 100%); border-radius: 50% 100% 50% 30%; box-shadow: 2px 5px 10px rgba(0,0,0,0.3); z-index: 2; }
+        #plane .cockpit { position: absolute; top: 2px; left: 55px; width: 25px; height: 12px; background: linear-gradient(to bottom right, #81d4fa, #0288d1); border-radius: 50% 50% 0 0; border: 1px solid #01579b; z-index: 3; }
+        #plane .tail { position: absolute; top: -15px; left: 5px; width: 25px; height: 30px; background: linear-gradient(to right, #78909c, #455a64); transform: skewX(-20deg); border-radius: 5px 5px 0 0; z-index: 1; }
+        #plane .wing-main { position: absolute; top: 18px; left: 30px; width: 50px; height: 15px; background: linear-gradient(to bottom, #b0bec5, #546e7a); transform: skewX(-30deg); border-radius: 0 0 50% 10%; box-shadow: 2px 2px 5px rgba(0,0,0,0.2); z-index: 4; }
+        #plane .wing-bottom { position: absolute; top: 5px; left: 35px; width: 45px; height: 10px; background: #455a64; transform: skewX(-30deg); z-index: 1; }
+        #plane .engine-fire { position: absolute; top: 12px; left: -20px; width: 30px; height: 16px; background: linear-gradient(to left, rgba(255, 255, 0, 0), rgba(255, 100, 0, 0.8), rgba(255, 0, 0, 0.5)); border-radius: 50%; filter: blur(2px); animation: flicker 0.1s infinite alternate; z-index: 0; }
+        @keyframes flicker { 0% { transform: scale(1); opacity: 0.8; } 100% { transform: scale(1.1); opacity: 1; } }
+
+        /* --- UI Overlay --- */
+        #ui { position: absolute; top: 20px; left: 20px; z-index: 20; color: #fff; font-weight: 700; background: rgba(0,0,0,0.8); padding: 20px; border-radius: 15px; display: flex; flex-direction: column; gap: 10px; min-width: 150px; }
+        #level, #timer { font-size: 22px; font-family: 'Orbitron', sans-serif; }
+
+        #langSwitchBtn { position: absolute; top: 20px; right: 20px; z-index: 20; background: rgba(15, 23, 42, 0.85); color: #fff; border: 2px solid #3b82f6; padding: 10px 20px; border-radius: 12px; cursor: pointer; font-family: 'Orbitron', sans-serif; transition: 0.3s; }
+        #langSwitchBtn:hover { background: #3b82f6; box-shadow: 0 0 15px #3b82f6; }
+
+        /* --- HUD (Targeting) --- */
+        #wordDisplay { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 25; background: rgba(0,0,0,0.85); backdrop-filter: blur(15px); padding: 30px 50px; text-align: center; border-radius: 20px; color: #fff; min-width: 500px; border: 1px solid rgba(255,255,255,0.1); display: none; }
+        #instruction { font-size: 18px; margin-bottom: 15px; color: #94a3b8; }
+        #currentWordUp, #currentWordDown { font-size: 28px; margin: 10px 0; font-weight: 900; padding: 10px; border-radius: 10px; transition: 0.2s; }
+        #currentWordUp { color: #60a5fa; background: rgba(59, 130, 246, 0.2); }
+        #currentWordDown { color: #fbbf24; background: rgba(245, 158, 11, 0.2); }
+
+        #userInput { font-size: 24px; padding: 15px; border: 3px solid #ef4444; border-radius: 15px; text-align: center; width: 350px; background: rgba(0,0,0,0.5); color: #fff; outline: none; margin-top: 15px; font-family: 'Noto Sans KR', sans-serif; }
+        #userInput.valid { border-color: #22c55e; background: rgba(34, 197, 94, 0.1); }
+
+        /* --- Modal Screens --- */
+        .modal-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 50; }
+        .modal-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+            -webkit-background-clip: text;
+            background-clip: text; /* Added standard property */
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+        }
+        .modal-subtitle { font-size: 1.5rem; color: #e2e8f0; margin-bottom: 40px; text-align: center; line-height: 1.6; }
+        .game-btn { padding: 15px 40px; font-size: 1.5rem; font-weight: bold; color: white; border: none; border-radius: 12px; cursor: pointer; transition: 0.3s; background: linear-gradient(135deg, #2563eb, #1d4ed8); box-shadow: 0 4px 0 #1e3a8a; }
+        .game-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+        #gameOverScreen { display: none; }
+        #gameOverScreen h2 { color: #ef4444; font-size: 3.5rem; font-weight: bold; margin-bottom: 20px; }
+        .button-row { display: flex; gap: 20px; margin-top: 30px; }
+        #restartBtn { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+        #nextStageBtn { background: linear-gradient(135deg, #22c55e, #15803d); }
+        #exitBtn { background: linear-gradient(135deg, #f59e0b, #b45309); }
+
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+    </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav>
+    <div class="nav-container">
+        <!-- 메인으로 나가기 (상위 폴더로 이동) -->
+        <a href="../index.html" class="logo">⌨️ FingerRun</a>
+        <ul class="nav-menu">
+            <!-- 상위 폴더에 있는 공지사항 -->
+            <li><a href="../notices.html">공지사항</a></li>
+
+            <li>
+                <a href="#korean">
+                    한글 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <!-- 상위 폴더(../)로 나가서 Korean 폴더로 진입 -->
+                    <a href="../Korean/practice.html">자음 연습</a>
+                    <a href="../Korean/practice.html">모음 연습</a>
+                    <a href="../Korean/practice.html">단어 연습</a>
+                    <a href="../Korean/practice.html">문장 연습</a>
+                </div>
+            </li>
+
+            <li>
+                <a href="#english">
+                    영어 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <!-- 상위 폴더(../)로 나가서 English 폴더로 진입 -->
+                    <a href="../English/practice.html">알파벳 연습</a>
+                    <a href="../English/practice.html">단어 연습</a>
+                    <a href="../English/practice.html">문장 연습</a>
+                </div>
+            </li>
+
+            <!-- 요청하신 순서대로 정렬 & 같은 폴더이므로 파일명만 사용 -->
+            <li>
+                <a href="#games">
+                    타자게임
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="delivery.html">택배 분류</a>
+                    <a href="mole.html">두더지 잡기</a>
+                    <a href="plane.html">비행기 조종</a>
+                    <a href="tank.html">탱크 폭격</a>
+                </div>
+            </li>
+
+            <li><a href="../writing.html">필사</a></li>
+            <li><a href="../contact.html">문의하기</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div id="gameContainer">
+    <canvas id="gameCanvas"></canvas>
+    <button id="langSwitchBtn">Language: Korean</button>
+
+    <div id="plane">
+        <div class="tail"></div><div class="wing-bottom"></div><div class="body"></div>
+        <div class="wing-main"></div><div class="cockpit"></div><div class="engine-fire"></div>
+    </div>
+
+    <div id="ui">
+        <div id="level">Level: 1</div>
+        <div id="timer">Time: 60</div>
+    </div>
+
+    <!-- Start Screen -->
+    <div id="startScreen" class="modal-screen">
+        <h1 class="modal-title">SKY PILOT</h1>
+        <p class="modal-subtitle">
+            하늘의 장애물 폭격을 피하십시오.<br>
+            <span class="text-sm text-gray-400">총 10단계 작전 | 1분마다 레벨업 | 엔터로 조종</span>
+        </p>
+        <button id="heroStartBtn" class="game-btn">비행 시작</button>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameOverScreen" class="modal-screen">
+        <h2 id="gameOverTitle">GAME OVER</h2>
+        <div class="button-row">
+            <button id="exitBtn" class="game-btn">나가기</button>
+            <button id="restartBtn" class="game-btn">다시 시작</button>
+            <button id="nextStageBtn" class="game-btn" style="display: none;">다음 단계</button>
+        </div>
+    </div>
+
+    <!-- HUD Input -->
+    <div id="wordDisplay">
+        <div id="instruction">타이핑으로 비행기를 조종하세요!</div>
+        <div id="currentWordUp">↑ 위로 이동</div>
+        <div id="currentWordDown">↓ 아래로 이동</div>
+        <input type="text" id="userInput" placeholder="단어를 입력하세요" autocomplete="off">
+    </div>
+</div>
+
+<script>
+    // --- Game Data ---
+    const WORD_DATA = {
+        KO: {
+            level1_3: [
+                "국어", "수학", "영어", "과학", "사회", "역사", "도덕", "미술", "체육", "음악", "물리", "화학", "생물", "지리", "경제", "공부", "학습", "수업", "숙제", "시험", "성적", "입시", "대학", "전공", "강의",
+                "사과", "포도", "배", "감", "귤", "밤", "망고", "키위", "레몬", "자몽", "체리", "앵두", "석류", "유자", "밥", "빵", "떡", "면", "국", "죽", "꿀", "물",
+                "마음", "감정", "심리", "성격", "태도", "불안", "우울", "긍정", "부정", "자아", "공감", "위로", "사랑", "우정", "희망", "용기", "행복", "기쁨", "슬픔", "분노",
+                "돈", "주식", "투자", "저축", "은행", "이자", "환율", "물가", "소비", "소득", "자산", "부채", "세금", "창업", "경영", "무역", "수출", "수입", "시장", "회사",
+                "하늘", "바다", "구름", "바람", "나무", "꽃", "잔디", "호수", "우주", "지구", "태양", "달", "별", "여행", "캠핑", "등산", "낚시", "영화", "게임", "쇼핑", "건강", "운동"
+            ],
+            level4_6: [
+                "지구과학", "정보기술", "가정가사", "프로그래밍", "교과서", "참고서", "문제집", "독서실", "도서관", "장학금", "수능시험", "모의고사", "수행평가", "체험학습", "졸업식", "입학식",
+                "한라봉", "천혜향", "샤인머스캣", "아보카도", "파인애플", "패션후르츠", "아이스크림", "샌드위치", "햄버거", "스파게티", "마카롱", "치즈케이크",
+                "무의식", "트라우마", "스트레스", "콤플렉스", "방어기제", "자아실현", "자존감", "효능감", "정서지능", "심리학", "상담치료", "대인관계", "첫사랑", "짝사랑",
+                "마케팅", "비즈니스", "인플레이션", "디플레이션", "가상화폐", "부동산", "재무설계", "연말정산", "부가가치세", "기회비용", "최저임금", "재테크",
+                "컴퓨터", "스마트폰", "인공지능", "알고리즘", "빅데이터", "클라우드", "네트워크", "사물인터넷", "메타버스", "가상현실", "우주정거장", "인공위성", "블랙홀", "은하수", "태양계",
+                "일석이조", "금상첨화", "다다익선", "과유불급", "동문서답", "설상가상", "오비이락", "유비무환", "죽마고우", "청출어람", "대기만성", "새옹지마", "역지사지", "고진감래"
+            ],
+            level7_10: [
+                "대학수학능력시험", "학교폭력예방교육", "진로진학상담", "평생교육원", "사이버대학교", "방과후학교", "자기주도학습",
+                "인지부조화이론", "외상후스트레스장애", "주의력결핍장애", "자기효능감", "대인관계심리학", "긍정심리학", "임상심리전문가",
+                "소비자물가지수", "국내총생산", "최저임금제도", "주식시장상장", "암호화폐거래소", "소득주도성장", "부가가치세법", "사회적거리두기",
+                "온실가스배출량", "미세먼지농도", "신재생에너지", "유전자변형식품", "인공지능로봇", "자율주행자동차", "전기자동차", "수소자동차", "태양광발전소",
+                "지휘자선생님", "피아노연주자", "바이올리니스트", "오케스트라", "싱어송라이터", "뮤지컬배우", "국립중앙박물관", "예술의전당", "세종문화회관", "인천국제공항",
+                "가는날이장날", "가는말이고와야", "오는말이곱다", "등잔밑이어둡다", "소잃고외양간고친다", "개천에서용난다", "공든탑이무너지랴", "금강산도식후경", "누워서떡먹기"
+            ]
+        },
+        EN: {
+            level1_3: [
+                "math", "art", "gym", "bio", "chem", "eco", "law", "tech", "lab", "quiz",
+                "kiwi", "lime", "pear", "plum", "fig", "date", "nut", "bean", "corn", "rice",
+                "mind", "soul", "mood", "ego", "id", "fear", "hope", "love", "hate", "envy",
+                "cash", "gold", "coin", "bank", "loan", "debt", "tax", "fund", "cost", "sale",
+                "tree", "leaf", "rose", "rain", "snow", "wind", "sun", "moon", "star", "mars"
+            ],
+            level4_6: [
+                "physics", "history", "english", "science", "biology", "algebra", "lesson", "school", "campus", "degree",
+                "orange", "banana", "cherry", "grapes", "melon", "papaya", "tomato", "potato", "carrot", "onion",
+                "emotion", "feeling", "anxiety", "stress", "trauma", "memory", "psyche", "mental", "social", "habit",
+                "market", "profit", "income", "budget", "credit", "invest", "trade", "value", "price", "stock",
+                "nature", "planet", "galaxy", "forest", "jungle", "desert", "ocean", "river", "cloud", "storm"
+            ],
+            level7_10: [
+                "university", "education", "knowledge", "curriculum", "scholarship", "assignment", "graduation",
+                "psychology", "depression", "motivation", "personality", "confidence", "consciousness", "behavior",
+                "economics", "investment", "inflation", "recession", "marketing", "business", "management", "enterprise",
+                "technology", "computer", "software", "hardware", "internet", "network", "database", "security",
+                "environment", "pollution", "recycling", "sustainability", "ecosystem", "atmosphere", "evolution"
+            ]
+        }
+    };
+
+    // --- Main Game Class ---
+    class FlightGame {
+        constructor() {
+            // DOM Elements
+            this.canvas = document.getElementById('gameCanvas');
+            this.ctx = this.canvas.getContext('2d');
+            this.plane = document.getElementById('plane');
+            this.wordDisplay = document.getElementById('wordDisplay');
+            this.currentWordUpEl = document.getElementById('currentWordUp');
+            this.currentWordDownEl = document.getElementById('currentWordDown');
+            this.userInput = document.getElementById('userInput');
+            this.levelEl = document.getElementById('level');
+            this.timerEl = document.getElementById('timer');
+            this.startScreen = document.getElementById('startScreen');
+            this.gameOverScreen = document.getElementById('gameOverScreen');
+            this.gameOverTitle = document.getElementById('gameOverTitle');
+            this.heroStartBtn = document.getElementById('heroStartBtn');
+            this.restartBtn = document.getElementById('restartBtn');
+            this.nextStageBtn = document.getElementById('nextStageBtn');
+            this.exitBtn = document.getElementById('exitBtn');
+            this.langSwitchBtn = document.getElementById('langSwitchBtn');
+
+            // State
+            this.state = 'MENU';
+            this.language = 'KO';
+            this.level = 1;
+            this.timer = 60;
+            this.gameRunning = false;
+            this.isComposing = false;
+
+            // Physics & Logic
+            this.planeY = 0;
+            this.targetY = 0; // Target altitude for smooth movement
+            this.fallSpeed = 40; // Reduced from 200 (0.2x)
+            this.gameSpeed = 150; // Obstacle speed
+            this.lastTime = 0;
+            this.levelStartTime = 0;
+            this.lastObstacleTime = 0;
+
+            // Arrays
+            this.obstacles = [];
+            this.clouds = [];
+            this.particles = [];
+            this.usedWords = [];
+            this.obstaclePatterns = ['top', 'both', 'bottom', 'both'];
+            this.patternIdx = 0;
+            this.passageHistory = [];
+
+            // Input Ghosting Fix
+            this.lastSubmittedChar = '';
+            this.lastSubmitTime = 0;
+            this.inputBlockUntil = 0;
+
+            // Bind Methods
+            this.loop = this.loop.bind(this);
+
+            // Init
+            this.init();
+            this.setupEvents();
+
+            // Start Loop
+            requestAnimationFrame(this.loop);
+        }
+
+        init() {
+            this.resize();
+            this.createClouds();
+            this.setLanguageUI();
+            this.planeY = this.canvas.height / 2;
+            this.targetY = this.planeY;
+            this.plane.style.top = `${this.planeY}px`;
+        }
+
+        resize() {
+            this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerHeight - 80; // Minus navbar
+        }
+
+        setupEvents() {
+            window.addEventListener('resize', () => this.resize());
+            this.heroStartBtn.onclick = () => this.startGame();
+            this.restartBtn.onclick = () => this.restart();
+            this.nextStageBtn.onclick = () => this.nextStage();
+            this.exitBtn.onclick = () => window.location.href = '../index.html';
+            this.langSwitchBtn.onclick = () => this.toggleLanguage();
+
+            // Input Handling
+            this.userInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    this.handleEnter();
+                }
+            });
+
+            this.userInput.addEventListener('input', (e) => this.handleInput(e));
+
+            this.userInput.addEventListener('compositionstart', () => this.isComposing = true);
+            this.userInput.addEventListener('compositionend', () => this.isComposing = false);
+
+            // Focus maintenance
+            document.addEventListener('click', (e) => {
+                if (this.gameRunning && !e.target.closest('button')) {
+                    this.userInput.focus();
+                }
+            });
+        }
+
+        toggleLanguage() {
+            this.language = this.language === 'KO' ? 'EN' : 'KO';
+            this.setLanguageUI();
+            if (this.state === 'PLAYING') {
+                this.restart();
+            }
+        }
+
+        setLanguageUI() {
+            const isKo = this.language === 'KO';
+            this.langSwitchBtn.textContent = isKo ? 'Language: Korean' : 'Language: English';
+            this.userInput.placeholder = isKo ? '단어를 입력하세요' : 'Type the word';
+            this.heroStartBtn.textContent = isKo ? '비행 시작' : 'Start Flight';
+            document.getElementById('instruction').textContent = isKo ? '타이핑으로 비행기를 조종하세요!' : 'Type to control the plane!';
+        }
+
+        startGame() {
+            this.state = 'PLAYING';
+            this.gameRunning = true;
+            this.isExploding = false;
+            this.level = 1;
+            this.timer = 60;
+            this.levelStartTime = Date.now();
+            this.lastFrameTime = Date.now();
+
+            // Reset Plane
+            this.planeY = this.canvas.height / 2;
+            this.targetY = this.planeY;
+            this.plane.style.display = 'block';
+            this.plane.style.top = `${this.planeY}px`;
+            this.plane.style.transform = 'translateY(-50%) rotate(0deg)';
+
+            // Reset Arrays
+            this.obstacles = [];
+            this.particles = [];
+            this.usedWords = [];
+            this.passageHistory = [];
+
+            // UI
+            this.startScreen.style.display = 'none';
+            this.gameOverScreen.style.display = 'none';
+            this.wordDisplay.style.display = 'block';
+
+            // Input Clear
+            this.userInput.value = '';
+            this.isBlockingInput = false;
+            this.userInput.focus();
+
+            // Force first obstacle immediately
+            this.lastObstacleTime = 0;
+            this.spawnObstacle(true);
+
+            this.generateWords();
+            this.updateUI();
+        }
+
+        nextStage() {
+            this.level++;
+            this.gameOverScreen.style.display = 'none';
+            this.wordDisplay.style.display = 'block';
+
+            this.gameRunning = true;
+            this.levelStartTime = Date.now();
+            this.obstacles = [];
+            this.planeY = this.canvas.height / 2;
+            this.targetY = this.planeY;
+            this.plane.style.display = 'block';
+
+            this.userInput.value = '';
+            this.userInput.focus();
+            this.generateWords();
+            this.updateUI();
+        }
+
+        generateWords() {
+            const wordsObj = this.language === 'KO' ? WORD_DATA.KO : WORD_DATA.EN;
+            let list;
+            if (this.level <= 3) list = wordsObj.level1_3;
+            else if (this.level <= 6) list = wordsObj.level4_6;
+            else list = wordsObj.level7_10;
+
+            // Avoid used words
+            let available = list.filter(w => !this.usedWords.includes(w));
+            if (available.length < 2) {
+                this.usedWords = [];
+                available = [...list];
+            }
+
+            const pick = () => {
+                const idx = Math.floor(Math.random() * available.length);
+                const word = available[idx];
+                available.splice(idx, 1);
+                return word;
+            };
+
+            this.currentWordUp = pick();
+            this.currentWordDown = pick();
+
+            this.usedWords.push(this.currentWordUp, this.currentWordDown);
+
+            const prefix = this.language === 'KO' ? ['↑', '↓'] : ['↑', '↓'];
+            this.currentWordUpEl.textContent = `${prefix[0]} ${this.currentWordUp}`;
+            this.currentWordDownEl.textContent = `${prefix[1]} ${this.currentWordDown}`;
+        }
+
+        handleInput(e) {
+            if (!this.gameRunning) return;
+
+            if (Date.now() < this.inputBlockUntil) {
+                this.userInput.value = '';
+                return;
+            }
+
+            if (this.isComposing) return;
+
+            const val = this.userInput.value.trim();
+            // Smart Ghost Filter
+            if (this.language === 'KO' && this.lastSubmittedChar && (Date.now() - this.lastSubmitTime < 500)) {
+                if (val.startsWith(this.lastSubmittedChar)) {
+                    let newVal = val === this.lastSubmittedChar ? '' : val.substring(1);
+                    this.userInput.value = newVal;
+                    return;
+                }
+            }
+
+            const upMatch = this.currentWordUp.toLowerCase().startsWith(val.toLowerCase());
+            const downMatch = this.currentWordDown.toLowerCase().startsWith(val.toLowerCase());
+
+            if (val && (upMatch || downMatch)) {
+                this.userInput.classList.add('valid');
+                this.userInput.style.borderColor = '#22c55e';
+            } else {
+                this.userInput.classList.remove('valid');
+                this.userInput.style.borderColor = '#ef4444';
+            }
+        }
+
+        handleEnter() {
+            if (!this.gameRunning) return;
+
+            const val = this.userInput.value.trim();
+            let success = false;
+            let up = false;
+
+            if (val.toLowerCase() === this.currentWordUp.toLowerCase()) {
+                success = true; up = true;
+            } else if (val.toLowerCase() === this.currentWordDown.toLowerCase()) {
+                success = true; up = false;
+            }
+
+            if (success) {
+                this.movePlane(up);
+                this.generateWords();
+
+                // --- GHOST BUSTER ---
+                if (val.length > 0) this.lastSubmittedChar = val.slice(-1);
+                this.lastSubmitTime = Date.now();
+
+                this.inputBlockUntil = Date.now() + 50;
+
+                this.userInput.value = '';
+
+                if (this.language === 'KO') {
+                    this.userInput.blur();
+                    setTimeout(() => this.userInput.focus(), 10);
+                } else {
+                    this.userInput.focus();
+                }
+            } else {
+                this.userInput.style.animation = 'shake 0.3s';
+                setTimeout(() => this.userInput.style.animation = '', 300);
+                this.userInput.value = '';
+            }
+        }
+
+        movePlane(up) {
+            const amount = 120;
+            this.targetY = up ? this.targetY - amount : this.targetY + amount;
+            this.targetY = Math.max(25, Math.min(this.canvas.height - 25, this.targetY));
+        }
+
+        getSpeed() {
+            let baseSpeed = 150;
+            if (this.level <= 3) baseSpeed = 150;
+            else if (this.level <= 7) baseSpeed = 220;
+            else baseSpeed = 300;
+            if (this.language === 'EN') baseSpeed *= 0.6;
+            return baseSpeed;
+        }
+
+        spawnObstacle(force = false) {
+            const interval = Math.max(1500, 3000 - (this.level * 200));
+
+            if (force || Date.now() - this.lastObstacleTime > interval) {
+                const width = 80;
+                const pattern = this.obstaclePatterns[this.patternIdx];
+                this.patternIdx = (this.patternIdx + 1) % this.obstaclePatterns.length;
+
+                const screenH = this.canvas.height;
+                const gap = 350 - (this.level * 10);
+                let gapCenter = screenH / 2;
+
+                if (this.passageHistory.length > 0) {
+                    const last = this.passageHistory[this.passageHistory.length-1];
+                    gapCenter = Math.max(100 + gap/2, Math.min(screenH - 100 - gap/2, last.gapCenter + (Math.random()-0.5)*300));
+                }
+
+                this.createObstacles(pattern, width, gapCenter, gap);
+                this.passageHistory.push({ gapCenter, gap });
+                if(this.passageHistory.length > 3) this.passageHistory.shift();
+
+                this.lastObstacleTime = Date.now();
+            }
+        }
+
+        createObstacles(pattern, w, center, gap) {
+            const topH = center - gap / 2;
+            const botY = center + gap / 2;
+            const botH = this.canvas.height - botY;
+
+            if (pattern === 'both' || pattern === 'top') {
+                if (topH > 20) this.obstacles.push({ x: this.canvas.width, y: 0, w, h: topH });
+            }
+            if (pattern === 'both' || pattern === 'bottom') {
+                if (botH > 20) this.obstacles.push({ x: this.canvas.width, y: botY, w, h: botH });
+            }
+        }
+
+        checkCollision(obs) {
+            const px = 100 + 10;
+            const py = this.planeY + 10;
+            const pw = 80;
+            const ph = 20;
+            return px < obs.x + obs.w && px + pw > obs.x &&
+                py < obs.y + obs.h && py + ph > obs.y;
+        }
+
+        triggerExplosion() {
+            this.isExploding = true;
+            this.gameRunning = false;
+            this.plane.style.display = 'none';
+
+            for(let i=0; i<40; i++) {
+                this.particles.push({
+                    x: 100 + 35, y: this.planeY,
+                    vx: (Math.random()-0.5) * 200 * (Math.random() + 0.5),
+                    vy: (Math.random()-0.5) * 200 * (Math.random() + 0.5),
+                    life: 1.0,
+                    color: `hsl(${Math.random()*60}, 100%, 50%)`,
+                    size: Math.random() * 20 + 5
+                });
+            }
+
+            document.body.style.animation = 'shake 0.5s';
+            setTimeout(() => {
+                document.body.style.animation = '';
+                this.gameOver(false);
+            }, 1000);
+        }
+
+        gameOver(success) {
+            this.gameRunning = false;
+            this.wordDisplay.style.display = 'none';
+            this.gameOverScreen.style.display = 'flex';
+
+            if (success) {
+                this.gameOverTitle.textContent = this.language === 'KO' ? '🎉 성공! 다음 단계로! 🎉' : '🎉 COMPLETE! 🎉';
+                this.gameOverTitle.style.color = '#4CAF50';
+                this.restartBtn.style.display = 'none';
+                this.nextStageBtn.style.display = 'inline-block';
+            } else {
+                this.gameOverTitle.textContent = this.language === 'KO' ? '게임 오버' : 'GAME OVER';
+                this.gameOverTitle.style.color = '#EF4444';
+                this.restartBtn.style.display = 'inline-block';
+                this.nextStageBtn.style.display = 'none';
+            }
+        }
+
+        restart() {
+            this.gameOverScreen.style.display = 'none';
+            this.startGame();
+        }
+
+        updateUI() {
+            const label = this.language === 'KO' ? '시간' : 'Time';
+            const lvl = this.language === 'KO' ? '레벨' : 'Level';
+            this.timerEl.textContent = `${label}: ${Math.ceil(this.timer)}`;
+            this.levelEl.textContent = `${lvl}: ${this.level}`;
+        }
+
+        drawBackground() {
+            const gradient = this.ctx.createLinearGradient(0, 0, 0, this.canvas.height);
+            gradient.addColorStop(0, 'rgba(74, 144, 226, 0.3)');
+            gradient.addColorStop(1, 'rgba(135, 206, 235, 0.2)');
+            this.ctx.fillStyle = gradient;
+            this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+            this.ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+            this.clouds.forEach(c => {
+                this.ctx.beginPath();
+                this.ctx.arc(c.x, c.y, c.size, 0, Math.PI*2);
+                this.ctx.fill();
+            });
+        }
+
+        draw() {
+            this.drawBackground();
+
+            this.obstacles.forEach(o => {
+                const grad = this.ctx.createLinearGradient(o.x, 0, o.x + o.w, 0);
+                grad.addColorStop(0, '#374151');
+                grad.addColorStop(0.5, '#4b5563');
+                grad.addColorStop(1, '#374151');
+                this.ctx.fillStyle = grad;
+                this.ctx.fillRect(o.x, o.y, o.w, o.h);
+
+                this.ctx.save();
+                this.ctx.beginPath();
+                this.ctx.rect(o.x, o.y, o.w, o.h);
+                this.ctx.clip();
+                this.ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+                this.ctx.lineWidth = 10;
+                for(let i = -o.h; i < o.w + o.h; i+=20) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(o.x + i, o.y);
+                    this.ctx.lineTo(o.x + i - 20, o.y + o.h + 100);
+                    this.ctx.stroke();
+                }
+                this.ctx.restore();
+
+                this.ctx.strokeStyle = '#ef4444';
+                this.ctx.lineWidth = 2;
+                this.ctx.shadowBlur = 10;
+                this.ctx.shadowColor = '#ef4444';
+                this.ctx.strokeRect(o.x, o.y, o.w, o.h);
+                this.ctx.shadowBlur = 0;
+            });
+
+            this.particles.forEach(p => {
+                this.ctx.globalAlpha = p.life;
+                this.ctx.fillStyle = p.color;
+                this.ctx.beginPath();
+                this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                this.ctx.fill();
+                this.ctx.globalAlpha = 1.0;
+            });
+        }
+
+        loop(timestamp) {
+            if (!this.lastTime) this.lastTime = timestamp;
+            const dt = (timestamp - this.lastTime) / 1000;
+            this.lastTime = timestamp;
+
+            if (this.gameRunning) {
+                this.update(dt);
+                this.spawnObstacle();
+
+                const elapsed = (Date.now() - this.levelStartTime) / 1000;
+                this.timer = Math.max(0, 60 - elapsed);
+                this.updateUI();
+
+                if (this.timer <= 0) this.gameOver(true);
+            } else if (this.isExploding) {
+                this.updateParticles(dt);
+            } else {
+                // Just draw background in menu
+                this.drawBackground();
+            }
+
+            if (this.gameRunning || this.isExploding || this.state === 'MENU') {
+                this.draw();
+            }
+
+            requestAnimationFrame(this.loop);
+        }
+
+        update(dt) {
+            const currentSpeed = this.getSpeed();
+
+            for (let i = this.obstacles.length - 1; i >= 0; i--) {
+                let obs = this.obstacles[i];
+                obs.x -= currentSpeed * dt;
+                if (this.checkCollision(obs)) {
+                    this.triggerExplosion();
+                }
+                if (obs.x + obs.w < 0) this.obstacles.splice(i, 1);
+            }
+
+            this.clouds.forEach(c => {
+                c.x -= (c.speed * 60) * dt;
+                if(c.x + c.size < 0) { c.x = this.canvas.width + c.size; c.y = Math.random() * this.canvas.height; }
+            });
+
+            // Plane Physics (Gravity)
+            this.targetY += (this.fallSpeed * 0.5) * dt;
+            this.targetY = Math.max(25, Math.min(this.canvas.height - 25, this.targetY));
+
+            const smoothFactor = 5;
+            this.planeY += (this.targetY - this.planeY) * smoothFactor * dt;
+
+            const velocity = (this.targetY - this.planeY);
+            let tilt = velocity * 0.5;
+            tilt = Math.max(-20, Math.min(20, tilt));
+
+            this.plane.style.top = `${this.planeY}px`;
+            this.plane.style.transform = `translateY(-50%) rotate(${tilt}deg)`;
+
+            if (this.planeY <= 20 || this.planeY >= this.canvas.height - 20) {
+                this.triggerExplosion();
+                this.gameOver(false);
+            }
+        }
+
+        updateParticles(dt) {
+            for (let i = this.particles.length - 1; i >= 0; i--) {
+                let p = this.particles[i];
+                p.x += p.vx * dt;
+                p.y += p.vy * dt;
+                p.life -= 1.0 * dt;
+                if(p.life <= 0) this.particles.splice(i, 1);
+            }
+        }
+
+        createClouds() {
+            this.clouds = [];
+            for (let i = 0; i < 5; i++) {
+                this.clouds.push({
+                    x: Math.random() * this.canvas.width,
+                    y: Math.random() * this.canvas.height,
+                    size: 40 + Math.random() * 50,
+                    speed: 0.5 + Math.random() * 1.5
+                });
+            }
+        }
+    }
+
+    window.addEventListener('load', () => {
+        new FlightGame();
+    });
+
+    window.addEventListener('resize', () => {
+        const canvas = document.getElementById('gameCanvas');
+        if (canvas) {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight - 80;
+        }
+    });
+</script>
+</body>
+</html>

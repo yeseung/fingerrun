@@ -1,0 +1,1166 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Realistic Tank Typing Defense</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Orbitron:wght@500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow: hidden;
+            background-color: #0f172a; /* Dark Sky */
+            user-select: none;
+        }
+
+        /* --- Navigation Menu (FingerRun Style) --- */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            height: 80px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            height: 100%;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 0.8rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-menu > li > a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            padding: 0.5rem 0;
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-menu li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-menu li:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1rem;
+            color: #333;
+            border-radius: 0;
+            font-weight: 400;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+            color: #667eea;
+            transform: none;
+            padding-left: 1.2rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                border: none;
+                padding-left: 20px;
+                display: none;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+            }
+            .nav-menu li:hover .dropdown-menu {
+                display: block;
+            }
+        }
+
+        /* --- Game Styles --- */
+        #game-wrapper {
+            position: relative;
+            width: 100vw;
+            height: calc(100vh - 80px); /* Subtract Navbar height */
+            margin-top: 80px; /* Push down by Navbar height */
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* UI Overlay */
+        #ui-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hud-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .hud-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .hud-box {
+            background: rgba(15, 23, 42, 0.85);
+            border: 2px solid #3b82f6;
+            padding: 10px 20px;
+            border-radius: 8px;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(4px);
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .lang-switch {
+            pointer-events: auto;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            height: fit-content;
+        }
+        .lang-switch:hover { background: #fff; color: #000; }
+
+        /* Input Display */
+        #input-display-container {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: auto; /* Allow clicking to focus */
+        }
+
+        #input-wrapper {
+            display: inline-block;
+            position: relative;
+        }
+
+        #input-text {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 10px 40px;
+            border-radius: 12px;
+            border: 3px solid #4ade80;
+            font-family: 'Noto Sans KR', sans-serif;
+            min-width: 300px;
+            box-shadow: 0 0 20px rgba(74, 222, 128, 0.2);
+            transition: border-color 0.1s, transform 0.1s, box-shadow 0.1s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+        }
+
+        .input-valid {
+            border-color: #4ade80 !important;
+            box-shadow: 0 0 30px #4ade80 !important;
+            transform: scale(1.05);
+        }
+
+        .input-invalid {
+            border-color: #ef4444 !important;
+            box-shadow: 0 0 30px #ef4444 !important;
+            animation: shake 0.3s cubic-bezier(.36,.07,.19,.97) both;
+            color: #fca5a5 !important;
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 40px;
+            background-color: #fff;
+            margin-left: 5px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .input-label {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #4ade80;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px #000;
+        }
+
+        /* Modals */
+        .modal-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            pointer-events: auto;
+        }
+
+        .modal-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(to bottom, #ef4444, #991b1b);
+            -webkit-background-clip: text;
+            background-clip: text; /* Added for compatibility */
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+        }
+
+        .modal-subtitle {
+            font-size: 1.5rem;
+            color: #e5e7eb;
+            margin-bottom: 40px;
+        }
+
+        .btn-group { display: flex; gap: 20px; }
+
+        .game-btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: 'Noto Sans KR', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            box-shadow: 0 4px 0 #1e3a8a;
+        }
+        .btn-danger {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            box-shadow: 0 4px 0 #7f1d1d;
+        }
+        .game-btn:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+        .game-btn:hover { filter: brightness(1.2); }
+
+        .hidden { display: none !important; }
+
+        /* Mobile Input Hack */
+        #hidden-input {
+            position: absolute;
+            opacity: 0;
+            top: -1000px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+    <div class="nav-container">
+        <!-- 메인으로 나가기 (상위 폴더로 이동) -->
+        <a href="../index.html" class="logo">⌨️ FingerRun</a>
+        <ul class="nav-menu">
+            <!-- 상위 폴더에 있는 공지사항 -->
+            <li><a href="../notices.html">공지사항</a></li>
+
+            <li>
+                <a href="../Korean/practice.html">
+                    한글 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <!-- 상위 폴더(../)로 나가서 Korean 폴더로 진입 -->
+                    <a href="../Korean/practice.html">자음 연습</a>
+                    <a href="../Korean/practice.html">모음 연습</a>
+                    <a href="../Korean/practice.html">단어 연습</a>
+                    <a href="../Korean/practice.html">문장 연습</a>
+                </div>
+            </li>
+
+            <li>
+                <a href="../English/practice.html">
+                    영어 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <!-- 상위 폴더(../)로 나가서 English 폴더로 진입 -->
+                    <a href="../English/practice.html">알파벳 연습</a>
+                    <a href="../English/practice.html">단어 연습</a>
+                    <a href="../English/practice.html">문장 연습</a>
+                </div>
+            </li>
+
+            <li>
+                <a href="delivery.html">
+                    타자게임
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <!-- 같은 폴더(Game) 안에 있으므로 파일명만 사용 -->
+                    <a href="delivery.html">택배 분류</a>
+                    <a href="mole.html">두더지 잡기</a>
+                    <a href="plane.html">비행기 조종</a>
+                    <a href="tank.html">탱크 폭격</a>
+                </div>
+            </li>
+
+            <li><a href="../writing.html">필사</a></li>
+
+            <li>
+                <a href="../Certificate/word-processor.html">
+                    자격증
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="../Certificate/word-processor.html">워드프로세서</a>
+                </div>
+            </li>
+
+            <li><a href="../contact.html">문의하기</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div id="game-wrapper">
+    <canvas id="gameCanvas"></canvas>
+
+    <div id="ui-layer">
+        <div class="hud-top">
+            <div class="hud-group">
+                <div class="hud-box">
+                    <span class="text-gray-400 text-xs block">LEVEL</span>
+                    <span id="level-el" class="text-2xl font-bold text-yellow-400">1</span>
+                </div>
+                <div class="hud-box" style="min-width: 120px;">
+                    <span class="text-gray-400 text-xs block">TIME</span>
+                    <span id="time-el" class="text-2xl font-bold text-cyan-400">60s</span>
+                </div>
+                <div class="hud-box">
+                    <span class="text-gray-400 text-xs block">SCORE</span>
+                    <span id="score-el" class="text-2xl font-bold">0</span>
+                </div>
+                <div class="hud-box border-red-500 shadow-red-500/30">
+                    <span class="text-gray-400 text-xs block">기회</span>
+                    <span id="lives-el" class="text-2xl font-bold text-red-500">❤❤❤</span>
+                </div>
+            </div>
+
+            <button id="lang-btn" class="lang-switch" onclick="toggleLanguage()">
+                Language: <span id="lang-text" class="font-bold text-yellow-300">Korean</span>
+            </button>
+        </div>
+
+        <div id="input-display-container">
+            <div id="input-wrapper">
+                <div class="input-label">TARGETING SYSTEM</div>
+                <div id="input-text">
+                    <span id="input-content"></span><span class="cursor"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="start-screen" class="modal-overlay">
+        <!-- Added background-clip: text for compatibility -->
+        <h1 class="modal-title" style="background: linear-gradient(to bottom, #3b82f6, #1d4ed8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">TANK COMMANDER</h1>
+        <p class="text-xl text-blue-200 mb-8 max-w-lg text-center leading-relaxed">
+            하늘에서 쏟아지는 단어 폭격을 막아내십시오.<br>
+            <span class="text-sm text-gray-400">총 10단계 작전 | 1분마다 레벨업 | 엔터로 발사</span>
+        </p>
+        <button class="game-btn btn-primary" onclick="game.start()">작전 시작</button>
+    </div>
+
+    <div id="game-over-screen" class="modal-overlay hidden">
+        <h1 class="modal-title">GAME OVER</h1>
+        <p class="modal-subtitle">최종 점수: <span id="final-score" class="text-yellow-400 font-bold">0</span></p>
+        <div class="btn-group">
+            <button class="game-btn btn-primary" onclick="game.start()">다시하기</button>
+            <button class="game-btn btn-danger" onclick="exitGame()">나가기</button>
+        </div>
+    </div>
+</div>
+
+<input type="text" id="hidden-input" autocomplete="off">
+
+<script>
+    function toggleMobileMenu() {
+        const menu = document.getElementById('navMenu');
+        menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function exitGame() {
+        window.location.href = '../index.html';
+    }
+
+    /* 1~3단계: 1~4글자 (기초, 교과, 감정, 경제기초) */
+    const WORDS_KO_SHORT = [
+        "국어", "수학", "영어", "과학", "사회", "역사", "도덕", "미술", "체육", "음악", "물리", "화학", "생물", "지리", "경제", "공부", "학습", "수업", "숙제", "시험", "성적", "입시", "대학", "전공", "강의",
+        "사과", "포도", "배", "감", "귤", "밤", "망고", "키위", "레몬", "자몽", "체리", "앵두", "석류", "유자", "밥", "빵", "떡", "면", "국", "죽", "꿀", "물",
+        "마음", "감정", "심리", "성격", "태도", "불안", "우울", "긍정", "부정", "자아", "공감", "위로", "사랑", "우정", "희망", "용기", "행복", "기쁨", "슬픔", "분노",
+        "돈", "주식", "투자", "저축", "은행", "이자", "환율", "물가", "소비", "소득", "자산", "부채", "세금", "창업", "경영", "무역", "수출", "수입", "시장", "회사",
+        "하늘", "바다", "구름", "바람", "나무", "꽃", "잔디", "호수", "우주", "지구", "태양", "달", "별", "여행", "캠핑", "등산", "낚시", "영화", "게임", "쇼핑", "건강", "운동",
+        "호랑이", "토끼", "여우", "곰", "사슴", "기린", "하마", "낙타", "타조", "독수리", "참새", "비둘기", "까치", "까마귀", "오리", "거위", "백조", "펭귄", "상어", "고래"
+    ];
+
+    /* 4~7단계: 3~6글자 (중급, 심화 주제) */
+    const WORDS_KO_MEDIUM = [
+        "지구과학", "정보기술", "가정가사", "프로그래밍", "교과서", "참고서", "문제집", "독서실", "도서관", "장학금", "수능시험", "모의고사", "수행평가", "체험학습", "졸업식", "입학식",
+        "한라봉", "천혜향", "샤인머스캣", "아보카도", "파인애플", "패션후르츠", "아이스크림", "샌드위치", "햄버거", "스파게티", "마카롱", "치즈케이크",
+        "무의식", "트라우마", "스트레스", "콤플렉스", "방어기제", "자아실현", "자존감", "효능감", "정서지능", "심리학", "상담치료", "대인관계", "첫사랑", "짝사랑",
+        "마케팅", "비즈니스", "인플레이션", "디플레이션", "가상화폐", "부동산", "재무설계", "연말정산", "부가가치세", "기회비용", "최저임금", "재테크",
+        "컴퓨터", "스마트폰", "인공지능", "알고리즘", "빅데이터", "클라우드", "네트워크", "사물인터넷", "메타버스", "가상현실", "우주정거장", "인공위성", "블랙홀", "은하수", "태양계",
+        "일석이조", "금상첨화", "다다익선", "과유불급", "동문서답", "설상가상", "오비이락", "유비무환", "죽마고우", "청출어람", "대기만성", "새옹지마", "역지사지", "고진감래",
+        "인문학", "철학개론", "심리학과", "경영학과", "경제학과", "사회학과", "신문방송", "미디어", "디자인", "건축공학", "기계공학", "전자공학", "소프트웨어", "데이터", "보안전문가", "웹개발자", "앱개발자", "서버관리", "블록체인", "딥러닝", "머신러닝", "자료구조", "운영체제", "데이터베이스",
+        "대한민국", "우리나라", "무궁화", "태극기", "애국가", "한글날", "광복절", "개천절", "삼일절", "제헌절", "설날", "추석", "단오", "동지", "정월대보름", "식목일", "어린이날", "어버이날", "스승의날", "국군의날"
+    ];
+
+    /* 8~10단계: 6~9글자 (고급, 복합어, 속담) */
+    const WORDS_KO_LONG = [
+        "대학수학능력시험", "학교폭력예방교육", "진로진학상담", "평생교육원", "사이버대학교", "방과후학교", "자기주도학습",
+        "인지부조화이론", "외상후스트레스장애", "주의력결핍장애", "자기효능감", "대인관계심리학", "긍정심리학", "임상심리전문가",
+        "소비자물가지수", "국내총생산", "최저임금제도", "주식시장상장", "암호화폐거래소", "소득주도성장", "부가가치세법", "사회적거리두기",
+        "온실가스배출량", "미세먼지농도", "신재생에너지", "유전자변형식품", "인공지능로봇", "자율주행자동차", "전기자동차", "수소자동차", "태양광발전소",
+        "지휘자선생님", "피아노연주자", "바이올리니스트", "오케스트라", "싱어송라이터", "뮤지컬배우", "국립중앙박물관", "예술의전당", "세종문화회관", "인천국제공항",
+        "가는날이장날", "가는말이고와야", "오는말이곱다", "등잔밑이어둡다", "소잃고외양간고친다", "개천에서용난다", "공든탑이무너지랴", "금강산도식후경", "누워서떡먹기",
+        "지속가능한발전", "환경보호캠페인", "분리수거실천", "대중교통이용", "에너지절약하기", "일회용품줄이기", "비닐봉지사용금지", "텀블러사용하기", "장바구니챙기기", "음식물쓰레기줄이기", "탄소중립실천", "기후변화대응", "온난화방지대책", "생태계보호활동", "멸종위기동물보호", "자연보호구역", "국립공원탐방", "숲가꾸기사업", "나무심기행사", "강물살리기운동", "해양오염방지", "플라스틱프리", "제로웨이스트라이프", "미니멀라이프스타일", "워라밸실천하기", "주52시간근무제", "유연근무제도", "재택근무활성화", "디지털노마드", "원격수업진행", "온라인화상회의", "비대면업무처리", "전자결재시스템", "스마트오피스구축", "4차산업혁명기술", "디지털트랜스포메이션", "인공지능윤리", "로봇세도입논의", "기본소득제도", "청년수당지급", "노인복지서비스", "아동수당지원", "육아휴직제도", "출산장려정책", "다문화가정지원", "장애인복지시설", "사회적기업육성", "공정무역제품", "로컬푸드매장", "친환경농산물",
+        "지속가능한발전목표", "기후변화대응협약", "생물다양성보존", "멸종위기종보호", "해양생태계보전", "탄소중립실천운동", "에너지절약캠페인", "자원재활용활성화", "친환경제품사용", "일회용품줄이기", "대중교통이용하기", "자전거타기생활화", "가까운거리걷기", "음식물쓰레기줄이기", "분리수거철저히", "장바구니사용하기", "텀블러가지고다니기", "플라스틱프리챌린지", "제로웨이스트운동", "미니멀라이프실천", "워라밸균형잡기", "주52시간근무제", "유연근무제도입", "재택근무활성화", "스마트워크센터", "디지털노마드족", "원격수업시스템", "온라인화상회의", "비대면업무처리", "전자결재시스템", "클라우드서비스", "빅데이터플랫폼", "인공지능비서", "사물인터넷기기", "자율주행자동차", "드론택배서비스", "도심항공모빌리티", "스마트시티구축", "디지털트윈기술", "메타버스플랫폼"
+    ];
+
+    const WORDS_EN_SHORT = [
+        "math", "art", "gym", "bio", "chem", "eco", "law", "tech", "lab", "quiz",
+        "kiwi", "lime", "pear", "plum", "fig", "date", "nut", "bean", "corn", "rice",
+        "mind", "soul", "mood", "ego", "id", "fear", "hope", "love", "hate", "envy",
+        "cash", "gold", "coin", "bank", "loan", "debt", "tax", "fund", "cost", "sale",
+        "tree", "leaf", "rose", "rain", "snow", "wind", "sun", "moon", "star", "mars",
+        "ship", "boat", "sail", "mast", "deck", "helm", "port", "star", "wind", "wave", "tide", "sand", "rock", "crab", "fish", "seal", "gull", "pier", "dock", "rope", "knot", "flag", "blue", "deep", "salt", "foam", "reef", "clam", "kelp", "surf", "swim", "dive", "float", "sink", "drift", "flow", "pour", "rain", "hail", "snow", "cold", "warm", "cool", "heat", "fire", "burn", "glow", "ash", "dust", "dirt",
+        "bike", "hike", "swim", "play", "game", "toy", "boy", "girl", "baby", "home", "room", "door", "wall", "roof", "floor", "lamp", "bed", "desk", "sofa", "rug", "cup", "pot", "pan", "dish", "fork", "spoon", "knife", "soap", "comb", "brush", "tooth", "hair", "face", "hand", "foot", "arm", "leg", "body", "head", "eye", "ear", "nose", "mouth", "lip", "chin", "neck", "back", "skin", "bone", "blood", "heart", "lung"
+    ];
+
+    const WORDS_EN_MEDIUM = [
+        "physics", "history", "english", "science", "biology", "algebra", "lesson", "school", "campus", "degree",
+        "orange", "banana", "cherry", "grapes", "melon", "papaya", "tomato", "potato", "carrot", "onion",
+        "emotion", "feeling", "anxiety", "stress", "trauma", "memory", "psyche", "mental", "social", "habit",
+        "market", "profit", "income", "budget", "credit", "invest", "trade", "value", "price", "stock",
+        "nature", "planet", "galaxy", "forest", "jungle", "desert", "ocean", "river", "cloud", "storm",
+        "planet", "rocket", "orbit", "comet", "meteor", "alien", "robot", "laser", "future", "pilot", "driver", "rider", "biker", "skater", "surfer", "diver", "hiker", "camper", "hunter", "fisher", "farmer", "worker", "artist", "writer", "singer", "dancer", "player", "gamer", "leader", "master", "expert", "novice", "junior", "senior", "member", "guest", "owner", "buyer", "seller", "maker", "fixer", "helper", "guard", "guide", "scout", "chief", "staff", "crew",
+        "galaxy", "planet", "meteor", "nebula", "comet", "orbit", "space", "alien", "robot", "laser", "future", "pilot", "driver", "rider", "biker", "skater", "surfer", "diver", "hiker", "camper", "hunter", "fisher", "farmer", "worker", "artist", "writer", "singer", "dancer", "player", "gamer", "leader", "master", "expert", "novice", "junior", "senior", "member", "guest", "owner", "buyer", "seller", "maker", "fixer", "helper", "guard", "guide", "scout", "chief", "staff", "crew"
+    ];
+
+    const WORDS_EN_LONG = [
+        "university", "education", "knowledge", "curriculum", "scholarship", "assignment", "graduation",
+        "psychology", "depression", "motivation", "personality", "confidence", "consciousness", "behavior",
+        "economics", "investment", "inflation", "recession", "marketing", "business", "management", "enterprise",
+        "technology", "computer", "software", "hardware", "internet", "network", "database", "security",
+        "environment", "pollution", "recycling", "sustainability", "ecosystem", "atmosphere", "evolution",
+        "championship", "tournament", "competition", "performance", "presentation", "demonstration", "explanation", "investigation", "exploration", "destination", "reservation", "cancellation", "confirmation", "registration", "application", "qualification", "certification", "graduation", "celebration", "anniversary", "imagination", "inspiration", "motivation", "dedication", "determination", "concentration", "communication", "transportation", "accommodation", "entertainment", "advertisement", "announcement", "arrangement", "development", "improvement", "achievement", "establishment", "organization", "association", "institution", "administration", "government", "environment", "measurement", "requirement", "assessment", "adjustment", "investment", "commitment", "appointment", "disappointment", "embarrassment", "encouragement", "acknowledgment", "responsibility", "representative", "characteristic", "international", "constitutional", "psychological", "technological", "philosophical", "mathematical", "geographical", "historical", "biological"
+    ];
+
+    class Tank {
+        constructor(game) {
+            this.game = game;
+            this.x = game.canvas.width / 2;
+            this.y = 0;
+            this.width = 120;
+            this.height = 60;
+            this.speed = 1.5;
+            this.dir = 1;
+            this.wheelOffset = 0;
+            this.turretAngle = -Math.PI / 2;
+            this.recoil = 0;
+            this.aimTarget = null;
+        }
+        aimAt(x, y) { this.aimTarget = {x, y}; }
+        resetAim() { this.aimTarget = null; }
+        update() {
+            this.x += this.speed * this.dir;
+            if (this.x > this.game.canvas.width - 100) this.dir = -1;
+            if (this.x < 100) this.dir = 1;
+            this.y = this.game.getTerrainHeight(this.x);
+            const nextY = this.game.getTerrainHeight(this.x + 5);
+            const prevY = this.game.getTerrainHeight(this.x - 5);
+            this.slope = Math.atan2(nextY - prevY, 10);
+            this.wheelOffset -= this.speed * this.dir * 0.2;
+            if (this.aimTarget) {
+                const dx = this.aimTarget.x - this.x;
+                const dy = this.aimTarget.y - (this.y - 40);
+                this.turretAngle = Math.atan2(dy, dx);
+            } else {
+                let targetNeutral = -Math.PI/2 + (this.dir * 0.2);
+                this.turretAngle += (targetNeutral - this.turretAngle) * 0.1;
+            }
+            if (this.recoil > 0) this.recoil -= 1;
+        }
+        shoot(targetWord) {
+            this.recoil = 15;
+            const dx = targetWord.x - this.x;
+            const dy = targetWord.y - (this.y - 40);
+            this.turretAngle = Math.atan2(dy, dx);
+            this.game.projectiles.push(new Projectile(
+                this.x + Math.cos(this.turretAngle)*60,
+                (this.y - 40) + Math.sin(this.turretAngle)*60,
+                targetWord.x, targetWord.y
+            ));
+            this.game.createExplosion(
+                this.x + Math.cos(this.turretAngle)*70,
+                (this.y - 40) + Math.sin(this.turretAngle)*70,
+                'muzzle', 5
+            );
+        }
+        draw(ctx) {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.slope);
+            ctx.fillStyle = '#1c1917';
+            ctx.beginPath(); ctx.roundRect(-60, -20, 120, 20, 10); ctx.fill();
+            ctx.strokeStyle = '#57534e'; ctx.lineWidth = 2;
+            for(let i=0; i<5; i++) {
+                const wx = -40 + i * 20;
+                ctx.beginPath(); ctx.arc(wx, -10, 8, 0, Math.PI*2); ctx.stroke();
+                ctx.save(); ctx.translate(wx, -10); ctx.rotate(this.wheelOffset);
+                ctx.beginPath(); ctx.moveTo(-8,0); ctx.lineTo(8,0); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(0,-8); ctx.lineTo(0,8); ctx.stroke();
+                ctx.restore();
+            }
+            const hullGrad = ctx.createLinearGradient(0, -50, 0, 0);
+            hullGrad.addColorStop(0, '#4d7c0f'); hullGrad.addColorStop(1, '#1a2e05');
+            ctx.fillStyle = hullGrad;
+            ctx.beginPath(); ctx.moveTo(-50, -20); ctx.lineTo(-40, -45); ctx.lineTo(40, -45); ctx.lineTo(50, -20); ctx.closePath(); ctx.fill();
+            ctx.strokeStyle = '#365314'; ctx.stroke();
+            ctx.fillStyle = '#1a2e05';
+            for(let i=0; i<4; i++) { ctx.beginPath(); ctx.arc(-30 + i*20, -30, 2, 0, Math.PI*2); ctx.fill(); }
+            ctx.save(); ctx.translate(0, -45); ctx.rotate(this.turretAngle - this.slope);
+            const recoilX = Math.max(0, this.recoil);
+            ctx.fillStyle = '#3f6212'; ctx.beginPath(); ctx.rect(0 - recoilX, -5, 60, 10); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#1a2e05'; ctx.fillRect(55 - recoilX, -7, 10, 14);
+            ctx.fillStyle = hullGrad; ctx.beginPath(); ctx.arc(0, 0, 25, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#1a2e05'; ctx.beginPath(); ctx.arc(-5, -5, 8, 0, Math.PI*2); ctx.fill();
+            ctx.restore(); ctx.restore();
+        }
+    }
+
+    class Projectile {
+        constructor(x, y, tx, ty) {
+            this.x = x; this.y = y; this.targetX = tx; this.targetY = ty;
+            this.speed = 25; this.dead = false;
+            const dx = tx - x; const dy = ty - y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            this.vx = (dx/dist) * this.speed; this.vy = (dy/dist) * this.speed;
+        }
+        update() {
+            this.x += this.vx; this.y += this.vy;
+            const dist = Math.hypot(this.x - this.targetX, this.y - this.targetY);
+            if (dist < this.speed) this.dead = true;
+        }
+        draw(ctx) {
+            ctx.fillStyle = '#fbbf24'; ctx.beginPath(); ctx.arc(this.x, this.y, 4, 0, Math.PI*2); ctx.fill();
+            ctx.strokeStyle = 'rgba(251, 191, 36, 0.5)'; ctx.beginPath(); ctx.moveTo(this.x, this.y); ctx.lineTo(this.x - this.vx*2, this.y - this.vy*2); ctx.stroke();
+        }
+    }
+
+    class Particle {
+        constructor(x, y, type) {
+            this.x = x; this.y = y; this.type = type;
+            const a = Math.random() * Math.PI * 2; const s = Math.random() * 3 + 1;
+            this.vx = Math.cos(a) * s; this.vy = Math.sin(a) * s;
+            this.life = 1.0; this.decay = Math.random() * 0.05 + 0.02;
+            if (type === 'fire') {
+                this.colorBase = [255, Math.floor(Math.random()*150 + 100), 0];
+                this.decay = Math.random() * 0.03 + 0.01; this.vx *= 1.5; this.vy *= 1.5;
+            } else if (type === 'muzzle') { this.colorBase = [255, 255, 0]; this.decay = 0.1; }
+            else { this.colorBase = [255, 255, 255]; }
+        }
+        update() { this.x += this.vx; this.y += this.vy; this.life -= this.decay; }
+        draw(ctx) {
+            ctx.globalAlpha = Math.max(0, this.life);
+            if (this.type === 'fire') {
+                if (this.life > 0.7) ctx.fillStyle = `rgb(255, 255, 0)`;
+                else if (this.life > 0.4) ctx.fillStyle = `rgb(255, 100, 0)`;
+                else if (this.life > 0.2) ctx.fillStyle = `rgb(200, 50, 0)`;
+                else ctx.fillStyle = `rgb(100, 100, 100)`;
+                const size = 3 + (1 - this.life) * 5; ctx.beginPath(); ctx.arc(this.x, this.y, size, 0, Math.PI*2); ctx.fill();
+            } else {
+                ctx.fillStyle = `rgb(${this.colorBase.join(',')})`; ctx.beginPath(); ctx.arc(this.x, this.y, 3, 0, Math.PI*2); ctx.fill();
+            }
+            ctx.globalAlpha = 1;
+        }
+    }
+
+    class Game {
+        constructor() {
+            this.canvas = document.getElementById('gameCanvas');
+            this.ctx = this.canvas.getContext('2d');
+            this.resize();
+            this.inputDisplay = document.getElementById('input-content');
+            this.inputBox = document.getElementById('input-text');
+            this.hiddenInput = document.getElementById('hidden-input');
+            this.scoreEl = document.getElementById('score-el');
+            this.levelEl = document.getElementById('level-el');
+            this.timeEl = document.getElementById('time-el');
+            this.livesEl = document.getElementById('lives-el');
+            this.startScreen = document.getElementById('start-screen');
+            this.gameOverScreen = document.getElementById('game-over-screen');
+            this.container = document.getElementById('input-display-container');
+            this.state = 'MENU';
+            this.language = 'KO';
+            this.score = 0;
+            this.level = 1;
+            this.lives = 3;
+            this.levelStartTime = 0;
+
+            this.lastSubmittedChar = '';
+            this.lastSubmitTime = 0;
+            this.levelUsedWords = new Set();
+
+            this.tank = new Tank(this);
+            this.words = [];
+            this.projectiles = [];
+            this.particles = [];
+            this.spawnTimer = 0;
+            this.currentInput = "";
+            this.difficulty = this.getDifficulty(1);
+            this.targetWord = null;
+            window.addEventListener('resize', () => this.resize());
+            this.bindInput();
+            requestAnimationFrame(t => this.loop(t));
+        }
+
+        resize() {
+            this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerHeight - 80;
+            this.groundY = this.canvas.height - 100;
+        }
+
+        bindInput() {
+            document.addEventListener('click', (e) => {
+                if (this.state === 'PLAYING' && !e.target.closest('button') && !e.target.closest('nav')) {
+                    this.hiddenInput.focus();
+                }
+            });
+
+            this.hiddenInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const val = this.hiddenInput.value.trim();
+                    const exactMatch = this.words.find(w => w.text === val);
+
+                    if (exactMatch) {
+                        this.tank.shoot(exactMatch);
+                        this.score += 10 + (this.level * 2);
+                        const idx = this.words.indexOf(exactMatch);
+                        if(idx > -1) this.words.splice(idx, 1);
+
+                        this.handleEnterSuccess(exactMatch.text);
+                        this.flashInput('valid');
+                    } else {
+                        this.handleEnterSuccess();
+                        this.flashInput('invalid');
+                    }
+                }
+            });
+
+            this.hiddenInput.addEventListener('input', (e) => {
+                if (this.state !== 'PLAYING') {
+                    this.hiddenInput.value = '';
+                    return;
+                }
+
+                let val = this.hiddenInput.value;
+
+                // --- SMART GHOST FILTER ---
+                if (this.lastSubmittedChar && (Date.now() - this.lastSubmitTime < 500)) {
+                    if (val.startsWith(this.lastSubmittedChar)) {
+                        if (val === this.lastSubmittedChar) {
+                            val = '';
+                        } else {
+                            val = val.substring(this.lastSubmittedChar.length);
+                        }
+                        this.hiddenInput.value = val;
+                    }
+                }
+
+                val = val.trim();
+                this.currentInput = val;
+
+                if (!val) {
+                    this.targetWord = null;
+                    this.updateHUD();
+                    return;
+                }
+
+                const potentialMatch = this.words.find(w => w.text.startsWith(val));
+                this.targetWord = potentialMatch || null;
+
+                this.updateHUD();
+            });
+        }
+
+        handleEnterSuccess(text) {
+            const content = text || this.hiddenInput.value.trim();
+            if (content.length > 0) {
+                this.lastSubmittedChar = content.slice(-1);
+            } else {
+                this.lastSubmittedChar = '';
+            }
+            this.lastSubmitTime = Date.now();
+
+            this.currentInput = "";
+            this.hiddenInput.value = '';
+            this.targetWord = null;
+            this.updateHUD();
+
+            // Force IME reset
+            this.hiddenInput.blur();
+            this.hiddenInput.focus();
+        }
+
+        flashInput(type) {
+            this.inputBox.classList.remove('input-valid', 'input-invalid');
+            void this.inputBox.offsetWidth;
+            if (type === 'valid') {
+                this.inputBox.classList.add('input-valid');
+                setTimeout(() => this.inputBox.classList.remove('input-valid'), 200);
+            } else {
+                this.inputBox.classList.add('input-invalid');
+                setTimeout(() => this.inputBox.classList.remove('input-invalid'), 300);
+            }
+        }
+
+        getDifficulty(level) {
+            let minWords, maxWords, speedBase, spawnRate;
+            if (level <= 3) { minWords = 1; maxWords = 4; speedBase = (0.5 + (level * 0.1)) * 0.5; spawnRate = 120; }
+            else if (level <= 7) {
+                minWords = 3;
+                maxWords = 6;
+                speedBase = 0.6 + ((level - 4) * 0.1);
+                spawnRate = 90;
+            }
+            else {
+                minWords = 6;
+                maxWords = 8;
+                speedBase = 1.1 + ((level - 8) * 0.2);
+                spawnRate = 60;
+            }
+
+            if (speedBase > 5.0) speedBase = 5.0;
+            if (this.language === 'EN') { speedBase *= 0.5; spawnRate *= 2.0; }
+            return { minWords, maxWords, speedBase, spawnRate };
+        }
+
+        start() {
+            this.state = 'PLAYING';
+            this.score = 0;
+            this.level = 1;
+            this.lives = 3;
+            this.levelStartTime = Date.now();
+            this.words = [];
+            this.projectiles = [];
+            this.particles = [];
+            this.currentInput = "";
+            this.hiddenInput.value = "";
+            this.targetWord = null;
+            this.difficulty = this.getDifficulty(1);
+            this.lastSubmittedChar = '';
+            this.levelUsedWords.clear();
+
+            this.startScreen.classList.add('hidden');
+            this.gameOverScreen.classList.add('hidden');
+            this.container.style.opacity = 1;
+            this.updateHUD();
+            this.hiddenInput.focus();
+        }
+
+        gameOver() {
+            this.state = 'GAMEOVER';
+            document.getElementById('final-score').innerText = this.score;
+            this.gameOverScreen.classList.remove('hidden');
+            this.container.style.opacity = 0;
+        }
+
+        updateHUD() {
+            this.scoreEl.innerText = this.score;
+            this.levelEl.innerText = this.level;
+            if (this.state === 'PLAYING') {
+                const elapsed = Math.floor((Date.now() - this.levelStartTime) / 1000);
+                const timeLeft = Math.max(0, 60 - elapsed);
+                this.timeEl.innerText = `${timeLeft}s`;
+            } else if (this.state === 'MENU') {
+                this.timeEl.innerText = "60s";
+            }
+            let hearts = "";
+            for(let i=0; i<this.lives; i++) hearts += "❤";
+            this.livesEl.innerText = hearts;
+            this.inputDisplay.innerText = this.currentInput;
+        }
+
+        createLevelUpEffect() {
+            const div = document.createElement('div');
+            div.innerText = `LEVEL ${this.level}`;
+            div.style.position = 'absolute';
+            div.style.top = '50%'; div.style.left = '50%';
+            div.style.transform = 'translate(-50%, -50%)';
+            div.style.fontSize = '5rem';
+            div.style.fontWeight = 'bold';
+            div.style.color = '#fbbf24';
+            div.style.textShadow = '0 0 20px orange';
+            div.style.transition = 'all 1s';
+            div.style.zIndex = 100;
+            document.body.appendChild(div);
+            setTimeout(() => {
+                div.style.opacity = 0;
+                div.style.transform = 'translate(-50%, -100%)';
+                setTimeout(() => div.remove(), 1000);
+            }, 1000);
+        }
+
+        update() {
+            if (this.state !== 'PLAYING') return;
+
+            const elapsedMs = Date.now() - this.levelStartTime;
+            if (Math.floor(elapsedMs / 1000) >= 60) {
+                if (this.level < 10) {
+                    this.level++;
+                    this.difficulty = this.getDifficulty(this.level);
+                    this.createLevelUpEffect();
+                    this.levelStartTime = Date.now();
+                    this.levelUsedWords.clear();
+                } else {
+                    this.levelStartTime = Date.now();
+                }
+            }
+            this.updateHUD();
+
+            if (this.targetWord && this.words.includes(this.targetWord)) {
+                this.tank.aimAt(this.targetWord.x, this.targetWord.y);
+            } else {
+                this.tank.resetAim();
+                this.targetWord = null;
+            }
+            this.tank.update();
+
+            this.spawnTimer++;
+            if (this.words.length < this.difficulty.minWords ||
+                (this.spawnTimer > this.difficulty.spawnRate && this.words.length < this.difficulty.maxWords)) {
+                this.spawnWord();
+                this.spawnTimer = 0;
+            }
+
+            for (let i = this.words.length - 1; i >= 0; i--) {
+                const w = this.words[i];
+                w.y += w.speed;
+                const groundHeight = this.getTerrainHeight(w.x);
+                if (w.y > groundHeight - 20) {
+                    this.createExplosion(w.x, w.y, 'ground', 10);
+                    this.words.splice(i, 1);
+                    if (w === this.targetWord) this.targetWord = null;
+                    this.lives--;
+                    this.updateHUD();
+                    this.shakeScreen();
+                    if (this.lives <= 0) {
+                        this.gameOver();
+                    }
+                }
+            }
+
+            for (let i = this.projectiles.length - 1; i >= 0; i--) {
+                const p = this.projectiles[i];
+                p.update();
+                if (p.dead) {
+                    this.createExplosion(p.targetX, p.targetY, 'fire', 30);
+                    this.projectiles.splice(i, 1);
+                }
+            }
+
+            for (let i = this.particles.length - 1; i >= 0; i--) {
+                const p = this.particles[i];
+                p.update();
+                if (p.life <= 0) this.particles.splice(i, 1);
+            }
+        }
+
+        spawnWord() {
+            let candidateList = [];
+            if (this.language === 'KO') {
+                if (this.level <= 3) candidateList = WORDS_KO_SHORT;
+                else if (this.level <= 7) candidateList = WORDS_KO_MEDIUM;
+                else candidateList = WORDS_KO_LONG;
+            } else {
+                if (this.level <= 3) candidateList = WORDS_EN_SHORT;
+                else if (this.level <= 7) candidateList = WORDS_EN_MEDIUM;
+                else candidateList = WORDS_EN_LONG;
+            }
+            if (candidateList.length === 0) candidateList = this.language === 'KO' ? WORDS_KO_SHORT : WORDS_EN_SHORT;
+
+            const availableWords = candidateList.filter(w => !this.levelUsedWords.has(w));
+
+            if (availableWords.length === 0) {
+                this.levelUsedWords.clear();
+            }
+
+            const pool = availableWords.length > 0 ? availableWords : candidateList;
+            const text = pool[Math.floor(Math.random() * pool.length)];
+
+            if (this.words.some(w => w.text === text)) return;
+
+            this.levelUsedWords.add(text);
+
+            const margin = 100;
+            const x = Math.random() * (this.canvas.width - margin * 2) + margin;
+
+            this.words.push({
+                text: text,
+                x: x,
+                y: -30,
+                speed: this.difficulty.speedBase + (Math.random() * 0.5),
+                color: '#fff'
+            });
+        }
+
+        getTerrainHeight(x) {
+            const base = this.canvas.height - 100;
+            const amp = 30;
+            const freq = 0.002;
+            return base + Math.sin(x * freq) * amp;
+        }
+
+        createExplosion(x, y, type, count) {
+            for(let i=0; i<count; i++) {
+                this.particles.push(new Particle(x, y, type));
+            }
+        }
+
+        shakeScreen() {
+            this.canvas.style.transform = `translate(${Math.random()*10-5}px, ${Math.random()*10-5}px)`;
+            setTimeout(() => this.canvas.style.transform = 'none', 50);
+        }
+
+        draw() {
+            const grad = this.ctx.createLinearGradient(0, 0, 0, this.canvas.height);
+            grad.addColorStop(0, '#020617'); grad.addColorStop(1, '#1e293b');
+            this.ctx.fillStyle = grad; this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+            this.ctx.fillStyle = '#fff';
+            for(let i=0; i<50; i++) {
+                const sx = (i * 137) % this.canvas.width; const sy = (i * 93) % (this.canvas.height/2);
+                this.ctx.globalAlpha = Math.random() * 0.5 + 0.3; this.ctx.fillRect(sx, sy, 2, 2);
+            }
+            this.ctx.globalAlpha = 1;
+            this.ctx.beginPath(); this.ctx.moveTo(0, this.canvas.height);
+            for(let x=0; x<=this.canvas.width; x+=10) { this.ctx.lineTo(x, this.getTerrainHeight(x)); }
+            this.ctx.lineTo(this.canvas.width, this.canvas.height);
+            this.ctx.fillStyle = '#111827'; this.ctx.fill(); this.ctx.strokeStyle = '#374151'; this.ctx.stroke();
+            this.tank.draw(this.ctx);
+            if (this.targetWord && this.words.includes(this.targetWord)) {
+                const turretTipX = this.tank.x + Math.cos(this.tank.turretAngle)*60;
+                const turretTipY = (this.tank.y - 40) + Math.sin(this.tank.turretAngle)*60;
+                this.ctx.save(); this.ctx.beginPath(); this.ctx.moveTo(turretTipX, turretTipY);
+                this.ctx.lineTo(this.targetWord.x, this.targetWord.y);
+                this.ctx.strokeStyle = 'rgba(239, 68, 68, 0.4)'; this.ctx.lineWidth = 2;
+                this.ctx.setLineDash([5, 5]); this.ctx.stroke(); this.ctx.restore();
+            }
+            this.ctx.textAlign = 'center'; this.ctx.textBaseline = 'middle';
+            this.words.forEach(w => {
+                const isTarget = (w === this.targetWord);
+                const paddingX = 20; const paddingY = 10;
+                const textMetrics = this.ctx.measureText(w.text);
+                const textWidth = textMetrics.width;
+                const boxW = textWidth + paddingX * 2; const boxH = 30 + paddingY;
+                const bracketLen = 10;
+                const color = isTarget ? '#ef4444' : '#64748b'; const lineWidth = isTarget ? 3 : 2;
+                this.ctx.strokeStyle = color; this.ctx.lineWidth = lineWidth; this.ctx.beginPath();
+                this.ctx.moveTo(w.x - boxW/2, w.y - boxH/2 + bracketLen); this.ctx.lineTo(w.x - boxW/2, w.y - boxH/2); this.ctx.lineTo(w.x - boxW/2 + bracketLen, w.y - boxH/2);
+                this.ctx.moveTo(w.x + boxW/2 - bracketLen, w.y - boxH/2); this.ctx.lineTo(w.x + boxW/2, w.y - boxH/2); this.ctx.lineTo(w.x + boxW/2, w.y - boxH/2 + bracketLen);
+                this.ctx.moveTo(w.x + boxW/2, w.y + boxH/2 - bracketLen); this.ctx.lineTo(w.x + boxW/2, w.y + boxH/2); this.ctx.lineTo(w.x + boxW/2 - bracketLen, w.y + boxH/2);
+                this.ctx.moveTo(w.x - boxW/2 + bracketLen, w.y + boxH/2); this.ctx.lineTo(w.x - boxW/2, w.y + boxH/2); this.ctx.lineTo(w.x - boxW/2, w.y + boxH/2 - bracketLen);
+                this.ctx.stroke();
+                if (isTarget) {
+                    this.ctx.fillStyle = 'rgba(239, 68, 68, 0.15)'; this.ctx.fillRect(w.x - boxW/2, w.y - boxH/2, boxW, boxH);
+                } else {
+                    this.ctx.fillStyle = 'rgba(15, 23, 42, 0.6)'; this.ctx.fillRect(w.x - boxW/2 + 2, w.y - boxH/2 + 2, boxW - 4, boxH - 4);
+                }
+                this.ctx.font = isTarget ? 'bold 22px "Orbitron", "Noto Sans KR"' : 'bold 20px "Orbitron", "Noto Sans KR"';
+                if (isTarget) {
+                    const matchLen = this.currentInput.length;
+                    const matchText = w.text.substring(0, matchLen); const remainText = w.text.substring(matchLen);
+                    const totalW = this.ctx.measureText(w.text).width;
+                    const matchW = this.ctx.measureText(matchText).width;
+                    const startX = w.x - totalW/2;
+                    this.ctx.fillStyle = '#4ade80'; this.ctx.fillText(matchText, startX + matchW/2, w.y);
+                    this.ctx.fillStyle = '#fff'; this.ctx.fillText(remainText, startX + matchW + (totalW-matchW)/2, w.y);
+                    this.ctx.beginPath(); this.ctx.strokeStyle = 'rgba(239, 68, 68, 0.5)'; this.ctx.lineWidth = 1;
+                    this.ctx.moveTo(w.x - boxW/2 - 5, w.y); this.ctx.lineTo(w.x + boxW/2 + 5, w.y);
+                    this.ctx.moveTo(w.x, w.y - boxH/2 - 5); this.ctx.lineTo(w.x, w.y + boxH/2 + 5);
+                    this.ctx.stroke();
+                    // NEW: Yellow Glow when ready to fire
+                    if (this.currentInput === w.text) {
+                        this.ctx.strokeStyle = '#facc15'; this.ctx.lineWidth = 3; this.ctx.strokeRect(w.x - boxW/2 - 2, w.y - boxH/2 - 2, boxW + 4, boxH + 4);
+                    }
+                } else {
+                    this.ctx.fillStyle = '#cbd5e1'; this.ctx.fillText(w.text, w.x, w.y);
+                }
+            });
+            this.projectiles.forEach(p => p.draw(this.ctx));
+            this.particles.forEach(p => p.draw(this.ctx));
+        }
+
+        loop(t) {
+            this.update();
+            this.draw();
+            requestAnimationFrame(t => this.loop(t));
+        }
+    }
+
+    let game = new Game();
+    function toggleLanguage() {
+        game.language = game.language === 'KO' ? 'EN' : 'KO';
+        document.getElementById('lang-text').innerText = game.language === 'KO' ? 'Korean' : 'English';
+        game.words = []; game.difficulty = game.getDifficulty(game.level);
+        game.levelStartTime = Date.now();
+        game.hiddenInput.value = ''; game.currentInput = '';
+        game.targetWord = null;
+        game.levelUsedWords.clear();
+        game.updateHUD();
+        game.hiddenInput.focus();
+    }
+</script>
+</body>
+</html>

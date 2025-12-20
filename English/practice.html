@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -22,14 +22,14 @@
     </script>
 
     <meta name="viewport" content="width=device-width, initial-scale=0.67, maximum-scale=1.0, user-scalable=yes">
-    <title>핑거런 | 압도적인 디자인과 성능의 영어타자연습을 경험해보세요.</title>
+    <title>핑거런 | 영어 타자연습 - 알파벳 단어 문장 단계별 학습과 AI 피드백</title>
     <link rel="icon" type="image/svg+xml" href="../images/finger-run-logo.svg">
     <link rel="shortcut icon" type="image/svg+xml" href="../images/finger-run-logo.svg">
     <link rel="apple-touch-icon" href="../images/finger-run-logo.svg">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⌨️</text></svg>">
 
     <!-- SEO 메타태그 -->
-    <meta name="description" content="압도적인 디자인과 성능을 갖춘 타자연습 사이트로 타이핑 속도와 정확도를 향상시키세요. 알파벳, 단어, 문장까지 단계별 영어타자연습 프로그램.">
+    <meta name="description" content="핑거런 영어타자연습에서 압도적인 디자인과 성능을 갖춘 영어타자연습을 경험하세요. 알파벳, 단어, 문장까지 단계별 학습과 AI 피드백으로 영어 타이핑 속도와 정확도를 효과적으로 향상시킬 수 있습니다.">
     <meta name="keywords" content="영어타자연습, English typing, 영어타자연습 사이트, 키보드연습, 무료 영어타자연습, 영타연습, 알파벳연습, 영어단어연습, 영어문장연습">
     <meta name="author" content="FingerRun">
     <meta name="robots" content="index, follow">
@@ -43,9 +43,12 @@
     <!-- 추가 SEO -->
     <link rel="canonical" href="https://fingerrun.com/English/practice.html">
 
+    <!-- 한글 사이트와 동일한 스타일 적용 -->
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; min-height: 100vh; color: #333; line-height: 1.6; }
+
+        /* Navigation */
         nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1); }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
         .logo { font-size: 1.8rem; font-weight: bold; color: #667eea; text-decoration: none; }
@@ -59,30 +62,59 @@
         .nav-menu li:hover .dropdown-arrow { transform: rotate(180deg); }
         .dropdown-menu a { display: block; padding: 0.7rem 1rem; color: #333; border-radius: 0; font-weight: 400; transition: all 0.2s ease; }
         .dropdown-menu a:hover { background: #f8f9fa; color: #667eea; transform: none; padding-left: 1.2rem; }
-        .main-container { margin-top: 80px; padding: 2rem; max-width: 1200px; margin-left: auto; margin-right: auto; }
+
+        /* Main Container */
+        .main-container { margin-top: 80px; padding: 2rem 0; max-width: 1200px; margin-left: auto; margin-right: auto; padding-left: 2rem; padding-right: 2rem; }
         .page-header { text-align: center; margin-bottom: 3rem; }
         .page-title { font-size: 2.5rem; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; }
-        .page-description { font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto; }
-        .practice-container { background: white; border-radius: 20px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1); padding: 3rem; margin-bottom: 2rem; }
-        .practice-menu { display: flex; justify-content: center; gap: 15px; margin-bottom: 3rem; flex-wrap: wrap; }
-        .menu-btn { padding: 12px 25px; border: none; border-radius: 25px; font-size: 1rem; font-weight: 500; cursor: pointer; background: #f8f9fa; color: #667eea; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+        .page-description { font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto; white-space: nowrap; }
+
+        /* Practice Container */
+        .practice-container { background: white; border-radius: 20px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1); padding: 3rem; margin-bottom: 2rem; transition: all 0.3s ease; }
+        .practice-container:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15); }
+        .practice-menu { display: flex; justify-content: center; gap: 15px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .menu-btn { padding: 12px 25px; border: none; border-radius: 25px; font-size: 1rem; font-weight: 500; cursor: pointer; background: #f8f9fa; color: #667eea; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); border: 2px solid transparent; }
         .menu-btn:hover { background: linear-gradient(45deg, #667eea, #764ba2); color: white; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3); }
         .menu-btn.active { background: linear-gradient(45deg, #667eea, #764ba2); color: white; transform: scale(1.05); box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4); }
-        .text-display { font-size: 1.8rem; line-height: 1.8; margin-bottom: 2rem; min-height: 120px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; background: #f8f9fa; border-radius: 15px; padding: 2rem; word-break: keep-all; letter-spacing: 2px; border: 2px solid #e2e8f0; text-align: center; }
+
+        /* Submenu for Finger Practice */
+        .submenu-area { display: flex; justify-content: center; gap: 8px; margin-bottom: 2rem; flex-wrap: wrap; padding: 10px; background: #f8f9fa; border-radius: 15px; border: 1px solid #e9ecef; }
+        .submenu-btn { padding: 8px 16px; border: 1px solid #e2e8f0; border-radius: 20px; font-size: 0.9rem; font-weight: 500; cursor: pointer; background: white; color: #666; transition: all 0.2s ease; }
+        .submenu-btn:hover { background: #e9ecef; color: #333; }
+        .submenu-btn.active { background: #667eea; color: white; border-color: #667eea; box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3); }
+
+        /* Practice Area */
+        .practice-area { text-align: center; margin-bottom: 3rem; }
+        .text-display { font-size: 1.8rem; line-height: 1.8; margin-bottom: 2rem; min-height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #f8f9fa; border-radius: 15px; padding: 2rem; word-break: keep-all; letter-spacing: 2px; border: 2px solid #e2e8f0; transition: all 0.3s ease; }
+        .text-display:hover { border-color: #667eea; box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1); }
         .text-display.sentence-mode { letter-spacing: 0.2px; line-height: 1.6; background: white; border: 2px solid #e2e8f0; }
-        .text-display.sentence-mode .char { margin: 0; padding: 0; background: none !important; border-radius: 0; transition: color 0.2s ease; color: #8b5cf6; font-weight: 500; box-shadow: none !important; transform: none !important; animation: none !important; }
+        .text-display.sentence-mode:hover { border-color: #667eea; box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1); }
+
         .char { margin: 3px; padding: 8px 10px; border-radius: 8px; transition: all 0.3s ease; color: #666; font-weight: 500; }
         .char.correct { color: white; background: linear-gradient(45deg, #4caf50, #45a049); transform: scale(1.1); box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); }
         .char.incorrect { color: white; background: linear-gradient(45deg, #ff6b6b, #ff5252); transform: scale(1.1); box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3); }
         .char.current { color: white; background: linear-gradient(45deg, #667eea, #764ba2); animation: pulse 1.5s infinite; transform: scale(1.15); }
-        .char.space { background: transparent !important; color: transparent; border: none; margin: 0 0.2em; }
-        .char.space.current { background: rgba(102, 126, 234, 0.2) !important; border-radius: 4px; }
+        .char.space { background: transparent !important; color: transparent; border: none; margin: 0 0.2em; display: inline-block; width: 0.5em; }
+
+        /* Sentence Mode Styles */
+        .text-display.sentence-mode .char { margin: 0; padding: 0; background: none !important; border-radius: 0; transition: color 0.2s ease; color: #8b5cf6; font-weight: 500; box-shadow: none !important; transform: none !important; animation: none !important; }
+        .text-display.sentence-mode .char.correct { color: #000000; }
+        .text-display.sentence-mode .char.incorrect { color: #ff4444; }
+        .text-display.sentence-mode .char.current { color: #3b82f6; background: none !important; }
+
         @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1.15); } 50% { opacity: 0.7; transform: scale(1.2); } }
-        .keyboard { background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); border: 2px solid #e2e8f0; margin-bottom: 2rem; }
+
+        /* Keyboard Area */
+        .keyboard-area { margin: 2rem 0; display: flex; justify-content: center; }
+        .keyboard { background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); border: 2px solid #e2e8f0; width: 100%; max-width: none; }
         .keyboard-row { display: flex; justify-content: center; margin-bottom: 0.5rem; gap: 0.3rem; }
         .keyboard-row:last-child { margin-bottom: 0; }
-        .key { background: linear-gradient(145deg, #f8f9fa, #e9ecef); border: 2px solid #e2e8f0; border-radius: 8px; padding: 0.8rem; min-width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; font-weight: 500; font-size: 0.9rem; color: #495057; transition: all 0.3s ease; cursor: pointer; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
-        .key.active { background: linear-gradient(145deg, #ff6b6b, #ff5252) !important; color: white !important; border-color: #ff4444 !important; transform: scale(1.1) !important; box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4) !important; }
+
+        .key { background: linear-gradient(145deg, #f8f9fa, #e9ecef); border: 2px solid #e2e8f0; border-radius: 8px; padding: 0.8rem; min-width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; font-weight: 500; font-size: 0.9rem; color: #495057; transition: all 0.3s ease; cursor: pointer; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); position: relative; }
+        .key:hover { background: linear-gradient(145deg, #e9ecef, #dee2e6); transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+        .key.active { transform: translateY(4px); box-shadow: 0 0 0 #cbd3da, 0 0 15px #667eea, inset 0 0 10px rgba(102, 126, 234, 0.2); border: 2px solid #667eea !important; color: #667eea !important; background: white !important; z-index: 10; }
+
+        /* Special Keys */
         .key.wide { min-width: 4rem; }
         .key.space { min-width: 12rem; }
         .key.shift { min-width: 5rem; }
@@ -93,76 +125,150 @@
         .key-dual { display: flex; flex-direction: column; align-items: center; line-height: 1.1; }
         .key-en { font-size: 0.8rem; color: #495057; font-weight: 600; }
         .key-ko { font-size: 0.7rem; color: #6c757d; }
-        .typing-input { width: 100%; padding: 18px; font-size: 1.2rem; border: 2px solid #e2e8f0; border-radius: 15px; text-align: center; outline: none; background: white; color: #333; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); margin-bottom: 2rem; }
+
+        /* Input Area */
+        .input-area { margin-bottom: 3rem; }
+        .typing-input { width: 100%; padding: 18px; font-size: 1.2rem; border: 2px solid #e2e8f0; border-radius: 15px; text-align: center; outline: none; background: white; color: #333; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
         .typing-input:focus { border-color: #667eea; box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2); transform: translateY(-2px); }
-        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; background: #f8f9fa; padding: 2rem; border-radius: 15px; border: 2px solid #e2e8f0; }
-        .stat-item { text-align: center; padding: 1.5rem; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); }
-        .stat-value { font-size: 2.2rem; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; }
+
+        /* Stats */
+        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-bottom: 2rem; border: 2px solid #e2e8f0; }
+        .stat-item { text-align: center; padding: 1.5rem; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; }
+        .stat-item:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(102, 126, 234, 0.1); }
+        .stat-value { font-size: 2.2rem; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
         .stat-label { color: #666; font-size: 1rem; font-weight: 500; }
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); display: flex; justify-content: center; align-items: center; z-index: 1000; }
-        .modal-content { background: white; padding: 3rem; border-radius: 20px; text-align: center; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); max-width: 500px; width: 90%; }
-        .complete-title { font-size: 2.8rem; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 2rem; }
+
+        /* Modal */
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); display: flex; justify-content: center; align-items: center; z-index: 1000; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-content { background: white; padding: 3rem; border-radius: 20px; text-align: center; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); max-width: 500px; width: 90%; animation: slideUp 0.5s ease; }
+        .modal-content.ai-feedback { max-width: 1000px; width: 95%; max-height: 95vh; overflow-y: auto; text-align: left; padding: 0; background: #fdfdfd; border-radius: 24px; }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .complete-title { font-size: 2.8rem; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 2rem; }
         .complete-stats { display: flex; justify-content: space-around; margin-bottom: 3rem; }
         .complete-stat { text-align: center; padding: 1.5rem; background: #f8f9fa; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); }
-        .complete-value { font-size: 2.5rem; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; }
+        .complete-value { font-size: 2.5rem; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
         .complete-label { color: #666; font-size: 1.1rem; font-weight: 500; }
-        .restart-btn { padding: 15px 40px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border: none; border-radius: 25px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3); }
-        .restart-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4); }
+
+        /* AI Feedback Styles */
+        .ai-report-container { display: grid; grid-template-columns: 300px 1fr; gap: 20px; padding: 2rem; }
+        @media (max-width: 800px) { .ai-report-container { grid-template-columns: 1fr; } }
+        .ai-sidebar { background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 16px; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; align-items: center; text-align: center; box-shadow: inset 0 0 20px rgba(0,0,0,0.03); }
+        .ai-main-content { display: flex; flex-direction: column; gap: 1.5rem; }
+        .ai-card { background: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05); transition: transform 0.2s; }
+        .ai-card:hover { transform: translateY(-2px); }
+        .ai-card-title { font-size: 1.1rem; font-weight: 700; color: #495057; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
+        .ai-card-title svg { width: 20px; height: 20px; color: #667eea; }
+
+        .neon-score { font-size: 3.5rem; font-weight: 800; color: #667eea; text-shadow: 0 0 15px rgba(102, 126, 234, 0.4); margin: 0.5rem 0; line-height: 1; }
+        .neon-grade { font-size: 1.5rem; font-weight: 700; background: linear-gradient(90deg, #667eea, #764ba2); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
+        .stat-grid-mini { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; }
+        .stat-box-mini { background: rgba(255, 255, 255, 0.6); border-radius: 12px; padding: 10px; border: 1px solid rgba(0,0,0,0.05); }
+        .stat-box-mini .label { font-size: 0.8rem; color: #868e96; }
+        .stat-box-mini .value { font-size: 1.2rem; font-weight: 700; color: #333; }
+
+        /* Bar Charts */
+        .bar-chart-container { display: flex; flex-direction: column; gap: 12px; }
+        .bar-row { display: flex; align-items: center; gap: 10px; }
+        .bar-label { width: 40px; font-weight: 700; color: #333; text-align: center; }
+        .bar-bg { flex: 1; height: 12px; background: #e9ecef; border-radius: 6px; overflow: hidden; }
+        .bar-fill { height: 100%; background: linear-gradient(90deg, #ff6b6b, #ff8787); border-radius: 6px; width: 0%; transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); }
+        .bar-value { width: 60px; font-size: 0.9rem; color: #868e96; text-align: right; }
+
+        /* Rhythm Graph */
+        .rhythm-graph { height: 60px; width: 100%; display: flex; align-items: flex-end; gap: 4px; padding-top: 10px; }
+        .rhythm-bar { flex: 1; background: rgba(102, 126, 234, 0.3); border-radius: 2px; transition: height 0.5s ease; }
+
+        .modal-buttons { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; padding-bottom: 2rem; }
+        .restart-btn, .continue-btn { padding: 15px 40px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border: none; border-radius: 25px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3); flex: 1; max-width: 200px; }
+        .continue-btn { background: linear-gradient(45deg, #28a745, #20c997); box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3); }
+        .restart-btn:hover, .continue-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5); }
+        .continue-btn:hover { box-shadow: 0 8px 25px rgba(40, 167, 69, 0.5); }
+
+        .loading { display: inline-block; width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #667eea; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 1rem; }
+        .ai-badge-container { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 5px; }
+        .ai-badge { padding: 4px 10px; border-radius: 12px; font-size: 0.85rem; font-weight: 600; }
+        .badge-red { background: #ffe3e3; color: #e03131; }
+        .badge-blue { background: #dbe4ff; color: #4263eb; }
+        .badge-green { background: #d3f9d8; color: #2b8a3e; }
+        .highlight-badge { display: inline-block; padding: 2px 8px; border-radius: 6px; font-weight: 600; font-size: 0.9em; }
+
+        /* Speedometer */
+        .speedometer { position: relative; width: 300px; height: 150px; margin: 0 auto; }
+        .speedometer-arc { width: 300px; height: 150px; border: 12px solid #e2e8f0; border-bottom: none; border-radius: 300px 300px 0 0; position: relative; background: linear-gradient(90deg, #ff4444 0%, #ffa500 25%, #ffff00 50%, #90EE90 75%, #4CAF50 100%); background-clip: padding-box; }
+        .speedometer-needle { position: absolute; bottom: 0; left: 50%; width: 6px; height: 120px; background: #333; transform-origin: bottom center; transform: translateX(-50%) rotate(-90deg); transition: transform 2s ease-in-out; border-radius: 3px; z-index: 2; }
+        .speedometer-center { position: absolute; bottom: -12px; left: 50%; width: 24px; height: 24px; background: #333; border-radius: 50%; transform: translateX(-50%); z-index: 3; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .main-container { padding: 1rem; }
-            .practice-container { padding: 2rem; }
-            .text-display { font-size: 1.4rem; padding: 1.5rem; }
-            .keyboard { padding: 1rem; }
-            .key { min-width: 2rem; height: 2rem; padding: 0.5rem; font-size: 0.8rem; }
-            .stats { grid-template-columns: 1fr; gap: 15px; }
             .nav-menu { flex-wrap: wrap; gap: 0.5rem; }
+            .nav-menu a { padding: 0.4rem 0.6rem; font-size: 0.8rem; }
+            .key { min-width: 30px; height: 40px; font-size: 0.8rem; }
+            .practice-container { padding: 1.5rem; }
+            .ai-report-container { padding: 1rem; }
+            .stats { grid-template-columns: 1fr; }
+            .keyboard { padding: 1rem; }
+            .submenu-area { flex-direction: column; align-items: stretch; }
+            .submenu-btn { width: 100%; text-align: center; }
         }
     </style>
 </head>
+
 <body>
+<!-- Navigation -->
 <nav>
     <div class="nav-container">
+        <!-- [수정] 메인으로 이동 (상위 폴더 ../index.html) -->
         <a href="../index.html" class="logo">⌨️ FingerRun</a>
         <ul class="nav-menu">
             <li><a href="../notices.html">공지사항</a></li>
+
+            <!-- 현재 페이지(한글 연습)는 그대로 유지 -->
             <li>
-                <a href="../Korean/practice.html">
+                <a href="practice.html">
                     한글 타자연습
                     <span class="dropdown-arrow">▼</span>
                 </a>
                 <div class="dropdown-menu">
-                    <a href="../Korean/practice.html" onclick="switchKoreanMode('consonant')">자음 연습</a>
-                    <a href="../Korean/practice.html" onclick="switchKoreanMode('vowel')">모음 연습</a>
-                    <a href="../Korean/practice.html" onclick="switchKoreanMode('word')">단어 연습</a>
-                    <a href="../Korean/practice.html" onclick="switchKoreanMode('sentence')">문장 연습</a>
+                    <a href="#" onclick="event.preventDefault(); window.typingPractice.changeMode('consonant')">자음 연습</a>
+                    <a href="#" onclick="event.preventDefault(); window.typingPractice.changeMode('vowel')">모음 연습</a>
+                    <a href="#" onclick="event.preventDefault(); window.typingPractice.changeMode('word')">단어 연습</a>
+                    <a href="#" onclick="event.preventDefault(); window.typingPractice.changeMode('sentence')">문장 연습</a>
                 </div>
             </li>
+
+            <!-- 영어 연습 페이지로 이동 (상위 폴더 -> English 폴더) -->
             <li>
-                <a href="./practice.html">
+                <a href="../English/practice.html">
                     영어 타자연습
                     <span class="dropdown-arrow">▼</span>
                 </a>
                 <div class="dropdown-menu">
-                    <a href="./practice.html" onclick="switchMode('alphabet')">알파벳 연습</a>
-                    <a href="./practice.html" onclick="switchMode('word')">단어 연습</a>
-                    <a href="./practice.html" onclick="switchMode('sentence')">문장 연습</a>
+                    <!-- 상위 폴더(../)로 나가서 English 폴더로 진입 -->
+                    <a href="../English/practice.html">알파벳 연습</a>
+                    <a href="../English/practice.html">단어 연습</a>
+                    <a href="../English/practice.html">문장 연습</a>
                 </div>
             </li>
+
+            <!-- [수정됨] 게임 경로: 상위 폴더(../) -> Game 폴더로 연결 -->
             <li>
-                <a href="../Korean/game-mole.html">
+                <a href="../Game/delivery.html">
                     타자게임
                     <span class="dropdown-arrow">▼</span>
                 </a>
                 <div class="dropdown-menu">
-                    <a href="../Korean/game-mole.html">두더지 잡기 (한글)</a>
-                    <a href="./game-mole.html">두더지 잡기 (영어)</a>
-                    <a href="../Korean/game-plane.html">비행기 조종 (한글)</a>
-                    <a href="./game-plane.html">비행기 조종 (영어)</a>
-                    <a href="../Korean/game-delivery.html">택배 분류 (한글)</a>
-                    <a href="./game-delivery.html">택배 분류 (영어)</a>
+                    <a href="../Game/delivery.html">택배 분류</a>
+                    <a href="../Game/mole.html">두더지 잡기</a>
+                    <a href="../Game/plane.html">비행기 조종</a>
+                    <a href="../Game/tank.html">탱크 폭격</a>
                 </div>
             </li>
+
             <li><a href="../writing.html">필사</a></li>
+
             <li>
                 <a href="../Certificate/word-processor.html">
                     자격증
@@ -172,10 +278,12 @@
                     <a href="../Certificate/word-processor.html">워드프로세서</a>
                 </div>
             </li>
+
             <li><a href="../contact.html">문의하기</a></li>
         </ul>
     </div>
 </nav>
+
 <div class="main-container">
     <div class="page-header">
         <h1 class="page-title">영어 타자 연습</h1>
@@ -187,81 +295,92 @@
             <button class="menu-btn" data-mode="word">단어연습</button>
             <button class="menu-btn" data-mode="sentence">문장연습</button>
         </div>
-        <div class="text-display" id="textDisplay"></div>
-        <div class="keyboard" id="keyboard">
-            <div class="keyboard-row">
-                <div class="key" data-key="`"><div class="key-dual"><span class="key-en">`</span><span class="key-ko">~</span></div></div>
-                <div class="key" data-key="1"><div class="key-dual"><span class="key-en">1</span><span class="key-ko">!</span></div></div>
-                <div class="key" data-key="2"><div class="key-dual"><span class="key-en">2</span><span class="key-ko">@</span></div></div>
-                <div class="key" data-key="3"><div class="key-dual"><span class="key-en">3</span><span class="key-ko">#</span></div></div>
-                <div class="key" data-key="4"><div class="key-dual"><span class="key-en">4</span><span class="key-ko">$</span></div></div>
-                <div class="key" data-key="5"><div class="key-dual"><span class="key-en">5</span><span class="key-ko">%</span></div></div>
-                <div class="key" data-key="6"><div class="key-dual"><span class="key-en">6</span><span class="key-ko">^</span></div></div>
-                <div class="key" data-key="7"><div class="key-dual"><span class="key-en">7</span><span class="key-ko">&</span></div></div>
-                <div class="key" data-key="8"><div class="key-dual"><span class="key-en">8</span><span class="key-ko">*</span></div></div>
-                <div class="key" data-key="9"><div class="key-dual"><span class="key-en">9</span><span class="key-ko">(</span></div></div>
-                <div class="key" data-key="0"><div class="key-dual"><span class="key-en">0</span><span class="key-ko">)</span></div></div>
-                <div class="key" data-key="-"><div class="key-dual"><span class="key-en">-</span><span class="key-ko">_</span></div></div>
-                <div class="key" data-key="="><div class="key-dual"><span class="key-en">=</span><span class="key-ko">+</span></div></div>
-                <div class="key backspace" data-key="Backspace">←</div>
+        <!-- Submenu for Finger Practice (Initially hidden or populated) -->
+        <div class="submenu-area" id="alphabetSubmenu" style="display:none;">
+            <!-- Buttons will be injected here via JS -->
+        </div>
+
+        <div class="practice-area">
+            <div class="text-display" id="textDisplay"></div>
+            <div class="keyboard-area">
+                <div class="keyboard" id="keyboard">
+                    <div class="keyboard-row">
+                        <div class="key" data-key="`"><div class="key-dual"><span class="key-en">`</span><span class="key-ko">~</span></div></div>
+                        <div class="key" data-key="1"><div class="key-dual"><span class="key-en">1</span><span class="key-ko">!</span></div></div>
+                        <div class="key" data-key="2"><div class="key-dual"><span class="key-en">2</span><span class="key-ko">@</span></div></div>
+                        <div class="key" data-key="3"><div class="key-dual"><span class="key-en">3</span><span class="key-ko">#</span></div></div>
+                        <div class="key" data-key="4"><div class="key-dual"><span class="key-en">4</span><span class="key-ko">$</span></div></div>
+                        <div class="key" data-key="5"><div class="key-dual"><span class="key-en">5</span><span class="key-ko">%</span></div></div>
+                        <div class="key" data-key="6"><div class="key-dual"><span class="key-en">6</span><span class="key-ko">^</span></div></div>
+                        <div class="key" data-key="7"><div class="key-dual"><span class="key-en">7</span><span class="key-ko">&</span></div></div>
+                        <div class="key" data-key="8"><div class="key-dual"><span class="key-en">8</span><span class="key-ko">*</span></div></div>
+                        <div class="key" data-key="9"><div class="key-dual"><span class="key-en">9</span><span class="key-ko">(</span></div></div>
+                        <div class="key" data-key="0"><div class="key-dual"><span class="key-en">0</span><span class="key-ko">)</span></div></div>
+                        <div class="key" data-key="-"><div class="key-dual"><span class="key-en">-</span><span class="key-ko">_</span></div></div>
+                        <div class="key" data-key="="><div class="key-dual"><span class="key-en">=</span><span class="key-ko">+</span></div></div>
+                        <div class="key backspace" data-key="Backspace">←</div>
+                    </div>
+                    <div class="keyboard-row">
+                        <div class="key tab" data-key="Tab">Tab</div>
+                        <div class="key" data-key="q"><div class="key-dual"><span class="key-en">Q</span><span class="key-ko">q</span></div></div>
+                        <div class="key" data-key="w"><div class="key-dual"><span class="key-en">W</span><span class="key-ko">w</span></div></div>
+                        <div class="key" data-key="e"><div class="key-dual"><span class="key-en">E</span><span class="key-ko">e</span></div></div>
+                        <div class="key" data-key="r"><div class="key-dual"><span class="key-en">R</span><span class="key-ko">r</span></div></div>
+                        <div class="key" data-key="t"><div class="key-dual"><span class="key-en">T</span><span class="key-ko">t</span></div></div>
+                        <div class="key" data-key="y"><div class="key-dual"><span class="key-en">Y</span><span class="key-ko">y</span></div></div>
+                        <div class="key" data-key="u"><div class="key-dual"><span class="key-en">U</span><span class="key-ko">u</span></div></div>
+                        <div class="key" data-key="i"><div class="key-dual"><span class="key-en">I</span><span class="key-ko">i</span></div></div>
+                        <div class="key" data-key="o"><div class="key-dual"><span class="key-en">O</span><span class="key-ko">o</span></div></div>
+                        <div class="key" data-key="p"><div class="key-dual"><span class="key-en">P</span><span class="key-ko">p</span></div></div>
+                        <div class="key" data-key="["><div class="key-dual"><span class="key-en">[</span><span class="key-ko">{</span></div></div>
+                        <div class="key" data-key="]"><div class="key-dual"><span class="key-en">]</span><span class="key-ko">}</span></div></div>
+                        <div class="key" data-key="\\"><div class="key-dual"><span class="key-en">\\</span><span class="key-ko">|</span></div></div>
+                    </div>
+                    <div class="keyboard-row">
+                        <div class="key caps" data-key="CapsLock">Caps</div>
+                        <div class="key" data-key="a"><div class="key-dual"><span class="key-en">A</span><span class="key-ko">a</span></div></div>
+                        <div class="key" data-key="s"><div class="key-dual"><span class="key-en">S</span><span class="key-ko">s</span></div></div>
+                        <div class="key" data-key="d"><div class="key-dual"><span class="key-en">D</span><span class="key-ko">d</span></div></div>
+                        <div class="key" data-key="f"><div class="key-dual"><span class="key-en">F</span><span class="key-ko">f</span></div></div>
+                        <div class="key" data-key="g"><div class="key-dual"><span class="key-en">G</span><span class="key-ko">g</span></div></div>
+                        <div class="key" data-key="h"><div class="key-dual"><span class="key-en">H</span><span class="key-ko">h</span></div></div>
+                        <div class="key" data-key="j"><div class="key-dual"><span class="key-en">J</span><span class="key-ko">j</span></div></div>
+                        <div class="key" data-key="k"><div class="key-dual"><span class="key-en">K</span><span class="key-ko">k</span></div></div>
+                        <div class="key" data-key="l"><div class="key-dual"><span class="key-en">L</span><span class="key-ko">l</span></div></div>
+                        <div class="key" data-key=";"><div class="key-dual"><span class="key-en">;</span><span class="key-ko">:</span></div></div>
+                        <div class="key" data-key="'"><div class="key-dual"><span class="key-en">'</span><span class="key-ko">"</span></div></div>
+                        <div class="key enter" data-key="Enter">Enter</div>
+                    </div>
+                    <div class="keyboard-row">
+                        <div class="key shift" data-key="ShiftLeft">Shift</div>
+                        <div class="key" data-key="z"><div class="key-dual"><span class="key-en">Z</span><span class="key-ko">z</span></div></div>
+                        <div class="key" data-key="x"><div class="key-dual"><span class="key-en">X</span><span class="key-ko">x</span></div></div>
+                        <div class="key" data-key="c"><div class="key-dual"><span class="key-en">C</span><span class="key-ko">c</span></div></div>
+                        <div class="key" data-key="v"><div class="key-dual"><span class="key-en">V</span><span class="key-ko">v</span></div></div>
+                        <div class="key" data-key="b"><div class="key-dual"><span class="key-en">B</span><span class="key-ko">b</span></div></div>
+                        <div class="key" data-key="n"><div class="key-dual"><span class="key-en">N</span><span class="key-ko">n</span></div></div>
+                        <div class="key" data-key="m"><div class="key-dual"><span class="key-en">M</span><span class="key-ko">m</span></div></div>
+                        <div class="key" data-key=","><div class="key-dual"><span class="key-en">,</span><span class="key-ko"><</span></div></div>
+                        <div class="key" data-key="."><div class="key-dual"><span class="key-en">.</span><span class="key-ko">></span></div></div>
+                        <div class="key" data-key="/"><div class="key-dual"><span class="key-en">/</span><span class="key-ko">?</span></div></div>
+                        <div class="key shift" data-key="ShiftRight">Shift</div>
+                    </div>
+                    <div class="keyboard-row">
+                        <div class="key wide" data-key="ControlLeft">Ctrl</div>
+                        <div class="key wide" data-key="MetaLeft">Win</div>
+                        <div class="key wide" data-key="AltLeft">Alt</div>
+                        <div class="key space" data-key=" ">Space</div>
+                        <div class="key wide" data-key="AltRight">Alt</div>
+                        <div class="key wide" data-key="MetaRight">Win</div>
+                        <div class="key wide" data-key="ContextMenu">Menu</div>
+                        <div class="key wide" data-key="ControlRight">Ctrl</div>
+                    </div>
+                </div>
             </div>
-            <div class="keyboard-row">
-                <div class="key tab" data-key="Tab">Tab</div>
-                <div class="key" data-key="q"><div class="key-dual"><span class="key-en">Q</span><span class="key-ko">q</span></div></div>
-                <div class="key" data-key="w"><div class="key-dual"><span class="key-en">W</span><span class="key-ko">w</span></div></div>
-                <div class="key" data-key="e"><div class="key-dual"><span class="key-en">E</span><span class="key-ko">e</span></div></div>
-                <div class="key" data-key="r"><div class="key-dual"><span class="key-en">R</span><span class="key-ko">r</span></div></div>
-                <div class="key" data-key="t"><div class="key-dual"><span class="key-en">T</span><span class="key-ko">t</span></div></div>
-                <div class="key" data-key="y"><div class="key-dual"><span class="key-en">Y</span><span class="key-ko">y</span></div></div>
-                <div class="key" data-key="u"><div class="key-dual"><span class="key-en">U</span><span class="key-ko">u</span></div></div>
-                <div class="key" data-key="i"><div class="key-dual"><span class="key-en">I</span><span class="key-ko">i</span></div></div>
-                <div class="key" data-key="o"><div class="key-dual"><span class="key-en">O</span><span class="key-ko">o</span></div></div>
-                <div class="key" data-key="p"><div class="key-dual"><span class="key-en">P</span><span class="key-ko">p</span></div></div>
-                <div class="key" data-key="["><div class="key-dual"><span class="key-en">[</span><span class="key-ko">{</span></div></div>
-                <div class="key" data-key="]"><div class="key-dual"><span class="key-en">]</span><span class="key-ko">}</span></div></div>
-                <div class="key" data-key="\\"><div class="key-dual"><span class="key-en">\\</span><span class="key-ko">|</span></div></div>
-            </div>
-            <div class="keyboard-row">
-                <div class="key caps" data-key="CapsLock">Caps</div>
-                <div class="key" data-key="a"><div class="key-dual"><span class="key-en">A</span><span class="key-ko">a</span></div></div>
-                <div class="key" data-key="s"><div class="key-dual"><span class="key-en">S</span><span class="key-ko">s</span></div></div>
-                <div class="key" data-key="d"><div class="key-dual"><span class="key-en">D</span><span class="key-ko">d</span></div></div>
-                <div class="key" data-key="f"><div class="key-dual"><span class="key-en">F</span><span class="key-ko">f</span></div></div>
-                <div class="key" data-key="g"><div class="key-dual"><span class="key-en">G</span><span class="key-ko">g</span></div></div>
-                <div class="key" data-key="h"><div class="key-dual"><span class="key-en">H</span><span class="key-ko">h</span></div></div>
-                <div class="key" data-key="j"><div class="key-dual"><span class="key-en">J</span><span class="key-ko">j</span></div></div>
-                <div class="key" data-key="k"><div class="key-dual"><span class="key-en">K</span><span class="key-ko">k</span></div></div>
-                <div class="key" data-key="l"><div class="key-dual"><span class="key-en">L</span><span class="key-ko">l</span></div></div>
-                <div class="key" data-key=";"><div class="key-dual"><span class="key-en">;</span><span class="key-ko">:</span></div></div>
-                <div class="key" data-key="'"><div class="key-dual"><span class="key-en">'</span><span class="key-ko">"</span></div></div>
-                <div class="key enter" data-key="Enter">Enter</div>
-            </div>
-            <div class="keyboard-row">
-                <div class="key shift" data-key="ShiftLeft">Shift</div>
-                <div class="key" data-key="z"><div class="key-dual"><span class="key-en">Z</span><span class="key-ko">z</span></div></div>
-                <div class="key" data-key="x"><div class="key-dual"><span class="key-en">X</span><span class="key-ko">x</span></div></div>
-                <div class="key" data-key="c"><div class="key-dual"><span class="key-en">C</span><span class="key-ko">c</span></div></div>
-                <div class="key" data-key="v"><div class="key-dual"><span class="key-en">V</span><span class="key-ko">v</span></div></div>
-                <div class="key" data-key="b"><div class="key-dual"><span class="key-en">B</span><span class="key-ko">b</span></div></div>
-                <div class="key" data-key="n"><div class="key-dual"><span class="key-en">N</span><span class="key-ko">n</span></div></div>
-                <div class="key" data-key="m"><div class="key-dual"><span class="key-en">M</span><span class="key-ko">m</span></div></div>
-                <div class="key" data-key=","><div class="key-dual"><span class="key-en">,</span><span class="key-ko"><</span></div></div>
-                <div class="key" data-key="."><div class="key-dual"><span class="key-en">.</span><span class="key-ko">></span></div></div>
-                <div class="key" data-key="/"><div class="key-dual"><span class="key-en">/</span><span class="key-ko">?</span></div></div>
-                <div class="key shift" data-key="ShiftRight">Shift</div>
-            </div>
-            <div class="keyboard-row">
-                <div class="key wide" data-key="ControlLeft">Ctrl</div>
-                <div class="key wide" data-key="MetaLeft">Win</div>
-                <div class="key wide" data-key="AltLeft">Alt</div>
-                <div class="key space" data-key=" ">Space</div>
-                <div class="key wide" data-key="AltRight">Alt</div>
-                <div class="key wide" data-key="MetaRight">Win</div>
-                <div class="key wide" data-key="ContextMenu">Menu</div>
-                <div class="key wide" data-key="ControlRight">Ctrl</div>
+            <div class="input-area">
+                <input type="text" class="typing-input" id="typingInput" placeholder="Type here...">
             </div>
         </div>
-        <input type="text" class="typing-input" id="typingInput" placeholder="Type here...">
         <div class="stats">
             <div class="stat-item">
                 <div class="stat-value" id="accuracy">100%</div>
@@ -278,27 +397,20 @@
         </div>
     </div>
     <div class="modal" id="completeModal" style="display: none;">
-        <div class="modal-content">
-            <h2 class="complete-title">연습 완료! 🎉</h2>
-            <div class="complete-stats">
-                <div class="complete-stat">
-                    <div class="complete-value" id="finalAccuracy">100%</div>
-                    <div class="complete-label">최종 정확도</div>
-                </div>
-                <div class="complete-stat">
-                    <div class="complete-value" id="finalSpeed">0</div>
-                    <div class="complete-label">평균 속도</div>
-                </div>
-            </div>
-            <button class="restart-btn" id="restartBtn">다시 시작</button>
+        <div class="modal-content" id="modalContent">
+            <!-- Dynamic Content -->
         </div>
     </div>
 </div>
 <script>
     class EnglishTypingPractice {
         constructor() {
+            this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
             this.currentMode = 'alphabet';
+            this.currentSubMode = 'all'; // Default sub-mode for alphabet
             this.currentText = '';
+            this.currentTranslation = '';
             this.currentPosition = 0;
             this.startTime = null;
             this.totalChars = 0;
@@ -309,93 +421,350 @@
             this.usedSentences = [];
             this.sessionSpeeds = [];
             this.sessionAccuracies = [];
+
+            // AI 분석용 데이터
+            this.sentenceTypingData = [];
+            this.sentenceMistakes = [];
+            this.sentenceKeyTimings = [];
+            this.sentenceStartTime = null;
+            this.lastKeyTime = null;
+            this.lastKeyPressed = null;
+            this.keyLatencies = {};
+            this.speedHistory = [];
+            this.sentenceStats = [];
+
+            // 손가락별 연습 세트 정의
+            this.fingerSets = {
+                'all': { label: '전체 (A-Z)', chars: 'abcdefghijklmnopqrstuvwxyz' },
+                'left-pinky': { label: '왼손 새끼', chars: 'qaz' },
+                'left-ring': { label: '왼손 약지', chars: 'wsx' },
+                'left-middle': { label: '왼손 중지', chars: 'edc' },
+                'left-index': { label: '왼손 검지', chars: 'rfvtgb' },
+                'right-index': { label: '오른손 검지', chars: 'yhnujm' },
+                'right-middle': { label: '오른손 중지', chars: 'ik' },
+                'right-ring': { label: '오른손 약지', chars: 'ol' },
+                'right-pinky': { label: '오른손 새끼', chars: 'p' }
+            };
+
+            // 키보드 위치 매핑
+            this.keyPositions = {
+                'q': [1, 0], 'w': [1, 1], 'e': [1, 2], 'r': [1, 3], 't': [1, 4],
+                'y': [1, 5], 'u': [1, 6], 'i': [1, 7], 'o': [1, 8], 'p': [1, 9],
+                'a': [2, 0], 's': [2, 1], 'd': [2, 2], 'f': [2, 3], 'g': [2, 4],
+                'h': [2, 5], 'j': [2, 6], 'k': [2, 7], 'l': [2, 8],
+                'z': [3, 0], 'x': [3, 1], 'c': [3, 2], 'v': [3, 3], 'b': [3, 4],
+                'n': [3, 5], 'm': [3, 6], ' ': [4, 0]
+            };
+
+            this.fingerAssignment = {
+                'q': '왼손 새끼', 'a': '왼손 새끼', 'z': '왼손 새끼',
+                'w': '왼손 약지', 's': '왼손 약지', 'x': '왼손 약지',
+                'e': '왼손 중지', 'd': '왼손 중지', 'c': '왼손 중지',
+                'r': '왼손 검지', 'f': '왼손 검지', 'v': '왼손 검지', 't': '왼손 검지', 'g': '왼손 검지', 'b': '왼손 검지',
+                'y': '오른손 검지', 'h': '오른손 검지', 'n': '오른손 검지', 'u': '오른손 검지', 'j': '오른손 검지', 'm': '오른손 검지',
+                'i': '오른손 중지', 'k': '오른손 중지',
+                'o': '오른손 약지', 'l': '오른손 약지',
+                'p': '오른손 새끼',
+                ' ': '엄지'
+            };
+
             this.keyboardMap = {
                 'a': 'a', 'b': 'b', 'c': 'c', 'd': 'd', 'e': 'e', 'f': 'f', 'g': 'g', 'h': 'h', 'i': 'i', 'j': 'j', 'k': 'k', 'l': 'l', 'm': 'm', 'n': 'n', 'o': 'o', 'p': 'p', 'q': 'q', 'r': 'r', 's': 's', 't': 't', 'u': 'u', 'v': 'v', 'w': 'w', 'x': 'x', 'y': 'y', 'z': 'z',
                 'A': 'a', 'B': 'b', 'C': 'c', 'D': 'd', 'E': 'e', 'F': 'f', 'G': 'g', 'H': 'h', 'I': 'i', 'J': 'j', 'K': 'k', 'L': 'l', 'M': 'm', 'N': 'n', 'O': 'o', 'P': 'p', 'Q': 'q', 'R': 'r', 'S': 's', 'T': 't', 'U': 'u', 'V': 'v', 'W': 'w', 'X': 'x', 'Y': 'y', 'Z': 'z',
                 '1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', '0': '0',
                 '.': '.', ',': ',', '?': '/', '!': '1', ';': ';', ':': ';', "'": "'", '"': "'", ' ': ' '
             };
+
             this.practiceData = {
                 alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
-                word: ['apple', 'book', 'computer', 'dream', 'effort', 'freedom', 'growth', 'history', 'idea', 'journey', 'knowledge', 'love', 'music', 'nature', 'ocean', 'peace', 'question', 'river', 'science', 'time', 'adventure', 'beauty', 'challenge', 'culture', 'discovery', 'energy', 'future', 'happiness', 'inspiration', 'justice', 'kindness', 'learning', 'memory', 'opportunity', 'progress', 'respect', 'success', 'trust', 'vision', 'wisdom', 'art', 'balance', 'courage', 'desire', 'emotion', 'friendship', 'goal', 'hope', 'imagination', 'life', 'motivation', 'passion', 'reason', 'skill', 'talent', 'unity', 'value', 'work', 'youth', 'zeal', 'action', 'belief', 'change', 'community', 'decision', 'environment', 'focus', 'gratitude', 'health', 'innovation', 'joy', 'leadership', 'mind', 'power', 'quality', 'resource', 'spirit', 'team', 'understanding', 'victory', 'amazing', 'brilliant', 'creative', 'dynamic', 'elegant', 'fantastic', 'genuine', 'honest', 'incredible', 'joyful', 'kind', 'lovely', 'magnificent', 'noble', 'optimistic', 'positive', 'quiet', 'remarkable', 'sincere', 'thoughtful', 'unique', 'vibrant', 'wonderful', 'excellent', 'young', 'zealous', 'ambitious', 'bright', 'confident', 'determined', 'enthusiastic', 'faithful', 'generous', 'helpful', 'intelligent', 'jovial', 'knowledgeable', 'logical', 'mature', 'natural', 'organized', 'patient', 'quick', 'reliable', 'strong', 'talented', 'understanding', 'versatile', 'wise', 'extraordinary', 'youthful', 'zestful', 'active', 'brave', 'calm', 'dedicated', 'efficient', 'flexible', 'graceful', 'humble', 'innovative', 'just', 'keen', 'loyal', 'mindful', 'neat', 'open', 'practical', 'quick-witted', 'responsible', 'stable', 'trustworthy', 'uplifting', 'valuable', 'warm', 'expressive', 'youthful-spirit', 'zen-like', 'accomplished', 'benevolent', 'cheerful', 'diligent', 'empathetic', 'forgiving', 'gracious', 'hardworking', 'insightful', 'jubilant', 'kindhearted'],
-                sentence: ['The quick brown fox jumps over the lazy dog.', 'Success comes from hard work and dedication.', 'Learning is a lifelong journey of discovery.', 'Nature inspires us to live in harmony.', 'Dreams fuel our motivation to achieve greatness.', 'Innovation drives progress in the modern world.', 'Kindness is the key to building strong communities.', 'The beauty of art lies in its expression.', 'Courage allows us to face challenges with confidence.', 'Knowledge empowers us to shape the future.', 'Music connects people across cultures and time.', 'A journey of a thousand miles begins with a single step.', 'Hope is the light that guides us through darkness.', 'Teamwork makes the dream work.', 'The environment needs our care and protection.', 'Every challenge is an opportunity for growth.', 'Happiness is found in the simplest moments.', 'Wisdom comes from experience and reflection.', 'Freedom is the foundation of a just society.', 'Creativity unlocks endless possibilities.', 'The stars remind us of our place in the universe.', 'Effort today leads to success tomorrow.', 'Respect is earned through actions, not words.', 'The ocean is a vast and mysterious world.', 'Learning from failure builds resilience.', 'Gratitude transforms our perspective on life.', 'Peace begins with understanding and empathy.', 'The future belongs to those who prepare today.', 'Love is the universal language of humanity.', 'Adventure awaits those who seek it.', 'Time is the most precious gift we can give to others.', 'Education opens doors to countless opportunities.', 'Patience is a virtue that leads to great rewards.', 'Laughter is the best medicine for the soul.', 'Books are windows to different worlds and perspectives.', 'Technology has revolutionized the way we communicate.', 'Friendship is one of life\'s greatest treasures.', 'Hard work and persistence always pay off.', 'The journey matters more than the destination.', 'Small acts of kindness can change the world.', 'Curiosity is the engine of achievement.', 'Honesty builds trust and lasting relationships.', 'Diversity makes our communities stronger and richer.', 'Exercise keeps both body and mind healthy.', 'Art has the power to inspire and heal.', 'Family bonds provide strength and support.', 'Reading expands our imagination and knowledge.', 'Fresh air and sunshine boost our energy.', 'Good communication prevents misunderstandings.', 'Practice makes perfect in any skill.', 'Sleep is essential for mental and physical health.', 'Water is the source of all life on Earth.', 'Mountains teach us about strength and endurance.', 'Gardens remind us of growth and renewal.', 'Sunsets paint the sky with magical colors.', 'Rain brings life to the earth and all living things.', 'Trees provide oxygen and shelter for many creatures.', 'Flowers brighten our days with their beauty.', 'Birds sing melodies that lift our spirits.', 'Seasons change, teaching us about life cycles.']
+                word: [
+                    {en: 'apple', ko: '사과'}, {en: 'book', ko: '책'}, {en: 'computer', ko: '컴퓨터'}, {en: 'dream', ko: '꿈'}, {en: 'effort', ko: '노력'},
+                    {en: 'freedom', ko: '자유'}, {en: 'growth', ko: '성장'}, {en: 'history', ko: '역사'}, {en: 'idea', ko: '아이디어'}, {en: 'journey', ko: '여행'},
+                    {en: 'knowledge', ko: '지식'}, {en: 'love', ko: '사랑'}, {en: 'music', ko: '음악'}, {en: 'nature', ko: '자연'}, {en: 'ocean', ko: '바다'},
+                    {en: 'peace', ko: '평화'}, {en: 'question', ko: '질문'}, {en: 'river', ko: '강'}, {en: 'science', ko: '과학'}, {en: 'time', ko: '시간'},
+                    {en: 'adventure', ko: '모험'}, {en: 'beauty', ko: '아름다움'}, {en: 'challenge', ko: '도전'}, {en: 'culture', ko: '문화'}, {en: 'discovery', ko: '발견'},
+                    {en: 'energy', ko: '에너지'}, {en: 'future', ko: '미래'}, {en: 'happiness', ko: '행복'}, {en: 'inspiration', ko: '영감'}, {en: 'justice', ko: '정의'},
+                    {en: 'kindness', ko: '친절'}, {en: 'learning', ko: '학습'}, {en: 'memory', ko: '기억'}, {en: 'opportunity', ko: '기회'}, {en: 'progress', ko: '발전'},
+                    {en: 'respect', ko: '존경'}, {en: 'success', ko: '성공'}, {en: 'trust', ko: '신뢰'}, {en: 'vision', ko: '비전'}, {en: 'wisdom', ko: '지혜'},
+                    {en: 'balance', ko: '균형'}, {en: 'creative', ko: '창조적인'}, {en: 'purpose', ko: '목적'}, {en: 'gentle', ko: '부드러운'}, {en: 'bright', ko: '밝은'},
+                    {en: 'strong', ko: '강한'}, {en: 'wonder', ko: '경이'}, {en: 'explore', ko: '탐험하다'}, {en: 'believe', ko: '믿다'}, {en: 'achieve', ko: '달성하다'},
+                    {en: 'harmony', ko: '조화'}, {en: 'passion', ko: '열정'}, {en: 'courage', ko: '용기'}, {en: 'honest', ko: '정직한'}, {en: 'patient', ko: '인내심 있는'},
+                    {en: 'grateful', ko: '감사하는'}, {en: 'humble', ko: '겸손한'}, {en: 'joyful', ko: '기쁜'}, {en: 'mindful', ko: '주의 깊은'}, {en: 'positive', ko: '긍정적인'},
+                    {en: 'brave', ko: '용감한'}, {en: 'calm', ko: '침착한'}, {en: 'clever', ko: '영리한'}, {en: 'eager', ko: '열망하는'}, {en: 'fair', ko: '공정한'},
+                    {en: 'grand', ko: '웅장한'}, {en: 'keen', ko: '날카로운'}, {en: 'loyal', ko: '충실한'}, {en: 'proud', ko: '자랑스러운'}, {en: 'sharp', ko: '예리한'},
+                    {en: 'blank', ko: '빈'}, {en: 'drift', ko: '표류'}, {en: 'flame', ko: '불꽃'}, {en: 'glory', ko: '영광'}, {en: 'hurry', ko: '서두름'},
+                    {en: 'index', ko: '색인'}, {en: 'kneel', ko: '무릎꿇다'}, {en: 'magic', ko: '마법'}, {en: 'novel', ko: '소설'}, {en: 'orbit', ko: '궤도'},
+                    {en: 'planet', ko: '행성'}, {en: 'quiet', ko: '조용한'}, {en: 'royal', ko: '왕실의'}, {en: 'storm', ko: '폭풍'}, {en: 'trade', ko: '무역'},
+                    {en: 'unity', ko: '통일'}, {en: 'value', ko: '가치'}, {en: 'world', ko: '세계'}, {en: 'xerox', ko: '복사'}, {en: 'young', ko: '젊은'},
+                    {en: 'zebra', ko: '얼룩말'}, {en: 'angel', ko: '천사'}, {en: 'bread', ko: '빵'}, {en: 'cloud', ko: '구름'}, {en: 'dance', ko: '춤'},
+                    {en: 'eagle', ko: '독수리'}, {en: 'faith', ko: '믿음'}, {en: 'ghost', ko: '유령'}, {en: 'heart', ko: '마음'}, {en: 'image', ko: '이미지'},
+                    {en: 'jolly', ko: '명랑한'}, {en: 'knock', ko: '노크'}, {en: 'lemon', ko: '레몬'}, {en: 'melon', ko: '멜론'}, {en: 'night', ko: '밤'},
+                    {en: 'opera', ko: '오페라'}, {en: 'party', ko: '파티'}, {en: 'queen', ko: '여왕'}, {en: 'radio', ko: '라디오'}, {en: 'snake', ko: '뱀'},
+                    {en: 'tiger', ko: '호랑이'}, {en: 'union', ko: '연합'}, {en: 'voice', ko: '목소리'}, {en: 'watch', ko: '시계'}, {en: 'xenon', ko: '크세논'},
+                    {en: 'yacht', ko: '요트'}, {en: 'zone', ko: '구역'}, {en: 'actor', ko: '배우'}, {en: 'beach', ko: '해변'}, {en: 'candy', ko: '사탕'}
+                ],
+                sentence: [
+                    {en: 'Beauty is in the eye of the beholder.', ko: '아름다움은 보는 이의 눈에 달려 있다.'},
+                    {en: 'Don\'t count your chickens before they hatch.', ko: '김칫국부터 마시지 마라.'},
+                    {en: 'Hope for the best, prepare for the worst.', ko: '최선을 바라되 최악을 대비하라.'},
+                    {en: 'The pen is mightier than the sword.', ko: '펜은 칼보다 강하다.'},
+                    {en: 'Where there\'s a will, there\'s a way.', ko: '뜻이 있는 곳에 길이 있다.'},
+                    {en: 'You can\'t judge a book by its cover.', ko: '겉모습만 보고 판단하지 마라.'},
+                    {en: 'A picture is worth a thousand words.', ko: '백문이 불여일견.'},
+                    {en: 'All good things must come to an end.', ko: '모든 좋은 일에는 끝이 있다.'},
+                    {en: 'Good things come to those who wait.', ko: '좋은 일은 기다리는 자에게 온다.'},
+                    {en: 'Necessity is the mother of invention.', ko: '필요는 발명의 어머니.'},
+                    {en: 'The grass is always greener on the other side.', ko: '남의 떡이 더 커 보인다.'},
+                    {en: 'To err is human; to forgive, divine.', ko: '실수는 인간의 것이요, 용서는 신의 것이다.'},
+                    {en: 'A friend in need is a friend indeed.', ko: '어려울 때 친구가 진정한 친구다.'},
+                    {en: 'Absence makes the heart grow fonder.', ko: '떨어져 있으면 그리움이 더해진다.'},
+                    {en: 'Don\'t bite the hand that feeds you.', ko: '배은망덕하지 마라.'},
+                    {en: 'Don\'t put all your eggs in one basket.', ko: '한 바구니에 계란을 다 담지 마라.'},
+                    {en: 'God helps those who help themselves.', ko: '하늘은 스스로 돕는 자를 돕는다.'},
+                    {en: 'Keep your friends close and enemies closer.', ko: '친구는 가까이, 적은 더 가까이 둬라.'},
+                    {en: 'Never put off till tomorrow what you can do today.', ko: '오늘 할 일을 내일로 미루지 마라.'},
+                    {en: 'One man\'s meat is another man\'s poison.', ko: '갑의 약은 을의 독이 될 수 있다.'},
+                    {en: 'When the going gets tough, the tough get going.', ko: '상황이 힘들수록 강인한 사람들은 더 힘을 낸다.'},
+                    {en: 'You can\'t have your cake and eat it too.', ko: '두 마리 토끼를 다 잡을 순 없다.'},
+                    {en: 'An apple a day keeps the doctor away.', ko: '사과 하루 한 알이면 의사가 필요 없다.'},
+                    {en: 'Don\'t put the cart before the horse.', ko: '주객이 전도되어서는 안 된다.'},
+                    {en: 'Jack of all trades, master of none.', ko: '재주 많은 사람이 굶어 죽는다.'},
+                    {en: 'The love of money is the root of all evil.', ko: '돈을 사랑함이 일만 악의 뿌리다.'},
+                    {en: 'Out of the frying pan and into the fire.', ko: '산 넘어 산이다.'},
+                    {en: 'What doesn\'t kill you makes you stronger.', ko: '시련은 너를 더 강하게 만든다.'},
+                    {en: 'You can\'t teach an old dog new tricks.', ko: '늙은 개에게 새로운 재주를 가르칠 수 없다.'},
+                    {en: 'Only a life lived for others is a life worthwhile.', ko: '남을 위해 산 인생만이 가치 있는 삶이다.'},
+                    {en: 'Don\'t let yesterday take up too much of today.', ko: '어제가 오늘을 너무 많이 차지하게 하지 마라.'},
+                    {en: 'You learn more from failure than from success.', ko: '성공보다 실패에서 더 많은 것을 배운다.'},
+                    {en: 'The best way to predict the future is to create it.', ko: '미래를 예측하는 가장 좋은 방법은 미래를 만드는 것이다.'},
+                    {en: 'When you stop dreaming you stop living.', ko: '꿈꾸기를 멈추면 사는 것을 멈추는 것이다.'},
+                    {en: 'Be the change that you wish to see in the world.', ko: '세상에서 보고 싶은 변화가 되어라.'},
+                    {en: 'We accept the love we think we deserve.', ko: '우리는 자격이 있다고 생각하는 사랑을 받아들인다.'},
+                    {en: 'Without music, life would be a mistake.', ko: '음악이 없다면 인생은 실수일 것이다.'},
+                    {en: 'Everything you can imagine is real.', ko: '상상할 수 있는 모든 것은 현실이다.'},
+                    {en: 'You can\'t blame gravity for falling in love.', ko: '사랑에 빠지는 것을 중력 탓으로 돌릴 순 없다.'},
+                    {en: 'A day without laughter is a day wasted.', ko: '웃음 없는 하루는 낭비한 하루다.'},
+                    {en: 'There is no remedy for love but to love more.', ko: '사랑에 대한 치료법은 더 사랑하는 것뿐이다.'},
+                    {en: 'Being deeply loved by someone gives you strength.', ko: '누군가에게 깊이 사랑받는 것은 힘을 준다.'},
+                    {en: 'The only thing we have to fear is fear itself.', ko: '우리가 두려워해야 할 유일한 것은 두려움 그 자체다.'},
+                    {en: 'Ask not what your country can do for you.', ko: '국가가 당신을 위해 무엇을 할 수 있는지 묻지 마라.'},
+                    {en: 'Believe you can and you\'re halfway there.', ko: '할 수 있다고 믿으면 절반은 온 것이다.'},
+                    {en: 'It always seems impossible until it\'s done.', ko: '완료되기 전까지는 항상 불가능해 보인다.'},
+                    {en: 'The purpose of our lives is to be happy.', ko: '우리 삶의 목적은 행복해지는 것이다.'},
+                    {en: 'You only live once, but if you do it right.', ko: '인생은 한 번뿐이지만, 제대로 산다면 한 번으로 충분하다.'},
+                    {en: 'Life is a flower of which love is the honey.', ko: '인생은 꽃이고 사랑은 그 꿀이다.'},
+                    {en: 'Love all, trust a few, do wrong to none.', ko: '모두를 사랑하고, 소수를 믿으며, 누구에게도 해를 끼치지 마라.'}
+                ]
             };
+
             this.init();
         }
+
         init() {
             this.bindEvents();
+            this.renderSubmenu();
             this.generateText();
             this.updateDisplay();
         }
+
+        renderSubmenu() {
+            const container = document.getElementById('alphabetSubmenu');
+            container.innerHTML = '';
+
+            Object.keys(this.fingerSets).forEach(key => {
+                const btn = document.createElement('button');
+                btn.className = 'submenu-btn' + (this.currentSubMode === key ? ' active' : '');
+                btn.textContent = this.fingerSets[key].label;
+                btn.dataset.submode = key;
+                btn.addEventListener('click', (e) => {
+                    this.changeSubMode(key);
+                });
+                container.appendChild(btn);
+            });
+        }
+
+        changeSubMode(subMode) {
+            this.currentSubMode = subMode;
+            this.currentProblem = 0;
+            this.resetStats();
+
+            // Update UI active state
+            document.querySelectorAll('.submenu-btn').forEach(btn => {
+                if (btn.dataset.submode === subMode) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+
+            this.generateText();
+            this.updateDisplay();
+
+            const input = document.getElementById('typingInput');
+            input.value = '';
+            input.focus();
+        }
+
+        playKeySound(isCorrect = true) {
+            if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
+            const osc = this.audioCtx.createOscillator();
+            const gain = this.audioCtx.createGain();
+
+            if (isCorrect) {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, this.audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(300, this.audioCtx.currentTime + 0.03);
+                gain.gain.setValueAtTime(0.1, this.audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + 0.03);
+                osc.start();
+                osc.stop(this.audioCtx.currentTime + 0.05);
+            } else {
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(200, this.audioCtx.currentTime);
+                osc.frequency.linearRampToValueAtTime(100, this.audioCtx.currentTime + 0.1);
+                gain.gain.setValueAtTime(0.08, this.audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + 0.1);
+                osc.start();
+                osc.stop(this.audioCtx.currentTime + 0.1);
+            }
+
+            osc.connect(gain);
+            gain.connect(this.audioCtx.destination);
+        }
+
         bindEvents() {
             document.querySelectorAll('.menu-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     this.changeMode(e.target.dataset.mode);
                 });
             });
+
             const typingInput = document.getElementById('typingInput');
             typingInput.addEventListener('input', (e) => {
                 this.handleInput(e.target.value);
             });
+
             typingInput.addEventListener('keydown', (e) => {
+                if (this.currentMode === 'sentence') {
+                    this.recordKeyTiming(e.key);
+                }
+
                 if ((e.key === ' ' || e.key === 'Enter') && this.currentPosition >= this.currentText.length) {
                     e.preventDefault();
                     this.nextProblem();
                 }
             });
-            document.getElementById('restartBtn').addEventListener('click', () => {
-                this.restart();
-            });
         }
+
+        recordKeyTiming(key) {
+            const now = Date.now();
+            if (this.lastKeyTime) {
+                const interval = now - this.lastKeyTime;
+                this.sentenceKeyTimings.push({
+                    key: key,
+                    interval: interval,
+                    position: this.currentPosition,
+                    timestamp: now - this.sentenceStartTime
+                });
+
+                if (!this.keyLatencies[key]) this.keyLatencies[key] = [];
+                this.keyLatencies[key].push(interval);
+
+                if (interval > 0 && interval < 2000) {
+                    const instantCPM = Math.round(60000 / interval);
+                    this.speedHistory.push(instantCPM);
+                }
+            }
+            this.lastKeyTime = now;
+            this.lastKeyPressed = key;
+        }
+
         changeMode(mode) {
             this.currentMode = mode;
             this.currentProblem = 0;
             this.resetStats();
+
+            const submenu = document.getElementById('alphabetSubmenu');
+
+            if (mode === 'sentence') {
+                this.totalProblems = 3;
+                this.sentenceTypingData = [];
+                this.sentenceMistakes = [];
+                this.sentenceKeyTimings = [];
+                this.sentenceStats = [];
+                this.keyLatencies = {};
+                this.speedHistory = [];
+                submenu.style.display = 'none';
+            } else if (mode === 'word') {
+                this.totalProblems = 5;
+                submenu.style.display = 'none';
+            } else {
+                this.totalProblems = 10;
+                submenu.style.display = 'flex'; // Show submenu only for alphabet
+                // Reset to 'all' or keep previous submode? Let's keep previous for UX,
+                // or reset if needed. Keeping previous is fine.
+            }
+
             document.querySelectorAll('.menu-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
+
             this.generateText();
             this.updateDisplay();
             document.getElementById('typingInput').value = '';
             document.getElementById('typingInput').focus();
         }
+
         generateText() {
-            this.startTime = Date.now(); // Initialize startTime for each problem
-            const data = this.practiceData[this.currentMode];
             if (this.currentMode === 'alphabet') {
+                // Use submode chars
+                const charsString = this.fingerSets[this.currentSubMode].chars;
                 const selected = [];
                 for (let i = 0; i < 7; i++) {
-                    selected.push(data[Math.floor(Math.random() * data.length)]);
+                    const char = charsString.charAt(Math.floor(Math.random() * charsString.length));
+                    selected.push(char);
                 }
                 this.currentText = selected.join(' ');
+                this.currentTranslation = '';
             } else if (this.currentMode === 'word') {
-                const availableWords = data.filter(word => !this.usedWords.includes(word));
-                const wordsToUse = availableWords.length >= 3 ? availableWords : data;
+                const data = this.practiceData[this.currentMode];
+                const availableWords = data.filter(word => !this.usedWords.includes(word.en));
+                const wordsToUse = availableWords.length >= 2 ? availableWords : data;
                 const selected = [];
                 const tempUsed = [...wordsToUse];
-                for (let i = 0; i < 3 && tempUsed.length > 0; i++) {
+                for (let i = 0; i < 2 && tempUsed.length > 0; i++) {
                     const randomIndex = Math.floor(Math.random() * tempUsed.length);
                     const selectedWord = tempUsed[randomIndex];
                     selected.push(selectedWord);
-                    if (availableWords.length >= 3) {
-                        this.usedWords.push(selectedWord);
+                    if (availableWords.length >= 2) {
+                        this.usedWords.push(selectedWord.en);
                     }
                     tempUsed.splice(randomIndex, 1);
                 }
-                this.currentText = selected.join(' ');
+                this.currentText = selected.map(w => w.en).join(' ');
+                this.currentTranslation = selected.map(w => w.ko).join(' / ');
             } else {
-                const availableSentences = data.filter(sentence => !this.usedSentences.includes(sentence));
+                const data = this.practiceData[this.currentMode];
+                const availableSentences = data.filter(sentence => !this.usedSentences.includes(sentence.en));
                 const sentencesToUse = availableSentences.length > 0 ? availableSentences : data;
                 const randomIndex = Math.floor(Math.random() * sentencesToUse.length);
-                this.currentText = sentencesToUse[randomIndex];
+                const selectedSentence = sentencesToUse[randomIndex];
+                this.currentText = selectedSentence.en;
+                this.currentTranslation = selectedSentence.ko;
                 if (availableSentences.length > 0) {
-                    this.usedSentences.push(this.currentText);
+                    this.usedSentences.push(selectedSentence.en);
                 }
             }
+
             this.currentPosition = 0;
             this.correctChars = 0;
             this.totalChars = 0;
+
+            if (this.currentMode === 'sentence') {
+                this.sentenceStartTime = null;
+                this.lastKeyTime = null;
+                this.sentenceKeyTimings = [];
+                this.lastKeyPressed = null;
+            }
+
             this.updateKeyboardHighlight();
             const textDisplay = document.getElementById('textDisplay');
             if (this.currentMode === 'sentence') {
@@ -404,6 +773,7 @@
                 textDisplay.classList.remove('sentence-mode');
             }
         }
+
         updateKeyboardHighlight() {
             document.querySelectorAll('.key').forEach(key => {
                 key.classList.remove('active');
@@ -425,17 +795,17 @@
                 }
             }
         }
-        countChars(text) {
-            return text.length;
-        }
+
         updateDisplay() {
             const display = document.getElementById('textDisplay');
             display.innerHTML = '';
+
+            const textContainer = document.createElement('div');
             for (let i = 0; i < this.currentText.length; i++) {
                 const span = document.createElement('span');
                 span.className = 'char';
                 if (this.currentText[i] === ' ') {
-                    span.innerHTML = ' ';
+                    span.innerHTML = '&nbsp;';
                     span.classList.add('space');
                 } else {
                     span.textContent = this.currentText[i];
@@ -445,14 +815,28 @@
                 } else if (i === this.currentPosition) {
                     span.classList.add('current');
                 }
-                display.appendChild(span);
+                textContainer.appendChild(span);
             }
+            display.appendChild(textContainer);
+
+            if (this.currentTranslation && (this.currentMode === 'word' || this.currentMode === 'sentence')) {
+                const translationDiv = document.createElement('div');
+                translationDiv.style.fontSize = '1rem';
+                translationDiv.style.color = '#666';
+                translationDiv.style.marginTop = this.currentMode === 'sentence' ? '1.5rem' : '1rem';
+                translationDiv.style.fontWeight = '400';
+                translationDiv.style.lineHeight = '1.4';
+                translationDiv.textContent = this.currentTranslation;
+                display.appendChild(translationDiv);
+            }
+
             if (this.currentMode === 'sentence') {
                 this.applyInitialColors();
             }
             this.updateKeyboardHighlight();
             document.getElementById('progress').textContent = `${this.currentProblem + 1}/${this.totalProblems}`;
         }
+
         applyInitialColors() {
             const chars = document.querySelectorAll('.char');
             chars.forEach(char => {
@@ -464,19 +848,40 @@
                 char.style.transform = 'none';
             });
         }
+
         handleInput(inputValue) {
             if (!this.startTime) {
                 this.startTime = Date.now();
+                if (this.currentMode === 'sentence') {
+                    this.sentenceStartTime = Date.now();
+                    this.lastKeyTime = this.startTime;
+                }
             }
+
+            // Sound Effect Logic
+            if (inputValue.length > 0) {
+                const lastIdx = inputValue.length - 1;
+                if (lastIdx < this.currentText.length) {
+                    if (inputValue[lastIdx] === this.currentText[lastIdx]) {
+                        this.playKeySound(true);
+                    } else {
+                        this.playKeySound(false);
+                    }
+                }
+            }
+
             this.correctChars = 0;
-            this.totalChars = this.countChars(inputValue);
+            this.totalChars = inputValue.length;
             const chars = document.querySelectorAll('.char');
+
             for (let i = 0; i < inputValue.length && i < this.currentText.length; i++) {
                 if (inputValue[i] === this.currentText[i]) {
                     this.correctChars += 1;
                 }
             }
+
             if (this.currentMode === 'sentence') {
+                let mistakes = [];
                 for (let i = 0; i < this.currentText.length; i++) {
                     const char = chars[i];
                     if (!char) continue;
@@ -486,13 +891,24 @@
                     char.style.boxShadow = 'none';
                     char.style.transform = 'none';
                     if (i < inputValue.length) {
-                        char.style.color = inputValue[i] === this.currentText[i] ? '#000000' : '#ff4444';
+                        if (inputValue[i] === this.currentText[i]) {
+                            char.style.color = '#000000';
+                        } else {
+                            char.style.color = '#ff4444';
+                            mistakes.push({
+                                position: i,
+                                expected: this.currentText[i],
+                                actual: inputValue[i],
+                                timestamp: Date.now() - this.sentenceStartTime
+                            });
+                        }
                     } else if (i === inputValue.length) {
                         char.style.color = '#3b82f6';
                     } else {
                         char.style.color = '#8b5cf6';
                     }
                 }
+                this.sentenceMistakes = mistakes;
             } else {
                 for (let i = 0; i < this.currentText.length; i++) {
                     const char = chars[i];
@@ -507,15 +923,61 @@
                     }
                 }
             }
+
             this.currentPosition = inputValue.length;
             this.updateStats();
             this.updateKeyboardHighlight();
+
             if (inputValue.length >= this.currentText.length) {
                 this.showNextButton(inputValue);
+                if (inputValue === this.currentText) {
+                    if (this.currentMode === 'sentence') {
+                        const currentAccuracy = parseInt(document.getElementById('accuracy').textContent.replace('%', ''));
+                        const currentSpeed = parseInt(document.getElementById('speed').textContent);
+
+                        const sentenceData = {
+                            sentenceNumber: this.currentProblem + 1,
+                            accuracy: currentAccuracy,
+                            speed: currentSpeed
+                        };
+
+                        this.sentenceStats.push(sentenceData);
+                    }
+
+                    this.recordSentenceData();
+                }
             }
         }
+
+        recordSentenceData() {
+            if (this.currentMode === 'sentence') {
+                const sentenceTime = Date.now() - this.sentenceStartTime;
+                const currentTextCharCount = this.currentText.length;
+                const inputValue = document.getElementById('typingInput').value;
+                let currentCorrectChars = 0;
+
+                for (let i = 0; i < Math.min(inputValue.length, this.currentText.length); i++) {
+                    if (inputValue[i] === this.currentText[i]) {
+                        currentCorrectChars += 1;
+                    }
+                }
+
+                const accuracy = currentTextCharCount > 0 ? Math.round((currentCorrectChars / currentTextCharCount) * 100) : 100;
+                const cpm = Math.round((currentTextCharCount / (sentenceTime / 1000)) * 60);
+
+                this.sentenceTypingData.push({
+                    sentence: this.currentText,
+                    time: sentenceTime,
+                    accuracy: accuracy,
+                    wpm: cpm,
+                    mistakes: [...this.sentenceMistakes],
+                    keyTimings: [...this.sentenceKeyTimings]
+                });
+            }
+        }
+
         updateStats() {
-            const accuracy = this.totalChars > 0 ? Math.round((this.correctChars / this.totalChars) * 100) : 0;
+            const accuracy = this.totalChars > 0 ? Math.round((this.correctChars / this.totalChars) * 100) : 100;
             document.getElementById('accuracy').textContent = `${accuracy}%`;
             if (this.startTime) {
                 const elapsed = (Date.now() - this.startTime) / 1000;
@@ -525,6 +987,7 @@
                 document.getElementById('speed').textContent = '0';
             }
         }
+
         showNextButton(inputValue) {
             const correctChars = inputValue.slice(0, this.currentText.length).split('').reduce((acc, char, i) => {
                 return acc + (char === this.currentText[i] ? 1 : 0);
@@ -536,8 +999,10 @@
             this.sessionAccuracies.push(accuracy);
             this.sessionSpeeds.push(cpm);
         }
+
         nextProblem() {
             this.currentProblem++;
+
             if (this.currentProblem >= this.totalProblems) {
                 this.showComplete();
             } else {
@@ -545,33 +1010,233 @@
                 this.updateDisplay();
                 document.getElementById('typingInput').value = '';
                 document.getElementById('typingInput').focus();
+                this.startTime = null;
             }
         }
-        showComplete() {
-            const avgAccuracy = this.sessionAccuracies.length > 0
-                ? Math.round(this.sessionAccuracies.reduce((a, b) => a + b, 0) / this.sessionAccuracies.length)
-                : 0;
-            const avgSpeed = this.sessionSpeeds.length > 0
-                ? Math.round(this.sessionSpeeds.reduce((a, b) => a + b, 0) / this.sessionSpeeds.length)
-                : 0;
-            document.getElementById('finalAccuracy').textContent = `${avgAccuracy}%`;
-            document.getElementById('finalSpeed').textContent = avgSpeed;
-            document.getElementById('completeModal').style.display = 'flex';
+
+        // New Analytics Helpers
+        analyzeFingerPerformance() {
+            const fingerStats = {};
+            for (let [key, latencies] of Object.entries(this.keyLatencies)) {
+                let engKey = key.toLowerCase();
+                if (key === ' ') engKey = ' ';
+                let finger = this.fingerAssignment[engKey] || 'Unknown';
+                if(finger === 'Unknown') continue;
+                if(!fingerStats[finger]) fingerStats[finger] = [];
+                fingerStats[finger].push(...latencies);
+            }
+
+            const result = [];
+            for(let [finger, times] of Object.entries(fingerStats)) {
+                const avg = times.reduce((a,b)=>a+b,0) / times.length;
+                result.push({ finger, avg });
+            }
+            return result.sort((a,b) => b.avg - a.avg);
         }
-        restart() {
+
+        generateSparkline(data) {
+            if(!data || data.length < 2) return '';
+            const max = Math.max(...data, 100);
+            const min = 0;
+            const range = max - min;
+            const width = 100;
+            const height = 40;
+
+            const points = data.map((val, i) => {
+                const x = (i / (data.length - 1)) * width;
+                const y = height - ((val - min) / range) * height;
+                return `${x},${y}`;
+            }).join(' ');
+
+            return `<svg viewBox="0 0 100 40" preserveAspectRatio="none" style="width:100%; height:100%; overflow:visible;"><polyline fill="none" stroke="#667eea" stroke-width="2" points="${points}" vector-effect="non-scaling-stroke" /></svg>`;
+        }
+
+        analyzeSlowCharacters() {
+            const avgLatencies = [];
+            for (let key in this.keyLatencies) {
+                const times = this.keyLatencies[key];
+                if (times.length > 0) {
+                    const avg = times.reduce((a,b)=>a+b,0) / times.length;
+                    avgLatencies.push({ key, time: avg });
+                }
+            }
+            avgLatencies.sort((a,b) => b.time - a.time);
+            return avgLatencies.slice(0, 3);
+        }
+
+        generateAIAdvice(speed, acc, weakFinger) {
+            if(acc < 95) return `정확도가 ${acc}%로 다소 불안정합니다. 속도를 조금 늦추더라도 오타를 줄이는 연습이 최우선입니다.`;
+            if(weakFinger.includes('Pinky')) return `새끼손가락(${weakFinger})의 반응이 다른 손가락보다 느립니다. 해당 손가락이 담당하는 키(ㅁ, ㅂ, ㅋ 등)를 의식적으로 연습해보세요.`;
+            if(speed > 400) return `훌륭한 실력입니다! 이제는 장문의 영문 글을 통해 호흡이 긴 타이핑에서도 리듬을 잃지 않는 훈련을 권장합니다.`;
+            return `기본기는 잡혀있습니다. 이제 ${weakFinger} 손가락의 유연성을 기르면 300타 이상으로 쉽게 진입할 수 있습니다.`;
+        }
+
+        showComplete() {
+            if (this.currentMode === 'sentence') {
+                this.showAIFeedback();
+            } else {
+                const avgAccuracy = this.sessionAccuracies.length > 0
+                    ? Math.round(this.sessionAccuracies.reduce((a, b) => a + b, 0) / this.sessionAccuracies.length)
+                    : 0;
+                const avgSpeed = this.sessionSpeeds.length > 0
+                    ? Math.round(this.sessionSpeeds.reduce((a, b) => a + b, 0) / this.sessionSpeeds.length)
+                    : 0;
+
+                const modal = document.getElementById('completeModal');
+                const content = document.getElementById('modalContent');
+                content.className = 'modal-content';
+
+                let buttonsHtml = `
+                        <button class="restart-btn" id="restartBtn">다시 시작</button>
+                    `;
+
+                if (this.currentMode === 'word') {
+                    buttonsHtml += `<button class="continue-btn" id="continueBtn">더 풀기</button>`;
+                }
+
+                content.innerHTML = `
+                        <h2 class="complete-title">연습 완료! 🎉</h2>
+                        <div class="complete-stats">
+                            <div class="complete-stat">
+                                <div class="complete-value">${avgAccuracy}%</div>
+                                <div class="complete-label">최종 정확도</div>
+                            </div>
+                            <div class="complete-stat">
+                                <div class="complete-value">${avgSpeed}</div>
+                                <div class="complete-label">평균 속도</div>
+                            </div>
+                        </div>
+                        <div class="modal-buttons">
+                            ${buttonsHtml}
+                        </div>
+                    `;
+
+                document.getElementById('restartBtn').addEventListener('click', () => this.restart());
+                if (document.getElementById('continueBtn')) {
+                    document.getElementById('continueBtn').addEventListener('click', () => this.continuePractice());
+                }
+
+                modal.style.display = 'flex';
+            }
+        }
+
+        async showAIFeedback() {
+            const modal = document.getElementById('completeModal');
+            const content = document.getElementById('modalContent');
+            content.className = 'modal-content ai-feedback';
+            content.innerHTML = `<div style="text-align:center; padding:3rem;"><div class="loading"></div><h2 style="font-size:1.5rem; margin-bottom:10px;">AI 타이핑 분석 중...</h2><p style="color:#666;">입력 패턴, 리듬, 손가락 밸런스를 분석하고 있습니다.</p></div>`;
+            modal.style.display = 'flex';
+            setTimeout(() => this.renderAIReport(content), 1500);
+        }
+
+        renderAIReport(content) {
+            const totalSpeed = this.sentenceStats.reduce((a,b)=>a+b.speed,0) / this.sentenceStats.length;
+            const totalAcc = this.sentenceStats.reduce((a,b)=>a+b.accuracy,0) / this.sentenceStats.length;
+            const avgSpeed = Math.round(totalSpeed) || 0;
+            const avgAcc = Math.round(totalAcc) || 0;
+
+            const slowKeys = this.analyzeSlowCharacters();
+            const fingerPerf = this.analyzeFingerPerformance();
+            const rhythmGraph = this.generateSparkline(this.speedHistory);
+            const weakestFinger = fingerPerf.length > 0 ? fingerPerf[0] : { finger: '분석 필요', avg: 0 };
+
+            let grade = "C", gradeColor = "#868e96";
+            if(avgSpeed > 500 && avgAcc > 98) { grade = "S"; gradeColor = "#d63384"; }
+            else if(avgSpeed > 400) { grade = "A"; gradeColor = "#667eea"; }
+            else if(avgSpeed > 300) { grade = "B"; gradeColor = "#40c057"; }
+
+            content.innerHTML = `
+                    <div class="ai-report-container">
+                        <div class="ai-sidebar">
+                            <h2 style="margin:0; color:#333;">종합 분석</h2>
+                            <div class="neon-score">${Math.round((avgSpeed + avgAcc)/2)}</div>
+                            <div class="neon-grade" style="color:${gradeColor}">Grade ${grade}</div>
+                            <div class="stat-grid-mini">
+                                <div class="stat-box-mini"><div class="label">평균 속도</div><div class="value">${avgSpeed} <span style="font-size:0.8rem">타/분</span></div></div>
+                                <div class="stat-box-mini"><div class="label">정확도</div><div class="value">${avgAcc}%</div></div>
+                            </div>
+                            <div class="speedometer" style="transform:scale(0.8); margin-top:20px;">
+                                <div class="speedometer-arc"></div>
+                                <div class="speedometer-needle" style="transform: translateX(-50%) rotate(${Math.min(90, Math.max(-90, (avgSpeed - 300)*0.5))}deg);"></div>
+                                <div class="speedometer-center"></div>
+                            </div>
+                        </div>
+                        <div class="ai-main-content">
+                            <div class="ai-card">
+                                <div class="ai-card-title"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>타이핑 리듬 분석 (Consistency)</div>
+                                <div class="rhythm-graph">${rhythmGraph}</div>
+                                <p style="font-size:0.9rem; color:#666; margin-top:10px;">그래프의 굴곡이 적을수록 안정적인 타건 리듬을 유지하고 있다는 뜻입니다.</p>
+                            </div>
+                            <div class="ai-card">
+                                <div class="ai-card-title"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>취약점 정밀 진단</div>
+                                <div class="bar-chart-container">
+                                    <div class="bar-row"><div style="font-size:0.9rem; width:100%;"><strong>가장 망설인 키:</strong> ${slowKeys.map(k => `<span class="highlight-badge badge-red" style="margin-right:5px;">${k.key}</span>`).join('') || '없음'}</div></div>
+                                    <div class="bar-row" style="margin-top:10px;"><div style="font-size:0.9rem; width:100%;"><strong>가장 느린 손가락:</strong> <span class="highlight-badge badge-blue">${weakestFinger.finger}</span></div></div>
+                                </div>
+                            </div>
+                            <div class="ai-card" style="border-left: 4px solid #667eea;">
+                                <div class="ai-card-title"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>AI 맞춤형 솔루션</div>
+                                <div class="feedback-text">${this.generateAIAdvice(avgSpeed, avgAcc, weakestFinger.finger)}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-buttons">
+                        <button class="restart-btn" id="aiRestartBtn">다시 시작하기</button>
+                        <button class="continue-btn" id="aiContinueBtn">더 연습하기</button>
+                    </div>
+                `;
+            document.getElementById('aiRestartBtn').addEventListener('click', () => this.restart());
+            document.getElementById('aiContinueBtn').addEventListener('click', () => this.continuePractice());
+            setTimeout(() => { document.querySelectorAll('.bar-fill').forEach(el => { el.style.width = el.getAttribute('data-width'); }); }, 100);
+        }
+
+        continuePractice() {
             this.currentProblem = 0;
+            if (this.currentMode !== 'word') {
+                this.usedWords = [];
+                this.usedSentences = [];
+            }
             this.sessionSpeeds = [];
             this.sessionAccuracies = [];
-            this.resetStats();
             this.generateText();
             this.updateDisplay();
             document.getElementById('typingInput').value = '';
             document.getElementById('completeModal').style.display = 'none';
+            document.getElementById('modalContent').className = 'modal-content';
             document.getElementById('typingInput').focus();
         }
+
+        restart() {
+            this.currentProblem = 0;
+            this.resetStats();
+            this.sessionSpeeds = [];
+            this.sessionAccuracies = [];
+            this.usedWords = [];
+            this.usedSentences = [];
+
+            if (this.currentMode === 'sentence') {
+                this.sentenceTypingData = [];
+                this.sentenceMistakes = [];
+                this.sentenceKeyTimings = [];
+                this.keyLatencies = {};
+                this.speedHistory = [];
+                this.sentenceStats = [];
+            }
+
+            this.generateText();
+            this.updateDisplay();
+            document.getElementById('typingInput').value = '';
+            document.getElementById('completeModal').style.display = 'none';
+            document.getElementById('modalContent').className = 'modal-content';
+            document.getElementById('typingInput').focus();
+        }
+
         resetStats() {
             this.currentPosition = 0;
             this.startTime = null;
+            this.sentenceStartTime = null;
+            this.lastKeyTime = null;
+            this.lastKeyPressed = null;
             this.totalChars = 0;
             this.correctChars = 0;
             document.getElementById('accuracy').textContent = '100%';
@@ -579,17 +1244,26 @@
             document.getElementById('progress').textContent = `1/${this.totalProblems}`;
         }
     }
+
     function switchMode(mode) {
         if (window.englishTypingPractice) {
             window.englishTypingPractice.changeMode(mode);
         }
     }
-    function switchKoreanMode(mode) {
-        const modeNames = { 'consonant': '자음', 'vowel': '모음', 'word': '단어', 'sentence': '문장' };
-        alert(`한글 ${modeNames[mode]}연습을 시작합니다!\n\n한글 타자연습 페이지로 이동합니다.`);
-    }
+
     document.addEventListener('DOMContentLoaded', () => {
         window.englishTypingPractice = new EnglishTypingPractice();
+
+        // URL 파라미터 확인하여 모드 설정
+        const urlParams = new URLSearchParams(window.location.search);
+        const mode = urlParams.get('mode');
+
+        if (mode && ['alphabet', 'word', 'sentence'].includes(mode)) {
+            window.englishTypingPractice.changeMode(mode);
+        } else {
+            // 초기 실행 시 서브메뉴 렌더링을 위해 changeMode 호출
+            window.englishTypingPractice.changeMode('alphabet');
+        }
     });
 </script>
 </body>

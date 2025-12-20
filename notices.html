@@ -15,7 +15,10 @@
     </script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공지사항 | 핑거런</title>
+    <meta name="description" content="핑거런 공지사항 페이지에서 타자연습 서비스의 최신 소식, 업데이트 정보, 서비스 이용 가이드, 이용약관을 확인하세요. 한글/영어 타자연습과 다양한 타자게임 관련 정보, 개인정보처리방침까지 모든 정보를 제공하는 종합 안내 페이지입니다.">
+    <meta name="keywords" content="핑거런 공지사항, 타자연습 최신소식, 서비스 업데이트, 서비스 이용가이드, 이용약관, 타자연습 가이드, 타자게임 가이드">
+    <title>핑거런 | 공지사항 - 타자연습 서비스 최신 소식과 이용 가이드</title>
+    <link rel="icon" type="image/svg+xml" href="images/finger-run-logo.svg">
 
     <style>
         * {
@@ -63,7 +66,7 @@
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 1rem;
+            gap: 1.5rem;
             flex-wrap: nowrap;
             white-space: nowrap;
         }
@@ -410,106 +413,71 @@
             transform: scale(1.1);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-menu {
-                gap: 0.5rem;
-            }
-
-            .nav-menu a {
-                padding: 0.4rem 0.6rem;
-                font-size: 0.8rem;
-            }
-
-            .content-container {
-                padding: 2rem;
-                margin: 1rem 0;
-            }
-
-            .page-title {
-                font-size: 2rem;
-            }
-
-            .tab-menu {
-                gap: 8px;
-            }
-
-            .tab-btn {
-                padding: 8px 16px;
-                font-size: 0.85rem;
-            }
-
-            .main-container {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
+        @media (max-width: 900px) {
+            .nav-menu { display: none; }
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .content-container {
-            animation: fadeInUp 0.8s ease-out;
-        }
     </style>
 </head>
 <body>
 <!-- Navigation -->
 <nav>
     <div class="nav-container">
-        <a href="./index.html" class="logo">⌨️ FingerRun</a>
+        <a href="index.html" class="logo">⌨️ FingerRun</a>
         <ul class="nav-menu">
-            <li><a href="./notices.html">공지사항</a></li>
+            <li><a href="notices.html">공지사항</a></li>
+
             <li>
-                <a href="#korean">
+                <a href="Korean/practice.html">
                     한글 타자연습
                     <span class="dropdown-arrow">▼</span>
                 </a>
                 <div class="dropdown-menu">
-                    <a href="./Korean/practice.html">자음연습</a>
-                    <a href="./Korean/practice.html">모음연습</a>
-                    <a href="./Korean/practice.html">단어연습</a>
-                    <a href="./Korean/practice.html">문장연습</a>
+                    <a href="Korean/practice.html">자음 연습</a>
+                    <a href="Korean/practice.html">모음 연습</a>
+                    <a href="Korean/practice.html">단어 연습</a>
+                    <a href="Korean/practice.html">문장 연습</a>
                 </div>
             </li>
+
             <li>
-                <a href="#english">
+                <a href="English/practice.html">
                     영어 타자연습
                     <span class="dropdown-arrow">▼</span>
                 </a>
                 <div class="dropdown-menu">
-                    <a href="./English/practice.html">알파벳연습</a>
-                    <a href="./English/practice.html">단어연습</a>
-                    <a href="./English/practice.html">문장연습</a>
+                    <a href="English/practice.html">알파벳 연습</a>
+                    <a href="English/practice.html">단어 연습</a>
+                    <a href="English/practice.html">문장 연습</a>
                 </div>
             </li>
+
             <li>
-                <a href="#games">
+                <a href="Game/delivery.html">
                     타자게임
                     <span class="dropdown-arrow">▼</span>
                 </a>
                 <div class="dropdown-menu">
-                    <a href="./Korean/game-mole.html">두더지 잡기 (한글)</a>
-                    <a href="./English/game-mole.html">두더지 잡기 (영어)</a>
-                    <a href="./Korean/game-plane.html">비행기 조종 (한글)</a>
-                    <a href="./English/game-plane.html">비행기 조종 (영어)</a>
-                    <a href="./Korean/game-delivery.html">택배 분류 (한글)</a>
-                    <a href="./English/game-delivery.html">택배 분류 (영어)</a>
+                    <a href="Game/delivery.html">택배 분류</a>
+                    <a href="Game/mole.html">두더지 잡기</a>
+                    <a href="Game/plane.html">비행기 조종</a>
+                    <a href="Game/tank.html">탱크 폭격</a>
                 </div>
             </li>
-            <li><a href="./writing.html">필사</a></li>
+
+            <li><a href="writing.html">필사</a></li>
+
             <li>
-                <a href="#certificate">
+                <a href="Certificate/word-processor.html">
                     자격증
                     <span class="dropdown-arrow">▼</span>
                 </a>
                 <div class="dropdown-menu">
-                    <a href="./Certificate/word-processor.html">워드프로세서</a>
+                    <a href="Certificate/word-processor.html">워드프로세서</a>
                 </div>
             </li>
-            <li><a href="./contact.html">문의하기</a></li>
+
+            <li><a href="contact.html">문의하기</a></li>
         </ul>
     </div>
 </nav>
@@ -537,6 +505,17 @@
             <!-- 공지사항 탭 -->
             <div class="tab-content active" id="notices">
                 <div class="notice-list">
+                    <!-- Updated: Large Update Notice with Tank Guide Reference -->
+                    <div class="notice-item" onclick="showModal('핑거런 대규모 업데이트 안내', '2025.12.17', '안녕하세요! 핑거런이 대규모 업데이트로 더욱 강력해졌습니다.<br><br><strong>1. AI 피드백 기능 대폭 강화</strong><br>• <strong>속도 안정성 분석:</strong> 타자 속도의 기복을 그래프로 시각화하여 안정적인 타이핑을 돕습니다.<br>• <strong>느린 손가락 정밀 분석:</strong> 어떤 손가락이 병목을 일으키는지 정확히 찾아냅니다.<br>• <strong>종합 리포트:</strong> 평균 사용자와의 실력 비교 및 맞춤형 피드백을 제공합니다.<br><br><strong>2. 신규 게임: 탱크 폭격</strong><br>• 하늘에서 쏟아지는 단어를 요격하는 스릴 넘치는 탱크 디펜스 게임이 추가되었습니다.<br>더 자세한 내용이나 가이드는 공지사항 내 타자게임을 참고하시길 바랍니다.<br><br><strong>3. 필사 콘텐츠 및 디자인 업데이트</strong><br>• 마음을 울리는 새로운 문학 작품과 명언들이 대거 추가되었으며, 더욱 편안하고 감성적인 디자인으로 리뉴얼되었습니다.<br><br><strong>4. 맞춤형 집중 연습</strong><br>• AI가 분석한 \'느린 손가락\'을 위한 전용 연습 모드가 한글/영어 타자연습에 추가되었습니다.<br><br>더욱 발전된 핑거런과 함께 타자 마스터의 꿈을 이루세요!<br><br>감사합니다.<br>핑거런 드림')">
+                        <div class="notice-header">
+                            <h3 class="notice-title">핑거런 대규모 업데이트 안내</h3>
+                            <span class="notice-date">2025.12.17</span>
+                        </div>
+                        <div class="notice-content">
+                            안녕하세요! 핑거런이 대규모 업데이트로 더욱 강력해졌습니다. AI 피드백 강화, 신규 탱크 게임 추가, 필사 콘텐츠 및 디자인 리뉴얼 등 다양한 변화를 확인해보세요...
+                        </div>
+                    </div>
+
                     <div class="notice-item" onclick="showModal('공식적으로 첫인사 드립니다', '2025.07.22', '안녕하세요! 핑거런을 찾아주신 모든 분들께 진심으로 감사드립니다.<br><br>핑거런은 누구나 쉽고 재미있게 타자 실력을 향상시킬 수 있도록 만들어진 온라인 타자연습 플랫폼입니다. 디지털 시대에 정확하고 빠른 타자 실력은 필수가 되었습니다.<br><br><strong>핑거런에서 할 수 있는 것들:</strong><br><br><strong>체계적인 타자연습</strong><br>• 한글 타자연습: 자음, 모음부터 시작해서 단어, 문장까지 단계별 학습<br>• 영어 타자연습: 알파벳 기초부터 영단어, 영문장까지 완벽 마스터<br><br><strong>재미있는 타자게임</strong><br>• 두더지 잡기, 비행기 조종, 택배 분류 게임<br>• 한글/영어 버전 모두 지원으로 다양한 재미<br><br><strong>마음을 담은 필사</strong><br>• 아름다운 문학 작품과 명언들을 타이핑하며 감성 충전<br><br><strong>자격증 대비</strong><br>• 워드프로세서 자격증 실전 문제 연습<br><br>핑거런과 함께라면 타자연습이 더 이상 지루하지 않을 거예요. 게임하듯 재미있게, 체계적으로 실력을 쌓아가며, 어느새 타자 마스터가 된 자신을 발견하게 될 것입니다!<br><br>감사합니다.<br>핑거런 드림')">
                         <div class="notice-header">
                             <h3 class="notice-title">공식적으로 첫인사 드립니다</h3>
@@ -552,6 +531,17 @@
             <!-- 타자연습 탭 -->
             <div class="tab-content" id="practice">
                 <div class="notice-list">
+                    <!-- Updated: AI Feedback Notice -->
+                    <div class="notice-item" onclick="showModal('AI 피드백 기능을 소개합니다', '2025.12.17', '안녕하세요! 핑거런입니다.<br>여러분의 타자 실력을 한 단계 업그레이드해 줄 <strong>AI 피드백 기능</strong>을 소개합니다.<br><br><strong>1. 타이핑 리듬 분석 (Consistency)</strong><br>타이핑 속도의 기복을 그래프로 시각화하여 보여줍니다. 들쑥날쑥한 속도보다 일정한 리듬을 유지하는 것이 장기적으로 빠르고 정확한 타이핑 습관을 형성하는 데 중요합니다.<br><br><strong>2. 취약점 정밀 진단</strong><br>• <strong>가장 망설인 키:</strong> 입력하기 전 가장 오래 주저한(Latency가 높은) 키를 분석해 보여줍니다.<br>• <strong>가장 느린 손가락:</strong> 열 손가락 중 반응 속도가 상대적으로 가장 느린 손가락을 찾아냅니다.<br><br><strong>3. AI 맞춤형 솔루션</strong><br>분석된 데이터를 바탕으로 현재 실력에 딱 맞는 조언을 제공합니다. 예를 들어, \'새끼손가락이 약하니 ㅁ, ㅋ 키를 집중 연습하세요\'와 같이 개인별 약점을 보완할 수 있는 구체적인 가이드를 받을 수 있습니다.<br><br>문장 연습 완료 후 나타나는 결과 화면에서 AI 버튼을 눌러보세요. 나만의 AI 코치가 여러분을 기다립니다!<br><br>감사합니다.<br>핑거런 드림')">
+                        <div class="notice-header">
+                            <h3 class="notice-title">AI 피드백 기능을 소개합니다</h3>
+                            <span class="notice-date">2025.12.17</span>
+                        </div>
+                        <div class="notice-content">
+                            안녕하세요! 핑거런입니다. 여러분의 타자 실력을 한 단계 업그레이드해 줄 AI 피드백 기능을 소개합니다. 타이핑 리듬 분석, 취약점 진단, 맞춤형 솔루션까지...
+                        </div>
+                    </div>
+
                     <div class="notice-item" onclick="showModal('한글 타자연습 가이드', '2025.07.22', '안녕하세요! 핑거런의 한글타자연습을 시작하시는 모든 분들을 위한 완벽 가이드를 준비했습니다.<br><br>한글타자연습은 체계적인 4단계 학습 과정을 통해 초보자부터 고수까지 누구나 자신의 수준에 맞게 연습할 수 있도록 설계되었습니다.<br><br><strong>4단계 체계적 학습 과정</strong><br><br><strong>1단계: 자음연습</strong><br>한글 타자의 기초가 되는 자음을 익히는 단계입니다. ㄱ, ㄴ, ㄷ, ㄹ부터 ㄲ, ㄸ, ㅃ, ㅆ, ㅉ까지 모든 자음을 포함합니다.<br><br><strong>2단계: 모음연습</strong><br>기본 모음 ㅏ, ㅑ, ㅓ, ㅕ부터 복합모음 ㅘ, ㅙ, ㅚ, ㅝ, ㅞ, ㅟ, ㅢ까지 모든 모음을 다룹니다.<br><br><strong>3단계: 단어연습</strong><br>실제 한글 단어를 타이핑하는 단계로, 쉬운 단어부터 어려운 단어까지 3단계 난이도로 구성되어 있습니다.<br><br><strong>4단계: 문장연습</strong><br>완성된 한글 문장을 타이핑하는 최고 단계입니다.<br><br><strong>실시간 피드백 시스템</strong><br>정확도 측정, 타자속도 측정, 진행률 표시 등 실시간으로 학습 상황을 확인할 수 있습니다.<br><br>핑거런과 함께라면 한글 타자가 더 이상 어렵지 않습니다!<br><br>감사합니다.<br>핑거런 드림')">
                         <div class="notice-header">
                             <h3 class="notice-title">한글 타자연습 가이드</h3>
@@ -577,6 +567,17 @@
             <!-- 타자게임 탭 -->
             <div class="tab-content" id="games">
                 <div class="notice-list">
+                    <!-- Tank Game Guide Added -->
+                    <div class="notice-item" onclick="showModal('탱크 폭격 타자게임 가이드', '2025.12.17', '안녕하세요! 핑거런의 신규 게임, 탱크 폭격 타자게임을 소개합니다.<br><br>탱크 폭격 타자게임은 하늘에서 떨어지는 단어 폭탄을 탱크 포격으로 요격하여 기지를 방어하는 디펜스형 타자게임입니다.<br><br><strong>게임 규칙과 조작법</strong><br>하늘에서 단어가 적힌 폭탄들이 천천히 내려옵니다. 화면 하단의 입력창에 해당 단어를 정확히 입력한 후 <strong>Enter</strong> 키를 누르면 탱크가 포탄을 발사하여 폭탄을 제거합니다.<br><br><strong>생존 조건</strong><br>폭탄이 지면에 닿으면 충격으로 인해 기회(하트)가 감소합니다. 주어진 기회가 모두 소진되면 게임오버됩니다.<br><br><strong>레벨 시스템</strong><br>60초 동안 생존하면 레벨이 상승하며, 레벨이 오를수록 폭탄의 낙하 속도와 빈도가 증가합니다.<br><br>핑거런의 탱크 폭격 게임으로 위기 상황에서의 침착함과 타자 속도를 동시에 훈련해보세요!<br><br>감사합니다.<br>핑거런 드림')">
+                        <div class="notice-header">
+                            <h3 class="notice-title">탱크 폭격 타자게임 가이드</h3>
+                            <span class="notice-date">2025.12.17</span>
+                        </div>
+                        <div class="notice-content">
+                            안녕하세요! 핑거런의 신규 게임, 탱크 폭격 타자게임을 소개합니다. 탱크 폭격 타자게임은 하늘에서 떨어지는 단어 폭탄을 탱크 포격으로 요격하여 기지를 방어하는 디펜스형 타자게임입니다...
+                        </div>
+                    </div>
+
                     <div class="notice-item" onclick="showModal('두더지 잡기 타자게임 가이드', '2025.07.22', '안녕하세요! 핑거런의 두더지 잡기 타자게임을 시작하시는 모든 분들을 위한 완벽 가이드를 준비했습니다.<br><br>두더지 잡기 타자게임은 땅에서 올라오는 귀여운 두더지들의 이름을 정확하게 타이핑하여 잡는 재미있는 게임입니다.<br><br><strong>게임 규칙과 조작법</strong><br>게임 화면에는 12개의 구멍이 배치되어 있으며, 이 구멍들에서 두더지가 무작위로 나타납니다. 각 두더지 위에는 한글 단어가 표시되어 있고, 이 단어를 정확히 입력한 후 스페이스바를 눌러 두더지를 잡을 수 있습니다.<br><br><strong>생존 조건과 게임오버</strong><br>각 레벨마다 60초를 버텨야 성공합니다. 총 3번의 기회가 주어지며, 3번 놓치면 게임오버됩니다.<br><br><strong>점수 시스템과 전략</strong><br>두더지를 성공적으로 잡을 때마다 10점을 획득합니다. 높은 레벨일수록 어려운 단어가 나타나므로, 차근차근 단계를 밟아가며 실력을 쌓는 것이 중요합니다.<br><br>핑거런의 두더지 잡기 타자게임으로 재미있게 타자연습을 하며 실력을 향상시켜보세요!<br><br>감사합니다.<br>핑거런 드림')">
                         <div class="notice-header">
                             <h3 class="notice-title">두더지 잡기 타자게임 가이드</h3>
