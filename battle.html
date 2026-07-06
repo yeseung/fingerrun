@@ -1,0 +1,1014 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5657188598576847" crossorigin="anonymous"></script>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                                                      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T9HC454Z');</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QSEYCFK83"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7QSEYCFK83');
+    </script>
+
+    <title>핑거런 - 타자 배틀</title>
+
+    <link rel="icon" type="image/svg+xml" href="images/finger-run-logo.svg">
+    <link rel="shortcut icon" type="image/svg+xml" href="images/finger-run-logo.svg">
+    <link rel="apple-touch-icon" href="images/finger-run-logo.svg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f9fafb;
+            color: #191f28;
+        }
+
+        /* --- 네비게이션 바 전용 CSS --- */
+        nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+            display: flex; align-items: center; gap: 0.5rem;
+            text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+            margin: 0; padding: 0;
+        }
+
+        .nav-menu li { position: relative; }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 0.8rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-menu a:hover {
+            background: #667eea;
+            color: white !important;
+            transform: translateY(-2px);
+        }
+
+        .dropdown-arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            padding: 0.5rem 0;
+            min-width: 160px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-menu li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .nav-menu li:hover .dropdown-arrow { transform: rotate(180deg); }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1rem;
+            color: #333;
+            border-radius: 0;
+            white-space: nowrap;
+            font-weight: 400;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+            color: #667eea !important;
+            transform: none;
+        }
+
+        @media (max-width: 900px) {
+            .nav-menu { display: none; }
+        }
+
+        .main-container { max-width: 1000px; margin: 100px auto 0 auto; padding: 2rem 1rem; }
+        .page-title { font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
+
+        /* 다크 모드 배틀 보드 */
+        .battle-board {
+            background: #1e2530; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            padding: 2rem; margin-bottom: 1.5rem; border: 1px solid #2e3748;
+        }
+
+        .text-display {
+            font-size: 1.6rem; line-height: 1.8; font-weight: 600;
+            background: #151a24; border: 1px solid #2a3547; border-radius: 12px;
+            padding: 1.8rem; margin-bottom: 1.2rem; min-height: 100px;
+            display: flex; flex-wrap: wrap; justify-content: center; align-items: center; text-align: center;
+            word-break: keep-all; letter-spacing: 1px;
+        }
+
+        .char { color: #5a6e85; transition: color 0.1s; }
+        .char.current { color: #60a5fa !important; text-decoration: underline; font-weight: 800; }
+        .char.correct { color: #38bdf8 !important; text-shadow: 0 0 8px rgba(56,189,248,0.5); }
+        .char.incorrect { color: #f87171 !important; background: rgba(248, 113, 113, 0.2); border-radius: 4px; }
+        .char.opp-correct { color: #f97316 !important; text-shadow: 0 0 8px rgba(249,115,22,0.6); }
+        .char.space { display: inline-block; width: 0.6em; }
+
+        .typing-input {
+            width: 100%; padding: 16px; font-size: 1.2rem; font-weight: 600;
+            border: 2px solid #2d3748; border-radius: 12px;
+            text-align: center; outline: none; background: #151a24; color: white; transition: all 0.3s ease;
+        }
+        .typing-input:focus { border-color: #6366f1; box-shadow: 0 0 15px rgba(99, 102, 241, 0.4); }
+        .typing-input.completed { border-color: #10b981; background: #0b3c2e; }
+
+        /* 레이싱 트랙 */
+        .racing-track-container {
+            background: #151a24; border-radius: 15px; border: 1px solid #2a3547;
+            padding: 1.5rem 3rem 1.5rem 4rem; margin-bottom: 1.5rem; position: relative;
+            box-shadow: inset 0 5px 15px rgba(0,0,0,0.3); overflow: hidden;
+        }
+        .lane { position: relative; height: 45px; border-bottom: 2px dashed #4b5563; margin-bottom: 10px; display: flex; align-items: center; }
+        .lane:last-child { margin-bottom: 0; border-bottom: none; }
+        .finish-line { position: absolute; right: 0; top: -10px; bottom: -10px; width: 15px; background: repeating-linear-gradient(45deg, #fff, #fff 5px, #000 5px, #000 10px); border-radius: 2px; z-index: 5; }
+        .lane-label { position: absolute; left: -45px; font-weight: 900; font-size: 0.9rem; }
+
+        .runner { position: absolute; left: 0%; top: 50%; transform: translate(-50%, -50%); font-size: 2rem; transition: left 0.1s linear; z-index: 10; }
+        .runner.red { color: #f97316; filter: drop-shadow(0 0 8px rgba(249,115,22,0.6)); }
+        .runner.blue { color: #38bdf8; filter: drop-shadow(0 0 8px rgba(56,189,248,0.6)); }
+
+        @keyframes sprint-motion {
+            0% { transform: translateY(0) rotate(0deg) skewX(0deg); }
+            25% { transform: translateY(-3px) rotate(10deg) skewX(-15deg); }
+            50% { transform: translateY(0) rotate(0deg) skewX(0deg); }
+            75% { transform: translateY(-3px) rotate(-10deg) skewX(15deg); }
+            100% { transform: translateY(0) rotate(0deg) skewX(0deg); }
+        }
+        .runner i { display: inline-block; animation: sprint-motion 0.23s infinite linear; transform-origin: bottom center; }
+
+        /* 기절한 고스트 상태 CSS */
+        .runner.knocked-out i {
+            animation: none !important;
+            opacity: 0.5;
+            transform: rotate(-90deg) translateY(10px) !important;
+            filter: drop-shadow(0 0 0 rgba(0,0,0,0)) !important;
+        }
+
+        /* ================= 승/패 특수효과 연출부 ================= */
+        .stage-motion-area { position: relative; width: 100%; height: 160px; background: #0f172a; border-radius: 16px; margin-bottom: 20px; display: flex; justify-content: center; align-items: center; overflow: hidden; border: 1px solid #1e293b; }
+
+        /* [WIN] 방방 뛰는 고속 점프 댄스 */
+        @keyframes dance-jump {
+            0%, 100% { transform: translateY(0) scaleY(1); }
+            30% { transform: translateY(-38px) scaleY(1.05) rotate(12deg); }
+            50% { transform: translateY(0) scaleY(0.85); }
+            80% { transform: translateY(-38px) scaleY(1.05) rotate(-12deg); }
+        }
+
+        /* ================= LOSE: 무릎 꿇고 정강이를 대고 엎드려 우는 OTL 애니메이션 ================= */
+        @keyframes despair-sob {
+            0%, 100% { transform: translateY(0) scaleY(1); }
+            50% { transform: translateY(3px) scaleY(0.95); }
+        }
+        .OTL-guy {
+            animation: despair-sob 1.2s infinite ease-in-out;
+            transform-origin: bottom center;
+            filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.5));
+        }
+
+        @keyframes tear-drop {
+            0% { transform: translateY(0); opacity: 0; }
+            15% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(22px); opacity: 0; }
+        }
+        .falling-tear {
+            animation: tear-drop 0.9s infinite cubic-bezier(0.4, 0, 1, 1);
+            transform-origin: top center;
+        }
+
+        @keyframes ripple-expand {
+            0% { transform: scale(0.1); opacity: 1; border-width: 3px; }
+            100% { transform: scale(1.3); opacity: 0; border-width: 1px; }
+        }
+        .ripple-ring {
+            border-radius: 50%;
+            border: 2px solid #38bdf8;
+            animation: ripple-expand 1.8s infinite cubic-bezier(0.1, 0.8, 0.3, 1);
+            opacity: 0;
+        }
+
+        /* 폭죽 불꽃 입자 */
+        .particle { position: absolute; width: 6px; height: 6px; border-radius: 50%; animation: firework-burst 0.8s infinite ease-out; z-index: 1; }
+        @keyframes firework-burst {
+            0% { transform: translate(0, 0) scale(1.5); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
+        }
+
+        /* 모달 시스템 */
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); display: none; justify-content: center; align-items: center; z-index: 2000; }
+        .modal-content { background: #1e293b; padding: 2.5rem; border-radius: 20px; text-align: center; max-width: 650px; width: 95%; color: white; border: 2px solid #4f46e5; box-shadow: 0 0 25px rgba(79, 70, 229, 0.4); }
+    </style>
+</head>
+<body class="pb-20 pt-20">
+
+<nav>
+    <div class="nav-container">
+        <a href="index.html" class="logo" aria-label="핑거런 홈페이지 메인으로 이동">
+            <img src="images/finger-run-logo.svg" alt="" class="h-8 w-auto">
+            FingerRun
+        </a>
+        <ul class="nav-menu">
+            <li><a href="notices.html">공지사항</a></li>
+            <li>
+                <a href="Korean/practice.html?mode=consonant">
+                    한글 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="Korean/practice.html?mode=consonant">자음 연습</a>
+                    <a href="Korean/practice.html?mode=vowel">모음 연습</a>
+                    <a href="Korean/practice.html?mode=word">단어 연습</a>
+                    <a href="Korean/practice.html?mode=sentence">문장 연습</a>
+                    <a href="Korean/infinite_practice.html">무한 연습</a>
+                </div>
+            </li>
+            <li>
+                <a href="English/practice.html?mode=alphabet">
+                    영어 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="English/practice.html?mode=alphabet">알파벳 연습</a>
+                    <a href="English/practice.html?mode=word">단어 연습</a>
+                    <a href="English/practice.html?mode=sentence">문장 연습</a>
+                    <a href="English/infinite_practice.html">무한 연습</a>
+                </div>
+            </li>
+            <li>
+                <a href="Game/delivery.html">
+                    타자게임
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="Game/tank.html">탱크 폭격</a>
+                    <a href="Game/delivery.html">택배 분류</a>
+                    <a href="Game/mole.html">두더지 잡기</a>
+                    <a href="Game/plane.html">비행기 조종</a>
+                </div>
+            </li>
+            <li><a href="writing.html">필사</a></li>
+            <li>
+                <a href="Certificate/word-processor.html">
+                    자격증
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="Certificate/word-processor.html">워드프로세서</a>
+                </div>
+            </li>
+            <li><a href="battle.html" style="background: #eef2ff; color:#667eea; font-weight:700;">타자 배틀</a></li>
+            <li><a href="contact.html">문의하기</a></li>
+
+            <li class="ml-2">
+                <a href="#" onclick="goProfile(event)" title="프로필" style="padding: 0.5rem 0.6rem; border-radius: 50%;">
+                    <i class="far fa-user text-[1.2rem] m-0"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="main-container">
+    <div class="text-center mb-6">
+        <h1 class="page-title"><i class="fas fa-bolt text-yellow-500 mr-1"></i>TYPING BATTLE</h1>
+        <p id="battleDesc" class="text-gray-500 font-medium font-sm">모드 선택 모달창 조건에 따라 마라톤 인터페이스가 구성됩니다.</p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mb-4">
+        <div class="bg-white p-3 rounded-xl border border-gray-200 shadow-sm text-center">
+            <span class="text-xs font-bold text-gray-400">내 실시간 페이스</span>
+            <div id="speed" class="text-xl font-black text-blue-500 font-mono">0 타/분</div>
+        </div>
+        <div class="bg-white p-3 rounded-xl border border-gray-200 shadow-sm text-center">
+            <span class="text-xs font-bold text-gray-400">내 실시간 정확도</span>
+            <div id="accuracyTracker" class="text-xl font-black text-emerald-500 font-mono">100 %</div>
+        </div>
+    </div>
+
+    <div id="oppBoardZone" class="battle-board pb-4 border-orange-500/30">
+        <div class="flex justify-between items-center mb-3 text-xs font-bold tracking-wider">
+            <div id="oppSimTitle" class="text-orange-400">상대방 타자 시뮬레이션</div>
+            <div id="oppProgress" class="text-orange-400 font-mono">STAGE 1/10</div>
+        </div>
+        <div class="text-display" id="oppTextDisplay">대기 중...</div>
+        <input type="text" class="typing-input opacity-40 text-orange-200" id="oppTypingInput" readonly>
+    </div>
+
+    <div class="racing-track-container">
+        <div class="lane" id="oppLaneZone">
+            <div class="lane-label text-orange-400">OPP</div>
+            <div class="runner red" id="oppRunner"><i class="fas fa-person-running"></i></div>
+            <div class="finish-line"></div>
+        </div>
+        <div class="lane">
+            <div class="lane-label text-blue-400">YOU</div>
+            <div class="runner blue" id="myRunner"><i class="fas fa-person-running"></i></div>
+            <div class="finish-line"></div>
+        </div>
+    </div>
+
+    <div class="battle-board border-blue-500/40 shadow-blue-900/20 relative">
+        <div class="flex justify-between items-center mb-3 text-xs font-bold tracking-wider">
+            <div class="text-sky-400"><i class="fas fa-keyboard mr-1"></i> 최고 타수 최고 정확도를 위해 🔥🔥</div>
+            <div id="myProgress" class="text-blue-400 font-mono">STAGE 1/10</div>
+        </div>
+
+        <div class="text-display" id="myTextDisplay">START 버튼을 누르면 첫 번째 문장이 로드됩니다.</div>
+
+        <div id="inputInteractiveZone" class="relative">
+            <input type="text" class="typing-input hidden" id="myTypingInput" autocomplete="off" placeholder="상대의 그림자를 추격하세요!">
+            <button id="grandStartBtn" class="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white font-black text-xl py-4 rounded-xl shadow-xl hover:scale-[1.01] active:scale-[0.99] transition flex items-center justify-center gap-2 hidden">
+                <i class="fas fa-play animate-ping text-sm mr-1"></i> BATTLE START
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modeSelectModal" style="display: flex;">
+    <div class="modal-content">
+        <h2 class="text-3xl font-black mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">배틀 레이스 모드 선택</h2>
+        <p class="text-slate-300 text-sm mb-6">진행하고자 하는 마라톤 배틀의 목적을 선택해 주세요.</p>
+
+        <div class="flex flex-col gap-4">
+            <button id="btnCreateMode" class="w-full bg-slate-800 border-2 border-sky-500 hover:bg-slate-700 text-left p-5 rounded-xl transition group">
+                <div class="text-sky-400 font-bold text-xl mb-1 flex items-center justify-between">
+                    <span><i class="fas fa-flag-checkered mr-2"></i>새로운 도전장 만들기</span>
+                    <i class="fas fa-chevron-right opacity-0 group-hover:opacity-100 transition"></i>
+                </div>
+                <p class="text-slate-400 text-xs leading-relaxed">상대방 없이 홀로 10문장 정밀 완주 코스를 달립니다. 완료 후 도전장 링크가 생성됩니다. 그 링크를 경쟁자에게 보내세요!</p>
+            </button>
+            <button id="btnChallengeMode" class="w-full bg-slate-800 border-2 border-orange-500 hover:bg-slate-700 text-left p-5 rounded-xl transition group">
+                <div class="text-orange-400 font-bold text-xl mb-1 flex items-center justify-between">
+                    <span id="challengeTitleText"><i class="fas fa-fire mr-2"></i>AI 훈련봇과 대결</span>
+                    <i class="fas fa-chevron-right opacity-0 group-hover:opacity-100 transition"></i>
+                </div>
+                <p class="text-slate-400 text-xs leading-relaxed">받은 초대장이 없다면, 훈련된 AI 타자 봇과 한판 하세요!</p>
+            </button>
+            <p class="text-white text-sm font-semibold mt-2 text-center">직접 사람과 1 vs 1 매치를 하고 싶다면, 도전장을 보내거나 도전장을 받으세요!</p>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="scoringModal">
+    <div class="modal-content !max-w-xs p-6">
+        <div class="animate-spin text-4xl text-indigo-400 mb-3"><i class="fas fa-circle-notch"></i></div>
+        <h3 class="text-xl font-bold text-white mb-1">스코어 채점 분석 중</h3>
+        <p class="text-xs text-slate-400">정확도 1%당 30점 차감 수식을 대조 중입니다...</p>
+    </div>
+</div>
+
+<div class="modal" id="battleResultModal">
+    <div class="modal-content" id="finalResultContent"></div>
+</div>
+
+<script>
+    class FingerRunMarathonEngine {
+        constructor() {
+            // 전체 100개의 문장 풀
+            this.sentencePool = [
+                '끝까지 포기하지 않는 자가 결국 승리합니다.',
+                '오늘의 작은 노력이 내일의 기적을 만듭니다.',
+                '실패를 두려워하지 말고 끊임없이 도전하세요.',
+                '당신의 잠재력은 당신이 생각하는 것 이상입니다.',
+                '한 걸음씩 나아가면 어느새 정상에 닿습니다.',
+                '빛나는 내일을 위해 오늘의 땀방울을 흘리세요.',
+                '어려움 속에서도 기회는 항상 숨어 있습니다.',
+                '스스로를 믿는 마음이 가장 강력한 무기입니다.',
+                '시작이 반이다, 지금 당장 첫발을 내디뎌보세요.',
+                '긍정적인 확언이 긍정적인 결과를 끌어당깁니다.',
+                '매일 조금씩 성장하는 자신을 칭찬해 주세요.',
+                '한계는 스스로 정하는 것일 뿐, 뛰어넘을 수 있습니다.',
+                '멈추지 않는다면 얼마나 천천히 가는지는 중요하지 않아요.',
+                '위기는 곧 새로운 도약을 위한 발판이 됩니다.',
+                '포기하고 싶은 그 순간이 바로 성공의 문턱입니다.',
+                '흔들리지 않고 피는 꽃은 세상에 없습니다.',
+                '노력은 결코 우리를 배신하지 않는 법입니다.',
+                '오늘의 시련은 내일의 별을 더욱 빛나게 합니다.',
+                '당신이 걷는 모든 길이 결국 정답이 될 것입니다.',
+                '작은 불씨가 모여 거대한 횃불을 만들어냅니다.',
+                '스스로에게 한계를 긋지 말고 무한히 상상하세요.',
+                '실패는 성공이라는 무대로 가는 리허설일 뿐입니다.',
+                '꿈을 향한 발걸음은 그 자체로 의미가 있습니다.',
+                '두려움을 용기로 바꾸는 순간 마법이 시작됩니다.',
+                '아무것도 하지 않으면 아무 일도 일어나지 않습니다.',
+                '당신의 열정이 세상을 변화시키는 원동력입니다.',
+                '하루 1%의 성장이 모여 1년 뒤 놀라운 기적을 만듭니다.',
+                '불가능은 사실이 아니라 단순한 의견에 불과합니다.',
+                '어제보다 더 나은 내가 되기 위해 오늘을 사세요.',
+                '거센 바람을 이겨낸 나무가 가장 깊게 뿌리내립니다.',
+                '도전하는 사람에게는 늘 새로운 길이 열립니다.',
+                '결승선은 포기하지 않는 자를 위해 존재합니다.',
+                '핑계를 찾기보다 방법을 찾는 사람이 성공합니다.',
+                '당신의 오늘은 남은 인생의 첫 번째 날입니다.',
+                '자신감은 완벽함이 아니라 시작하는 용기에서 옵니다.',
+                '가장 어두운 밤이 지나야 비로소 새벽이 찾아옵니다.',
+                '행동하는 사람만이 자신이 원하는 미래를 만듭니다.',
+                '눈앞의 벽은 나를 멈추게 하는 것이 아니라 넘어서는 것입니다.',
+                '실패에서 배움을 얻는다면 그것은 더 이상 실패가 아닙니다.',
+                '당신의 삶은 당신이 그린 대로 완성되어 갈 것입니다.',
+                '늦었다고 생각할 때가 가장 빠른 출발선입니다.',
+                '오늘 흘린 땀은 내일 달콤한 열매로 돌아옵니다.',
+                '스스로 가치 있다고 믿어야 타인도 나를 인정합니다.',
+                '목표를 향해 묵묵히 걸어가는 뒷모습은 아름답습니다.',
+                '넘어졌다면 그 자리에서 무엇인가를 주워 일어나세요.',
+                '당신의 꿈은 다른 누구도 대신 이뤄줄 수 없습니다.',
+                '꾸준함은 모든 재능을 뛰어넘는 가장 큰 힘입니다.',
+                '자신을 사랑하는 것이 모든 위대한 여정의 시작입니다.',
+                '작은 성공을 축하하며 더 큰 무대를 준비하세요.',
+                '인생의 마라톤에서 가장 중요한 것은 나만의 페이스입니다.',
+
+                '맛있는 식사 한 끼는 하루의 피로를 싹 씻어줍니다.',
+                '정확한 데이터 분석은 올바른 의사결정의 핵심입니다.',
+                '푸른 하늘과 맑은 공기는 우리에게 주는 자연의 선물입니다.',
+                '한글 타자 연습은 꾸준한 반복이 생명입니다.',
+                '빅데이터는 현대 사회를 움직이는 보이지 않는 힘입니다.',
+                '따뜻한 커피 한 잔과 함께 여유로운 아침을 맞이하세요.',
+                '음악은 상처받은 마음을 치유하는 훌륭한 명약입니다.',
+                '코딩의 매력은 무에서 유를 창조하는 데 있습니다.',
+                '규칙적인 생활 습관은 건강한 몸과 마음의 기본입니다.',
+                '독서는 다른 사람의 지혜를 가장 쉽게 얻는 방법입니다.',
+                '통계학은 복잡한 세상을 이해하는 논리적인 창문입니다.',
+                '가을밤의 선선한 바람이 마음을 차분하게 달래줍니다.',
+                '여행은 새로운 풍경 속에서 진짜 나를 만나는 시간입니다.',
+                '인공지능 기술은 우리의 일상을 혁신적으로 바꾸고 있습니다.',
+                '타자 속도보다 중요한 것은 흔들리지 않는 정확도입니다.',
+                '낯선 곳에서의 경험은 우리의 시야를 한층 넓혀줍니다.',
+                '데이터 센터의 효율적인 전력 관리는 미래의 과제입니다.',
+                '가족과 함께 보내는 주말은 그 어떤 시간보다 소중합니다.',
+                '아름다운 예술 작품은 시대를 뛰어넘어 감동을 줍니다.',
+                '경제 흐름을 읽는 안목은 성공적인 투자의 첫걸음입니다.',
+                '손가락이 키보드 위를 춤추듯 날아다니는 기분을 느껴보세요.',
+                '파이썬을 활용한 분석은 데이터에 생명력을 불어넣습니다.',
+                '맑게 갠 밤하늘의 별빛은 언제나 우리를 설레게 합니다.',
+                '철저한 일정 관리가 프로젝트의 성공 여부를 결정짓습니다.',
+                '새로운 외국어를 배우는 것은 또 다른 세상을 여는 열쇠입니다.',
+                '사람과 사람 사이의 신뢰는 하루아침에 쌓이지 않습니다.',
+                '이제는 방대한 데이터를 수집하고, 정제하는 능력이 필요합니다.',
+                '깊고 푸른 바다를 바라보면 복잡한 머릿속이 맑아집니다.',
+                '맛있는 디저트는 스트레스를 날려버리는 최고의 방법입니다.',
+                '진정한 친구란 내가 어려울 때 손을 내밀어 주는 사람입니다.',
+                '건강을 위해 매일 적절한 단백질을 섭취하는 것이 좋습니다.',
+                '역사에서 배우지 못하는 자는 같은 실수를 반복하게 됩니다.',
+                '기술적 지표를 활용한 투자는 리스크를 최소화하는 전략입니다.',
+                '아름다운 노을은 하루의 끝을 장식하는 자연의 예술입니다.',
+                '키보드의 타건음은 훌륭한 백색 소음이 되기도 합니다.',
+                '확률과 통계는 불확실성 속에서 규칙을 찾는 과정입니다.',
+                '영화 한 편이 때로는 인생의 궤도를 바꾸는 계기가 됩니다.',
+                '식물을 가꾸는 일은 마음에 평화와 안정을 가져다줍니다.',
+                '축구 경기에서의 짜릿한 역전승은 우리를 열광하게 만듭니다.',
+                '기술의 발전 속도는 갈수록 빠르고 눈부시게 변하고 있습니다.',
+                '올바른 문장 부호의 사용은 글의 전달력을 높여줍니다.',
+                '매일 같은 시간에 먹는 한 끼는 하루의 리듬을 맞춰줍니다.',
+                '동물과의 교감은 언어를 초월하는 순수한 감정의 공유입니다.',
+                '인간의 심리와 행동을 진화론적 관점에서 바라보면 흥미롭습니다.',
+                '조용한 새벽은 온전히 나에게만 집중할 수 있는 귀한 시간입니다.',
+                '서버의 응답 속도를 최적화하는 것은 사용자 경험을 좌우합니다.',
+                '격투기 경기의 팽팽한 긴장감은 손에 땀을 쥐게 합니다.',
+                '깨끗한 코드를 작성하는 것은 동료를 위한 최고의 배려입니다.',
+                '다양한 장르의 책을 읽는 것은 생각의 편식을 막아줍니다.',
+                '블로그에 기록된 일상들은 훗날 소중한 자서전이 됩니다.'
+            ];
+
+            this.sentences = [];
+            this.loadRandomSentences(); // 100문장 중 랜덤 10문장 세팅
+
+            this.myStage = 0; this.oppStage = 0;
+            this.myCompletedChars = 0; this.oppCompletedChars = 0;
+
+            this.myCompletedCorrect = 0;
+            this.myCompletedTyped = 0;
+            this.myStartTime = null;
+
+            this.hostName = 'AI_Bot';
+            this.hostSpeed = 420;
+            this.hostAccuracy = 96;
+
+            this.ghostPace = Math.max(0, this.hostSpeed - (100 - this.hostAccuracy) * 30);
+
+            this.myNickname = '도전자';
+
+            this.oppTimer = null; this.oppCharIndex = 0;
+            this.keyIntervals = []; this.lastKeyTime = null;
+            this.battleMode = null;
+
+            this.evaluateQueryString();
+        }
+
+        // 100문장 중 랜덤하게 10문장 추출하는 메서드
+        loadRandomSentences() {
+            const shuffled = [...this.sentencePool];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            this.sentences = shuffled.slice(0, 10);
+            this.totalRaceChars = this.sentences.join('').length;
+        }
+
+        evaluateQueryString() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('host') && urlParams.has('speed')) {
+                this.hostName = decodeURIComponent(urlParams.get('host'));
+
+                const parsedSpeed = parseInt(urlParams.get('speed'));
+                const parsedAcc = parseInt(urlParams.get('acc'));
+
+                this.hostSpeed = isNaN(parsedSpeed) ? 420 : parsedSpeed;
+                this.hostAccuracy = isNaN(parsedAcc) ? 96 : parsedAcc;
+
+                this.ghostPace = Math.max(0, this.hostSpeed - (100 - this.hostAccuracy) * 30);
+
+                document.getElementById('challengeTitleText').innerHTML = `<i class="fas fa-fire mr-2"></i>도전장 수락 (상대: ${this.hostName})`;
+
+                this.battleMode = 'challenge';
+                document.getElementById('modeSelectModal').style.display = 'none';
+                document.getElementById('grandStartBtn').classList.remove('hidden');
+
+                if (this.ghostPace <= 0) {
+                    document.getElementById('oppRunner').classList.add('knocked-out');
+                    document.querySelector('#oppRunner i').className = 'fas fa-dizzy';
+                    document.getElementById('oppSimTitle').innerHTML = `<i class="fas fa-skull-crossbones text-red-500 mr-1"></i> ${this.hostName}님은 오타 패널티로 기절했습니다.`;
+                    document.getElementById('battleDesc').textContent = `초대장을 보낸 ${this.hostName}님은 오타를 남발해 출발선에서 쓰러졌습니다. 가볍게 앞지르세요!`;
+                } else {
+                    document.getElementById('oppRunner').classList.remove('knocked-out');
+                    document.querySelector('#oppRunner i').className = 'fas fa-person-running';
+                    document.getElementById('oppSimTitle').innerHTML = `<i class="fas fa-ghost text-orange-400 mr-1 animate-pulse"></i> ${this.hostName}님의 고스트 시뮬레이션 (${this.ghostPace}타 페이스)`;
+                    document.getElementById('battleDesc').textContent = `초대장을 보낸 ${this.hostName}님의 정확도 패널티가 반영된 최종 페이스로 시뮬레이션됩니다. 추격하세요!`;
+                }
+            }
+            this.bindStructuralEvents();
+        }
+
+        bindStructuralEvents() {
+            document.getElementById('btnCreateMode').addEventListener('click', () => {
+                this.battleMode = 'create';
+                document.getElementById('modeSelectModal').style.display = 'none';
+                document.getElementById('grandStartBtn').classList.remove('hidden');
+                document.getElementById('oppBoardZone').style.display = 'none';
+                document.getElementById('oppLaneZone').style.display = 'none';
+                document.getElementById('battleDesc').textContent = '내 최고 속도와 정확도를 정밀 측정하여 초대장 링크를 빌드합니다.';
+            });
+
+            document.getElementById('btnChallengeMode').addEventListener('click', () => {
+                this.battleMode = 'challenge';
+
+                this.ghostPace = Math.max(0, this.hostSpeed - (100 - this.hostAccuracy) * 30);
+
+                document.getElementById('modeSelectModal').style.display = 'none';
+                document.getElementById('grandStartBtn').classList.remove('hidden');
+
+                if (this.ghostPace <= 0) {
+                    document.getElementById('oppRunner').classList.add('knocked-out');
+                    document.querySelector('#oppRunner i').className = 'fas fa-dizzy';
+                    document.getElementById('oppSimTitle').innerHTML = `<i class="fas fa-skull-crossbones text-red-500 mr-1"></i> ${this.hostName}님은 오타 패널티로 기절했습니다.`;
+                    document.getElementById('battleDesc').textContent = `기본 인공지능 훈련용 봇이 오타 패널티로 기절해 있습니다. 가볍게 완주하세요!`;
+                } else {
+                    document.getElementById('oppRunner').classList.remove('knocked-out');
+                    document.querySelector('#oppRunner i').className = 'fas fa-person-running';
+                    document.getElementById('oppSimTitle').innerHTML = `<i class="fas fa-ghost text-orange-400 mr-1 animate-pulse"></i> ${this.hostName}님의 고스트 시뮬레이션 (${this.ghostPace}타 페이스)`;
+                    document.getElementById('battleDesc').textContent = `기본 인공지능 훈련용 봇의 ${this.ghostPace}타 속도 시뮬레이션 배틀 기어가 장착되었습니다.`;
+                }
+            });
+
+            document.getElementById('grandStartBtn').addEventListener('click', () => this.executeRaceCountdown());
+
+            const myInput = document.getElementById('myTypingInput');
+            myInput.addEventListener('input', (e) => this.handleMyTyping(e.target.value));
+            myInput.addEventListener('keydown', (e) => {
+                const now = Date.now();
+                if (this.myStartTime && this.lastKeyTime && e.key !== 'Enter') {
+                    this.keyIntervals.push(now - this.lastKeyTime);
+                }
+                this.lastKeyTime = now;
+
+                if (e.key === 'Enter' && myInput.classList.contains('completed')) {
+                    this.nextMyStage();
+                }
+            });
+        }
+
+        executeRaceCountdown() {
+            document.getElementById('grandStartBtn').classList.add('hidden');
+            const myInput = document.getElementById('myTypingInput');
+            myInput.classList.remove('hidden');
+
+            this.initMyStage();
+            if (this.battleMode === 'challenge') {
+                this.initOpponentStage();
+                this.startOpponentMarathon();
+            }
+            myInput.focus();
+        }
+
+        resetGame() {
+            document.getElementById('battleResultModal').style.display = 'none';
+
+            // 재도전 시 문장을 새로 뽑아 10문장 환경 리셋
+            this.loadRandomSentences();
+
+            this.myStage = 0;
+            this.oppStage = 0;
+            this.myCompletedChars = 0;
+            this.oppCompletedChars = 0;
+            this.myCompletedCorrect = 0;
+            this.myCompletedTyped = 0;
+            this.myStartTime = null;
+            this.oppCharIndex = 0;
+
+            if (this.oppTimer) {
+                clearInterval(this.oppTimer);
+                this.oppTimer = null;
+            }
+
+            document.getElementById('speed').textContent = '0 타/분';
+            document.getElementById('accuracyTracker').textContent = '100 %';
+            document.getElementById('myProgress').textContent = 'STAGE 1/10';
+            document.getElementById('oppProgress').textContent = 'STAGE 1/10';
+            document.getElementById('myTextDisplay').innerHTML = 'START 버튼을 누르면 첫 번째 문장이 로드됩니다.';
+            document.getElementById('oppTextDisplay').innerHTML = '대기 중...';
+            document.getElementById('oppTypingInput').value = '';
+
+            document.getElementById('myRunner').style.left = '0%';
+            document.getElementById('oppRunner').style.left = '0%';
+
+            document.getElementById('oppRunner').classList.remove('knocked-out');
+            document.querySelector('#oppRunner i').className = 'fas fa-person-running';
+
+            const myInput = document.getElementById('myTypingInput');
+            myInput.value = '';
+            myInput.className = 'typing-input hidden';
+
+            if (this.battleMode === 'challenge' && this.ghostPace <= 0) {
+                document.getElementById('oppRunner').classList.add('knocked-out');
+                document.querySelector('#oppRunner i').className = 'fas fa-dizzy';
+            }
+
+            document.getElementById('grandStartBtn').classList.remove('hidden');
+        }
+
+        renderText(elementId, text) {
+            const display = document.getElementById(elementId);
+            display.innerHTML = '';
+            for (let char of text) {
+                const span = document.createElement('span');
+                if (char === ' ') {
+                    span.className = 'char space';
+                    span.innerHTML = '&nbsp;';
+                } else {
+                    span.className = 'char';
+                    span.textContent = char;
+                }
+                display.appendChild(span);
+            }
+            if(display.firstChild) display.firstChild.classList.add('current');
+        }
+
+        initOpponentStage() {
+            if(this.oppStage >= 10) return;
+            document.getElementById('oppProgress').textContent = `STAGE ${this.oppStage + 1}/10`;
+            this.renderText('oppTextDisplay', this.sentences[this.oppStage]);
+            document.getElementById('oppTypingInput').value = '';
+            this.oppCharIndex = 0;
+        }
+
+        startOpponentMarathon() {
+            if (this.ghostPace <= 0) {
+                return;
+            }
+
+            const msPerChar = (60000 / this.ghostPace) * 2.5;
+            this.oppTimer = setInterval(() => {
+                if (this.oppStage >= 10) { clearInterval(this.oppTimer); return; }
+
+                const oppText = this.sentences[this.oppStage];
+                const oppSpans = document.querySelectorAll('#oppTextDisplay .char');
+                const oppInput = document.getElementById('oppTypingInput');
+
+                if (this.oppCharIndex < oppText.length) {
+                    oppSpans.forEach(s => s.classList.remove('current'));
+                    oppSpans[this.oppCharIndex].classList.add('opp-correct');
+                    this.oppCharIndex++;
+                    oppInput.value = oppText.substring(0, this.oppCharIndex);
+
+                    const totalOppProgress = ((this.oppCompletedChars + this.oppCharIndex) / this.totalRaceChars) * 100;
+                    document.getElementById('oppRunner').style.left = `${Math.min(totalOppProgress, 100)}%`;
+
+                    if (this.oppCharIndex < oppText.length) oppSpans[this.oppCharIndex].classList.add('current');
+                } else {
+                    this.oppCompletedChars += oppText.length;
+                    this.oppStage++;
+                    this.initOpponentStage();
+                }
+            }, msPerChar);
+        }
+
+        initMyStage() {
+            document.getElementById('myProgress').textContent = `STAGE ${this.myStage + 1}/10`;
+            this.renderText('myTextDisplay', this.sentences[this.myStage]);
+            const myInput = document.getElementById('myTypingInput');
+            myInput.value = ''; myInput.className = 'typing-input';
+            myInput.placeholder = '속도에 비례해 정확도 1%당 30점 감점이 적용됩니다. 전진하세요!';
+        }
+
+        handleMyTyping(value) {
+            if (!this.myStartTime && value.length > 0) this.myStartTime = Date.now();
+            const myText = this.sentences[this.myStage];
+            const mySpans = document.querySelectorAll('#myTextDisplay .char');
+
+            let localCorrect = 0;
+            mySpans.forEach((span, idx) => {
+                span.classList.remove('current', 'correct', 'incorrect');
+                if (idx < value.length) {
+                    if (value[idx] === myText[idx]) { span.classList.add('correct'); localCorrect++; }
+                    else { span.classList.add('incorrect'); }
+                } else if (idx === value.length) {
+                    span.classList.add('current');
+                }
+            });
+
+            const totalMyProgress = ((this.myCompletedChars + value.length) / this.totalRaceChars) * 100;
+            document.getElementById('myRunner').style.left = `${Math.min(totalMyProgress, 100)}%`;
+
+            const currentTotalCorrect = this.myCompletedCorrect + localCorrect;
+            const currentTotalTyped = this.myCompletedTyped + value.length;
+            const liveAcc = currentTotalTyped > 0 ? Math.round((currentTotalCorrect / currentTotalTyped) * 100) : 100;
+            document.getElementById('accuracyTracker').textContent = liveAcc + ' %';
+
+            if (this.myStartTime && value.length > 0) {
+                const elapsed = (Date.now() - this.myStartTime) / 1000 / 60;
+                const totalCharsTyped = (this.myCompletedTyped + value.length) * 2.5;
+                const speed = Math.round(totalCharsTyped / elapsed) || 0;
+                document.getElementById('speed').textContent = speed + ' 타/분';
+            }
+
+            if (value.length >= myText.length) {
+                const myInput = document.getElementById('myTypingInput');
+                myInput.classList.add('completed');
+                myInput.placeholder = '해당 스테이지 입력 완료! 엔터(Enter)를 누르세요.';
+                this.stageCorrectSnapshot = localCorrect;
+                this.stageTypedSnapshot = value.length;
+            }
+        }
+
+        nextMyStage() {
+            this.myCompletedCorrect += this.stageCorrectSnapshot || 0;
+            this.myCompletedTyped += this.stageTypedSnapshot || 0;
+            this.myCompletedChars += this.sentences[this.myStage].length;
+            this.myStage++;
+
+            if (this.myStage < 10) {
+                this.initMyStage();
+            } else {
+                this.triggerScoringWindow();
+            }
+        }
+
+        triggerScoringWindow() {
+            document.getElementById('scoringModal').style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('scoringModal').style.display = 'none';
+                this.compileFinalScoreCard();
+            }, 2000);
+        }
+
+        compileFinalScoreCard() {
+            const elapsedMin = (Date.now() - this.myStartTime) / 1000 / 60;
+            const myFinalSpeed = Math.round((this.myCompletedTyped * 2.5) / elapsedMin) || 0;
+
+            const myFinalAcc = this.myCompletedTyped > 0 ? Math.round((this.myCompletedCorrect / this.myCompletedTyped) * 100) : 100;
+
+            const myPenalty = (100 - myFinalAcc) * 30;
+            const myFinalScore = myFinalSpeed - myPenalty;
+
+            const oppPenalty = (100 - this.hostAccuracy) * 30;
+            const oppFinalScore = this.hostSpeed - oppPenalty;
+
+            const contentBox = document.getElementById('finalResultContent');
+            window.finalResultPayload = { speed: myFinalSpeed, acc: myFinalAcc };
+
+            if (this.battleMode === 'create') {
+                contentBox.innerHTML = `
+                        <div class="mb-4">
+                            <div class="text-6xl font-black text-sky-400 font-mono tracking-widest mb-4 drop-shadow-[0_0_15px_rgba(56,189,248,0.8)]">RECORD SET!</div>
+                            <div class="relative flex justify-center items-center h-28 mb-6" id="fxZone">
+                                <div class="text-blue-400 animate-[dance-jump_0.5s_infinite] text-6xl z-10"><i class="fas fa-child"></i></div>
+                            </div>
+                        </div>
+                        <div class="p-5 rounded-xl bg-slate-900/80 border border-blue-500/50 mb-6 text-left shadow-inner">
+                            <h4 class="text-blue-400 font-black border-b border-blue-500/20 pb-2 mb-3 text-center text-xl">도전장 전용 마라톤 스코어</h4>
+                            <div class="space-y-3 text-base">
+                                <div class="flex justify-between"><span>기본 타수 속도</span><strong class="text-white font-mono">${myFinalSpeed} 타</strong></div>
+                                <div class="flex justify-between"><span>최종 정확도</span><strong class="text-white font-mono">${myFinalAcc}%</strong></div>
+                                <div class="flex justify-between text-rose-400 border-b border-slate-700 pb-2 mb-1"><span>오타 페널티 감점</span><strong>- ${myPenalty} 점</strong></div>
+                                <div class="flex justify-between text-lg pt-1"><span>최종 배틀 스코어</span><strong class="text-blue-400 text-2xl font-black">${myFinalScore} 점</strong></div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <button onclick="window.marathonEngine.copyLink()" class="w-full bg-slate-700 hover:bg-slate-600 font-bold py-2.5 rounded-xl text-sm transition text-white"><i class="fas fa-share-nodes mr-1"></i> 배틀 초대 링크 복사</button>
+                            <button onclick="window.marathonEngine.resetGame()" class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 font-bold py-3 px-4 rounded-xl shadow-lg transition text-white">재도전하기</button>
+                        </div>
+                    `;
+                this.injectFireworks();
+            } else {
+                const isIWin = myFinalScore >= oppFinalScore;
+                let headerHTML = '';
+                let buttonsHTML = '';
+
+                if (isIWin) {
+                    headerHTML = `
+                            <div class="text-6xl font-black text-sky-400 font-mono tracking-widest mb-4 drop-shadow-[0_0_15px_rgba(56,189,248,0.8)]">WIN</div>
+                            <div class="relative flex justify-center items-center h-28 mb-6" id="fxZone">
+                                <div class="text-blue-400 animate-[dance-jump_0.5s_infinite] text-6xl z-10 filter drop-shadow-[0_0_10px_rgba(56,189,248,0.8)]"><i class="fas fa-child"></i></div>
+                            </div>
+                        `;
+                    buttonsHTML = `
+                            <div class="flex flex-col gap-2">
+                                <button onclick="window.marathonEngine.copyLink()" class="w-full bg-slate-700 hover:bg-slate-600 font-bold py-2.5 rounded-xl text-sm transition text-white">배틀 초대 링크 복사</button>
+                                <button onclick="window.marathonEngine.resetGame()" class="w-full bg-gradient-to-r from-indigo-500 to-purple-600 font-bold py-3 px-4 rounded-xl shadow-lg transition text-white">재도전하기</button>
+                            </div>
+                        `;
+                } else {
+                    headerHTML = `
+                            <div class="text-5xl font-black text-red-500 font-mono tracking-widest drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]">LOSE</div>
+                            <p class="text-sm text-rose-400 font-bold mt-2 mb-4 animate-pulse"><i class="fas fa-triangle-exclamation"></i> 오타 감점 패널티로 순위가 뒤집혔습니다!</p>
+                            <div class="stage-motion-area mt-4 flex justify-center items-end pb-2">
+                                <div class="relative w-64 h-36 flex justify-center items-end">
+                                    <div class="absolute bottom-[4px] right-[40px] w-24 h-6 flex justify-center items-center">
+                                        <div class="ripple-ring absolute" style="width: 100%; height: 100%; animation-delay: 0s;"></div>
+                                        <div class="ripple-ring absolute" style="width: 100%; height: 100%; animation-delay: 0.4s;"></div>
+                                    </div>
+                                    <div class="OTL-guy text-blue-500 z-10 relative">
+                                        <svg viewBox="0 0 100 60" class="w-44 h-28 text-blue-500 fill-current">
+                                            <line x1="5" y1="52" x2="95" y2="52" stroke="#334155" stroke-width="2" stroke-linecap="round"/>
+                                            <path d="M 15 50 L 42 50" stroke="currentColor" stroke-width="5" stroke-linecap="round" fill="none"/>
+                                            <path d="M 42 50 L 25 34" stroke="currentColor" stroke-width="5" stroke-linecap="round" fill="none"/>
+                                            <path d="M 25 34 Q 45 16 65 30" stroke="currentColor" stroke-width="5" stroke-linecap="round" fill="none"/>
+                                            <circle cx="74" cy="34" r="7" fill="currentColor"/>
+                                            <path d="M 58 26 L 68 50 L 85 50" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                                        </svg>
+                                        <div class="falling-tear text-blue-300 text-sm absolute top-[36px] right-[32px] z-20">
+                                            <i class="fas fa-tint"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    buttonsHTML = `
+                            <div class="flex flex-col gap-2">
+                                <button onclick="window.marathonEngine.resetGame()" class="w-full bg-gradient-to-r from-indigo-500 to-purple-600 font-bold py-3 px-4 rounded-xl shadow-lg transition hover:scale-[1.02] text-white">재도전하기</button>
+                                <button onclick="window.marathonEngine.copyLink()" class="w-full bg-slate-700 hover:bg-slate-600 font-bold py-2.5 rounded-xl text-sm transition text-white">이 기록으로 다른 사람 초대하기</button>
+                            </div>
+                        `;
+                }
+
+                contentBox.innerHTML = `
+                        <div id="resultHeaderZone" class="mb-4">${headerHTML}</div>
+                        <div class="grid grid-cols-2 gap-4 mb-6 text-left font-sans">
+                            <div class="p-4 rounded-xl bg-slate-900/80 border border-blue-500/30 shadow-inner">
+                                <h4 class="text-blue-400 font-black border-b border-blue-500/20 pb-2 mb-3 text-center text-md">YOU (나)</h4>
+                                <div class="space-y-2 text-xs">
+                                    <div class="flex justify-between"><span>타자 속도</span><strong class="text-white font-mono">${myFinalSpeed} 타</strong></div>
+                                    <div class="flex justify-between"><span>정확도</span><strong class="text-white font-mono">${myFinalAcc}%</strong></div>
+                                    <div class="flex justify-between text-rose-400 border-b border-slate-700 pb-1"><span>정확도 감점</span><strong>- ${myPenalty} 점</strong></div>
+                                    <div class="flex justify-between text-sm pt-1"><span>최종 스코어</span><strong class="text-blue-400 text-md font-black">${myFinalScore} 점</strong></div>
+                                </div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-slate-900/80 border border-orange-500/30 shadow-inner">
+                                <h4 class="text-orange-400 font-black border-b border-orange-500/20 pb-2 mb-3 text-center text-md">OPP (상대)</h4>
+                                <div class="space-y-2 text-xs">
+                                    <div class="flex justify-between"><span>타자 속도</span><strong class="text-white font-mono">${this.hostSpeed} 타</strong></div>
+                                    <div class="flex justify-between"><span>정확도</span><strong class="text-white font-mono">${this.hostAccuracy}%</strong></div>
+                                    <div class="flex justify-between text-rose-400 border-b border-slate-700 pb-1"><span>정확도 감점</span><strong>- ${oppPenalty} 점</strong></div>
+                                    <div class="flex justify-between text-sm pt-1"><span>최종 스코어</span><strong class="text-orange-400 text-md font-black">${oppFinalScore} 점</strong></div>
+                                </div>
+                            </div>
+                        </div>
+                        ${buttonsHTML}
+                    `;
+                if(isIWin) this.injectFireworks();
+            }
+            document.getElementById('battleResultModal').style.display = 'flex';
+        }
+
+        injectFireworks() {
+            const zone = document.getElementById('fxZone');
+            const colors = ['#38bdf8', '#f43f5e', '#eab308', '#a855f7', '#10b981'];
+            setInterval(() => {
+                if(!zone || document.getElementById('battleResultModal').style.display === 'none') return;
+                const p = document.createElement('div'); p.className = 'particle';
+                p.style.left = '50%'; p.style.top = '50%';
+                p.style.background = colors[Math.floor(Math.random()*colors.length)];
+                p.style.setProperty('--x', `${(Math.random() - 0.5) * 300}px`);
+                p.style.setProperty('--y', `${(Math.random() - 0.5) * 200}px`);
+                zone.appendChild(p);
+                setTimeout(() => p.remove(), 800);
+            }, 45);
+        }
+
+        copyLink() {
+            const payload = window.finalResultPayload || { speed: 420, acc: 96 };
+
+            const savedUser = localStorage.getItem('fingerRunUser');
+            let nickname = '도전자';
+
+            if (savedUser) {
+                try {
+                    const userData = JSON.parse(savedUser);
+                    if (userData && userData.nickname) {
+                        nickname = userData.nickname;
+                    }
+                } catch (e) {
+                    console.error('유저 정보 파싱 오류:', e);
+                }
+            }
+
+            const inviteUrl = `${window.location.origin}${window.location.pathname.replace('battle.html', 'mypage.html')}?invite=true&host=${encodeURIComponent(nickname)}&speed=${payload.speed}&acc=${payload.acc}`;
+
+            const message = `[${nickname}]님이 [${payload.speed}타 / 정확도 ${payload.acc}%]의 엄청난 기록으로 당신에게 도전장을 던졌습니다!\n👉 배틀 수락하기: ${inviteUrl}`;
+
+            navigator.clipboard.writeText(message).then(() => {
+                alert('🚀 배틀 초대 링크가 닉네임 및 스코어 메시지와 함께 클립보드에 복사되었습니다! 커뮤니티나 메일로 붙여넣기(Ctrl+V)해서 경쟁상대에게 보내세요!');
+            }).catch(err => {
+                alert('클립보드 복사에 실패했습니다. 수동으로 복사해주세요.\n' + message);
+            });
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        window.marathonEngine = new FingerRunMarathonEngine();
+    });
+
+    function goProfile(e) {
+        e.preventDefault();
+        const isLoggedIn = localStorage.getItem('isLoggedIn');
+        if (isLoggedIn === 'true') {
+            window.location.href = "mypage.html";
+        } else {
+            window.location.href = "login.html";
+        }
+    }
+</script>
+</body>
+</html>
