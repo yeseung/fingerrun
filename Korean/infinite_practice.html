@@ -1,0 +1,1342 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 외부 리소스 조기 연결 (LCP 개선, 화면 변화 없음) -->
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QSEYCFK83"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7QSEYCFK83');
+  </script>
+
+  <title>한글 타자연습 무한 연습 - 자음·모음·단어·문장 | 핑거런</title>
+
+  <link rel="icon" type="image/svg+xml" href="../images/finger-run-logo.svg">
+  <link rel="shortcut icon" type="image/svg+xml" href="../images/finger-run-logo.svg">
+  <link rel="apple-touch-icon" href="../images/finger-run-logo.svg">
+
+  <!-- 기본 SEO 메타 -->
+  <meta name="description" content="한글 타자연습 무한 모드. 자음·모음·단어·문장 문제가 끝없이 이어지고 손가락별 자모 연습과 실시간 정확도·타자 속도 측정을 제공하는 무료 타자연습입니다.">
+  <meta name="keywords" content="한글타자연습, 무한타자, 타자연습, 한글타자속도, 자음연습, 모음연습, 한글 문장 타자연습, 핑거런">
+  <meta name="author" content="FingerRun">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#667eea">
+
+  <!-- Open Graph (네이버 / 카카오 / 페이스북 공유 카드) -->
+  <meta property="og:site_name" content="핑거런 FingerRun">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="한글 타자연습 무한 연습 - 자음·모음·단어·문장 | 핑거런">
+  <meta property="og:description" content="자음·모음·단어·문장 문제가 끝없이 이어지는 한글 타자연습 무한 모드. 정확도와 타자 속도를 실시간으로 확인하세요.">
+  <meta property="og:url" content="https://fingerrun.com/Korean/infinite_practice.html">
+  <meta property="og:type" content="website">
+  <!-- ※ images/og-image.png (1200x630 PNG) 파일을 올려야 썸네일이 표시됩니다. -->
+  <meta property="og:image" content="https://fingerrun.com/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="핑거런 한글 타자연습 무한 연습">
+
+  <!-- Twitter / X 카드 (빙 크롤러도 참조) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="한글 타자연습 무한 연습 - 자음·모음·단어·문장 | 핑거런">
+  <meta name="twitter:description" content="자음·모음·단어·문장 문제가 끝없이 이어지는 한글 타자연습 무한 모드. 정확도와 타자 속도를 실시간으로 확인하세요.">
+  <meta name="twitter:image" content="https://fingerrun.com/images/og-image.png">
+
+  <link rel="canonical" href="https://fingerrun.com/Korean/infinite_practice.html">
+  <link rel="sitemap" type="application/xml" href="https://fingerrun.com/sitemap.xml">
+
+
+
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Pretendard', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f5f5;
+      min-height: 100vh;
+      color: #333;
+      line-height: 1.6;
+      display: grid;
+      grid-template-columns: 1fr minmax(auto, 1200px) 1fr;
+      gap: 0 60px;
+      align-items: start;
+    }
+
+    /* Navigation */
+    nav {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      padding: 1rem 0;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #667eea;
+      text-decoration: none;
+      display: flex; align-items: center; gap: 0.5rem;
+      text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
+    }
+
+    .logo img { height: 32px; width: auto; }
+
+    .nav-menu { display: flex; list-style: none; gap: 1.5rem; align-items: center; margin: 0; padding: 0; }
+    .nav-menu li { position: relative; }
+    .nav-menu a {
+      text-decoration: none; color: #333; font-weight: 500;
+      padding: 0.5rem 0.8rem; border-radius: 25px; transition: all 0.3s ease;
+      font-size: 0.9rem; display: flex; align-items: center; gap: 0.3rem;
+    }
+    .nav-menu a:hover { background: #667eea; color: white !important; transform: translateY(-2px); }
+    .dropdown-arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
+    .dropdown-menu {
+      position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
+      background: white; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); border-radius: 10px;
+      padding: 0.5rem 0; min-width: 160px; opacity: 0; visibility: hidden; transition: all 0.3s ease;
+      z-index: 1001; border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .nav-menu li:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .nav-menu li:hover .dropdown-arrow { transform: rotate(180deg); }
+    .dropdown-menu a { display: block; padding: 0.7rem 1rem; color: #333; border-radius: 0; white-space: nowrap; font-weight: 400; }
+    .dropdown-menu a:hover { background: #f8f9fa; color: #667eea !important; transform: none; }
+
+    @media (max-width: 900px) { .nav-menu { display: none; } }
+
+    /* Main Container */
+    .main-container {
+      grid-column: 2; grid-row: 1; margin-top: 80px; padding: 2rem 0; width: 100%;
+    }
+
+    .page-header { text-align: center; margin-bottom: 3rem; }
+    .page-title {
+      font-size: 2.5rem; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem;
+    }
+    .page-description { font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto; white-space: nowrap; }
+
+    /* Practice Area Styles */
+    .practice-container {
+      background: white; border-radius: 20px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      padding: 4rem; margin-bottom: 2rem; transition: all 0.3s ease;
+    }
+
+    .practice-menu { display: flex; justify-content: center; gap: 15px; margin-bottom: 2rem; flex-wrap: wrap; }
+    .sub-menu-wrapper { text-align: center; margin-bottom: 2.5rem; margin-top: 2rem; }
+
+    .sub-menu {
+      display: inline-flex; justify-content: center; gap: 5px; background: #f1f5f9;
+      padding: 6px; border-radius: 30px; animation: fadeIn 0.3s ease;
+    }
+    .sub-menu-btn {
+      padding: 8px 24px; border: none; border-radius: 25px; font-size: 0.95rem;
+      cursor: pointer; background: transparent; color: #495057; font-weight: 500; transition: all 0.2s ease;
+    }
+    .sub-menu-btn:hover { background: rgba(102, 126, 234, 0.1); color: #667eea; }
+    .sub-menu-btn.active { background: white; color: #667eea; font-weight: 700; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+
+    .menu-btn {
+      padding: 12px 25px; border: none; border-radius: 25px; font-size: 1rem; font-weight: 600; cursor: pointer;
+      background: #f8f9fa; color: #667eea; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+    .menu-btn:hover { background: linear-gradient(45deg, #667eea, #764ba2); color: white; transform: translateY(-3px); }
+    .menu-btn.active { background: linear-gradient(45deg, #667eea, #764ba2); color: white; transform: scale(1.05); box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3); }
+
+    .practice-area { text-align: center; margin-bottom: 3rem; }
+
+    .text-display {
+      font-size: 1.8rem; line-height: 1.8; margin-top: 2rem; margin-bottom: 3rem; min-height: 160px;
+      display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+      background: transparent; padding: 1rem 2rem; font-weight: 600;
+      word-break: keep-all; letter-spacing: 2px; border: none; transition: all 0.3s ease;
+    }
+
+    .text-display.sentence-mode {
+      letter-spacing: 0.2px; line-height: 1.6; background: #ffffff; border: 2px solid #e2e8f0;
+      border-radius: 15px; margin-top: 1rem; margin-bottom: 2.5rem; min-height: auto;
+      padding: 2rem;
+    }
+
+    .char {
+      display: inline-flex; justify-content: center; align-items: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-weight: 700; font-family: 'Pretendard', sans-serif;
+    }
+
+    .char.distance-0, .char.current {
+      width: 100px; height: 100px; font-size: 52px;
+      background: #9370fa !important; color: #ffffff !important;
+      border: none !important; border-radius: 20px !important;
+      box-shadow: 0 12px 30px rgba(147, 112, 250, 0.4) !important;
+      transform: translateY(-2px);
+      z-index: 10; margin: 0 20px;
+    }
+
+    .char.distance-1 {
+      width: 76px; height: 76px; font-size: 36px;
+      background: #fafafc; border: 2px solid #e2e8f0; border-radius: 16px; color: #64748b; margin: 0 15px;
+    }
+
+    .char.distance-2 {
+      width: 64px; height: 64px; font-size: 28px;
+      background: #fafafc; border: 2px solid #e2e8f0; border-radius: 14px; color: #94a3b8; margin: 0 12px;
+    }
+
+    .char.distance-3 {
+      width: 54px; height: 54px; font-size: 22px;
+      background: #fafafc; border: 2px solid #e2e8f0; border-radius: 12px; color: #cbd5e1; margin: 0 10px;
+    }
+
+    .char.distance-4 {
+      width: 44px; height: 44px; font-size: 18px;
+      background: #fafafc; border: 2px solid #e2e8f0; border-radius: 10px; color: #cbd5e1; margin: 0 8px;
+    }
+
+    .char.distance-0.incorrect, .char.current.incorrect {
+      background: #ef4444 !important;
+      box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4) !important;
+      animation: shake 0.3s cubic-bezier(.36,.07,.19,.97) both;
+    }
+
+    @keyframes shake {
+      10%, 90% { transform: translate3d(-2px, 0, 0); }
+      20%, 80% { transform: translate3d(4px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-8px, 0, 0); }
+      40%, 60% { transform: translate3d(8px, 0, 0); }
+    }
+
+    .text-display.sentence-mode .char {
+      width: auto; height: auto; margin: 0; padding: 0;
+      background: none !important; border: none !important;
+      border-radius: 0; box-shadow: none !important;
+      transform: none !important; animation: none !important;
+      font-size: inherit; display: inline; color: #666; opacity: 1;
+    }
+    .text-display.sentence-mode .char.current,
+    .text-display.sentence-mode .char.distance-0 { color: #3b82f6 !important; }
+    .text-display.sentence-mode .char.distance-0.incorrect,
+    .text-display.sentence-mode .char.current.incorrect { color: #ef4444 !important; }
+
+    .text-display.sentence-mode .char.distance-1,
+    .text-display.sentence-mode .char.distance-2,
+    .text-display.sentence-mode .char.distance-3,
+    .text-display.sentence-mode .char.distance-4 { color: #666 !important; }
+
+    .text-display.sentence-mode .char.space { display: inline-block; width: 0.5em !important; }
+
+    .input-area { margin-bottom: 2.5rem; text-align: center; }
+
+    .typing-input {
+      width: 100%; padding: 18px; font-size: 1.2rem; font-weight: 600;
+      border: 2px solid #e2e8f0; border-radius: 15px;
+      text-align: center; outline: none; background: white; color: #333;
+      transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+    .typing-input:focus { border-color: #667eea; box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15); transform: translateY(-2px); }
+    .typing-input.completed { border-color: #4caf50; background-color: #f1f8f1; color: #2e7d32; }
+
+    .keyboard-controls { display: flex; justify-content: flex-end; margin-bottom: 0.5rem; }
+    .toggle-btn {
+      background: #fff; border: 1px solid #e2e8f0; color: #64748b; padding: 6px 16px;
+      border-radius: 20px; font-size: 0.85rem; cursor: pointer; transition: all 0.2s ease;
+      display: flex; align-items: center; gap: 6px; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    }
+    .toggle-btn:hover { background: #f8fafc; color: #667eea; border-color: #cbd5e1; }
+
+    .keyboard-area { margin: 0; display: flex; justify-content: center; transition: opacity 0.3s ease, height 0.3s ease; overflow: hidden; }
+    .keyboard-area.hidden { display: none; }
+
+    .keyboard {
+      background: #f8fafc; border-radius: 16px; padding: 1.5rem;
+      border: 1px solid #e2e8f0; width: 100%;
+    }
+
+    .keyboard-row { display: flex; justify-content: center; margin-bottom: 0.5rem; gap: 0.4rem; }
+    .keyboard-row:last-child { margin-bottom: 0; }
+
+    .key {
+      background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;
+      padding: 0.5rem; min-width: 2.8rem; height: 3.2rem;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 500; font-size: 0.85rem; color: #64748b; transition: all 0.1s ease;
+      box-shadow: 0 2px 0px rgba(226, 232, 240, 1);
+    }
+
+    .key.active {
+      transform: translateY(2px); box-shadow: none !important;
+      border: 2px solid #9370fa !important; background: #f4f0ff !important;
+      color: #9370fa !important; z-index: 10;
+    }
+    .key.active .key-ko, .key.active .key-en { color: #9370fa !important; }
+
+    .key.wide { min-width: 3.5rem; }
+    .key.space { min-width: 16rem; }
+    .key.shift { min-width: 5.5rem; }
+    .key.enter { min-width: 5rem; }
+    .key.tab { min-width: 4rem; }
+    .key.caps { min-width: 4.5rem; }
+    .key.backspace { min-width: 4rem; }
+
+    .key-dual { display: flex; flex-direction: column; align-items: center; line-height: 1.2; pointer-events: none; }
+    .key-en { font-size: 0.7rem; color: #94a3b8; font-family: Tahoma, sans-serif; pointer-events: none; }
+    .key-ko { font-size: 0.9rem; color: #475569; font-weight: 700; pointer-events: none; }
+
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-bottom: 2rem; border: 2px solid #e2e8f0; }
+    .stat-item { text-align: center; padding: 1.5rem; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); }
+    .stat-value {
+      font-size: 2.2rem; font-weight: 800;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; margin-bottom: 0.5rem;
+    }
+    .stat-label { font-weight: 600; color: #6c757d; }
+
+    @media (max-width: 768px) {
+      .nav-menu { flex-wrap: wrap; gap: 0.5rem; }
+      .nav-menu a { padding: 0.4rem 0.6rem; font-size: 0.8rem; }
+      .key { min-width: 30px; height: 40px; font-size: 0.8rem; }
+      .practice-container { padding: 1.5rem; }
+      .stats { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 1700px) {
+      body { grid-template-columns: 1fr; }
+      .main-container { grid-column: 1; padding: 2rem 1rem; }
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+
+<body>
+<nav>
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="핑거런 홈페이지 메인으로 이동">
+      <img src="../images/finger-run-logo.svg" alt="핑거런 로고" width="32" height="32" class="h-8 w-auto">
+      FingerRun
+    </a>
+    <ul class="nav-menu">
+      <li><a href="../notices.html">공지사항</a></li>
+      <li>
+        <a href="practice.html?mode=consonant">
+          한글 타자연습
+          <span class="dropdown-arrow">▼</span>
+        </a>
+        <div class="dropdown-menu">
+          <a href="practice.html?mode=consonant">자음 연습</a>
+          <a href="practice.html?mode=vowel">모음 연습</a>
+          <a href="practice.html?mode=word">단어 연습</a>
+          <a href="practice.html?mode=sentence">문장 연습</a>
+          <a href="infinite_practice.html">무한 연습</a>
+        </div>
+      </li>
+      <li>
+        <a href="../English/practice.html?mode=alphabet">
+          영어 타자연습
+          <span class="dropdown-arrow">▼</span>
+        </a>
+        <div class="dropdown-menu">
+          <a href="../English/practice.html?mode=alphabet">알파벳 연습</a>
+          <a href="../English/practice.html?mode=word">단어 연습</a>
+          <a href="../English/practice.html?mode=sentence">문장 연습</a>
+          <a href="../English/infinite_practice.html">무한 연습</a>
+        </div>
+      </li>
+      <li>
+        <a href="../Game/delivery.html">
+          타자게임
+          <span class="dropdown-arrow">▼</span>
+        </a>
+        <div class="dropdown-menu">
+          <a href="../Game/tank.html">탱크 폭격</a>
+          <a href="../Game/delivery.html">택배 분류</a>
+          <a href="../Game/mole.html">두더지 잡기</a>
+          <a href="../Game/plane.html">비행기 조종</a>
+        </div>
+      </li>
+      <li><a href="../writing.html">필사</a></li>
+      <li>
+        <a href="../Certificate/word-processor.html">
+          자격증
+          <span class="dropdown-arrow">▼</span>
+        </a>
+        <div class="dropdown-menu">
+          <a href="../Certificate/word-processor.html">워드프로세서</a>
+        </div>
+      </li>
+      <li><a href="../battle.html">타자 배틀</a></li>
+      <li><a href="../contact.html">문의하기</a></li>
+      <li class="ml-2">
+        <a href="../mypage.html" rel="nofollow" title="프로필" aria-label="마이페이지" style="padding: 0.5rem 0.6rem; border-radius: 50%;">
+          <i class="far fa-user text-[1.2rem] m-0" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main class="main-container">
+  <header class="page-header">
+    <h1 class="page-title">한글 타자 무한 연습</h1>
+    <p class="page-description">AI 피드백 기능 없이 끊임 없는 문제들을 도전해보세요!</p>
+  </header>
+
+  <section class="practice-container" aria-label="한글 타자 무한 연습">
+    <div class="practice-menu">
+      <button class="menu-btn" data-mode="consonant">자음연습</button>
+      <button class="menu-btn" data-mode="vowel">모음연습</button>
+      <button class="menu-btn" data-mode="word">단어연습</button>
+      <button class="menu-btn active" data-mode="sentence">문장연습</button>
+    </div>
+
+    <div class="sub-menu-wrapper" id="fingerSubMenu" style="display: none;">
+      <div class="sub-menu">
+        <button class="sub-menu-btn active" data-finger="all">전체</button>
+        <button class="sub-menu-btn" data-finger="index">검지</button>
+        <button class="sub-menu-btn" data-finger="middle">중지</button>
+        <button class="sub-menu-btn" data-finger="ring">약지</button>
+        <button class="sub-menu-btn" data-finger="pinky">새끼</button>
+      </div>
+    </div>
+
+    <div class="practice-area">
+      <div class="text-display sentence-mode" id="textDisplay"></div>
+
+      <div class="input-area">
+        <input type="text" class="typing-input" id="typingInput" placeholder="여기에 타이핑하세요..." aria-label="한글 타자 입력창" autocomplete="off" autocapitalize="off" autocorrect="off">
+      </div>
+
+      <div class="keyboard-controls">
+        <button id="toggleKeyboardBtn" class="toggle-btn" tabindex="-1" title="화상 키보드를 숨기거나 엽니다">
+          <i class="fas fa-eye-slash"></i> 키보드 숨기기
+        </button>
+      </div>
+
+      <div class="keyboard-area" aria-hidden="true">
+        <div class="keyboard" id="keyboard">
+          <div class="keyboard-row">
+            <div class="key" data-key="`" data-ko=""><div class="key-dual"><span class="key-en">`</span><span class="key-ko"></span></div></div>
+            <div class="key" data-key="1" data-ko=""><div class="key-dual"><span class="key-en">1</span><span class="key-ko"></span></div></div>
+            <div class="key" data-key="2" data-ko=""><div class="key-dual"><span class="key-en">2</span><span class="key-ko"></span></div></div>
+            <div class="key" data-key="3" data-ko=""><div class="key-dual"><span class="key-en">3</span><span class="key-ko"></span></div></div>
+            <div class="key" data-key="4" data-ko=""><div class="key-dual"><span class="key-en">4</span><span class="key-ko"></span></div></div>
+            <div class="key" data-key="5" data-ko=""><div class="key-dual"><span class="key-en">5</span><span class="key-ko"></span></div></div>
+            <div class="key" data-key="6" data-ko=""><div class="key-dual"><span class="key-en">6</span><span class="key-ko"></span></div></div>
+            <div class="key" data-key="7" data-ko=""><div class="key-dual"><span class="key-en">7</span><span class="key-ko"></span></div></div>
+            <div class="key" data-key="8" data-ko=""><div class="key-dual"><span class="key-en">8</span><span class="key-ko"></span></div></div>
+            <div class="key" data-key="9" data-ko=""><div class="key-dual"><span class="key-en">9</span><span class="key-ko"></span></div></div>
+            <div class="key" data-key="0" data-ko=""><div class="key-dual"><span class="key-en">0</span><span class="key-ko"></span></div></div>
+            <div class="key" data-key="-" data-ko=""><div class="key-dual"><span class="key-en">-</span><span class="key-ko"></span></div></div>
+            <div class="key" data-key="=" data-ko=""><div class="key-dual"><span class="key-en">=</span><span class="key-ko"></span></div></div>
+            <div class="key backspace" data-key="Backspace">←</div>
+          </div>
+          <div class="keyboard-row">
+            <div class="key tab" data-key="Tab">Tab</div>
+            <div class="key" data-key="q" data-ko="ㅂ"><div class="key-dual"><span class="key-en">Q</span><span class="key-ko">ㅂ</span></div></div>
+            <div class="key" data-key="w" data-ko="ㅈ"><div class="key-dual"><span class="key-en">W</span><span class="key-ko">ㅈ</span></div></div>
+            <div class="key" data-key="e" data-ko="ㄷ"><div class="key-dual"><span class="key-en">E</span><span class="key-ko">ㄷ</span></div></div>
+            <div class="key" data-key="r" data-ko="ㄱ"><div class="key-dual"><span class="key-en">R</span><span class="key-ko">ㄱ</span></div></div>
+            <div class="key" data-key="t" data-ko="ㅅ"><div class="key-dual"><span class="key-en">T</span><span class="key-ko">ㅅ</span></div></div>
+            <div class="key" data-key="y" data-ko="ㅛ"><div class="key-dual"><span class="key-en">Y</span><span class="key-ko">ㅛ</span></div></div>
+            <div class="key" data-key="u" data-ko="ㅕ"><div class="key-dual"><span class="key-en">U</span><span class="key-ko">ㅕ</span></div></div>
+            <div class="key" data-key="i" data-ko="ᅣ"><div class="key-dual"><span class="key-en">I</span><span class="key-ko">ㅑ</span></div></div>
+            <div class="key" data-key="o" data-ko="ㅐ"><div class="key-dual"><span class="key-en">O</span><span class="key-ko">ㅐ</span></div></div>
+            <div class="key" data-key="p" data-ko="ㅔ"><div class="key-dual"><span class="key-en">P</span><span class="key-ko">ㅔ</span></div></div>
+            <div class="key" data-key="[" data-ko=""><div class="key-dual"><span class="key-en">[</span><span class="key-ko"></span></div></div>
+            <div class="key" data-key="]" data-ko=""><div class="key-dual"><span class="key-en">]</span><span class="key-ko"></span></div></div>
+            <div class="key" data-key="\\" data-ko=""><div class="key-dual"><span class="key-en">\</span><span class="key-ko"></span></div></div>
+          </div>
+          <div class="keyboard-row">
+            <div class="key caps" data-key="CapsLock">Caps</div>
+            <div class="key" data-key="a" data-ko="ㅁ"><div class="key-dual"><span class="key-en">A</span><span class="key-ko">ㅁ</span></div></div>
+            <div class="key" data-key="s" data-ko="ㄴ"><div class="key-dual"><span class="key-en">S</span><span class="key-ko">ㄴ</span></div></div>
+            <div class="key" data-key="d" data-ko="ㅇ"><div class="key-dual"><span class="key-en">D</span><span class="key-ko">ㅇ</span></div></div>
+            <div class="key" data-key="f" data-ko="ㄹ"><div class="key-dual"><span class="key-en">F</span><span class="key-ko">ㄹ</span></div></div>
+            <div class="key" data-key="g" data-ko="ㅎ"><div class="key-dual"><span class="key-en">G</span><span class="key-ko">ㅎ</span></div></div>
+            <div class="key" data-key="h" data-ko="ㅗ"><div class="key-dual"><span class="key-en">H</span><span class="key-ko">ㅗ</span></div></div>
+            <div class="key" data-key="j" data-ko="ㅓ"><div class="key-dual"><span class="key-en">J</span><span class="key-ko">ㅓ</span></div></div>
+            <div class="key" data-key="k" data-ko="ㅏ"><div class="key-dual"><span class="key-en">K</span><span class="key-ko">ㅏ</span></div></div>
+            <div class="key" data-key="l" data-ko="ㅣ"><div class="key-dual"><span class="key-en">L</span><span class="key-ko">ㅣ</span></div></div>
+            <div class="key" data-key=";" data-ko=""><div class="key-dual"><span class="key-en">;</span><span class="key-ko"></span></div></div>
+            <div class="key" data-key="'" data-ko=""><div class="key-dual"><span class="key-en">'</span><span class="key-ko"></span></div></div>
+            <div class="key enter" data-key="Enter">Enter</div>
+          </div>
+          <div class="keyboard-row">
+            <div class="key shift" data-key="ShiftLeft">Shift</div>
+            <div class="key" data-key="z" data-ko="ㅋ"><div class="key-dual"><span class="key-en">Z</span><span class="key-ko">ㅋ</span></div></div>
+            <div class="key" data-key="x" data-ko="ㅌ"><div class="key-dual"><span class="key-en">X</span><span class="key-ko">ㅌ</span></div></div>
+            <div class="key" data-key="c" data-ko="ㅊ"><div class="key-dual"><span class="key-en">C</span><span class="key-ko">ㅊ</span></div></div>
+            <div class="key" data-key="v" data-ko="ㅍ"><div class="key-dual"><span class="key-en">V</span><span class="key-ko">ㅍ</span></div></div>
+            <div class="key" data-key="b" data-ko="ㅠ"><div class="key-dual"><span class="key-en">B</span><span class="key-ko">ㅠ</span></div></div>
+            <div class="key" data-key="n" data-ko="ㅜ"><div class="key-dual"><span class="key-en">N</span><span class="key-ko">ㅜ</span></div></div>
+            <div class="key" data-key="m" data-ko="ㅡ"><div class="key-dual"><span class="key-en">M</span><span class="key-ko">ㅡ</span></div></div>
+            <div class="key" data-key="," data-ko=""><div class="key-dual"><span class="key-en">,</span><span class="key-ko"></span></div></div>
+            <div class="key" data-key="." data-ko=""><div class="key-dual"><span class="key-en">.</span><span class="key-ko"></span></div></div>
+            <div class="key" data-key="/" data-ko=""><div class="key-dual"><span class="key-en">/</span><span class="key-ko"></span></div></div>
+            <div class="key shift" data-key="ShiftRight">Shift</div>
+          </div>
+          <div class="keyboard-row">
+            <div class="key wide" data-key="ControlLeft">Ctrl</div>
+            <div class="key wide" data-key="MetaLeft">Win</div>
+            <div class="key wide" data-key="AltLeft">Alt</div>
+            <div class="key space" data-key=" ">Space</div>
+            <div class="key wide" data-key="AltRight">Alt</div>
+            <div class="key wide" data-key="MetaRight">Win</div>
+            <div class="key wide" data-key="ContextMenu">Menu</div>
+            <div class="key wide" data-key="ControlRight">Ctrl</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-value" id="accuracy">100%</div>
+        <div class="stat-label">정확도</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="speed">0</div>
+        <div class="stat-label">타자/분</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="progress">1번째</div>
+        <div class="stat-label">진행 모드</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  class InfiniteTypingPractice {
+    constructor() {
+      this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+      this.currentMode = 'sentence';
+      this.currentFinger = 'all';
+      this.currentText = '';
+      this.currentPosition = 0;
+      this.startTime = null;
+      this.currentProblem = 0; // 진행 횟수 무한 기록용
+      this.accumulatedChars = 0; // 자음/모음 모드 누적 타수
+
+      this.usedWords = [];
+      this.usedSentences = [];
+      this.cvCurrentIndex = 0;
+
+      this.koreanKeyMap = {
+        'q': 'ㅂ', 'w': 'ㅈ', 'e': 'ㄷ', 'r': 'ㄱ', 't': 'ㅅ',
+        'y': 'ㅛ', 'u': 'ㅕ', 'i': 'ㅑ', 'o': 'ㅐ', 'p': 'ㅔ',
+        'a': 'ㅁ', 's': 'ㄴ', 'd': 'ㅇ', 'f': 'ㄹ', 'g': 'ㅎ',
+        'h': 'ㅗ', 'j': 'ㅓ', 'k': 'ㅏ', 'l': 'ㅣ',
+        'z': 'ㅋ', 'x': 'ㅌ', 'c': 'ㅊ', 'v': 'ㅍ',
+        'b': 'ㅠ', 'n': 'ㅜ', 'm': 'ㅡ'
+      };
+
+      this.keyboardMap = {};
+      for (let [key, korean] of Object.entries(this.koreanKeyMap)) {
+        this.keyboardMap[korean] = key;
+      }
+
+      this.keyboardMap['ㄲ'] = 'r';
+      this.keyboardMap['ㄸ'] = 'e';
+      this.keyboardMap['ㅃ'] = 'q';
+      this.keyboardMap['ㅆ'] = 't';
+      this.keyboardMap['ㅉ'] = 'w';
+      this.keyboardMap['ㅒ'] = 'o';
+      this.keyboardMap['ㅖ'] = 'p';
+      this.keyboardMap[' '] = ' ';
+
+      this.complexVowelMap = {
+        'ㅘ': ['h', 'k'], 'ㅙ': ['h', 'o'], 'ㅚ': ['h', 'l'],
+        'ㅝ': ['n', 'j'], 'ㅞ': ['n', 'p'], 'ㅟ': ['n', 'l'], 'ㅢ': ['m', 'l']
+      };
+
+      this.complexVowels = {
+        'ㅘ': ['ㅗ', 'ㅏ'], 'ㅙ': ['ㅗ', 'ㅐ'], 'ㅚ': ['ㅗ', 'ㅣ'],
+        'ㅝ': ['ㅜ', 'ㅓ'], 'ㅞ': ['ㅜ', 'ㅔ'], 'ㅟ': ['ㅜ', 'ㅣ'], 'ㅢ': ['ㅡ', 'ㅣ']
+      };
+
+      this.complexJongs = {
+        'ㄳ': ['ㄱ', 'ㅅ'], 'ㄴㅈ': ['ㄴ', 'ㅈ'], 'ㄴㅎ': ['ㄴ', 'ㅎ'],
+        'ㄹㄱ': ['ㄹ', 'ㄱ'], 'ㄹㅁ': ['ㄹ', 'ㅁ'], 'ㄹㅂ': ['ㄹ', 'ㅂ'], 'ㄹㅅ': ['ㄹ', 'ㅅ'],
+        'ㄹㅌ': ['ㄹ', 'ㅌ'], 'ㄹㅍ': ['ㄹ', 'ㅍ'], 'ㄹㅎ': ['ㄹ', 'ㅎ'], 'ㅂㅅ': ['ㅂ', 'ㅅ']
+      };
+
+      this.fingerAssignment = {
+        'q': 'Left Pinky', 'a': 'Left Pinky', 'z': 'Left Pinky',
+        'w': 'Left Ring', 's': 'Left Ring', 'x': 'Left Ring',
+        'e': 'Left Middle', 'd': 'Left Middle', 'c': 'Left Middle',
+        'r': 'Left Index', 'f': 'Left Index', 'v': 'Left Index', 't': 'Left Index', 'g': 'Left Index', 'b': 'Left Index',
+        'y': 'Right Index', 'h': 'Right Index', 'n': 'Right Index', 'u': 'Right Index', 'j': 'Right Index', 'm': 'Right Index',
+        'i': 'Right Middle', 'k': 'Right Middle',
+        'o': 'Right Ring', 'l': 'Right Ring',
+        'p': 'Right Pinky',
+        ' ': 'Thumb',
+        'enter': 'Right Pinky',
+        'backspace': 'Right Pinky'
+      };
+
+      this.practiceData = {
+        consonant: ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ', 'ㄲ', 'ㄸ', 'ㅃ', 'ㅆ', 'ㅉ'],
+        vowel: ['ㅏ', 'ㅑ', 'ㅓ', 'ㅕ', 'ㅗ', 'ㅛ', 'ㅜ', 'ㅠ', 'ㅡ', 'ㅣ', 'ㅐ', 'ㅒ', 'ㅔ', 'ㅖ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'],
+        word: {
+          easy: [
+            '사랑', '우정', '행복', '미래', '희망', '가족', '친구', '학교', '여행', '음악', '하늘', '바다', '구름', '나무', '꽃', '바람', '햇살', '달빛', '별빛', '소리', '노래', '그림', '사진', '편지', '약속', '선물', '추억', '마음', '생각', '꿈', '나비', '새', '강', '산', '들', '집', '문', '창', '길', '차', '공', '글', '말', '눈', '비', '봄', '여름', '가을', '겨울', '아침', '점심', '저녁', '밤', '오늘', '내일', '어제', '시간', '시계', '달력', '날짜',
+            '우유', '사과', '포도', '딸기', '수박', '바나나', '참외', '오렌지', '키위', '망고', '체리', '복숭아', '자두', '레몬', '파인애플', '오이', '당근', '호박', '배추', '가지', '마늘', '양파', '파', '버섯', '상추', '무', '고추', '토마토', '감자', '고구마', '돼지', '소', '닭', '오리', '양', '말', '토끼', '개', '고양이', '쥐', '호랑이', '사자', '곰', '여우', '늑대', '사슴', '원숭이', '기린', '코끼리', '코뿔소'
+          ],
+          medium: [
+            '컴퓨터', '프로그래밍', '알고리즘', '데이터', '네트워크', '보안', '클라우드', '인공지능', '민주주의', '자본주의', '도서관', '박물관', '미술관', '영화관', '운동장', '지하철', '자동차', '비행기', '자전거', '오토바이', '선생님', '학생', '의사', '경찰', '소방관', '과학자', '예술가', '작가', '기자', '변호사', '스마트폰', '텔레비전', '냉장고', '세탁기', '청소기', '에어컨', '선풍기', '드라이기', '다리미', '전자레인지', '대한민국', '미국', '중국', '일본', '영국', '프랑스', '독일', '이탈리아', '캐나다', '호주',
+            '대학교', '연구소', '연구실', '사무실', '회의실', '휴게실', '화장실', '식당', '카페', '커피숍', '빵집', '미용실', '이발소', '세탁소', '약국', '병원', '보건소', '우체국', '은행', '경찰서', '소방서', '주민센터', '시청', '구청', '도청', '백화점', '할인점', '마트', '슈퍼마켓', '편의점', '시장', '꽃집', '서점', '문구점', '안경원', '시계점', '사진관', '철물점', '철도역', '버스터미널', '항구', '공항', '주유소', '충전소', '주차장', '톨게이트', '휴게소', '놀이공원', '동물원', '식물원'
+          ],
+          hard: [
+            '객체지향', '다형성', '캡슐화', '추상화', '상속', '인터페이스', '프레임워크', '라이브러리', '데이터베이스', '운영체제', '일석이조', '금상첨화', '대기만성', '새옹지마', '유비무환', '전화위복', '청출어람', '토사구팽', '파죽지세', '환골탈태', '지속가능성', '환경오염', '기후변화', '탄소중립', '신재생에너지', '재활용', '미세먼지', '지구온난화', '생태계', '자연보호', '인공지능', '머신러닝', '딥러닝', '빅데이터', '블록체인', '가상현실', '증강현실', '사물인터넷', '메타버스', '자율주행', '얽히고설키다', '울퉁불퉁하다', '알록달록하다', '뒤죽박죽', '아등바등', '차근차근', '조마조마', '두근두근', '싱글벙글', '방방곡곡',
+            '다다익선', '동문서답', '마이동풍', '백발백중', '사면초가', '설상가상', '십중팔구', '어부지리', '오비이락', '우이독경', '이심전심', '일거양득', '일취월장', '작심삼일', '적반하장', '절차탁마', '조삼모사', '주객전도', '죽마고우', '지피지기', '천고마비', '천방지축', '칠전팔기', '타산지석', '함흥차사', '호가호위', '호시탐탐', '횡설수설', '가담항설', '갑론을박', '고진감래', '과유불급', '구사일생', '군계일학', '권선징악', '금지옥엽', '기상천외', '노심초사', '다재다능', '단도직입', '동고동락', '막상막하', '만수무강', '명실상부', '무용지물', '문전성시', '박학다식', '반신반의', '백골난망', '부화뇌동'
+          ]
+        },
+        sentence: [
+          '푸른 바다는 지구 생태계에서 매우 중요한 역할을 담당합니다.',
+          '규칙적인 운동은 신체 건강뿐만 아니라 정신 건강에도 좋습니다.',
+          '독서는 새로운 지식을 습득하고 사고력을 넓히는 훌륭한 방법입니다.',
+          '인공지능 기술의 발전으로 우리의 일상생활을 획기적으로 변화하고 있습니다.',
+          '환경 보호를 위해 일회용품 사용을 줄이는 습관을 실천해야 합니다.',
+          '성실한 태도는 꿈을 이루기 위한 가장 기본적인 소양 중 하나입니다.',
+          '서로를 존중하는 마음은 건강한 사회를 만드는 밑거름이 됩니다.',
+          '과학적인 탐구는 미지의 세계를 이해하려는 인간의 본능에서 시작됩니다.',
+          '예술은 인간의 감정을 표현하고 타인과 공감하는 특별한 언어입니다.',
+          '실패는 성공으로 가는 과정에서 겪게 되는 소중한 경험입니다.',
+          '지치고 힘들 때는 잠시 쉬어가며 마음의 여유를 찾는 것이 필요합니다.',
+          '작은 실천이 모여 큰 변화를 만들어낼 수 있다는 것을 잊지 마세요.',
+          '밤하늘의 별을 바라보며 우주의 신비로움과 무한함을 느껴보세요.',
+          '디지털 시대에는 정보의 진위를 가려내는 비판적 사고가 중요합니다.',
+          '따뜻한 말 한마디가 누군가에게는 큰 위로와 용기가 될 수 있습니다.',
+          '건강한 식습관과 규칙적인 운동은 활력 넘치는 삶의 비결입니다.',
+          '다양한 문화를 경험하고 이해하는 것은 세계 시민의 기본 소양입니다.',
+          '어려운 이웃에게 내미는 손길은 우리 사회를 더욱 따뜻하게 만듭니다.',
+          '끊임없이 배우고 성장하려는 자세는 급변하는 현대 사회에서 필수적입니다.',
+          '자연과 조화롭게 살아가는 방법을 고민하고 실천해야 할 때입니다.',
+          '목표를 향해 나아가는 과정 그 자체로도 충분히 의미 있고 가치 있습니다.',
+          '긍정적인 생각은 어려운 상황을 극복하는 강력한 무기가 될 수 있습니다.',
+          '매일 조금씩이라도 책을 읽는 습관은 지식의 지평을 넓혀줍니다.',
+          '새로운 것에 도전하는 용기가 우리의 삶을 더욱 풍요롭게 만듭니다.',
+          '진정한 리더십은 타인을 존중하고 배려하는 마음에서 시작됩니다.',
+          '가족과 함께 보내는 시간은 삶에서 가장 소중하고 행복한 순간입니다.',
+          '자신의 감정을 솔직하게 표현하는 것은 정신 건강에 매우 중요합니다.',
+          '어려움을 극복하고 이뤄낸 성취는 그 무엇보다 값지고 보람찹니다.',
+          '자연의 아름다움은 일상에 지친 우리에게 큰 위안과 평화를 줍니다.',
+          '다름을 인정하고 다양성을 존중할 때 더 나은 세상을 만들 수 있습니다.',
+          '타인의 입장에서 생각해보는 역지사지의 자세가 인간관계의 기본입니다.',
+          '시간을 효율적으로 관리하는 것은 성공적인 삶을 위한 필수 요소입니다.',
+          '창의적인 아이디어는 자유로운 상상력과 끊임없는 호기심에서 탄생합니다.',
+          '기본과 원칙을 지키는 것은 흔들리지 않는 삶의 튼튼한 토대가 됩니다.',
+          '비판보다는 격려와 칭찬이 사람을 변화시키는 더 큰 힘을 가지고 있습니다.',
+          '스스로를 사랑하고 아끼는 마음이 곧 타인을 사랑할 수 있는 밑거름입니다.',
+          '변화를 두려워하지 않고 수용하는 유연한 태도가 성장을 이끌어냅니다.',
+          '자신의 잘못을 인정하고 반성하는 용기는 사람을 더욱 성숙하게 만듭니다.',
+          '작은 목표부터 하나씩 달성해나가는 성취감이 더 큰 도전을 가능하게 합니다.',
+          '건강한 경쟁은 서로의 발전을 촉진하고 긍정적인 시너지를 창출합니다.',
+          '자연의 섭리를 거스르지 않고 순응하는 삶의 지혜를 배워야 합니다.',
+          '타인의 성공을 진심으로 축하해줄 수 있는 넉넉한 마음을 가져야 합니다.',
+          '어떠한 역경 속에서도 희망을 잃지 않는 강인한 의지가 필요합니다.',
+          '사소한 것에도 감사할 줄 아는 마음이 일상을 더욱 행복하게 만듭니다.',
+          '정보의 홍수 속에서 내게 필요한 지식을 선별하는 능력이 중요해졌습니다.',
+          '진정한 행복은 물질적인 풍요가 아니라 마음의 평화에서 비롯됩니다.',
+          '과거의 실수에 얽매이지 않고 미래로 나아가는 긍정적인 자세가 필요합니다.',
+          '규칙적인 생활 습관은 몸과 마음의 균형을 유지하는 데 큰 도움이 됩니다.',
+          '자신의 능력을 사회를 위해 기여할 때 삶의 진정한 의미를 찾을 수 있습니다.',
+          '끊임없는 성찰과 반성을 통해 어제보다 더 나은 오늘을 만들 수 있습니다.'
+        ]
+      };
+
+      this.init();
+    }
+
+    init() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const modeParam = urlParams.get('mode');
+
+      if (modeParam && this.practiceData[modeParam]) {
+        this.currentMode = modeParam;
+      }
+
+      this.updateMenuUI(this.currentMode);
+      this.bindEvents();
+      this.generateText();
+      this.updateDisplay();
+
+      setTimeout(() => {
+        const display = document.getElementById('textDisplay');
+        if (!display.innerHTML || display.innerHTML.trim() === '' || !this.currentText) {
+          this.updateDisplay();
+        }
+        document.getElementById('typingInput').focus();
+      }, 100);
+    }
+
+    updateMenuUI(mode) {
+      document.querySelectorAll('.menu-btn').forEach(btn => {
+        if (btn.dataset.mode === mode) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      const subMenu = document.getElementById('fingerSubMenu');
+      if (subMenu) {
+        subMenu.style.display = (mode === 'consonant' || mode === 'vowel') ? 'block' : 'none';
+      }
+
+      document.getElementById('progress').textContent = (mode === 'consonant' || mode === 'vowel') ? `${this.accumulatedChars}타 진행중` : `${this.currentProblem + 1}번째`;
+    }
+
+    playKeySound(isCorrect = true) {
+      if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
+      const osc = this.audioCtx.createOscillator();
+      const gain = this.audioCtx.createGain();
+
+      if (isCorrect) {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(600, this.audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(300, this.audioCtx.currentTime + 0.03);
+        gain.gain.setValueAtTime(0.1, this.audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + 0.03);
+        osc.start();
+        osc.stop(this.audioCtx.currentTime + 0.05);
+      } else {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(200, this.audioCtx.currentTime);
+        osc.frequency.linearRampToValueAtTime(100, this.audioCtx.currentTime + 0.1);
+        gain.gain.setValueAtTime(0.08, this.audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + 0.1);
+        osc.start();
+        osc.stop(this.audioCtx.currentTime + 0.1);
+      }
+      osc.connect(gain);
+      gain.connect(this.audioCtx.destination);
+    }
+
+    bindEvents() {
+      document.querySelectorAll('.menu-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          this.changeMode(e.target.dataset.mode);
+        });
+      });
+
+      document.querySelectorAll('.sub-menu-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          this.changeFinger(e.target.dataset.finger);
+        });
+      });
+
+      const toggleKeyboardBtn = document.getElementById('toggleKeyboardBtn');
+      const keyboardArea = document.querySelector('.keyboard-area');
+
+      toggleKeyboardBtn.addEventListener('click', () => {
+        keyboardArea.classList.toggle('hidden');
+        if (keyboardArea.classList.contains('hidden')) {
+          toggleKeyboardBtn.innerHTML = '<i class="fas fa-eye"></i> 키보드 보기';
+        } else {
+          toggleKeyboardBtn.innerHTML = '<i class="fas fa-eye-slash"></i> 키보드 숨기기';
+        }
+        document.getElementById('typingInput').focus();
+      });
+
+      const typingInput = document.getElementById('typingInput');
+
+      typingInput.addEventListener('input', (e) => {
+        try {
+          this.handleInput(e.target.value);
+        } catch (error) {
+          console.error(error);
+        }
+      });
+
+      typingInput.addEventListener('keydown', (e) => {
+        // Spacebar Logic for Consonant/Vowel Mode
+        if ((this.currentMode === 'consonant' || this.currentMode === 'vowel') && e.key === ' ') {
+          e.preventDefault();
+
+          const inputValue = typingInput.value.trim();
+          const targetChar = this.currentText[this.cvCurrentIndex];
+
+          if (inputValue === targetChar || this.isPartialMatch(inputValue, targetChar)) {
+            this.cvCurrentIndex++;
+            this.accumulatedChars++;
+            typingInput.value = '';
+            this.playKeySound(true);
+
+            if (this.cvCurrentIndex >= this.currentText.length) {
+              this.nextProblem(); // 10글자 끝나면 무한으로 재생성
+            } else {
+              this.updateDisplay();
+              this.updateStats();
+            }
+          } else if (inputValue.length > 0) {
+            this.playKeySound(false);
+          }
+          return;
+        }
+
+        // Enter Logic for Word/Sentence Mode
+        if ((this.currentMode === 'word' || this.currentMode === 'sentence') && e.key === 'Enter') {
+          const inputValue = typingInput.value;
+          let isComplete = false;
+
+          if (inputValue.length >= this.currentText.length) {
+            isComplete = true;
+            for (let i = 0; i < this.currentText.length; i++) {
+              if (inputValue[i] !== this.currentText[i]) {
+                isComplete = false;
+                break;
+              }
+            }
+          }
+
+          if (isComplete) {
+            e.preventDefault();
+            this.nextProblem(); // 무한 루프
+          }
+        }
+      });
+    }
+
+    changeMode(mode) {
+      this.currentMode = mode;
+      this.currentProblem = 0;
+      this.accumulatedChars = 0;
+      this.currentFinger = 'all';
+
+      document.querySelectorAll('.sub-menu-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelector('.sub-menu-btn[data-finger="all"]').classList.add('active');
+
+      this.updateMenuUI(mode);
+      this.resetStats();
+
+      if (mode === 'sentence') {
+        this.usedSentences = [];
+      } else if (mode === 'word') {
+        this.usedWords = [];
+      }
+
+      this.generateText();
+      this.updateDisplay();
+      document.getElementById('typingInput').value = '';
+      document.getElementById('typingInput').classList.remove('completed');
+      document.getElementById('typingInput').focus();
+    }
+
+    changeFinger(finger) {
+      this.currentFinger = finger;
+      document.querySelectorAll('.sub-menu-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelector(`.sub-menu-btn[data-finger="${finger}"]`).classList.add('active');
+
+      this.currentProblem = 0;
+      this.accumulatedChars = 0;
+      this.resetStats();
+      this.generateText();
+      this.updateDisplay();
+      document.getElementById('typingInput').value = '';
+      document.getElementById('typingInput').classList.remove('completed');
+      document.getElementById('typingInput').focus();
+    }
+
+    getEnglishKey(key) {
+      if(key === 'Enter') return 'enter';
+      if(key === 'Backspace') return 'backspace';
+      if(this.keyboardMap[key]) return this.keyboardMap[key];
+      for (let [engKey, korChar] of Object.entries(this.koreanKeyMap)) {
+        if (korChar === key) return engKey;
+      }
+      return key === ' ' ? ' ' : key.toLowerCase();
+    }
+
+    generateText() {
+      this.cvCurrentIndex = 0;
+      const data = this.practiceData[this.currentMode];
+
+      if (this.currentMode === 'sentence') {
+        let candidates = data.filter(s => !this.usedSentences.includes(s));
+        if (candidates.length === 0) {
+          this.usedSentences = [];
+          candidates = data;
+        }
+        const randomIndex = Math.floor(Math.random() * candidates.length);
+        this.currentText = candidates[randomIndex];
+        this.usedSentences.push(this.currentText);
+      }
+      else if (this.currentMode === 'word') {
+        const easy = this.practiceData.word.easy;
+        const med = this.practiceData.word.medium;
+        const hard = this.practiceData.word.hard;
+        const allWords = [...easy, ...med, ...hard];
+
+        const availableWords = allWords.filter(w => !this.usedWords.includes(w));
+        if (availableWords.length < 3) this.usedWords = [];
+
+        const selectedWords = [];
+        const tempPool = availableWords.length >= 3 ? availableWords : allWords;
+        for(let i=0; i<3; i++) {
+          const randIdx = Math.floor(Math.random() * tempPool.length);
+          const word = tempPool[randIdx];
+          selectedWords.push(word);
+          this.usedWords.push(word);
+        }
+        this.currentText = selectedWords.join(' ');
+      }
+      else { // consonant, vowel
+        let candidates = data;
+        if (this.currentFinger !== 'all') {
+          candidates = data.filter(char => {
+            const engKey = this.keyboardMap[char];
+            if (!engKey) return false;
+            const assignedFinger = this.fingerAssignment[engKey];
+            if (!assignedFinger) return false;
+            return assignedFinger.toLowerCase().includes(this.currentFinger.toLowerCase());
+          });
+          if (candidates.length === 0) candidates = data;
+        }
+
+        let text = '';
+        // 10개씩 끊어서 생성
+        for(let i=0; i<10; i++) {
+          text += candidates[Math.floor(Math.random()*candidates.length)];
+        }
+        this.currentText = text;
+      }
+
+      this.currentPosition = 0;
+      // 새로운 모드나 전체 리셋시작일 때만 startTime 초기화 (무한 누적 측정을 위함)
+      if(this.accumulatedChars === 0 && this.currentProblem === 0) {
+        this.startTime = null;
+      }
+
+      const textDisplay = document.getElementById('textDisplay');
+      if (this.currentMode === 'sentence' || this.currentMode === 'word') {
+        textDisplay.classList.add('sentence-mode');
+      } else {
+        textDisplay.classList.remove('sentence-mode');
+      }
+
+      this.updateKeyboardHighlight();
+    }
+
+    isPartialMatch(inputChar, targetChar, nextTargetChar = null) {
+      if (inputChar === targetChar) return true;
+      if (inputChar === ' ' || targetChar === ' ') return false;
+      const inputDecomp = this.decomposeHangul(inputChar);
+      const targetDecomp = this.decomposeHangul(targetChar);
+      if (inputDecomp.length <= targetDecomp.length) {
+        for(let i=0; i<inputDecomp.length; i++) {
+          const inJ = inputDecomp[i];
+          const tgJ = targetDecomp[i];
+          if (inJ === tgJ) continue;
+          if (this.complexJongs[inJ] && this.complexJongs[inJ][0] === tgJ) {
+            if (nextTargetChar) {
+              const remainder = this.complexJongs[inJ][1];
+              const nextDecomp = this.decomposeHangul(nextTargetChar);
+              if (nextDecomp[0] === remainder) continue;
+            }
+          }
+          if (this.complexVowels[tgJ] && this.complexVowels[tgJ][0] === inJ) continue;
+          if (this.complexJongs[tgJ] && this.complexJongs[tgJ][0] === inJ) continue;
+          return false;
+        }
+        return true;
+      }
+      if (nextTargetChar && inputDecomp.length > targetDecomp.length) {
+        for(let i=0; i<targetDecomp.length; i++) {
+          if (inputDecomp[i] !== targetDecomp[i]) return false;
+        }
+        const nextTargetDecomp = this.decomposeHangul(nextTargetChar);
+        const overflow = inputDecomp.slice(targetDecomp.length);
+        for(let i=0; i<overflow.length; i++) {
+          if (i >= nextTargetDecomp.length) return false;
+          if (overflow[i] !== nextTargetDecomp[i]) return false;
+        }
+        return true;
+      }
+      return false;
+    }
+
+    updateDisplay() {
+      const display = document.getElementById('textDisplay');
+      const typingInput = document.getElementById('typingInput');
+      const rawValue = typingInput ? typingInput.value.trim() : '';
+      display.innerHTML = '';
+
+      if (this.currentMode === 'consonant' || this.currentMode === 'vowel') {
+        let displayCount = 0;
+        for (let i = this.cvCurrentIndex; i < this.currentText.length && displayCount < 5; i++) {
+          const span = document.createElement('span');
+          const char = this.currentText[i];
+          let cls = 'char';
+
+          span.textContent = char;
+
+          if (i === this.cvCurrentIndex) {
+            cls += ' current distance-0';
+            if (rawValue.length > 0 && rawValue !== char && !this.isPartialMatch(rawValue, char)) {
+              cls += ' incorrect';
+            }
+          } else {
+            cls += ` distance-${displayCount}`;
+          }
+
+          span.className = cls;
+          display.appendChild(span);
+          displayCount++;
+        }
+        document.getElementById('progress').textContent = `${this.accumulatedChars}타 진행중`;
+      } else {
+        const inputValue = typingInput.value;
+        let displayIndex = 0;
+        for (let i = 0; i < inputValue.length; i++) {
+          if (inputValue[i] === this.currentText[i]) {
+            displayIndex = i + 1;
+          } else if (i === inputValue.length - 1 && this.isPartialMatch(inputValue[i], this.currentText[i], this.currentText[i+1])) {
+            displayIndex = i;
+            break;
+          } else {
+            displayIndex = i;
+            break;
+          }
+        }
+
+        for (let i = 0; i < this.currentText.length; i++) {
+          const span = document.createElement('span');
+          const char = this.currentText[i];
+          let cls = 'char';
+
+          if (char === ' ') {
+            span.innerHTML = '&nbsp;';
+            cls += ' space';
+          } else {
+            span.textContent = char;
+          }
+
+          if (i < displayIndex) {
+            cls += ' correct';
+          } else if (i === displayIndex) {
+            cls += ' current distance-0';
+            if (i < inputValue.length && inputValue[i] !== char && !this.isPartialMatch(inputValue[i], char, this.currentText[i+1])) {
+              cls += ' incorrect';
+            }
+          } else {
+            cls += ' distance-1';
+          }
+
+          span.className = cls;
+          display.appendChild(span);
+        }
+        this.applyInitialColors();
+        document.getElementById('progress').textContent = `${this.currentProblem + 1}번째`;
+      }
+
+      this.updateKeyboardHighlight();
+    }
+
+    applyInitialColors() {
+      const chars = document.querySelectorAll('.text-display.sentence-mode .char.distance-1');
+      chars.forEach(char => char.style.color = '#8b5cf6');
+    }
+
+    decomposeHangul(char) {
+      const code = char.charCodeAt(0);
+      if ((code >= 0x3131 && code <= 0x314E) || (code >= 0x314F && code <= 0x3163)) return [char];
+      if (code >= 0xAC00 && code <= 0xD7A3) {
+        const base = code - 0xAC00;
+        const cho = Math.floor(base / 588);
+        const jung = Math.floor((base % 588) / 28);
+        const jong = base % 28;
+        const choArr = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+        const jungArr = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
+        const jongArr = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄴㅈ', 'ㄴㅎ', 'ㄷ', 'ㄹ', 'ㄹㄱ', 'ㄹㅁ', 'ㄹㅂ', 'ㄹㅅ', 'ㄹㅌ', 'ㄹㅍ', 'ㄹㅎ', 'ㅁ', 'ㅂ', 'ㅂㅅ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+        let res = [choArr[cho], jungArr[jung]];
+        if(jongArr[jong]) res.push(jongArr[jong]);
+        return res;
+      }
+      return [char];
+    }
+
+    countJaso(text) {
+      let cnt = 0;
+      for(let c of text) {
+        if(c === ' ') cnt++;
+        else if(/[가-힣]/.test(c)) {
+          const d = this.decomposeHangul(c);
+          cnt += d.length;
+        } else cnt++;
+      }
+      return cnt;
+    }
+
+    updateKeyboardHighlight() {
+      const keyEls = document.querySelectorAll('.key');
+      keyEls.forEach(key => key.classList.remove('active'));
+
+      const typingInput = document.getElementById('typingInput');
+      let targetChar = '';
+
+      if (this.currentMode === 'consonant' || this.currentMode === 'vowel') {
+        if (this.cvCurrentIndex >= this.currentText.length) return;
+
+        const inputValue = typingInput.value.trim();
+        targetChar = this.currentText[this.cvCurrentIndex];
+
+        if (inputValue === targetChar || this.isPartialMatch(inputValue, targetChar)) {
+          const spaceKey = document.querySelector('.key[data-key=" "]');
+          if (spaceKey) spaceKey.classList.add('active');
+          return;
+        }
+      } else {
+        const inputValue = typingInput.value;
+        let displayIndex = 0;
+        for (let i = 0; i < inputValue.length; i++) {
+          if (inputValue[i] === this.currentText[i]) {
+            displayIndex = i + 1;
+          } else if (i === inputValue.length - 1 && this.isPartialMatch(inputValue[i], this.currentText[i], this.currentText[i+1])) {
+            displayIndex = i;
+            break;
+          } else {
+            displayIndex = i;
+            break;
+          }
+        }
+
+        if (displayIndex >= this.currentText.length) {
+          const enterKey = document.querySelector('.key[data-key="Enter"]');
+          if (enterKey) enterKey.classList.add('active');
+          return;
+        }
+
+        let safeInputValue = inputValue.substring(0, displayIndex);
+        if (displayIndex < inputValue.length && this.isPartialMatch(inputValue[displayIndex], this.currentText[displayIndex], this.currentText[displayIndex+1])) {
+          safeInputValue += inputValue[displayIndex];
+        }
+
+        let inputJamoCount = this.countJaso(safeInputValue);
+        let jamoCounter = 0;
+
+        for (let i = 0; i < this.currentText.length; i++) {
+          const char = this.currentText[i];
+          const jamos = (char === ' ') ? [' '] : this.decomposeHangul(char);
+          if (inputJamoCount < jamoCounter + jamos.length) {
+            targetChar = char;
+            break;
+          }
+          jamoCounter += jamos.length;
+        }
+        if (!targetChar) return;
+      }
+
+      const highlightShiftIfNeeded = (jamo) => {
+        if (['ㄲ', 'ㄸ', 'ㅃ', 'ㅆ', 'ㅉ', 'ㅒ', 'ㅖ'].includes(jamo)) {
+          const shiftLeft = document.querySelector('.key[data-key="ShiftLeft"]');
+          const shiftRight = document.querySelector('.key[data-key="ShiftRight"]');
+          if (shiftLeft) shiftLeft.classList.add('active');
+          if (shiftRight) shiftRight.classList.add('active');
+        }
+      };
+
+      let vowel = '';
+      if (/[가-힣]/.test(targetChar)) {
+        const code = targetChar.charCodeAt(0) - 0xAC00;
+        const jungIndex = Math.floor((code % 588) / 28);
+        const jungSeong = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
+        vowel = jungSeong[jungIndex];
+      } else if (/[ㅏ-ㅣ]/.test(targetChar)) {
+        vowel = targetChar;
+      }
+
+      const complexKeys = this.complexVowelMap[vowel];
+
+      if (complexKeys) {
+        if (this.currentMode !== 'consonant' && this.currentMode !== 'vowel') {
+          complexKeys.forEach(k => {
+            const keyEl = document.querySelector(`.key[data-key="${k}"]`);
+            if(keyEl) keyEl.classList.add('active');
+          });
+        } else {
+          const jamos = this.decomposeHangul(targetChar);
+          const key = this.getEnglishKey(jamos[0]);
+          const el = document.querySelector(`.key[data-key="${key}"]`);
+          if(el) el.classList.add('active');
+          highlightShiftIfNeeded(jamos[0]);
+        }
+      } else {
+        const jamos = this.decomposeHangul(targetChar);
+        let key = targetChar === ' ' ? ' ' : this.getEnglishKey(jamos[0]);
+        const el = document.querySelector(`.key[data-key="${key}"]`);
+        if(el) el.classList.add('active');
+        highlightShiftIfNeeded(jamos[0]);
+      }
+    }
+
+    handleInput(rawInputValue) {
+      if (!this.startTime) {
+        this.startTime = Date.now();
+      }
+
+      const inputArea = document.getElementById('typingInput');
+
+      if (this.currentMode === 'consonant' || this.currentMode === 'vowel') {
+        if (rawInputValue.length > 1) {
+          inputArea.value = rawInputValue.substring(rawInputValue.length - 1);
+        }
+
+        const char = inputArea.value.trim();
+        const targetChar = this.currentText[this.cvCurrentIndex];
+
+        if (char) {
+          if (char === targetChar || this.isPartialMatch(char, targetChar)) {
+            inputArea.placeholder = "스페이스바를 누르세요";
+          } else {
+            inputArea.placeholder = "여기에 타이핑하세요...";
+            this.playKeySound(false);
+          }
+        } else {
+          inputArea.placeholder = "여기에 타이핑하세요...";
+        }
+        this.updateDisplay();
+
+      } else {
+        if (rawInputValue.length > 0) {
+          const lastIdx = rawInputValue.length - 1;
+          if (lastIdx < this.currentText.length) {
+            const char = this.currentText[lastIdx];
+            const inputChar = rawInputValue[lastIdx];
+            if (inputChar === char) {
+              this.playKeySound(true);
+            } else if (this.isPartialMatch(inputChar, char, this.currentText[lastIdx+1])) {
+              this.playKeySound(true);
+            } else {
+              this.playKeySound(false);
+            }
+          }
+        }
+
+        this.currentPosition = rawInputValue.length;
+        this.updateDisplay();
+        this.updateStats();
+
+        let isComplete = false;
+        if (rawInputValue.length >= this.currentText.length) {
+          isComplete = true;
+          for (let i = 0; i < this.currentText.length; i++) {
+            if (rawInputValue[i] !== this.currentText[i]) {
+              isComplete = false;
+              break;
+            }
+          }
+        }
+
+        if (isComplete) {
+          inputArea.classList.add('completed');
+          inputArea.placeholder = "엔터(Enter)를 눌러 다음으로 넘어가세요.";
+        } else {
+          inputArea.classList.remove('completed');
+          inputArea.placeholder = "여기에 타이핑하세요...";
+        }
+      }
+    }
+
+    updateStats() {
+      let typedCount = 0;
+      let correctCount = 0;
+      let totalLength = 0;
+
+      if (this.currentMode === 'consonant' || this.currentMode === 'vowel') {
+        typedCount = this.accumulatedChars;
+        correctCount = this.accumulatedChars;
+        totalLength = this.accumulatedChars;
+      } else {
+        const inputValue = document.getElementById('typingInput').value;
+        typedCount = this.countJaso(inputValue);
+        totalLength = inputValue.length;
+
+        for (let i = 0; i < inputValue.length; i++) {
+          if (i >= this.currentText.length) break;
+          const char = this.currentText[i];
+          if (inputValue[i] === char) correctCount++;
+          else if (i === inputValue.length - 1 && this.isPartialMatch(inputValue[i], char, this.currentText[i+1])) correctCount++;
+        }
+      }
+
+      const elapsed = (Date.now() - this.startTime) / 1000 / 60;
+      const speed = elapsed > 0 ? Math.round(typedCount / elapsed) : 0;
+      document.getElementById('speed').innerText = speed;
+
+      if (totalLength === 0) {
+        document.getElementById('accuracy').innerText = '100%';
+      } else {
+        const accuracy = Math.floor((correctCount / totalLength) * 100);
+        document.getElementById('accuracy').innerText = accuracy + '%';
+      }
+    }
+
+    resetStats() {
+      this.startTime = null;
+      document.getElementById('accuracy').textContent = '100%';
+      document.getElementById('speed').textContent = '0';
+    }
+
+    // 무한 루프 모드 (종료 제한 없음)
+    nextProblem() {
+      if (this.currentMode === 'sentence' || this.currentMode === 'word') {
+        this.currentProblem++; // 횟수 계속 증가
+      }
+      const inputEl = document.getElementById('typingInput');
+
+      this.generateText();
+      this.currentPosition = 0;
+
+      inputEl.value = '';
+      inputEl.classList.remove('completed');
+      inputEl.placeholder = "여기에 타이핑하세요...";
+      inputEl.blur();
+
+      // 자연스러운 전환 효과를 위해 살짝 딜레이 후 재진입
+      setTimeout(() => {
+        inputEl.focus();
+        this.updateDisplay();
+        this.updateKeyboardHighlight();
+      }, 50);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    window.typingPractice = new InfiniteTypingPractice();
+  });
+</script>
+</body>
+</html>

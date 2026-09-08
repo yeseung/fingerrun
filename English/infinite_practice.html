@@ -1,0 +1,862 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+  <!-- 외부 리소스 조기 연결 (LCP 개선, 화면 변화 없음) -->
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7QSEYCFK83"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7QSEYCFK83');
+  </script>
+
+  <title>영어 타자연습 무한 연습 - 끝없는 영타 문장 연습 | 핑거런</title>
+
+  <link rel="icon" type="image/svg+xml" href="../images/finger-run-logo.svg">
+  <link rel="shortcut icon" type="image/svg+xml" href="../images/finger-run-logo.svg">
+  <link rel="apple-touch-icon" href="../images/finger-run-logo.svg">
+
+  <!-- 기본 SEO 메타 -->
+  <meta name="description" content="영어 타자연습 무한 모드. 알파벳·단어·문장 문제가 끝없이 이어지며 정확도와 타자 속도를 실시간으로 확인할 수 있는 무료 영타 연습입니다.">
+  <meta name="keywords" content="영어타자연습, 무한타자, English typing, 영어타자 무한, 영타연습, 영어 문장 타자연습, 핑거런">
+  <meta name="author" content="FingerRun">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#667eea">
+
+  <!-- Open Graph (네이버 / 카카오 / 페이스북 공유 카드) -->
+  <meta property="og:site_name" content="핑거런 FingerRun">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="영어 타자연습 무한 연습 - 끝없는 영타 문장 연습 | 핑거런">
+  <meta property="og:description" content="알파벳·단어·문장 문제가 끝없이 이어지는 영어 타자연습 무한 모드. 정확도와 타자 속도를 실시간으로 확인하세요.">
+  <meta property="og:url" content="https://fingerrun.com/English/infinite_practice.html">
+  <meta property="og:type" content="website">
+  <!-- ※ images/og-image.png (1200x630 PNG) 파일을 올려야 썸네일이 표시됩니다. -->
+  <meta property="og:image" content="https://fingerrun.com/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="핑거런 영어 타자연습 무한 연습">
+
+  <!-- Twitter / X 카드 (빙 크롤러도 참조) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="영어 타자연습 무한 연습 - 끝없는 영타 문장 연습 | 핑거런">
+  <meta name="twitter:description" content="알파벳·단어·문장 문제가 끝없이 이어지는 영어 타자연습 무한 모드. 정확도와 타자 속도를 실시간으로 확인하세요.">
+  <meta name="twitter:image" content="https://fingerrun.com/images/og-image.png">
+
+  <link rel="canonical" href="https://fingerrun.com/English/infinite_practice.html">
+  <link rel="sitemap" type="application/xml" href="https://fingerrun.com/sitemap.xml">
+
+
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f5f5;
+      min-height: 100vh;
+      color: #333;
+      line-height: 1.6;
+      display: grid;
+      grid-template-columns: 1fr minmax(auto, 1200px) 1fr;
+      gap: 0 60px;
+      align-items: start;
+    }
+
+    /* Navigation */
+    nav {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      padding: 1rem 0;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+    .logo { font-size: 1.5rem; font-weight: bold; color: #667eea; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; text-shadow: 1px 1px 0px rgba(255,255,255,0.5); }
+    .logo img { height: 32px; width: auto; }
+    .nav-menu { display: flex; list-style: none; gap: 1.5rem; align-items: center; margin: 0; padding: 0; }
+    .nav-menu li { position: relative; }
+    .nav-menu a { text-decoration: none; color: #333; font-weight: 500; padding: 0.5rem 0.8rem; border-radius: 25px; transition: all 0.3s ease; font-size: 0.9rem; display: flex; align-items: center; gap: 0.3rem; }
+    .nav-menu a:hover { background: #667eea; color: white !important; transform: translateY(-2px); }
+    .dropdown-arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
+    .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: white; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); border-radius: 10px; padding: 0.5rem 0; min-width: 160px; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 1001; border: 1px solid rgba(0, 0, 0, 0.1); }
+    .nav-menu li:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+    .nav-menu li:hover .dropdown-arrow { transform: rotate(180deg); }
+    .dropdown-menu a { display: block; padding: 0.7rem 1rem; color: #333; border-radius: 0; white-space: nowrap; font-weight: 400; }
+    .dropdown-menu a:hover { background: #f8f9fa; color: #667eea !important; transform: none; }
+
+    @media (max-width: 900px) { .nav-menu { display: none; } }
+
+    /* Main Container */
+    .main-container {
+      grid-column: 2;
+      grid-row: 1;
+      margin-top: 80px;
+      padding: 2rem 0;
+      width: 100%;
+    }
+    .page-header { text-align: center; margin-bottom: 3rem; }
+    .page-title { font-size: 2.5rem; font-weight: 700; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; }
+    .page-description { font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto; white-space: nowrap; }
+
+    /* Practice Container */
+    .practice-container { background: white; border-radius: 20px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); padding: 3rem; margin-bottom: 2rem; transition: all 0.3s ease; }
+    .practice-menu { display: flex; justify-content: center; gap: 15px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .menu-btn { padding: 12px 25px; border: none; border-radius: 25px; font-size: 1rem; font-weight: 600; cursor: pointer; background: #f8f9fa; color: #667eea; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); }
+    .menu-btn:hover { background: linear-gradient(45deg, #667eea, #764ba2); color: white; transform: translateY(-3px); }
+    .menu-btn.active { background: linear-gradient(45deg, #667eea, #764ba2); color: white; transform: scale(1.05); box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3); }
+
+    /* Submenu */
+    .submenu-area { display: flex; justify-content: center; gap: 8px; margin-bottom: 2rem; flex-wrap: wrap; padding: 15px; background: #f1f5f9; border-radius: 30px; border: 1px solid #e2e8f0; }
+    .submenu-btn { padding: 8px 16px; border: none; border-radius: 20px; font-size: 0.9rem; font-weight: 500; cursor: pointer; background: transparent; color: #495057; transition: all 0.2s ease; }
+    .submenu-btn:hover { background: rgba(102, 126, 234, 0.1); color: #667eea; }
+    .submenu-btn.active { background: white; color: #667eea; font-weight: 700; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+
+    /* Practice Area */
+    .practice-area { text-align: center; margin-bottom: 3rem; }
+
+    /* 텍스트 박스 기본 설정 (알파벳 모드 1.5배 적용) */
+    .text-display {
+      font-size: 2.7rem; /* 기존 1.8rem의 1.5배 */
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #f8f9fa;
+      border-radius: 15px;
+      padding: 2rem;
+      word-break: keep-all;
+      letter-spacing: 2px;
+      border: 2px solid #e2e8f0;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    /* 문장/단어 모드일 때는 원래 크기로 복구 */
+    .text-display.sentence-mode {
+      font-size: 1.8rem;
+      letter-spacing: 0.2px;
+      line-height: 1.6;
+      background: white;
+    }
+
+    /* 캐릭터 스타일 (알파벳 모드 박스 1.5배 확대 적용) */
+    .char {
+      margin: 5px;
+      padding: 12px 15px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      color: #666;
+      font-weight: 500;
+    }
+    .char.correct { color: white; background: linear-gradient(45deg, #4caf50, #45a049); transform: scale(1.1); box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); }
+    .char.incorrect { color: white !important; background: linear-gradient(45deg, #ff6b6b, #ff5252) !important; transform: scale(1.1) !important; box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3) !important; }
+    .char.current { color: white; background: linear-gradient(45deg, #667eea, #764ba2); animation: pulse 1.5s infinite; transform: scale(1.15); }
+    .char.space { display: inline-block; width: 0.5em; transform: none !important; background: transparent !important; box-shadow: none !important; }
+
+    .text-display.sentence-mode .char { margin: 0; padding: 0; background: none !important; border-radius: 0; box-shadow: none !important; transform: none !important; animation: none !important; color: #8b5cf6; }
+    .text-display.sentence-mode .char.correct { color: #000000; }
+    .text-display.sentence-mode .char.incorrect { color: #ff4444 !important; }
+    .text-display.sentence-mode .char.current { color: #3b82f6; }
+
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1.15); } 50% { opacity: 0.7; transform: scale(1.2); } }
+
+    /* Input Area */
+    .input-area { margin-bottom: 2.5rem; text-align: center; }
+    .typing-input { width: 100%; padding: 18px; font-size: 1.2rem; font-weight: 600; border: 2px solid #e2e8f0; border-radius: 15px; text-align: center; outline: none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); }
+    .typing-input:focus { border-color: #667eea; box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15); transform: translateY(-2px); }
+    .typing-input.completed { border-color: #4caf50; background-color: #f1f8f1; color: #2e7d32; }
+
+    .keyboard-controls { display: flex; justify-content: flex-end; margin-bottom: 0.5rem; }
+    .toggle-btn { background: #fff; border: 1px solid #e2e8f0; color: #64748b; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 6px; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+    .toggle-btn:hover { background: #f8fafc; color: #667eea; border-color: #cbd5e1; }
+
+    /* Keyboard Area */
+    .keyboard-area { margin: 0; display: flex; justify-content: center; transition: opacity 0.3s ease, height 0.3s ease; overflow: hidden; }
+    .keyboard-area.hidden { display: none; }
+
+    .keyboard { background: #f8fafc; border-radius: 16px; padding: 1.5rem; border: 1px solid #e2e8f0; width: 100%; }
+    .keyboard-row { display: flex; justify-content: center; margin-bottom: 0.5rem; gap: 0.4rem; }
+    .keyboard-row:last-child { margin-bottom: 0; }
+    .key { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.5rem; min-width: 2.8rem; height: 3.2rem; display: flex; align-items: center; justify-content: center; font-weight: 500; font-size: 0.85rem; color: #64748b; transition: all 0.1s ease; box-shadow: 0 2px 0px rgba(226, 232, 240, 1); }
+    .key.active { transform: translateY(2px); box-shadow: none !important; border: 2px solid #9370fa !important; background: #f4f0ff !important; color: #9370fa !important; z-index: 10; }
+    .key.active .key-ko, .key.active .key-en { color: #9370fa !important; }
+    .key.wide { min-width: 3.5rem; }
+    .key.space { min-width: 16rem; }
+    .key.shift { min-width: 5.5rem; }
+    .key.enter { min-width: 5.5rem; }
+    .key.tab { min-width: 4rem; }
+    .key.caps { min-width: 4.5rem; }
+    .key.backspace { min-width: 4rem; }
+
+    .key-dual { display: flex; flex-direction: column; align-items: center; line-height: 1.2; pointer-events: none; }
+    .key-en { font-size: 0.8rem; font-weight: 600; pointer-events: none; }
+    .key-ko { font-size: 0.7rem; color: #94a3b8; pointer-events: none; }
+
+    /* Stats */
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; background: #f8f9fa; padding: 2rem; border-radius: 15px; border: 2px solid #e2e8f0; margin-bottom: 2rem; }
+    .stat-item { text-align: center; padding: 1.5rem; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); }
+    .stat-value { font-size: 2.2rem; font-weight: 800; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
+    .stat-label { font-weight: 600; color: #6c757d; }
+
+    @media (max-width: 768px) {
+      .nav-menu { flex-wrap: wrap; gap: 0.5rem; }
+      .nav-menu a { padding: 0.4rem 0.6rem; font-size: 0.8rem; }
+      .key { min-width: 30px; height: 40px; font-size: 0.8rem; }
+      .practice-container { padding: 1.5rem; }
+      .stats { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 1700px) {
+      body { grid-template-columns: 1fr; }
+      .main-container { grid-column: 1; padding: 2rem 1rem; }
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T9HC454Z" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<nav>
+  <div class="nav-container">
+    <a href="../index.html" class="logo" aria-label="핑거런 홈페이지 메인으로 이동">
+      <img src="../images/finger-run-logo.svg" alt="핑거런 로고" width="32" height="32" class="h-8 w-auto"> FingerRun
+    </a>
+    <ul class="nav-menu">
+      <li><a href="../notices.html">공지사항</a></li>
+      <li>
+        <a href="../Korean/practice.html?mode=consonant">한글 타자연습 <span class="dropdown-arrow">▼</span></a>
+        <div class="dropdown-menu">
+          <a href="../Korean/practice.html?mode=consonant">자음 연습</a>
+          <a href="../Korean/practice.html?mode=vowel">모음 연습</a>
+          <a href="../Korean/practice.html?mode=word">단어 연습</a>
+          <a href="../Korean/practice.html?mode=sentence">문장 연습</a>
+          <a href="../Korean/infinite_practice.html">무한 연습</a>
+        </div>
+      </li>
+      <li>
+        <a href="practice.html?mode=alphabet">영어 타자연습 <span class="dropdown-arrow">▼</span></a>
+        <div class="dropdown-menu">
+          <a href="practice.html?mode=alphabet">알파벳 연습</a>
+          <a href="practice.html?mode=word">단어 연습</a>
+          <a href="practice.html?mode=sentence">문장 연습</a>
+          <a href="infinite_practice.html">무한 연습</a>
+        </div>
+      </li>
+      <li>
+        <a href="../Game/delivery.html">타자게임 <span class="dropdown-arrow">▼</span></a>
+        <div class="dropdown-menu">
+          <a href="../Game/tank.html">탱크 폭격</a>
+          <a href="../Game/delivery.html">택배 분류</a>
+          <a href="../Game/mole.html">두더지 잡기</a>
+          <a href="../Game/plane.html">비행기 조종</a>
+        </div>
+      </li>
+      <li><a href="../writing.html">필사</a></li>
+      <li>
+        <a href="../Certificate/word-processor.html">자격증 <span class="dropdown-arrow">▼</span></a>
+        <div class="dropdown-menu">
+          <a href="../Certificate/word-processor.html">워드프로세서</a>
+        </div>
+      </li>
+      <li><a href="../battle.html">타자 배틀</a></li>
+      <li><a href="../contact.html">문의하기</a></li>
+      <li class="ml-2">
+        <a href="../login.html" rel="nofollow" onclick="goProfile(event)" title="프로필" aria-label="마이페이지" style="padding: 0.5rem 0.6rem; border-radius: 50%;">
+          <i class="far fa-user text-[1.2rem] m-0" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main class="main-container">
+  <header class="page-header">
+    <h1 class="page-title">영어 타자 무한 연습</h1>
+    <p class="page-description">AI 피드백 기능 없이 끊임 없는 문제들을 도전해보세요!</p>
+  </header>
+
+  <section class="practice-container" aria-label="영어 타자 무한 연습">
+    <div class="practice-menu">
+      <button class="menu-btn" data-mode="alphabet">알파벳연습</button>
+      <button class="menu-btn" data-mode="word">단어연습</button>
+      <button class="menu-btn active" data-mode="sentence">문장연습</button>
+    </div>
+
+    <div class="submenu-area" id="alphabetSubmenu" style="display:none;"></div>
+
+    <div class="practice-area">
+      <div class="text-display sentence-mode" id="textDisplay"></div>
+
+      <div class="input-area">
+        <input type="text" class="typing-input" id="typingInput" placeholder="여기에 타이핑하세요..." aria-label="영어 타자 입력창" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+      </div>
+
+      <div class="keyboard-controls">
+        <button id="toggleKeyboardBtn" class="toggle-btn" tabindex="-1" title="화상 키보드를 숨기거나 엽니다">
+          <i class="fas fa-eye-slash"></i> 키보드 숨기기
+        </button>
+      </div>
+
+      <div class="keyboard-area" aria-hidden="true">
+        <div class="keyboard" id="keyboard">
+          <div class="keyboard-row">
+            <div class="key" data-key="`"><div class="key-dual"><span class="key-en">`</span><span class="key-ko">~</span></div></div>
+            <div class="key" data-key="1"><div class="key-dual"><span class="key-en">1</span><span class="key-ko">!</span></div></div>
+            <div class="key" data-key="2"><div class="key-dual"><span class="key-en">2</span><span class="key-ko">@</span></div></div>
+            <div class="key" data-key="3"><div class="key-dual"><span class="key-en">3</span><span class="key-ko">#</span></div></div>
+            <div class="key" data-key="4"><div class="key-dual"><span class="key-en">4</span><span class="key-ko">$</span></div></div>
+            <div class="key" data-key="5"><div class="key-dual"><span class="key-en">5</span><span class="key-ko">%</span></div></div>
+            <div class="key" data-key="6"><div class="key-dual"><span class="key-en">6</span><span class="key-ko">^</span></div></div>
+            <div class="key" data-key="7"><div class="key-dual"><span class="key-en">7</span><span class="key-ko">&</span></div></div>
+            <div class="key" data-key="8"><div class="key-dual"><span class="key-en">8</span><span class="key-ko">*</span></div></div>
+            <div class="key" data-key="9"><div class="key-dual"><span class="key-en">9</span><span class="key-ko">(</span></div></div>
+            <div class="key" data-key="0"><div class="key-dual"><span class="key-en">0</span><span class="key-ko">)</span></div></div>
+            <div class="key" data-key="-"><div class="key-dual"><span class="key-en">-</span><span class="key-ko">_</span></div></div>
+            <div class="key" data-key="="><div class="key-dual"><span class="key-en">=</span><span class="key-ko">+</span></div></div>
+            <div class="key backspace" data-key="Backspace">←</div>
+          </div>
+          <div class="keyboard-row">
+            <div class="key tab" data-key="Tab">Tab</div>
+            <div class="key" data-key="q"><div class="key-dual"><span class="key-en">Q</span><span class="key-ko">q</span></div></div>
+            <div class="key" data-key="w"><div class="key-dual"><span class="key-en">W</span><span class="key-ko">w</span></div></div>
+            <div class="key" data-key="e"><div class="key-dual"><span class="key-en">E</span><span class="key-ko">e</span></div></div>
+            <div class="key" data-key="r"><div class="key-dual"><span class="key-en">R</span><span class="key-ko">r</span></div></div>
+            <div class="key" data-key="t"><div class="key-dual"><span class="key-en">T</span><span class="key-ko">t</span></div></div>
+            <div class="key" data-key="y"><div class="key-dual"><span class="key-en">Y</span><span class="key-ko">y</span></div></div>
+            <div class="key" data-key="u"><div class="key-dual"><span class="key-en">U</span><span class="key-ko">u</span></div></div>
+            <div class="key" data-key="i"><div class="key-dual"><span class="key-en">I</span><span class="key-ko">i</span></div></div>
+            <div class="key" data-key="o"><div class="key-dual"><span class="key-en">O</span><span class="key-ko">o</span></div></div>
+            <div class="key" data-key="p"><div class="key-dual"><span class="key-en">P</span><span class="key-ko">p</span></div></div>
+            <div class="key" data-key="["><div class="key-dual"><span class="key-en">[</span><span class="key-ko">{</span></div></div>
+            <div class="key" data-key="]"><div class="key-dual"><span class="key-en">]</span><span class="key-ko">}</span></div></div>
+            <div class="key" data-key="\"><div class="key-dual"><span class="key-en">\</span><span class="key-ko">|</span></div></div>
+          </div>
+          <div class="keyboard-row">
+            <div class="key caps" data-key="CapsLock">Caps</div>
+            <div class="key" data-key="a"><div class="key-dual"><span class="key-en">A</span><span class="key-ko">a</span></div></div>
+            <div class="key" data-key="s"><div class="key-dual"><span class="key-en">S</span><span class="key-ko">s</span></div></div>
+            <div class="key" data-key="d"><div class="key-dual"><span class="key-en">D</span><span class="key-ko">d</span></div></div>
+            <div class="key" data-key="f"><div class="key-dual"><span class="key-en">F</span><span class="key-ko">f</span></div></div>
+            <div class="key" data-key="g"><div class="key-dual"><span class="key-en">G</span><span class="key-ko">g</span></div></div>
+            <div class="key" data-key="h"><div class="key-dual"><span class="key-en">H</span><span class="key-ko">h</span></div></div>
+            <div class="key" data-key="j"><div class="key-dual"><span class="key-en">J</span><span class="key-ko">j</span></div></div>
+            <div class="key" data-key="k"><div class="key-dual"><span class="key-en">K</span><span class="key-ko">k</span></div></div>
+            <div class="key" data-key="l"><div class="key-dual"><span class="key-en">L</span><span class="key-ko">l</span></div></div>
+            <div class="key" data-key=";"><div class="key-dual"><span class="key-en">;</span><span class="key-ko">:</span></div></div>
+            <div class="key" data-key="'"><div class="key-dual"><span class="key-en">'</span><span class="key-ko">"</span></div></div>
+            <div class="key enter" data-key="Enter">Enter</div>
+          </div>
+          <div class="keyboard-row">
+            <div class="key shift" data-key="ShiftLeft">Shift</div>
+            <div class="key" data-key="z"><div class="key-dual"><span class="key-en">Z</span><span class="key-ko">z</span></div></div>
+            <div class="key" data-key="x"><div class="key-dual"><span class="key-en">X</span><span class="key-ko">x</span></div></div>
+            <div class="key" data-key="c"><div class="key-dual"><span class="key-en">C</span><span class="key-ko">c</span></div></div>
+            <div class="key" data-key="v"><div class="key-dual"><span class="key-en">V</span><span class="key-ko">v</span></div></div>
+            <div class="key" data-key="b"><div class="key-dual"><span class="key-en">B</span><span class="key-ko">b</span></div></div>
+            <div class="key" data-key="n"><div class="key-dual"><span class="key-en">N</span><span class="key-ko">n</span></div></div>
+            <div class="key" data-key="m"><div class="key-dual"><span class="key-en">M</span><span class="key-ko">m</span></div></div>
+            <div class="key" data-key=","><div class="key-dual"><span class="key-en">,</span><span class="key-ko"><</span></div></div>
+            <div class="key" data-key="."><div class="key-dual"><span class="key-en">.</span><span class="key-ko">></span></div></div>
+            <div class="key" data-key="/"><div class="key-dual"><span class="key-en">/</span><span class="key-ko">?</span></div></div>
+            <div class="key shift" data-key="ShiftRight">Shift</div>
+          </div>
+          <div class="keyboard-row">
+            <div class="key wide" data-key="ControlLeft">Ctrl</div>
+            <div class="key wide" data-key="MetaLeft">Win</div>
+            <div class="key wide" data-key="AltLeft">Alt</div>
+            <div class="key space" data-key=" ">Space</div>
+            <div class="key wide" data-key="AltRight">Alt</div>
+            <div class="key wide" data-key="MetaRight">Win</div>
+            <div class="key wide" data-key="ContextMenu">Menu</div>
+            <div class="key wide" data-key="ControlRight">Ctrl</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-item"><div class="stat-value" id="accuracy">100%</div><div class="stat-label">정확도</div></div>
+      <div class="stat-item"><div class="stat-value" id="speed">0</div><div class="stat-label">타자/분</div></div>
+      <div class="stat-item"><div class="stat-value" id="progress">1번째</div><div class="stat-label">진행 모드</div></div>
+    </div>
+  </section>
+</main>
+
+<script>
+  class InfiniteEnglishTypingPractice {
+    constructor() {
+      this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      this.currentMode = 'sentence';
+      this.currentSubMode = 'all';
+      this.currentText = '';
+      this.currentTranslation = '';
+      this.currentPosition = 0;
+      this.startTime = null;
+      this.totalChars = 0;
+      this.correctChars = 0;
+      this.currentProblem = 0;
+      this.usedWords = [];
+      this.usedSentences = [];
+
+      this.fingerSets = {
+        'all': { label: '전체 (A-Z)', chars: 'abcdefghijklmnopqrstuvwxyz' },
+        'left-pinky': { label: '왼손 새끼', chars: 'qaz' },
+        'left-ring': { label: '왼손 약지', chars: 'wsx' },
+        'left-middle': { label: '왼손 중지', chars: 'edc' },
+        'left-index': { label: '왼손 검지', chars: 'rfvtgb' },
+        'right-index': { label: '오른손 검지', chars: 'yhnujm' },
+        'right-middle': { label: '오른손 중지', chars: 'ik' },
+        'right-ring': { label: '오른손 약지', chars: 'ol' },
+        'right-pinky': { label: '오른손 새끼', chars: 'p' }
+      };
+
+      this.keyboardMap = {
+        'a': 'a', 'b': 'b', 'c': 'c', 'd': 'd', 'e': 'e', 'f': 'f', 'g': 'g', 'h': 'h', 'i': 'i', 'j': 'j', 'k': 'k', 'l': 'l', 'm': 'm', 'n': 'n', 'o': 'o', 'p': 'p', 'q': 'q', 'r': 'r', 's': 's', 't': 't', 'u': 'u', 'v': 'v', 'w': 'w', 'x': 'x', 'y': 'y', 'z': 'z',
+        'A': 'a', 'B': 'b', 'C': 'c', 'D': 'd', 'E': 'e', 'F': 'f', 'G': 'g', 'H': 'h', 'I': 'i', 'J': 'j', 'K': 'k', 'L': 'l', 'M': 'm', 'N': 'n', 'O': 'o', 'P': 'p', 'Q': 'q', 'R': 'r', 'S': 's', 'T': 't', 'U': 'u', 'V': 'v', 'W': 'w', 'X': 'x', 'Y': 'y', 'Z': 'z',
+        '1': '1', '2': '2', '3': '3', '4': '4', '5': '5', '6': '6', '7': '7', '8': '8', '9': '9', '0': '0',
+        '.': '.', ',': ',', '?': '/', '!': '1', ';': ';', ':': ';', "'": "'", '"': "'", ' ': ' '
+      };
+
+      this.practiceData = {
+        alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
+        word: [
+          {en: 'apple', ko: '사과'}, {en: 'book', ko: '책'}, {en: 'computer', ko: '컴퓨터'}, {en: 'dream', ko: '꿈'}, {en: 'effort', ko: '노력'},
+          {en: 'freedom', ko: '자유'}, {en: 'growth', ko: '성장'}, {en: 'history', ko: '역사'}, {en: 'idea', ko: '아이디어'}, {en: 'journey', ko: '여행'},
+          {en: 'knowledge', ko: '지식'}, {en: 'love', ko: '사랑'}, {en: 'music', ko: '음악'}, {en: 'nature', ko: '자연'}, {en: 'ocean', ko: '바다'},
+          {en: 'family', ko: '가족'}, {en: 'friend', ko: '친구'}, {en: 'school', ko: '학교'}, {en: 'time', ko: '시간'}, {en: 'money', ko: '돈'},
+          {en: 'world', ko: '세계'}, {en: 'peace', ko: '평화'}, {en: 'health', ko: '건강'}, {en: 'success', ko: '성공'}, {en: 'future', ko: '미래'},
+          {en: 'memory', ko: '기억'}, {en: 'science', ko: '과학'}, {en: 'art', ko: '예술'}, {en: 'culture', ko: '문화'}, {en: 'society', ko: '사회'},
+          {en: 'economy', ko: '경제'}, {en: 'politics', ko: '정치'}, {en: 'language', ko: '언어'}, {en: 'energy', ko: '에너지'}, {en: 'space', ko: '우주'},
+          {en: 'system', ko: '시스템'}, {en: 'method', ko: '방법'}, {en: 'problem', ko: '문제'}, {en: 'solution', ko: '해결책'}, {en: 'result', ko: '결과'},
+          {en: 'process', ko: '과정'}, {en: 'reason', ko: '이유'}, {en: 'effect', ko: '효과'}, {en: 'value', ko: '가치'}, {en: 'quality', ko: '품질'},
+          {en: 'quantity', ko: '수량'}, {en: 'shape', ko: '모양'}, {en: 'size', ko: '크기'}, {en: 'color', ko: '색깔'}, {en: 'sound', ko: '소리'},
+          {en: 'light', ko: '빛'}, {en: 'temperature', ko: '온도'}, {en: 'weather', ko: '날씨'}, {en: 'season', ko: '계절'}, {en: 'spring', ko: '봄'},
+          {en: 'summer', ko: '여름'}, {en: 'autumn', ko: '가을'}, {en: 'winter', ko: '겨울'}, {en: 'morning', ko: '아침'}, {en: 'afternoon', ko: '오후'},
+          {en: 'evening', ko: '저녁'}, {en: 'night', ko: '밤'}, {en: 'today', ko: '오늘'}, {en: 'tomorrow', ko: '내일'}, {en: 'yesterday', ko: '어제'},
+          {en: 'week', ko: '주'}, {en: 'month', ko: '월'}, {en: 'year', ko: '년'}, {en: 'century', ko: '세기'}, {en: 'person', ko: '사람'},
+          {en: 'people', ko: '사람들'}, {en: 'child', ko: '아이'}, {en: 'adult', ko: '어른'}, {en: 'man', ko: '남자'}, {en: 'woman', ko: '여자'},
+          {en: 'animal', ko: '동물'}, {en: 'plant', ko: '식물'}, {en: 'tree', ko: '나무'}, {en: 'flower', ko: '꽃'}, {en: 'fruit', ko: '과일'},
+          {en: 'food', ko: '음식'}, {en: 'water', ko: '물'}, {en: 'air', ko: '공기'}, {en: 'earth', ko: '지구'}, {en: 'fire', ko: '불'},
+          {en: 'wind', ko: '바람'}, {en: 'star', ko: '별'}, {en: 'sun', ko: '태양'}, {en: 'moon', ko: '달'}, {en: 'planet', ko: '행성'},
+          {en: 'galaxy', ko: '은하'}, {en: 'universe', ko: '우주'}, {en: 'mind', ko: '마음'}, {en: 'heart', ko: '심장'}, {en: 'body', ko: '몸'},
+          {en: 'soul', ko: '영혼'}, {en: 'spirit', ko: '정신'}, {en: 'thought', ko: '생각'}, {en: 'emotion', ko: '감정'}, {en: 'passion', ko: '열정'}
+        ],
+        sentence: [
+          {en: 'Beauty is in the eye of the beholder.', ko: '아름다움은 보는 이의 눈에 달려 있다.'},
+          {en: 'Don\'t count your chickens before they hatch.', ko: '김칫국부터 마시지 마라.'},
+          {en: 'Hope for the best, prepare for the worst.', ko: '최선을 바라되 최악을 대비하라.'},
+          {en: 'Where there\'s a will, there\'s a way.', ko: '뜻이 있는 곳에 길이 있다.'},
+          {en: 'Practice makes perfect.', ko: '연습이 완벽을 만든다.'},
+          {en: 'A friend in need is a friend indeed.', ko: '어려울 때 친구가 진정한 친구다.'},
+          {en: 'Actions speak louder than words.', ko: '말보다 행동이 더 중요하다.'},
+          {en: 'Every cloud has a silver lining.', ko: '쥐구멍에도 볕 들 날 있다.'},
+          {en: 'Rome wasn\'t built in a day.', ko: '로마는 하루아침에 이루어지지 않았다.'},
+          {en: 'The early bird catches the worm.', ko: '일찍 일어나는 새가 벌레를 잡는다.'},
+          {en: 'Better late than never.', ko: '안 하는 것보다는 늦게라도 하는 것이 낫다.'},
+          {en: 'Honesty is the best policy.', ko: '정직이 최선책이다.'},
+          {en: 'Knowledge is power.', ko: '아는 것이 힘이다.'},
+          {en: 'Time is money.', ko: '시간은 금이다.'},
+          {en: 'Two heads are better than one.', ko: '백지장도 맞들면 낫다.'},
+          {en: 'When in Rome, do as the Romans do.', ko: '로마에 가면 로마법을 따르라.'},
+          {en: 'A picture is worth a thousand words.', ko: '백문이 불여일견이다.'},
+          {en: 'Ignorance is bliss.', ko: '모르는 게 약이다.'},
+          {en: 'No pain, no gain.', ko: '고통 없이는 얻는 것도 없다.'},
+          {en: 'Laughter is the best medicine.', ko: '웃음이 최고의 명약이다.'},
+          {en: 'The pen is mightier than the sword.', ko: '펜은 칼보다 강하다.'},
+          {en: 'Birds of a feather flock together.', ko: '유유상종.'},
+          {en: 'Don\'t judge a book by its cover.', ko: '겉모습만 보고 판단하지 마라.'},
+          {en: 'All that glitters is not gold.', ko: '반짝인다고 다 금은 아니다.'},
+          {en: 'Curiosity killed the cat.', ko: '지나친 호기심은 화를 부른다.'},
+          {en: 'Familiarity breeds contempt.', ko: '너무 친해지면 무례해지기 쉽다.'},
+          {en: 'Fortune favors the bold.', ko: '행운은 용기 있는 자의 편이다.'},
+          {en: 'Haste makes waste.', ko: '급할수록 돌아가라.'},
+          {en: 'It\'s no use crying over spilled milk.', ko: '이미 엎질러진 물이다.'},
+          {en: 'Let sleeping dogs lie.', ko: '긁어 부스럼 만들지 마라.'},
+          {en: 'Look before you leap.', ko: '돌다리도 두들겨 보고 건너라.'},
+          {en: 'Necessity is the mother of invention.', ko: '필요는 발명의 어머니이다.'},
+          {en: 'Out of sight, out of mind.', ko: '눈에서 멀어지면 마음에서도 멀어진다.'},
+          {en: 'Slow and steady wins the race.', ko: '천천히 그리고 꾸준히 하는 자가 이긴다.'},
+          {en: 'Strike while the iron is hot.', ko: '쇠뿔도 단김에 빼라.'},
+          {en: 'The grass is always greener on the other side.', ko: '남의 떡이 더 커 보인다.'},
+          {en: 'There is no place like home.', ko: '집만 한 곳이 없다.'},
+          {en: 'Too many cooks spoil the broth.', ko: '사공이 많으면 배가 산으로 간다.'},
+          {en: 'You reap what you sow.', ko: '뿌린 대로 거둔다.'},
+          {en: 'A stitch in time saves nine.', ko: '호미로 막을 것을 가래로 막지 마라.'},
+          {en: 'Don\'t put all your eggs in one basket.', ko: '계란을 한 바구니에 담지 마라.'},
+          {en: 'Beggars can\'t be choosers.', ko: '찬밥 더운밥 가릴 처지가 아니다.'},
+          {en: 'Blood is thicker than water.', ko: '피는 물보다 진하다.'},
+          {en: 'Cleanliness is next to godliness.', ko: '청결함은 신성함에 버금간다.'},
+          {en: 'Easier said than done.', ko: '말하기는 쉬워도 행동하기는 어렵다.'},
+          {en: 'Great minds think alike.', ko: '위대한 사람들의 생각은 비슷하다.'},
+          {en: 'If you can\'t beat them, join them.', ko: '피할 수 없으면 즐겨라.'},
+          {en: 'Money doesn\'t grow on trees.', ko: '돈은 쉽게 얻어지는 것이 아니다.'},
+          {en: 'The show must go on.', ko: '쇼는 계속되어야 한다.'},
+          {en: 'You can\'t have your cake and eat it too.', ko: '두 마리 토끼를 다 잡을 수는 없다.'}
+        ]
+      };
+
+      this.init();
+    }
+
+    init() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const modeParam = urlParams.get('mode');
+
+      if (modeParam && this.practiceData[modeParam]) {
+        this.currentMode = modeParam;
+      }
+
+      this.bindEvents();
+      this.renderSubmenu();
+      this.changeMode(this.currentMode);
+    }
+
+    renderSubmenu() {
+      const container = document.getElementById('alphabetSubmenu');
+      container.innerHTML = '';
+      Object.keys(this.fingerSets).forEach(key => {
+        const btn = document.createElement('button');
+        btn.className = 'submenu-btn' + (this.currentSubMode === key ? ' active' : '');
+        btn.textContent = this.fingerSets[key].label;
+        btn.dataset.submode = key;
+        btn.addEventListener('click', () => this.changeSubMode(key));
+        container.appendChild(btn);
+      });
+    }
+
+    changeSubMode(subMode) {
+      this.currentSubMode = subMode;
+      this.currentProblem = 0;
+      this.resetStats();
+      document.querySelectorAll('.submenu-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.submode === subMode));
+      this.generateText();
+      this.updateDisplay();
+      const input = document.getElementById('typingInput');
+      input.value = '';
+      input.focus();
+    }
+
+    playKeySound(isCorrect = true) {
+      if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
+      const osc = this.audioCtx.createOscillator();
+      const gain = this.audioCtx.createGain();
+      if (isCorrect) {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(600, this.audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.05, this.audioCtx.currentTime);
+      } else {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(200, this.audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.05, this.audioCtx.currentTime);
+      }
+      osc.connect(gain);
+      gain.connect(this.audioCtx.destination);
+      osc.start();
+      osc.stop(this.audioCtx.currentTime + 0.05);
+    }
+
+    bindEvents() {
+      document.querySelectorAll('.menu-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => this.changeMode(e.target.dataset.mode));
+      });
+
+      const toggleKeyboardBtn = document.getElementById('toggleKeyboardBtn');
+      const keyboardArea = document.querySelector('.keyboard-area');
+
+      toggleKeyboardBtn.addEventListener('click', () => {
+        keyboardArea.classList.toggle('hidden');
+        if (keyboardArea.classList.contains('hidden')) {
+          toggleKeyboardBtn.innerHTML = '<i class="fas fa-eye"></i> 키보드 보기';
+        } else {
+          toggleKeyboardBtn.innerHTML = '<i class="fas fa-eye-slash"></i> 키보드 숨기기';
+        }
+        document.getElementById('typingInput').focus();
+      });
+
+      const typingInput = document.getElementById('typingInput');
+      typingInput.addEventListener('input', (e) => this.handleInput(e.target.value));
+
+      typingInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          if (typingInput.value.length >= this.currentText.length) {
+            e.preventDefault();
+            this.nextProblem();
+          }
+        }
+      });
+    }
+
+    changeMode(mode) {
+      this.currentMode = mode;
+      this.currentProblem = 0;
+      this.resetStats();
+
+      const submenu = document.getElementById('alphabetSubmenu');
+      if (mode === 'sentence' || mode === 'word') {
+        submenu.style.display = 'none';
+      } else {
+        submenu.style.display = 'flex';
+      }
+
+      if (mode === 'sentence') {
+        this.usedSentences = [];
+      } else if (mode === 'word') {
+        this.usedWords = [];
+      }
+
+      document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.mode === mode));
+
+      this.generateText();
+      this.updateDisplay();
+
+      const input = document.getElementById('typingInput');
+      input.value = '';
+      input.classList.remove('completed');
+      input.focus();
+    }
+
+    generateText() {
+      if (this.currentMode === 'alphabet') {
+        const charsString = this.fingerSets[this.currentSubMode].chars;
+        const selected = Array.from({length: 10}, () => charsString[Math.floor(Math.random() * charsString.length)]);
+        this.currentText = selected.join(' ');
+        this.currentTranslation = '';
+      } else if (this.currentMode === 'word') {
+        const data = this.practiceData.word;
+        let availableWords = data.filter(w => !this.usedWords.includes(w.en));
+        if (availableWords.length < 2) {
+          this.usedWords = [];
+          availableWords = data;
+        }
+
+        const tempPool = availableWords;
+        const selected = [];
+        for(let i=0; i<2; i++) {
+          const randIdx = Math.floor(Math.random() * tempPool.length);
+          const wordObj = tempPool[randIdx];
+          selected.push(wordObj);
+          this.usedWords.push(wordObj.en);
+          // 이미 뽑힌 단어가 또 안 뽑히게 임시풀에서 제거 (선택적)
+          tempPool.splice(randIdx, 1);
+        }
+        this.currentText = selected.map(w => w.en).join(' ');
+        this.currentTranslation = selected.map(w => w.ko).join(' / ');
+      } else {
+        const data = this.practiceData.sentence;
+        let candidates = data.filter(s => !this.usedSentences.includes(s.en));
+        if (candidates.length === 0) {
+          this.usedSentences = [];
+          candidates = data;
+        }
+        const selected = candidates[Math.floor(Math.random() * candidates.length)];
+        this.currentText = selected.en;
+        this.currentTranslation = selected.ko;
+        this.usedSentences.push(selected.en);
+      }
+
+      this.currentPosition = 0;
+      this.correctChars = 0;
+      this.totalChars = 0;
+
+      this.updateKeyboardHighlight();
+      document.getElementById('textDisplay').classList.toggle('sentence-mode', this.currentMode === 'sentence' || this.currentMode === 'word');
+    }
+
+    updateKeyboardHighlight() {
+      document.querySelectorAll('.key').forEach(key => key.classList.remove('active'));
+      const typingInput = document.getElementById('typingInput');
+
+      if (typingInput.value.length >= this.currentText.length && typingInput.value.length > 0) {
+        const enterKey = document.querySelector('.key.enter');
+        if (enterKey) enterKey.classList.add('active');
+        return;
+      }
+
+      if (typingInput.value.length < this.currentText.length) {
+        const currentChar = this.currentText[typingInput.value.length];
+        const keyChar = currentChar.toLowerCase();
+
+        if (keyChar !== ' ') {
+          const keyName = this.keyboardMap[keyChar] || keyChar;
+          const targetKey = document.querySelector(`[data-key="${keyName}"]`);
+          if (targetKey) targetKey.classList.add('active');
+
+          // 대문자나 특수문자 입력 시 Shift 키 하이라이트
+          const isUpperCase = currentChar >= 'A' && currentChar <= 'Z';
+          const isShiftSymbol = ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '"', '<', '>', '?'].includes(currentChar);
+
+          if (isUpperCase || isShiftSymbol) {
+            const shiftLeft = document.querySelector('.key[data-key="ShiftLeft"]');
+            const shiftRight = document.querySelector('.key[data-key="ShiftRight"]');
+            if (shiftLeft) shiftLeft.classList.add('active');
+            if (shiftRight) shiftRight.classList.add('active');
+          }
+        } else {
+          const spaceKey = document.querySelector('.key.space');
+          if (spaceKey) spaceKey.classList.add('active');
+        }
+      }
+    }
+
+    updateDisplay() {
+      const display = document.getElementById('textDisplay');
+      const inputValue = document.getElementById('typingInput').value;
+      display.innerHTML = '';
+      const textContainer = document.createElement('div');
+
+      for (let i = 0; i < this.currentText.length; i++) {
+        const span = document.createElement('span');
+        span.className = 'char';
+        const targetChar = this.currentText[i];
+
+        if (targetChar === ' ') {
+          span.innerHTML = '&nbsp;';
+          span.classList.add('space');
+        } else {
+          span.textContent = targetChar;
+        }
+
+        if (i < inputValue.length) {
+          if (inputValue[i] === targetChar) {
+            span.classList.add('correct');
+          } else {
+            span.classList.add('incorrect');
+          }
+        } else if (i === inputValue.length) {
+          span.classList.add('current');
+        } else {
+          span.classList.add('distance-1'); // 나머지 글자 스타일 적용
+        }
+        textContainer.appendChild(span);
+      }
+      display.appendChild(textContainer);
+
+      if (this.currentTranslation) {
+        const trans = document.createElement('div');
+        trans.style.fontSize = '1.1rem'; trans.style.color = '#666'; trans.style.marginTop = '1rem';
+        trans.textContent = this.currentTranslation;
+        display.appendChild(trans);
+      }
+
+      const inputArea = document.getElementById('typingInput');
+      if (inputValue.length >= this.currentText.length && inputValue.length > 0) {
+        inputArea.classList.add('completed');
+        inputArea.placeholder = "엔터(Enter)를 눌러 다음으로 넘어가세요.";
+      } else {
+        inputArea.classList.remove('completed');
+        inputArea.placeholder = "여기에 타이핑하세요...";
+      }
+
+      document.getElementById('progress').textContent = `${this.currentProblem + 1}번째`;
+      this.updateKeyboardHighlight();
+    }
+
+    handleInput(inputValue) {
+      if (!this.startTime) {
+        this.startTime = Date.now();
+      }
+
+      if (inputValue.length > 0) {
+        const lastIdx = inputValue.length - 1;
+        if (lastIdx < this.currentText.length) {
+          if (this.currentText[lastIdx] !== ' ') {
+            this.playKeySound(inputValue[lastIdx] === this.currentText[lastIdx]);
+          }
+        }
+      }
+
+      this.correctChars = 0;
+      this.totalChars = inputValue.length;
+      for (let i = 0; i < Math.min(inputValue.length, this.currentText.length); i++) {
+        if (inputValue[i] === this.currentText[i]) this.correctChars++;
+      }
+
+      this.currentPosition = inputValue.length;
+      this.updateStats();
+      this.updateDisplay();
+    }
+
+    updateStats() {
+      const accuracy = this.totalChars > 0 ? Math.round((this.correctChars / this.totalChars) * 100) : 100;
+      document.getElementById('accuracy').textContent = `${accuracy}%`;
+      if (this.startTime) {
+        const elapsed = (Date.now() - this.startTime) / 1000;
+        const cpm = Math.round((this.correctChars / (elapsed || 1)) * 60);
+        document.getElementById('speed').textContent = cpm || 0;
+      }
+    }
+
+    // 무한 루프 핵심 동작
+    nextProblem() {
+      this.currentProblem++;
+      const typingInput = document.getElementById('typingInput');
+
+      typingInput.value = '';
+      typingInput.classList.remove('completed');
+      typingInput.placeholder = "여기에 타이핑하세요...";
+
+      this.startTime = null; // 각 문제별로 속도 새롭게 측정
+      this.currentPosition = 0;
+      this.correctChars = 0;
+      this.totalChars = 0;
+
+      this.generateText();
+      this.updateDisplay();
+      typingInput.blur();
+
+      // 부드러운 전환을 위한 짧은 딜레이
+      setTimeout(() => {
+        typingInput.focus();
+        this.updateKeyboardHighlight();
+      }, 50);
+    }
+
+    resetStats() {
+      this.currentPosition = 0;
+      this.startTime = null;
+      this.totalChars = 0;
+      this.correctChars = 0;
+      document.getElementById('accuracy').textContent = '100%';
+      document.getElementById('speed').textContent = '0';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    window.englishTypingPractice = new InfiniteEnglishTypingPractice();
+  });
+
+  // 프로필 내비게이션용 클릭 이벤트 (battle.html에서 이식됨)
+  function goProfile(e) {
+    e.preventDefault(); // 화면 위로 튕김 방지
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (isLoggedIn === 'true') {
+      window.location.href = "../mypage.html";
+    } else {
+      window.location.href = "../login.html";
+    }
+  }
+</script>
+</body>
+</html>
