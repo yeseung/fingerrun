@@ -1,0 +1,2460 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- 외부 리소스 조기 연결 -->
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>주기율표 외우기 게임 | 족·주기·원소기호·이온식 퀴즈 - 핑거런</title>
+    <meta name="description" content="주기율표 외우기를 타이핑 게임으로! 수헬리베붕탄질산 1~20번 원소부터 118개 원소 기호 외우기, 족 주기 외우기, 이온식·원자가 전자 퀴즈까지. 중2 과학, 고1 통합과학, 내신 화학 대비 무료 주기율표 게임.">
+    <meta name="keywords" content="주기율표 외우기, 원소 기호 외우기, 족 주기 외우기, 이온식, 1~20번 원소, 통합과학, 수헬리베붕탄질산, 주기율표 게임, 원소 퀴즈">
+    <link rel="canonical" href="https://fingerrun.com/Quiz/science.html">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="핑거런 FingerRun">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:title" content="주기율표 외우기 게임 | 족·주기·원소기호·이온식 퀴즈 - 핑거런">
+    <meta property="og:description" content="원소를 맞히면 주기율표 칸에 불이 들어온다! 이름·기호부터 족·주기·이온식까지 타이핑으로 외우는 주기율표 게임.">
+    <meta property="og:url" content="https://fingerrun.com/Quiz/science.html">
+    <!-- 공유 이미지 경로 자리: 1200x630 PNG를 올린 뒤 경로를 맞춰 주세요 -->
+    <meta property="og:image" content="https://fingerrun.com/images/periodic-og.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- 파비콘 설정 -->
+    <link rel="icon" type="image/svg+xml" href="../images/finger-run-logo.svg">
+    <link rel="shortcut icon" type="image/svg+xml" href="../images/finger-run-logo.svg">
+    <link rel="apple-touch-icon" href="../images/finger-run-logo.svg">
+    <link rel="sitemap" type="application/xml" href="https://fingerrun.com/sitemap.xml">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "핑거런 주기율표 외우기 게임",
+            "url": "https://fingerrun.com/Quiz/science.html",
+            "applicationCategory": "EducationalApplication",
+            "operatingSystem": "All",
+            "inLanguage": "ko",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+            "description": "주기율표 원소 이름·기호·족·주기·이온식을 타이핑으로 외우는 무료 게임"
+        }
+    </script>
+
+    <!-- 웹폰트 · 아이콘 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* =========================================================
+           0. 기본 토큰 (핑거런 톤: Noto Sans KR, #667eea 브랜드 색)
+           ========================================================= */
+        :root {
+            --brand: #667eea;
+            --brand2: #764ba2;
+            --bg: #f5f7fb;
+            --panel: #ffffff;
+            --panel2: #f8f9fc;
+            --line: #e5e7eb;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --good: #10b981;
+            --bad: #ef4444;
+            --warn: #f59e0b;
+            --shadow: 0 10px 30px rgba(31, 41, 55, .08);
+            --cell-text: #1f2937;
+            --empty-cell: #eef0f5;
+
+            /* 2-3 카테고리 색 (라이트) */
+            --c-alkali-metal: #E8736C;
+            --c-alkaline-earth-metal: #F9D9A8;
+            --c-lanthanide: #F4C2F4;
+            --c-actinide: #E9A0D3;
+            --c-transition-metal: #F4B8B0;
+            --c-post-transition-metal: #CCCCCC;
+            --c-metalloid: #CCCC99;
+            --c-diatomic-nonmetal: #F0F58C;
+            --c-polyatomic-nonmetal: #A6F5C6;
+            --c-noble-gas: #C3F7F7;
+            --c-unknown: #E6E6E6;
+            color-scheme: light;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f1420;
+                --panel: #182031;
+                --panel2: #1f2940;
+                --line: #2c3750;
+                --text: #e8ecf4;
+                --muted: #9aa4b8;
+                --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+                --cell-text: #f3f5fa;
+                --empty-cell: #1a2133;
+
+                /* 같은 색 계열을 어둡게 (흰 글자 대비 확보) */
+                --c-alkali-metal: #a84a44;
+                --c-alkaline-earth-metal: #93703c;
+                --c-lanthanide: #8d5a8d;
+                --c-actinide: #8a4777;
+                --c-transition-metal: #925a52;
+                --c-post-transition-metal: #646a74;
+                --c-metalloid: #6f6f42;
+                --c-diatomic-nonmetal: #7c8030;
+                --c-polyatomic-nonmetal: #2f8256;
+                --c-noble-gas: #2f7f84;
+                --c-unknown: #4b5262;
+                color-scheme: dark;
+            }
+        }
+
+        * { box-sizing: border-box; }
+        html { -webkit-text-size-adjust: 100%; }
+        body {
+            margin: 0;
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            word-break: keep-all;
+            overflow-wrap: anywhere;
+            overflow-x: hidden;
+        }
+        button, input { font-family: inherit; }
+        button { cursor: pointer; }
+        .muted { color: var(--muted); }
+        .hidden { display: none !important; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+        /* =========================================================
+           1. 사이트 공통 내비게이션 (다른 핑거런 페이지와 동일 구조)
+           ========================================================= */
+        nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 2rem;
+        }
+        .logo {
+            font-size: 1.5rem; font-weight: bold; color: #667eea; text-decoration: none;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .logo img { width: 32px; height: 32px; }
+        .nav-menu { display: flex; list-style: none; gap: 1.5rem; align-items: center; margin: 0; padding: 0; }
+        .nav-menu li { position: relative; }
+        .nav-menu a {
+            text-decoration: none; color: #333; font-weight: 500;
+            padding: 0.5rem 0.8rem; border-radius: 25px; transition: all 0.3s ease;
+            font-size: 0.9rem; display: flex; align-items: center; gap: 0.3rem; white-space: nowrap;
+        }
+        @media (max-width: 1200px) { .nav-menu { gap: 0.4rem; } .nav-menu a { padding: 0.5rem 0.6rem; } }
+        .nav-menu a:hover { background: #667eea; color: white !important; transform: translateY(-2px); }
+        .nav-menu a.active { color: #667eea; font-weight: 700; }
+        .dropdown-arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
+        .dropdown-menu {
+            position: absolute; top: 100%; left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: white; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 10px; padding: 0.5rem 0; min-width: 160px;
+            opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 1001;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .nav-menu li:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .nav-menu li:hover .dropdown-arrow { transform: rotate(180deg); }
+        .dropdown-menu a { display: block; padding: 0.7rem 1rem; color: #333; border-radius: 0; white-space: nowrap; font-weight: 400; }
+        .dropdown-menu a:hover { background: #f8f9fa; color: #667eea !important; transform: none; }
+        .dropdown-menu a.active { color: #667eea; font-weight: 700; }
+        .nav-user i { font-size: 1.2rem; margin: 0; }
+        @media (max-width: 900px) { .nav-menu { display: none; } .nav-container { padding: 0 16px; } }
+        @media (prefers-color-scheme: dark) {
+            nav { background: rgba(15, 20, 32, 0.88); border-bottom-color: rgba(255,255,255,.08); }
+            .nav-menu a, .dropdown-menu a { color: #e5e7eb; }
+            .dropdown-menu { background: #182031; border-color: #2c3750; }
+            .dropdown-menu a:hover { background: #1f2940; }
+        }
+
+        /* =========================================================
+           2. 페이지 골격
+           ========================================================= */
+        main { padding-top: 72px; }
+        .wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+        .screen { padding-top: 12px; padding-bottom: 28px; }
+
+        .btn {
+            border: 0; border-radius: 12px; padding: 12px 18px; font-weight: 700; font-size: 1rem;
+            background: var(--panel2); color: var(--text); border: 1px solid var(--line);
+            transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+        }
+        .btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(102,126,234,.18); }
+        .btn:disabled { opacity: .45; cursor: not-allowed; }
+        .btn-primary { background: linear-gradient(135deg, var(--brand), var(--brand2)); color: #fff; border: 0; }
+        .btn-small { padding: 7px 12px; font-size: .85rem; border-radius: 10px; }
+
+        /* 자체 테스트 패널 (?test=1) */
+        #testPanel {
+            margin: 8px auto 0; max-width: 1180px; padding: 12px 16px; border-radius: 12px;
+            background: var(--panel); border: 2px solid var(--good); font-size: .85rem;
+        }
+        #testPanel.fail { border-color: var(--bad); }
+        #testPanel ul { margin: 6px 0 0; padding-left: 18px; columns: 2; }
+        #testPanel li.ok::marker { content: '✅ '; }
+        #testPanel li.ng { color: var(--bad); font-weight: 700; }
+        #testPanel li.ng::marker { content: '❌ '; }
+        @media (max-width: 700px) { #testPanel ul { columns: 1; } }
+
+        /* =========================================================
+           3. 주기율표 그리드 (배경이자 화면 중심)
+           ========================================================= */
+        .ptable-wrap { position: relative; width: 100%; }
+        .ptable {
+            --c: 40px; --gap: 3px; --hh: 18px; --hc: 20px;
+            display: grid;
+            grid-template-columns: var(--hc) repeat(18, var(--c));
+            grid-template-rows: var(--hh) repeat(7, var(--c)) calc(var(--c) * .35) var(--c) var(--c) auto;
+            gap: var(--gap);
+            justify-content: center;
+            position: relative;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .ptable .hd {
+            display: flex; align-items: center; justify-content: center;
+            font-size: max(9px, calc(var(--c) * .24)); font-weight: 700; color: var(--muted);
+            border-radius: 4px; transition: background .2s, color .2s;
+        }
+        .ptable .hd.on { background: var(--brand); color: #fff; }
+        .ptable .corner { position: relative; overflow: visible; font-size: max(7px, calc(var(--c) * .17)); font-weight: 600; line-height: 1; white-space: nowrap; }
+        .ptable .corner span { position: absolute; }
+        .ptable .corner span:first-child { right: 0; top: 0; }
+        .ptable .corner span:last-child { right: 0; bottom: -2px; }
+        .ptable .star {
+            display: flex; align-items: center; justify-content: center;
+            font-size: max(9px, calc(var(--c) * .3)); font-weight: 800; color: var(--muted);
+        }
+
+        .cell {
+            position: relative; border-radius: max(3px, calc(var(--c) * .1));
+            background: var(--cat); color: var(--cell-text);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            overflow: hidden; line-height: 1;
+            transition: opacity .25s ease, transform .2s ease, box-shadow .25s ease;
+        }
+        .cell .num { position: absolute; top: max(2px, calc(var(--c) * .07)); left: max(2px, calc(var(--c) * .09)); font-size: max(8px, calc(var(--c) * .21)); font-weight: 600; opacity: .85; }
+        .cell .sym { font-size: max(8px, calc(var(--c) * .42)); font-weight: 800; letter-spacing: -.02em; margin-top: calc(var(--c) * .1); }
+        .cell .mark { position: absolute; right: 1px; top: 0; font-size: max(7px, calc(var(--c) * .2)); font-weight: 800; color: var(--muted); }
+        .ptable.compact .cell .num { display: none; }
+        .ptable.compact .cell .sym { margin-top: 0; font-size: max(7.5px, calc(var(--c) * .5)); }
+        .cell .nm { display: none; font-size: max(7px, calc(var(--c) * .17)); font-weight: 600; letter-spacing: -.06em; white-space: nowrap; max-width: 96%; overflow: hidden; margin-top: 1px; }
+        .ptable.names.roomy .cell .nm { display: block; }
+
+        /* 칸 상태: 안 맞힘 (30%, 번호·기호 숨김) */
+        .cell.idle { opacity: .3; }
+        .cell.idle .num, .cell.idle .sym { visibility: hidden; }
+        /* 범위 밖 (12%) */
+        .cell.out { opacity: .12; }
+        .cell.out .num, .cell.out .sym { visibility: hidden; }
+        /* 맞힘: 불 켜짐 */
+        .cell.lit { opacity: 1; box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 2px 8px rgba(0,0,0,.12); }
+        .cell.lit.flash { animation: lightUp .7s ease-out; z-index: 3; }
+        @keyframes lightUp {
+            0% { transform: scale(.7); filter: brightness(2.2) saturate(1.6); box-shadow: 0 0 0 0 rgba(255,236,120,.95); }
+            40% { transform: scale(1.18); box-shadow: 0 0 22px 8px rgba(255,236,120,.85); }
+            100% { transform: scale(1); filter: none; }
+        }
+        /* 틀림·패스로 공개된 칸 */
+        .cell.missed { opacity: .85; outline: 2px solid var(--bad); outline-offset: -2px; }
+        /* 현재 문제 칸: 깜빡이는 테두리 */
+        .cell.current { opacity: .95; z-index: 4; animation: blink 1s steps(1) infinite; }
+        .cell.current::after {
+            content: ''; position: absolute; inset: 0; border-radius: inherit;
+            border: max(2px, calc(var(--c) * .07)) solid var(--brand);
+        }
+        @keyframes blink { 0%, 100% { box-shadow: 0 0 0 3px rgba(102,126,234,.55); } 50% { box-shadow: 0 0 0 0 rgba(102,126,234,0); } }
+        .cell.current.qmark .num, .cell.current.qmark .sym { visibility: hidden; }
+        .cell.current.qmark::before {
+            content: '?'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+            font-weight: 900; font-size: max(9px, calc(var(--c) * .5)); color: var(--brand);
+        }
+        /* 모바일: 현재 칸·방금 맞힌 칸 살짝 확대 */
+        .ptable.compact .cell.current, .ptable.compact .cell.flash { transform: scale(1.3); z-index: 5; }
+        /* 전체 보기 / 미리보기 / 결과 */
+        .ptable.reveal .cell { opacity: 1; }
+        .ptable.reveal .cell .num, .ptable.reveal .cell .sym { visibility: visible; }
+        /* 기본 모드(타자 연습): 모든 칸에 번호·기호(·이름)가 보이고, 맞힌 칸이 진해짐 */
+        .ptable.show-all .cell .num, .ptable.show-all .cell .sym, .ptable.show-all .cell .nm { visibility: visible; }
+        .ptable.show-all .cell.idle { opacity: .5; }
+        .ptable.show-all .cell.out { opacity: .22; }
+        .ptable.show-all .cell.current { opacity: 1; }
+        .ptable.reveal .cell.out { opacity: .32; }
+        .ptable .cell.pick { opacity: .9; }
+        .ptable.mini .cell { opacity: .38; }
+        .ptable.mini .cell .num, .ptable.mini .cell .sym { visibility: visible; }
+        .ptable.mini .cell.lit { opacity: 1; }
+        .ptable.mini .cell.missed { opacity: 1; outline: 2px solid var(--bad); outline-offset: -2px; }
+
+        /* 범례 */
+        .legend { display: flex; flex-wrap: wrap; gap: 6px 12px; justify-content: center; margin: 10px 0 0; padding: 0; list-style: none; font-size: .78rem; color: var(--muted); }
+        .legend li { display: flex; align-items: center; gap: 5px; }
+        .legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+
+        /* 정답 카드 토스트 (맞힌 칸 위에 5초 유지) */
+        .el-toast {
+            position: absolute; z-index: 30; pointer-events: none;
+            min-width: 170px; max-width: 260px; padding: 9px 12px 10px; border-radius: 14px;
+            background: var(--cat); color: var(--cell-text);
+            box-shadow: 0 12px 30px rgba(0,0,0,.25); border: 2px solid rgba(255,255,255,.7);
+            text-align: center; animation: toastIn .18s ease-out;
+        }
+        .el-toast.bad { border-color: var(--bad); }
+        .el-toast .t1 { display: flex; justify-content: space-between; gap: 8px; font-size: .75rem; font-weight: 700; opacity: .9; }
+        .el-toast .t2 { font-size: 1.35rem; font-weight: 900; margin: 2px 0; }
+        .el-toast .t3 { font-size: .78rem; opacity: .95; }
+        .el-toast .t4 { font-size: .74rem; margin-top: 4px; font-weight: 700; }
+        @keyframes toastIn { from { transform: translateY(6px) scale(.95); opacity: 0; } to { transform: none; opacity: 1; } }
+
+        /* =========================================================
+           4. 시작 화면
+           ========================================================= */
+
+        /* 주기율표 미리보기를 위에 전체 폭으로, 옵션 패널은 그 아래 */
+        .start-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; align-items: start; }
+        .start-preview { order: -1; background: var(--panel); border-radius: 18px; padding: 14px; box-shadow: var(--shadow); }
+        .start-preview .pv-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; font-size: .9rem; }
+        .start-preview .pv-head b { font-size: .95rem; white-space: nowrap; }
+
+        .panel { background: var(--panel); border-radius: 18px; padding: 18px; box-shadow: var(--shadow); }
+        .opt { padding: 12px 0; border-bottom: 1px dashed var(--line); }
+        .opt:first-child { padding-top: 0; }
+        .opt:last-of-type { border-bottom: 0; }
+        .opt-title { font-size: .82rem; font-weight: 800; color: var(--muted); margin: 0 0 8px; display: flex; align-items: center; gap: 6px; }
+        .opt-title .step { width: 20px; height: 20px; border-radius: 50%; background: var(--brand); color: #fff; font-size: .72rem; display: inline-flex; align-items: center; justify-content: center; }
+        .opt-note { font-size: .78rem; color: var(--muted); margin: 6px 0 0; }
+
+        .mode-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .mode-btn {
+            text-align: left; padding: 14px; border-radius: 14px; border: 2px solid var(--line); background: var(--panel2); color: var(--text);
+            transition: border-color .15s, box-shadow .15s, transform .15s;
+        }
+        .mode-btn b { display: block; font-size: 1.08rem; }
+        .mode-btn span { font-size: .8rem; color: var(--muted); }
+        .mode-btn[aria-pressed="true"] { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(102,126,234,.18); background: rgba(102,126,234,.08); }
+
+        .seg { display: flex; flex-wrap: wrap; gap: 6px; }
+        .seg button {
+            flex: 1 1 auto; min-width: 64px; padding: 9px 10px; border-radius: 10px; border: 1px solid var(--line);
+            background: var(--panel2); color: var(--text); font-weight: 600; font-size: .88rem;
+        }
+        .seg button[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: #fff; }
+        .seg button:disabled { opacity: .4; cursor: not-allowed; }
+
+        .tabs { display: flex; background: var(--panel2); border-radius: 12px; padding: 4px; gap: 4px; border: 1px solid var(--line); }
+        .tabs button { flex: 1; border: 0; background: transparent; padding: 8px; border-radius: 9px; font-weight: 700; color: var(--muted); font-size: .9rem; }
+        .tabs button[aria-selected="true"] { background: var(--panel); color: var(--brand); box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+        .tab-body { margin-top: 10px; }
+
+        .level-cards { display: grid; gap: 8px; }
+        .level-card {
+            display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; text-align: left;
+            padding: 10px 12px; border-radius: 12px; border: 2px solid var(--line); background: var(--panel2); color: var(--text);
+        }
+        .level-card .lv-emoji { font-size: 1.3rem; }
+        .level-card b { font-size: .98rem; }
+        .level-card small { display: block; color: var(--muted); font-size: .76rem; }
+        .level-card .lv-range { font-weight: 800; color: var(--brand); font-size: .9rem; }
+        .level-card[aria-pressed="true"] { border-color: var(--brand); background: rgba(102,126,234,.08); }
+
+        .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+        .chip { position: relative; }
+        .chip input { position: absolute; opacity: 0; pointer-events: none; }
+        .chip label {
+            display: inline-flex; flex-direction: column; align-items: flex-start; gap: 1px; padding: 7px 11px; border-radius: 10px;
+            border: 1px solid var(--line); background: var(--panel2); cursor: pointer; font-size: .86rem; font-weight: 700; line-height: 1.25;
+        }
+        .chip label small { font-weight: 500; color: var(--muted); font-size: .72rem; }
+        .chip input:checked + label { background: var(--brand); border-color: var(--brand); color: #fff; }
+        .chip input:checked + label small { color: rgba(255,255,255,.85); }
+        .chip input:focus-visible + label { outline: 2px solid var(--brand); outline-offset: 2px; }
+        .chip input:disabled + label { opacity: .4; cursor: not-allowed; }
+
+        .types { display: grid; gap: 10px; }
+        .type-group h4 { margin: 0 0 5px; font-size: .78rem; color: var(--muted); }
+        .type-group .why { font-size: .74rem; color: var(--warn); margin: 4px 0 0; }
+
+        .toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 4px 0; }
+        .toggle-row .tl { font-size: .9rem; font-weight: 700; }
+        .toggle-row .tl small { display: block; font-weight: 400; color: var(--muted); font-size: .75rem; }
+        .switch { position: relative; width: 46px; height: 26px; flex: none; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .switch span { position: absolute; inset: 0; border-radius: 99px; background: var(--line); transition: background .2s; cursor: pointer; }
+        .switch span::before { content: ''; position: absolute; width: 20px; height: 20px; left: 3px; top: 3px; border-radius: 50%; background: #fff; transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,.2); }
+        .switch input:checked + span { background: var(--bad); }
+        .switch input:checked + span::before { transform: translateX(20px); }
+        .switch input:focus-visible + span { outline: 2px solid var(--brand); outline-offset: 2px; }
+        .mini-seg { display: flex; gap: 4px; }
+        .mini-seg button { padding: 6px 10px; border-radius: 9px; border: 1px solid var(--line); background: var(--panel2); color: var(--text); font-size: .8rem; font-weight: 600; }
+        .mini-seg button[aria-pressed="true"] { background: var(--brand); color: #fff; border-color: var(--brand); }
+
+        .start-actions { display: grid; gap: 8px; margin-top: 14px; }
+        .start-actions .btn-primary { font-size: 1.12rem; padding: 15px; }
+        .summary-line { text-align: center; font-size: .84rem; color: var(--muted); margin: 0; }
+        .start-err { text-align: center; font-size: .82rem; color: var(--bad); margin: 0; font-weight: 700; }
+
+        /* 광고 영역: 높이를 미리 확보 (CLS 방지) */
+        .ad-slot { min-height: 100px; margin: 22px 0 0; border-radius: 12px; }
+
+        /* =========================================================
+           5. 플레이 화면
+           ========================================================= */
+        .topbar {
+            display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 10px;
+            background: var(--panel); border-radius: 14px; padding: 8px 12px; box-shadow: var(--shadow); margin-bottom: 10px;
+            position: sticky; top: 68px; z-index: 40;
+        }
+        .tb-left { font-size: .85rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .tb-mid { font-weight: 900; font-size: 1.05rem; text-align: center; white-space: nowrap; }
+        .tb-right { display: flex; align-items: center; justify-content: flex-end; gap: 8px; min-width: 0; }
+        .tb-time { font-variant-numeric: tabular-nums; font-weight: 800; font-size: .95rem; min-width: 50px; text-align: right; }
+        .tbar { position: relative; flex: 1; max-width: 140px; height: 8px; border-radius: 99px; background: var(--line); overflow: hidden; }
+        .tbar i { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background: var(--good); border-radius: inherit; transform-origin: left; }
+        .tbar.warn i { background: var(--warn); }
+        .tbar.danger i { background: var(--bad); }
+        .tb-quit { padding: 5px 10px; font-size: .78rem; border-radius: 8px; border: 1px solid var(--line); background: var(--panel2); color: var(--muted); font-weight: 700; }
+        @media (max-width: 640px) {
+            .topbar { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "l r" "m m"; row-gap: 4px; padding: 7px 10px; top: 64px; }
+            .tb-left { grid-area: l; font-size: .78rem; }
+            .tb-right { grid-area: r; }
+            .tb-mid { grid-area: m; font-size: .9rem; text-align: left; }
+            .tbar { width: 70px; }
+        }
+
+        /* 문제 카드 (흰 바탕 · 은색 패널 · 키캡 UI)
+           카드 안은 다크 모드에서도 밝은 색을 유지하도록 색 토큰을 고정 */
+        .qcard {
+            --text: #1f2937; --muted: #6b7280; --line: #e5e7eb; --panel2: #f8f9fc;
+            grid-column: 1 / -1; grid-row: 12;
+            margin-top: 10px; z-index: 20; color: var(--text);
+            background: linear-gradient(180deg, #ffffff 0%, #f1f1f1 100%); border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08), inset 0 2px 4px rgba(255,255,255,1); border: 1px solid #e5e7eb;
+            padding: 16px 18px; display: flex; flex-direction: column; justify-content: center; gap: 7px; min-width: 0;
+        }
+        .qcard, .qcard * { -webkit-user-select: text; user-select: text; }
+        .q-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 18px; }
+        .qcard.basic .q-top { display: none; }  /* 기본 모드: "원자번호 N번" 줄 숨김 */
+        .q-label { font-size: .78rem; font-weight: 800; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .q-label.notice { color: var(--brand); }
+        .q-feedback { font-size: .8rem; font-weight: 800; white-space: nowrap; }
+        .q-feedback.bad { color: var(--bad); }
+        .q-feedback.good { color: var(--good); }
+        .q-body { display: flex; align-items: center; gap: 14px; min-width: 0; }
+        .q-panel { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 7px; }
+        .q-main { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 4px 10px; min-height: 34px; text-align: center; }
+        .q-big { font-size: clamp(1.25rem, 2.6vw, 1.8rem); font-weight: 900; letter-spacing: -.01em; }
+        .q-ask { font-size: .98rem; font-weight: 700; color: var(--muted); }
+
+        /* 기본 모드: 은색 패널 안에 [직전 단어 · 키캡 · 다음 단어] + 입력칸 */
+        .qcard.basic .q-panel {
+            padding: 14px 18px 16px; gap: 12px; border-radius: 24px;
+            background: linear-gradient(180deg, #f6f6f6 0%, #dedede 100%);
+            border: 1px solid #c4c4c4;
+            box-shadow: inset 0 2px 2px rgba(255,255,255,.95), inset 0 -3px 6px rgba(0,0,0,.07), 0 6px 16px rgba(0,0,0,.12);
+        }
+        .q-line-custom { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 22px; width: 100%; }
+        .q-side-custom { display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+        .q-side-custom.prev { align-items: flex-end; text-align: right; }
+        .q-side-custom.next { align-items: flex-start; text-align: left; }
+        .q-side-custom .kr-name, .q-side-custom .en-name { max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .q-side-custom .kr-name { font-size: 1.7rem; color: #2f2f2f; font-weight: 500; line-height: 1.15; }
+        .q-side-custom .en-name { font-size: .85rem; color: #555; font-weight: 400; margin-top: 2px; }
+
+        /* 지금 칠 단어: 튀어나온 키캡 */
+        .key-cap {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            min-width: 120px; padding: 14px 30px; border-radius: 16px;
+            background: linear-gradient(180deg, #ffffff 0%, #ebebeb 70%, #dcdcdc 100%);
+            border: 2px solid #8f8f8f;
+            box-shadow: 0 0 0 2px #e9e9e9, 0 6px 10px rgba(0,0,0,.28), inset 0 2px 2px #fff, inset 0 -4px 6px rgba(0,0,0,.08);
+        }
+        .key-cap .kr-name { font-size: 1.9rem; font-weight: 600; color: #2b2b2b; line-height: 1.15; white-space: nowrap; }
+        .key-cap .en-name { font-size: .8rem; font-weight: 500; color: #666; margin-top: 2px; white-space: nowrap; }
+        .key-cap.reveal { border-color: var(--bad); }
+        .key-cap.reveal .kr-name { color: var(--bad); }
+
+        /* 타이핑 입력칸 (기존 대비 가로·세로 1.5배) */
+        .q-input-row { display: flex; gap: 6px; align-items: stretch; }
+        .q-input {
+            flex: 1; min-width: 0; font-size: 24px; padding: 14px 18px;
+            border-radius: 16px; border: 2px solid #bdbdbd; background: #fbfbfb; color: var(--text);
+            font-weight: 700; outline: none; transition: border-color .15s; text-align: center;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,.12);
+        }
+        .q-input::placeholder { color: #8a8a8a; font-weight: 500; }
+        .q-input:focus { border-color: var(--brand); }
+        .q-input.shake { animation: shake .35s; border-color: var(--bad); }
+        @keyframes shake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-7px); } 40% { transform: translateX(7px); } 60% { transform: translateX(-5px); } 80% { transform: translateX(5px); } }
+        .q-tool { flex: none; padding: 0 11px; border-radius: 16px; border: 1px solid var(--line); background: var(--panel2); color: var(--text); font-weight: 700; font-size: .85rem; white-space: nowrap; }
+        .q-tool:disabled { opacity: .35; cursor: not-allowed; }
+        .qcard.basic #passBtn { display: none; }  /* 기본 모드: 스킵(패스) 버튼 없음 */
+
+        /* 패널 오른쪽 입력(Enter) 버튼 — 기본 모드에서만 */
+        .q-enter {
+            display: none; flex: none; width: 76px; height: 50px; border-radius: 999px;
+            border: 1px solid #a9a9a9; color: #2b2b2b; font-size: 1.5rem; font-weight: 900; line-height: 1;
+            background: linear-gradient(180deg, #ffffff 0%, #e2e2e2 100%);
+            box-shadow: 0 0 0 3px #ececec, 0 4px 10px rgba(0,0,0,.18), inset 0 2px 2px #fff;
+        }
+        .q-enter:active { transform: translateY(1px); box-shadow: 0 0 0 3px #ececec, 0 2px 5px rgba(0,0,0,.18), inset 0 2px 3px rgba(0,0,0,.08); }
+        .qcard.basic .q-enter { display: block; }
+        .q-guide { font-size: .74rem; color: var(--muted); text-align: center; min-height: 1em; }
+        .qcard.basic .q-guide:empty { display: none; }
+
+        /* 좁은 화면 */
+        @media (max-width: 560px) {
+            .qcard { padding: 12px; }
+            .q-body { gap: 8px; }
+            .qcard.basic .q-panel { padding: 10px 10px 12px; gap: 10px; border-radius: 18px; }
+            .q-line-custom { gap: 10px; }
+            .q-side-custom .kr-name { font-size: 1.1rem; }
+            .q-side-custom .en-name { font-size: .7rem; }
+            .key-cap { min-width: 0; padding: 10px 16px; }
+            .key-cap .kr-name { font-size: 1.4rem; }
+            .q-enter { width: 52px; height: 44px; font-size: 1.2rem; }
+            .q-input { font-size: 19px; padding: 13px 10px; }
+        }
+        #sinkInput { position: fixed; left: 0; top: 40%; width: 1px; height: 1px; opacity: 0; border: 0; padding: 0; font-size: 16px; pointer-events: none; }
+
+        /* =========================================================
+           6. 결과 화면
+           ========================================================= */
+        .result-head { text-align: center; margin: 4px 0 14px; }
+        .result-head .r-title { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900; margin: 0; }
+        .result-head .r-sub { color: var(--muted); font-size: .9rem; margin: 2px 0 0; }
+        .r-badges { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .r-badge { padding: 4px 12px; border-radius: 999px; font-weight: 800; font-size: .82rem; background: rgba(245,158,11,.15); color: #b45309; }
+        .r-badge.blue { background: rgba(102,126,234,.14); color: var(--brand); }
+        @media (prefers-color-scheme: dark) { .r-badge { color: #fbbf24; } }
+        .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+        .stat { background: var(--panel); border-radius: 14px; padding: 12px; text-align: center; box-shadow: var(--shadow); }
+        .stat b { display: block; font-size: clamp(1.15rem, 2.4vw, 1.6rem); font-weight: 900; font-variant-numeric: tabular-nums; }
+        .stat span { font-size: .76rem; color: var(--muted); font-weight: 700; }
+        @media (max-width: 640px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        .r-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 12px; }
+        @media (max-width: 860px) { .r-grid { grid-template-columns: minmax(0, 1fr); } }
+        .r-box { background: var(--panel); border-radius: 16px; padding: 14px; box-shadow: var(--shadow); min-width: 0; }
+        .r-box h3 { margin: 0 0 8px; font-size: .95rem; }
+        .r-box.full { grid-column: 1 / -1; }
+        .bar-row { display: grid; grid-template-columns: 64px 1fr 92px; gap: 8px; align-items: center; font-size: .82rem; margin: 6px 0; }
+        .bar-row .bar { height: 10px; border-radius: 99px; background: var(--line); overflow: hidden; }
+        .bar-row .bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--brand), var(--brand2)); }
+        .bar-row em { font-style: normal; text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+        .graph svg { width: 100%; height: auto; display: block; }
+        .graph .gl { stroke: var(--line); }
+        .graph text { fill: var(--muted); font-size: 10px; }
+        .top3 { list-style: none; margin: 0 0 10px; padding: 0; display: grid; gap: 6px; }
+        .top3 li { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-radius: 10px; background: var(--panel2); font-size: .88rem; }
+        .top3 .sw { width: 34px; height: 34px; border-radius: 8px; background: var(--cat); color: var(--cell-text); display: flex; align-items: center; justify-content: center; font-weight: 900; flex: none; }
+        .top3 .why { margin-left: auto; color: var(--muted); font-size: .78rem; text-align: right; }
+        .best-line { font-size: .9rem; }
+        .best-line b { color: var(--brand); }
+        .r-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
+        .r-actions .btn { flex: 1 1 160px; max-width: 260px; }
+
+        /* =========================================================
+           7. 학습 콘텐츠 (SEO, 정적 HTML)
+           ========================================================= */
+        .learn { max-width: 1180px; margin: 10px auto 40px; padding: 0 16px; }
+        .learn h2 { font-size: 1.3rem; margin: 34px 0 8px; padding-left: 10px; border-left: 5px solid var(--brand); }
+        .learn h3 { font-size: 1.05rem; margin: 18px 0 6px; }
+        .learn p, .learn li { font-size: .95rem; color: var(--text); }
+        .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 12px; box-shadow: var(--shadow); }
+        .learn-table { width: 100%; border-collapse: collapse; background: var(--panel); font-size: .88rem; min-width: 560px; }
+        .learn-table th, .learn-table td { padding: 7px 9px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+        .learn-table td:last-child { white-space: normal; }
+        .learn-table thead th { background: var(--panel2); font-size: .8rem; color: var(--muted); }
+        .group-table td:last-child { line-height: 1.7; }
+
+        footer { border-top: 1px solid var(--line); padding: 28px 16px; text-align: center; font-size: .85rem; color: var(--muted); background: var(--panel2); }
+        footer a { color: inherit; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .cell.lit.flash, .cell.current, .el-toast, .q-input.shake { animation: none !important; }
+        }
+    </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T9HC454Z"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- =========================================================
+     사이트 공통 내비게이션
+     ========================================================= -->
+<nav>
+    <div class="nav-container">
+        <a href="../index.html" class="logo" aria-label="핑거런 홈페이지 메인으로 이동">
+            <img src="../images/finger-run-logo.svg" alt="핑거런 로고" width="32" height="32">
+            FingerRun
+        </a>
+        <ul class="nav-menu">
+            <li><a href="../notices.html">공지사항</a></li>
+            <li>
+                <a href="../Korean/practice.html?mode=consonant">
+                    한글 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="../Korean/practice.html?mode=consonant">자음 연습</a>
+                    <a href="../Korean/practice.html?mode=vowel">모음 연습</a>
+                    <a href="../Korean/practice.html?mode=word">단어 연습</a>
+                    <a href="../Korean/practice.html?mode=sentence">문장 연습</a>
+                    <a href="../Korean/infinite_practice.html">무한 연습</a>
+                </div>
+            </li>
+            <li>
+                <a href="../English/practice.html?mode=alphabet">
+                    영어 타자연습
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="../English/practice.html?mode=alphabet">알파벳 연습</a>
+                    <a href="../English/practice.html?mode=word">단어 연습</a>
+                    <a href="../English/practice.html?mode=sentence">문장 연습</a>
+                    <a href="../English/infinite_practice.html">무한 연습</a>
+                </div>
+            </li>
+            <li>
+                <a href="../Game/delivery.html">
+                    타자게임
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="../Game/tank.html">탱크 폭격</a>
+                    <a href="../Game/delivery.html">택배 분류</a>
+                    <a href="../Game/mole.html">두더지 잡기</a>
+                    <a href="../Game/plane.html">비행기 조종</a>
+                </div>
+            </li>
+            <li><a href="../writing.html">필사</a></li>
+            <li>
+                <a href="../Quiz/worldmap.html" class="active">
+                    여행
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="../Quiz/worldmap.html">세계 여행</a>
+                    <a href="../Quiz/science.html" class="active" aria-current="page">과학 여행</a>
+                    <a href="../Quiz/space.html" rel="nofollow" onclick="alert('우주 여행은 준비 중입니다.'); return false;">우주 여행</a>
+                </div>
+            </li>
+            <li><a href="../battle.html">타자 배틀</a></li>
+            <li><a href="../contact.html">문의하기</a></li>
+            <li>
+                <a href="../login.html" rel="nofollow" onclick="goProfile(event)" title="프로필" aria-label="마이페이지" class="nav-user" style="padding: 0.5rem 0.6rem; border-radius: 50%;">
+                    <i class="far fa-user" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<main>
+    <div id="testPanel" class="hidden" role="status" aria-live="polite"></div>
+
+    <!-- =====================================================
+         시작 화면
+         ===================================================== -->
+    <section id="startScreen" class="screen wrap" aria-labelledby="pageTitle">
+        <h1 id="pageTitle" class="sr-only">주기율표 외우기 타이핑 게임</h1>
+
+        <div class="start-grid">
+            <div class="panel" id="optionsPanel">
+                <!-- ① 상위 모드 -->
+                <div class="opt">
+                    <p class="opt-title"><span class="step">1</span>모드</p>
+                    <div class="mode-btns" id="optPlay">
+                        <button type="button" class="mode-btn" data-play="basic"><b>기본 모드</b><span>차례대로 학습</span></button>
+                        <button type="button" class="mode-btn" data-play="quiz"><b>퀴즈 모드</b><span>무작위 출제</span></button>
+                    </div>
+                </div>
+
+                <!-- ② 제한 시간 (퀴즈만) -->
+                <div class="opt" id="optTimeWrap">
+                    <p class="opt-title"><span class="step">2</span>문항당 제한 시간</p>
+                    <div class="seg" id="optTime">
+                        <button type="button" data-time="5">5초</button>
+                        <button type="button" data-time="10">10초</button>
+                        <button type="button" data-time="0">제한 없음</button>
+                    </div>
+                </div>
+
+                <!-- ③ 범위 방식 -->
+                <div class="opt">
+                    <p class="opt-title"><span class="step" id="stepScope">3</span>범위</p>
+                    <div class="tabs" role="tablist" id="optScope">
+                        <button type="button" role="tab" data-scope="number">번호</button>
+                        <button type="button" role="tab" data-scope="group">족</button>
+                        <button type="button" role="tab" data-scope="period">주기</button>
+                    </div>
+                    <div class="tab-body" id="scopeNumber">
+                        <div class="level-cards" id="optLevel"></div>
+                    </div>
+                    <div class="tab-body" id="scopeGroup">
+                        <div class="chips" id="optGroups"></div>
+                        <div class="toggle-row" style="margin-top:10px">
+                            <div class="tl">깊이</div>
+                            <div class="mini-seg" id="optDepth">
+                                <button type="button" data-depth="4">4주기까지</button>
+                                <button type="button" data-depth="7">7주기까지</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-body" id="scopePeriod">
+                        <div class="chips" id="optPeriods"></div>
+                        <p class="opt-note">4주기는 전이 금속(21~30번)을 포함한 18개 원소 전체예요.</p>
+                    </div>
+                </div>
+
+                <!-- ④ 세부 설정 -->
+                <div class="opt" id="detailBasic">
+                    <p class="opt-title"><span class="step" id="stepDetailB">4</span>세부 설정</p>
+                    <div class="toggle-row">
+                        <div class="tl">입력 형식</div>
+                        <div class="mini-seg" id="optInput">
+                            <button type="button" data-input="name">한글 이름</button>
+                            <button type="button" data-input="symbol">원소 기호</button>
+                        </div>
+                    </div>
+                    <div id="startWrap" style="margin-top:10px">
+                        <div class="toggle-row">
+                            <div class="tl">시작 지점</div>
+                        </div>
+                        <div class="seg" id="optStart">
+                            <button type="button" data-start="1">1번부터</button>
+                            <button type="button" data-start="21">21번부터</button>
+                            <button type="button" data-start="37">37번부터</button>
+                        </div>
+                        <p class="opt-note" id="startNote"></p>
+                    </div>
+                </div>
+                <div class="opt" id="detailQuiz">
+                    <p class="opt-title"><span class="step" id="stepDetailQ">4</span>문제 유형 · 문항 수</p>
+                    <div class="types" id="optTypes"></div>
+                    <div style="margin-top:12px">
+                        <div class="seg" id="optCount">
+                            <button type="button" data-count="10">10문항</button>
+                            <button type="button" data-count="20">20문항</button>
+                            <button type="button" data-count="40">40문항</button>
+                            <button type="button" data-count="0">전체</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="start-actions">
+                    <p class="summary-line" id="summaryLine"></p>
+                    <p class="start-err" id="startErr"></p>
+                    <button type="button" class="btn btn-primary" id="startBtn">시작하기 ▶</button>
+                </div>
+            </div>
+
+            <div class="start-preview" aria-label="선택한 범위 미리보기">
+                <div class="pv-head">
+                    <b>이번 판 범위 <span class="muted" id="pvCount"></span></b>
+                </div>
+                <div class="ptable-wrap" id="previewWrap"></div>
+                <ul class="legend" id="legendStart"></ul>
+            </div>
+        </div>
+
+        <!-- 광고 영역 -->
+        <div class="ad-slot">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-5657188598576847"
+                 data-ad-slot="4465825129"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+    </section>
+
+    <!-- =====================================================
+         플레이 화면
+         ===================================================== -->
+    <section id="playScreen" class="screen wrap hidden" aria-label="게임 진행">
+        <div class="topbar">
+            <div class="tb-left" id="tbLeft"></div>
+            <div class="tb-mid" id="tbMid"></div>
+            <div class="tb-right">
+                <div class="tbar hidden" id="tbBar"><i></i></div>
+                <span class="tb-time" id="tbTime">0.0s</span>
+                <button type="button" class="tb-quit" id="quitBtn">그만</button>
+            </div>
+        </div>
+        <div class="ptable-wrap" id="playWrap"></div>
+        <ul class="legend" id="legendPlay"></ul>
+        <input id="sinkInput" type="text" tabindex="-1" aria-hidden="true" autocomplete="off">
+    </section>
+
+    <!-- 문제 카드 (플레이 표 안에 grid item으로 들어감) -->
+    <template id="qcardTpl">
+        <div class="qcard" id="qcard">
+            <div class="q-top" id="qTop">
+                <span class="q-label" id="qLabel"></span>
+                <span class="q-feedback" id="qFeedback" aria-live="polite"></span>
+            </div>
+            <div class="q-body">
+                <div class="q-panel">
+                    <div class="q-main" id="qMain"></div>
+                    <div class="q-input-row">
+                        <input id="qInput" class="q-input" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" aria-label="정답 입력">
+                        <button type="button" class="q-tool" id="passBtn" title="패스 (Alt+P)">⏭<span class="pass-txt"> 3</span></button>
+                    </div>
+                </div>
+                <button type="button" class="q-enter" id="enterBtn" title="입력 (Enter)" aria-label="입력">»</button>
+            </div>
+            <div class="q-guide" id="qGuide"></div>
+        </div>
+    </template>
+
+    <!-- =====================================================
+         결과 화면
+         ===================================================== -->
+    <section id="resultScreen" class="screen wrap hidden" aria-label="결과">
+        <div class="result-head">
+            <h2 class="r-title" id="rTitle"></h2>
+            <p class="r-sub" id="rSub"></p>
+            <div class="r-badges" id="rBadges"></div>
+        </div>
+        <div class="stats" id="rStats"></div>
+        <div class="r-grid">
+            <div class="r-box hidden" id="rTypeBox"><h3>유형별 정답률</h3><div id="rTypes"></div><div id="rPosSplit"></div></div>
+            <div class="r-box full graph"><h3>반응 시간 그래프</h3><div id="rGraph"></div></div>
+            <div class="r-box"><h3>가장 오래 걸린(또는 틀린) 원소 TOP 3</h3><ul class="top3" id="rTop3"></ul><button type="button" class="btn btn-small" id="retryTopBtn">🔁 이 원소들만 다시 연습하기</button></div>
+            <div class="r-box"><h3>기록</h3><p class="best-line" id="rBest"></p></div>
+            <div class="r-box full"><h3>이번 판 주기율표</h3><div class="ptable-wrap" id="miniWrap"></div><ul class="legend"><li><i style="background:var(--brand)"></i>맞힌 칸 불 켜짐</li><li><i style="border:2px solid var(--bad)"></i>틀린 칸</li></ul></div>
+        </div>
+        <div class="r-actions">
+            <button type="button" class="btn btn-primary" id="againBtn">🔁 다시 하기</button>
+            <button type="button" class="btn" id="settingsBtn">⚙️ 설정 바꾸기</button>
+        </div>
+        <!-- 광고 영역 -->
+        <div class="ad-slot">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-5657188598576847"
+                 data-ad-slot="4465825129"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+    </section>
+
+    <!-- =====================================================
+         학습 콘텐츠 (정적 HTML, 검색엔진용)
+         ===================================================== -->
+    <section class="learn" id="learn" aria-labelledby="learn-1-20">
+        <h2 id="learn-1-20">1~20번 원소 표 (중2 과학 · 고1 통합과학 필수)</h2>
+        <p>시험에 가장 많이 나오는 1~20번 원소의 원소 기호, 이름, 옛 이름, 주기와 족, 이온식을 한 표에 모았습니다. 옛 이름(예: 나트륨·소듐, 칼륨·포타슘)도 게임에서 정답으로 인정됩니다.</p>
+        <div class="table-scroll"><table class="learn-table">
+            <thead><tr><th scope="col">번호</th><th scope="col">기호</th><th scope="col">이름</th><th scope="col">옛 이름·다른 이름</th><th scope="col">주기</th><th scope="col">족</th><th scope="col">이온</th><th scope="col">한 줄 팩트</th></tr></thead>
+            <tbody>
+            <tr><td>1</td><td><b>H</b></td><td>수소</td><td>-</td><td>1주기</td><td>1족</td><td>-</td><td>우주에서 가장 많은 원소</td></tr>
+            <tr><td>2</td><td><b>He</b></td><td>헬륨</td><td>-</td><td>1주기</td><td>18족</td><td>-</td><td>우주에서 두 번째로 많은 원소</td></tr>
+            <tr><td>3</td><td><b>Li</b></td><td>리튬</td><td>-</td><td>2주기</td><td>1족</td><td>Li<sup>+</sup></td><td>가장 가벼운 금속, 2차 전지 재료</td></tr>
+            <tr><td>4</td><td><b>Be</b></td><td>베릴륨</td><td>-</td><td>2주기</td><td>2족</td><td>Be<sup>2+</sup></td><td>제임스 웹 망원경 거울의 재료</td></tr>
+            <tr><td>5</td><td><b>B</b></td><td>붕소</td><td>-</td><td>2주기</td><td>13족</td><td>-</td><td>내열 유리(붕규산 유리)의 재료</td></tr>
+            <tr><td>6</td><td><b>C</b></td><td>탄소</td><td>-</td><td>2주기</td><td>14족</td><td>-</td><td>다이아몬드와 흑연을 이루는 원소</td></tr>
+            <tr><td>7</td><td><b>N</b></td><td>질소</td><td>-</td><td>2주기</td><td>15족</td><td>N<sup>3−</sup></td><td>공기의 약 78%를 차지하는 기체</td></tr>
+            <tr><td>8</td><td><b>O</b></td><td>산소</td><td>-</td><td>2주기</td><td>16족</td><td>O<sup>2−</sup></td><td>지각에서 가장 많은 원소</td></tr>
+            <tr><td>9</td><td><b>F</b></td><td>플루오린</td><td>불소, 플루오르</td><td>2주기</td><td>17족</td><td>F<sup>−</sup></td><td>전기 음성도가 가장 큰 원소</td></tr>
+            <tr><td>10</td><td><b>Ne</b></td><td>네온</td><td>-</td><td>2주기</td><td>18족</td><td>-</td><td>붉은빛을 내는 네온사인 기체</td></tr>
+            <tr><td>11</td><td><b>Na</b></td><td>나트륨</td><td>소듐</td><td>3주기</td><td>1족</td><td>Na<sup>+</sup></td><td>소금(염화 나트륨)의 성분</td></tr>
+            <tr><td>12</td><td><b>Mg</b></td><td>마그네슘</td><td>-</td><td>3주기</td><td>2족</td><td>Mg<sup>2+</sup></td><td>엽록소 중심에 있는 금속</td></tr>
+            <tr><td>13</td><td><b>Al</b></td><td>알루미늄</td><td>-</td><td>3주기</td><td>13족</td><td>Al<sup>3+</sup></td><td>지각에 가장 많은 금속</td></tr>
+            <tr><td>14</td><td><b>Si</b></td><td>규소</td><td>실리콘</td><td>3주기</td><td>14족</td><td>-</td><td>반도체 칩의 주재료</td></tr>
+            <tr><td>15</td><td><b>P</b></td><td>인</td><td>-</td><td>3주기</td><td>15족</td><td>-</td><td>DNA 뼈대를 이루는 원소</td></tr>
+            <tr><td>16</td><td><b>S</b></td><td>황</td><td>-</td><td>3주기</td><td>16족</td><td>S<sup>2−</sup></td><td>화산 지대에서 노란 결정으로 발견</td></tr>
+            <tr><td>17</td><td><b>Cl</b></td><td>염소</td><td>-</td><td>3주기</td><td>17족</td><td>Cl<sup>−</sup></td><td>수돗물 소독에 쓰이는 원소</td></tr>
+            <tr><td>18</td><td><b>Ar</b></td><td>아르곤</td><td>-</td><td>3주기</td><td>18족</td><td>-</td><td>공기의 약 1%를 차지하는 기체</td></tr>
+            <tr><td>19</td><td><b>K</b></td><td>칼륨</td><td>포타슘</td><td>4주기</td><td>1족</td><td>K<sup>+</sup></td><td>바나나에 많이 들어 있는 원소</td></tr>
+            <tr><td>20</td><td><b>Ca</b></td><td>칼슘</td><td>-</td><td>4주기</td><td>2족</td><td>Ca<sup>2+</sup></td><td>뼈와 치아를 이루는 주요 원소</td></tr>
+            </tbody>
+        </table></div>
+
+        <h2>족별 정리 (1, 2, 13~18족)</h2>
+        <p>같은 족(세로줄) 원소는 원자가 전자 수가 같아서 화학적 성질이 비슷합니다. 4주기까지는 꼭 외워 두세요.</p>
+        <div class="table-scroll"><table class="learn-table group-table">
+            <thead><tr><th scope="col">족</th><th scope="col">족 이름</th><th scope="col">원소 (위 → 아래)</th></tr></thead>
+            <tbody>
+            <tr><td><b>1족</b></td><td>알칼리 금속</td><td>수소(H) · 리튬(Li) · 나트륨(Na) · 칼륨(K) · 루비듐(Rb) · 세슘(Cs) · 프랑슘(Fr) <span class="muted">※ 수소는 1족에 있지만 알칼리 금속이 아니에요.</span></td></tr>
+            <tr><td><b>2족</b></td><td>알칼리 토금속</td><td>베릴륨(Be) · 마그네슘(Mg) · 칼슘(Ca) · 스트론튬(Sr) · 바륨(Ba) · 라듐(Ra)</td></tr>
+            <tr><td><b>13족</b></td><td>붕소족</td><td>붕소(B) · 알루미늄(Al) · 갈륨(Ga) · 인듐(In) · 탈륨(Tl) · 니호늄(Nh)</td></tr>
+            <tr><td><b>14족</b></td><td>탄소족</td><td>탄소(C) · 규소(Si) · 저마늄(Ge) · 주석(Sn) · 납(Pb) · 플레로븀(Fl)</td></tr>
+            <tr><td><b>15족</b></td><td>질소족</td><td>질소(N) · 인(P) · 비소(As) · 안티모니(Sb) · 비스무트(Bi) · 모스코븀(Mc)</td></tr>
+            <tr><td><b>16족</b></td><td>산소족</td><td>산소(O) · 황(S) · 셀레늄(Se) · 텔루륨(Te) · 폴로늄(Po) · 리버모륨(Lv)</td></tr>
+            <tr><td><b>17족</b></td><td>할로젠</td><td>플루오린(F) · 염소(Cl) · 브로민(Br) · 아이오딘(I) · 아스타틴(At) · 테네신(Ts)</td></tr>
+            <tr><td><b>18족</b></td><td>비활성 기체</td><td>헬륨(He) · 네온(Ne) · 아르곤(Ar) · 크립톤(Kr) · 제논(Xe) · 라돈(Rn) · 오가네손(Og)</td></tr>
+            </tbody>
+        </table></div>
+
+        <h2>21~36번 원소 표 (4주기 전이 금속 포함)</h2>
+        <p>4주기에는 스칸듐부터 아연까지 전이 금속 10개가 들어갑니다. 내신 화학과 대학 일반화학에서 자주 쓰는 범위입니다.</p>
+        <div class="table-scroll"><table class="learn-table">
+            <thead><tr><th scope="col">번호</th><th scope="col">기호</th><th scope="col">이름</th><th scope="col">옛 이름·다른 이름</th><th scope="col">주기</th><th scope="col">족</th><th scope="col">한 줄 팩트</th></tr></thead>
+            <tbody>
+            <tr><td>21</td><td><b>Sc</b></td><td>스칸듐</td><td>-</td><td>4주기</td><td>3족</td><td>알루미늄 합금의 강도를 높임</td></tr>
+            <tr><td>22</td><td><b>Ti</b></td><td>타이타늄</td><td>티타늄, 티탄</td><td>4주기</td><td>4족</td><td>가볍고 튼튼해 인공 관절에 사용</td></tr>
+            <tr><td>23</td><td><b>V</b></td><td>바나듐</td><td>-</td><td>4주기</td><td>5족</td><td>강철을 단단하게 하는 합금 원소</td></tr>
+            <tr><td>24</td><td><b>Cr</b></td><td>크로뮴</td><td>크롬</td><td>4주기</td><td>6족</td><td>스테인리스강의 녹 방지 성분</td></tr>
+            <tr><td>25</td><td><b>Mn</b></td><td>망가니즈</td><td>망간</td><td>4주기</td><td>7족</td><td>알칼리 건전지에 쓰이는 원소</td></tr>
+            <tr><td>26</td><td><b>Fe</b></td><td>철</td><td>-</td><td>4주기</td><td>8족</td><td>지구 핵의 주성분</td></tr>
+            <tr><td>27</td><td><b>Co</b></td><td>코발트</td><td>-</td><td>4주기</td><td>9족</td><td>유리·도자기에 푸른색을 냄</td></tr>
+            <tr><td>28</td><td><b>Ni</b></td><td>니켈</td><td>-</td><td>4주기</td><td>10족</td><td>동전과 스테인리스강에 쓰이는 금속</td></tr>
+            <tr><td>29</td><td><b>Cu</b></td><td>구리</td><td>-</td><td>4주기</td><td>11족</td><td>전선에 쓰이는 붉은 금속</td></tr>
+            <tr><td>30</td><td><b>Zn</b></td><td>아연</td><td>-</td><td>4주기</td><td>12족</td><td>철의 부식을 막는 도금(함석)에 사용</td></tr>
+            <tr><td>31</td><td><b>Ga</b></td><td>갈륨</td><td>-</td><td>4주기</td><td>13족</td><td>손바닥 위에서 녹는 금속</td></tr>
+            <tr><td>32</td><td><b>Ge</b></td><td>저마늄</td><td>게르마늄</td><td>4주기</td><td>14족</td><td>초기 트랜지스터의 재료</td></tr>
+            <tr><td>33</td><td><b>As</b></td><td>비소</td><td>-</td><td>4주기</td><td>15족</td><td>독약으로 악명 높은 원소</td></tr>
+            <tr><td>34</td><td><b>Se</b></td><td>셀레늄</td><td>셀렌</td><td>4주기</td><td>16족</td><td>복사기 감광 드럼에 쓰인 원소</td></tr>
+            <tr><td>35</td><td><b>Br</b></td><td>브로민</td><td>브롬</td><td>4주기</td><td>17족</td><td>상온에서 액체인 유일한 비금속</td></tr>
+            <tr><td>36</td><td><b>Kr</b></td><td>크립톤</td><td>-</td><td>4주기</td><td>18족</td><td>그리스어 &#x27;숨겨진&#x27;에서 온 이름</td></tr>
+            </tbody>
+        </table></div>
+
+        <h2>37~118번 원소 표</h2>
+        <p>5주기부터 7주기, 란타넘족과 악티늄족까지 전체 원소의 기호와 이름입니다. 지옥 난이도(1~118번)에 도전할 때 참고하세요.</p>
+        <div class="table-scroll"><table class="learn-table">
+            <thead><tr><th scope="col">번호</th><th scope="col">기호</th><th scope="col">이름</th><th scope="col">옛 이름·다른 이름</th></tr></thead>
+            <tbody>
+            <tr><td>37</td><td><b>Rb</b></td><td>루비듐</td><td>-</td></tr>
+            <tr><td>38</td><td><b>Sr</b></td><td>스트론튬</td><td>-</td></tr>
+            <tr><td>39</td><td><b>Y</b></td><td>이트륨</td><td>-</td></tr>
+            <tr><td>40</td><td><b>Zr</b></td><td>지르코늄</td><td>-</td></tr>
+            <tr><td>41</td><td><b>Nb</b></td><td>나이오븀</td><td>니오브, 니오븀</td></tr>
+            <tr><td>42</td><td><b>Mo</b></td><td>몰리브데넘</td><td>몰리브덴</td></tr>
+            <tr><td>43</td><td><b>Tc</b></td><td>테크네튬</td><td>-</td></tr>
+            <tr><td>44</td><td><b>Ru</b></td><td>루테늄</td><td>-</td></tr>
+            <tr><td>45</td><td><b>Rh</b></td><td>로듐</td><td>-</td></tr>
+            <tr><td>46</td><td><b>Pd</b></td><td>팔라듐</td><td>-</td></tr>
+            <tr><td>47</td><td><b>Ag</b></td><td>은</td><td>-</td></tr>
+            <tr><td>48</td><td><b>Cd</b></td><td>카드뮴</td><td>-</td></tr>
+            <tr><td>49</td><td><b>In</b></td><td>인듐</td><td>-</td></tr>
+            <tr><td>50</td><td><b>Sn</b></td><td>주석</td><td>-</td></tr>
+            <tr><td>51</td><td><b>Sb</b></td><td>안티모니</td><td>안티몬</td></tr>
+            <tr><td>52</td><td><b>Te</b></td><td>텔루륨</td><td>텔루르</td></tr>
+            <tr><td>53</td><td><b>I</b></td><td>아이오딘</td><td>요오드</td></tr>
+            <tr><td>54</td><td><b>Xe</b></td><td>제논</td><td>크세논</td></tr>
+            <tr><td>55</td><td><b>Cs</b></td><td>세슘</td><td>-</td></tr>
+            <tr><td>56</td><td><b>Ba</b></td><td>바륨</td><td>-</td></tr>
+            <tr><td>57</td><td><b>La</b></td><td>란타넘</td><td>란탄</td></tr>
+            <tr><td>58</td><td><b>Ce</b></td><td>세륨</td><td>-</td></tr>
+            <tr><td>59</td><td><b>Pr</b></td><td>프라세오디뮴</td><td>-</td></tr>
+            <tr><td>60</td><td><b>Nd</b></td><td>네오디뮴</td><td>-</td></tr>
+            <tr><td>61</td><td><b>Pm</b></td><td>프로메튬</td><td>-</td></tr>
+            <tr><td>62</td><td><b>Sm</b></td><td>사마륨</td><td>-</td></tr>
+            <tr><td>63</td><td><b>Eu</b></td><td>유로퓸</td><td>-</td></tr>
+            <tr><td>64</td><td><b>Gd</b></td><td>가돌리늄</td><td>-</td></tr>
+            <tr><td>65</td><td><b>Tb</b></td><td>터븀</td><td>테르븀</td></tr>
+            <tr><td>66</td><td><b>Dy</b></td><td>디스프로슘</td><td>-</td></tr>
+            <tr><td>67</td><td><b>Ho</b></td><td>홀뮴</td><td>-</td></tr>
+            <tr><td>68</td><td><b>Er</b></td><td>어븀</td><td>에르븀</td></tr>
+            <tr><td>69</td><td><b>Tm</b></td><td>툴륨</td><td>-</td></tr>
+            <tr><td>70</td><td><b>Yb</b></td><td>이터븀</td><td>이테르븀</td></tr>
+            <tr><td>71</td><td><b>Lu</b></td><td>루테튬</td><td>-</td></tr>
+            <tr><td>72</td><td><b>Hf</b></td><td>하프늄</td><td>-</td></tr>
+            <tr><td>73</td><td><b>Ta</b></td><td>탄탈럼</td><td>탄탈</td></tr>
+            <tr><td>74</td><td><b>W</b></td><td>텅스텐</td><td>-</td></tr>
+            <tr><td>75</td><td><b>Re</b></td><td>레늄</td><td>-</td></tr>
+            <tr><td>76</td><td><b>Os</b></td><td>오스뮴</td><td>-</td></tr>
+            <tr><td>77</td><td><b>Ir</b></td><td>이리듐</td><td>-</td></tr>
+            <tr><td>78</td><td><b>Pt</b></td><td>백금</td><td>-</td></tr>
+            <tr><td>79</td><td><b>Au</b></td><td>금</td><td>-</td></tr>
+            <tr><td>80</td><td><b>Hg</b></td><td>수은</td><td>-</td></tr>
+            <tr><td>81</td><td><b>Tl</b></td><td>탈륨</td><td>-</td></tr>
+            <tr><td>82</td><td><b>Pb</b></td><td>납</td><td>-</td></tr>
+            <tr><td>83</td><td><b>Bi</b></td><td>비스무트</td><td>-</td></tr>
+            <tr><td>84</td><td><b>Po</b></td><td>폴로늄</td><td>-</td></tr>
+            <tr><td>85</td><td><b>At</b></td><td>아스타틴</td><td>-</td></tr>
+            <tr><td>86</td><td><b>Rn</b></td><td>라돈</td><td>-</td></tr>
+            <tr><td>87</td><td><b>Fr</b></td><td>프랑슘</td><td>-</td></tr>
+            <tr><td>88</td><td><b>Ra</b></td><td>라듐</td><td>-</td></tr>
+            <tr><td>89</td><td><b>Ac</b></td><td>악티늄</td><td>-</td></tr>
+            <tr><td>90</td><td><b>Th</b></td><td>토륨</td><td>-</td></tr>
+            <tr><td>91</td><td><b>Pa</b></td><td>프로트악티늄</td><td>-</td></tr>
+            <tr><td>92</td><td><b>U</b></td><td>우라늄</td><td>-</td></tr>
+            <tr><td>93</td><td><b>Np</b></td><td>넵투늄</td><td>-</td></tr>
+            <tr><td>94</td><td><b>Pu</b></td><td>플루토늄</td><td>-</td></tr>
+            <tr><td>95</td><td><b>Am</b></td><td>아메리슘</td><td>-</td></tr>
+            <tr><td>96</td><td><b>Cm</b></td><td>퀴륨</td><td>-</td></tr>
+            <tr><td>97</td><td><b>Bk</b></td><td>버클륨</td><td>-</td></tr>
+            <tr><td>98</td><td><b>Cf</b></td><td>캘리포늄</td><td>-</td></tr>
+            <tr><td>99</td><td><b>Es</b></td><td>아인슈타이늄</td><td>-</td></tr>
+            <tr><td>100</td><td><b>Fm</b></td><td>페르뮴</td><td>-</td></tr>
+            <tr><td>101</td><td><b>Md</b></td><td>멘델레븀</td><td>-</td></tr>
+            <tr><td>102</td><td><b>No</b></td><td>노벨륨</td><td>-</td></tr>
+            <tr><td>103</td><td><b>Lr</b></td><td>로렌슘</td><td>-</td></tr>
+            <tr><td>104</td><td><b>Rf</b></td><td>러더포듐</td><td>-</td></tr>
+            <tr><td>105</td><td><b>Db</b></td><td>더브늄</td><td>-</td></tr>
+            <tr><td>106</td><td><b>Sg</b></td><td>시보귬</td><td>-</td></tr>
+            <tr><td>107</td><td><b>Bh</b></td><td>보륨</td><td>-</td></tr>
+            <tr><td>108</td><td><b>Hs</b></td><td>하슘</td><td>-</td></tr>
+            <tr><td>109</td><td><b>Mt</b></td><td>마이트너륨</td><td>-</td></tr>
+            <tr><td>110</td><td><b>Ds</b></td><td>다름슈타튬</td><td>-</td></tr>
+            <tr><td>111</td><td><b>Rg</b></td><td>뢴트게늄</td><td>-</td></tr>
+            <tr><td>112</td><td><b>Cn</b></td><td>코페르니슘</td><td>-</td></tr>
+            <tr><td>113</td><td><b>Nh</b></td><td>니호늄</td><td>-</td></tr>
+            <tr><td>114</td><td><b>Fl</b></td><td>플레로븀</td><td>-</td></tr>
+            <tr><td>115</td><td><b>Mc</b></td><td>모스코븀</td><td>-</td></tr>
+            <tr><td>116</td><td><b>Lv</b></td><td>리버모륨</td><td>-</td></tr>
+            <tr><td>117</td><td><b>Ts</b></td><td>테네신</td><td>-</td></tr>
+            <tr><td>118</td><td><b>Og</b></td><td>오가네손</td><td>-</td></tr>
+            </tbody>
+        </table></div>
+
+    </section>
+</main>
+
+<footer>
+    <p>© 2026 FingerRun. 모든 권리 보유.</p>
+    <p>빠르고 정확한 타이핑의 시작, FingerRun과 함께하세요! ⌨️</p>
+    <p>문의: <a href="mailto:fingerrun@naver.com">fingerrun@naver.com</a></p>
+</footer>
+
+<script>
+    /* =========================================================================
+       핑거런 주기율표 타이핑 게임 (Quiz/science.html) — 바닐라 JS
+       -------------------------------------------------------------------------
+       ※ fact 항목(원소별 한 줄 팩트)은 사람이 검수해야 함.
+       ※ 1~20번 성질 데이터(ion·valence·en·metal)도 교과서 기준으로 검수 권장.
+       ※ 난이도 범위·제한 시간·페널티 등은 아래 [1. 설정 상수] CONFIG 한 곳에서 관리.
+       ========================================================================= */
+    'use strict';
+
+    /* -------------------------------------------------------------------------
+       1. 설정 상수
+       ------------------------------------------------------------------------- */
+    const CONFIG = {
+        LEVELS: {
+            basic:    { label: '기본', emoji: '🟢', max: 20,  desc: '중2 과학, 고1 통합과학, 화학 입문자 모두' },
+            advanced: { label: '심화', emoji: '🟠', max: 36,  desc: '이과, 내신 화학 고득점, 대학 일반화학' },
+            hell:     { label: '지옥', emoji: '🔴', max: 118, desc: '도전·재미 ("주기율표 다 외움" 인증)' },
+        },
+        PROPERTY_LEVEL: 'basic',          // 번호 모드에서 성질 유형을 쓸 수 있는 난이도
+        PROPERTY_MAX_N: 20,               // 성질 유형은 1~20번만
+        QUIZ_TIMES: [5, 10, 0],           // 초 (0 = 제한 없음)
+        QUIZ_COUNTS: [10, 20, 40, 0],     // 0 = 전체
+        START_POINTS: { 1: ['basic', 'advanced', 'hell'], 21: ['advanced', 'hell'], 37: ['hell'] },
+        GROUP_CHOICES: [1, 2, 13, 14, 15, 16, 17, 18],
+        PERIOD_CHOICES: [1, 2, 3, 4],
+        DEPTHS: [4, 7],
+        PASS_PENALTY_MS: 10000,
+        PASS_LIMIT: 3,
+        CORRECT_CARD_MS: 5000,            // 정답 후 설명 토스트 유지 시간 5초로 변경
+        REVEAL_MS: 1000,
+        SPEED_BADGE_MS: 2000,
+        EN_MIN_DIFF: 0.3,
+        NAMES_MIN_CELL: 44,               // 칸이 이 크기(px) 이상이면 칸 안에 한글 이름도 표시
+        FIT_MIN_CELL: 32,                 // 플레이 화면: 표 + 아래 문제 카드를 한 화면에 맞출 때 최소 칸 크기
+        COMPACT_CELL: 30,                 // 이보다 작으면 원자번호 숨김(기호만)
+        STORE: { settings: 'fr_periodic_settings', best: 'fr_periodic_best' },
+    };
+
+    const DEFAULT_SETTINGS = {
+        play: 'basic', time: 10, scope: 'number', level: 'basic',
+        groups: [1], depth: 4, periods: [1, 2, 3],
+        input: 'name', start: 1,
+        types: ['symbol-to-name', 'name-to-symbol', 'number-to-name'], count: 20,
+        caseMode: 'ignore', naming: 'kr',   // 대소문자 무시 · 표시는 나트륨·칼륨 (입력은 소듐·포타슘도 정답)
+    };
+
+    /* -------------------------------------------------------------------------
+       2. 원소 데이터 (118개) + 카테고리 + 족 이름 + 문제 유형
+       ------------------------------------------------------------------------- */
+    const ELEMENTS = [
+        { n:1, s:"H", name:"수소", aliases:[], period:1, group:1, cat:"diatomic-nonmetal", fact:"우주에서 가장 많은 원소", valence:1, en:2.2, metal:"nonmetal" },
+        { n:2, s:"He", name:"헬륨", aliases:[], period:1, group:18, cat:"noble-gas", fact:"우주에서 두 번째로 많은 원소", valence:0, metal:"nonmetal" },
+        { n:3, s:"Li", name:"리튬", aliases:[], period:2, group:1, cat:"alkali-metal", fact:"가장 가벼운 금속, 2차 전지 재료", ion:"Li+", valence:1, en:0.98, metal:"metal" },
+        { n:4, s:"Be", name:"베릴륨", aliases:[], period:2, group:2, cat:"alkaline-earth-metal", fact:"제임스 웹 망원경 거울의 재료", ion:"Be2+", valence:2, en:1.57, metal:"metal" },
+        { n:5, s:"B", name:"붕소", aliases:[], period:2, group:13, cat:"metalloid", fact:"내열 유리(붕규산 유리)의 재료", valence:3, en:2.04, metal:"metalloid" },
+        { n:6, s:"C", name:"탄소", aliases:[], period:2, group:14, cat:"polyatomic-nonmetal", fact:"다이아몬드와 흑연을 이루는 원소", valence:4, en:2.55, metal:"nonmetal" },
+        { n:7, s:"N", name:"질소", aliases:[], period:2, group:15, cat:"diatomic-nonmetal", fact:"공기의 약 78%를 차지하는 기체", ion:"N3-", valence:5, en:3.04, metal:"nonmetal" },
+        { n:8, s:"O", name:"산소", aliases:[], period:2, group:16, cat:"diatomic-nonmetal", fact:"지각에서 가장 많은 원소", ion:"O2-", valence:6, en:3.44, metal:"nonmetal" },
+        { n:9, s:"F", name:"플루오린", aliases:["불소", "플루오르"], period:2, group:17, cat:"diatomic-nonmetal", fact:"전기 음성도가 가장 큰 원소", ion:"F-", valence:7, en:3.98, metal:"nonmetal" },
+        { n:10, s:"Ne", name:"네온", aliases:[], period:2, group:18, cat:"noble-gas", fact:"붉은빛을 내는 네온사인 기체", valence:0, metal:"nonmetal" },
+        { n:11, s:"Na", name:"나트륨", aliases:["소듐"], period:3, group:1, cat:"alkali-metal", fact:"소금(염화 나트륨)의 성분", ion:"Na+", valence:1, en:0.93, metal:"metal" },
+        { n:12, s:"Mg", name:"마그네슘", aliases:[], period:3, group:2, cat:"alkaline-earth-metal", fact:"엽록소 중심에 있는 금속", ion:"Mg2+", valence:2, en:1.31, metal:"metal" },
+        { n:13, s:"Al", name:"알루미늄", aliases:[], period:3, group:13, cat:"post-transition-metal", fact:"지각에 가장 많은 금속", ion:"Al3+", valence:3, en:1.61, metal:"metal" },
+        { n:14, s:"Si", name:"규소", aliases:["실리콘"], period:3, group:14, cat:"metalloid", fact:"반도체 칩의 주재료", valence:4, en:1.9, metal:"metalloid" },
+        { n:15, s:"P", name:"인", aliases:[], period:3, group:15, cat:"polyatomic-nonmetal", fact:"DNA 뼈대를 이루는 원소", valence:5, en:2.19, metal:"nonmetal" },
+        { n:16, s:"S", name:"황", aliases:[], period:3, group:16, cat:"polyatomic-nonmetal", fact:"화산 지대에서 노란 결정으로 발견", ion:"S2-", valence:6, en:2.58, metal:"nonmetal" },
+        { n:17, s:"Cl", name:"염소", aliases:[], period:3, group:17, cat:"diatomic-nonmetal", fact:"수돗물 소독에 쓰이는 원소", ion:"Cl-", valence:7, en:3.16, metal:"nonmetal" },
+        { n:18, s:"Ar", name:"아르곤", aliases:[], period:3, group:18, cat:"noble-gas", fact:"공기의 약 1%를 차지하는 기체", valence:0, metal:"nonmetal" },
+        { n:19, s:"K", name:"칼륨", aliases:["포타슘"], period:4, group:1, cat:"alkali-metal", fact:"바나나에 많이 들어 있는 원소", ion:"K+", valence:1, en:0.82, metal:"metal" },
+        { n:20, s:"Ca", name:"칼슘", aliases:[], period:4, group:2, cat:"alkaline-earth-metal", fact:"뼈와 치아를 이루는 주요 원소", ion:"Ca2+", valence:2, en:1.0, metal:"metal" },
+        { n:21, s:"Sc", name:"스칸듐", aliases:[], period:4, group:3, cat:"transition-metal", fact:"알루미늄 합금의 강도를 높임" },
+        { n:22, s:"Ti", name:"타이타늄", aliases:["티타늄", "티탄"], period:4, group:4, cat:"transition-metal", fact:"가볍고 튼튼해 인공 관절에 사용" },
+        { n:23, s:"V", name:"바나듐", aliases:[], period:4, group:5, cat:"transition-metal", fact:"강철을 단단하게 하는 합금 원소" },
+        { n:24, s:"Cr", name:"크로뮴", aliases:["크롬"], period:4, group:6, cat:"transition-metal", fact:"스테인리스강의 녹 방지 성분" },
+        { n:25, s:"Mn", name:"망가니즈", aliases:["망간"], period:4, group:7, cat:"transition-metal", fact:"알칼리 건전지에 쓰이는 원소" },
+        { n:26, s:"Fe", name:"철", aliases:[], period:4, group:8, cat:"transition-metal", fact:"지구 핵의 주성분" },
+        { n:27, s:"Co", name:"코발트", aliases:[], period:4, group:9, cat:"transition-metal", fact:"유리·도자기에 푸른색을 냄" },
+        { n:28, s:"Ni", name:"니켈", aliases:[], period:4, group:10, cat:"transition-metal", fact:"동전과 스테인리스강에 쓰이는 금속" },
+        { n:29, s:"Cu", name:"구리", aliases:[], period:4, group:11, cat:"transition-metal", fact:"전선에 쓰이는 붉은 금속" },
+        { n:30, s:"Zn", name:"아연", aliases:[], period:4, group:12, cat:"post-transition-metal", fact:"철의 부식을 막는 도금(함석)에 사용" },
+        { n:31, s:"Ga", name:"갈륨", aliases:[], period:4, group:13, cat:"post-transition-metal", fact:"손바닥 위에서 녹는 금속" },
+        { n:32, s:"Ge", name:"저마늄", aliases:["게르마늄"], period:4, group:14, cat:"metalloid", fact:"초기 트랜지스터의 재료" },
+        { n:33, s:"As", name:"비소", aliases:[], period:4, group:15, cat:"metalloid", fact:"독약으로 악명 높은 원소" },
+        { n:34, s:"Se", name:"셀레늄", aliases:["셀렌"], period:4, group:16, cat:"polyatomic-nonmetal", fact:"복사기 감광 드럼에 쓰인 원소" },
+        { n:35, s:"Br", name:"브로민", aliases:["브롬"], period:4, group:17, cat:"diatomic-nonmetal", fact:"상온에서 액체인 유일한 비금속" },
+        { n:36, s:"Kr", name:"크립톤", aliases:[], period:4, group:18, cat:"noble-gas", fact:"그리스어 '숨겨진'에서 온 이름" },
+        { n:37, s:"Rb", name:"루비듐", aliases:[], period:5, group:1, cat:"alkali-metal", fact:"원자시계에 쓰이는 원소" },
+        { n:38, s:"Sr", name:"스트론튬", aliases:[], period:5, group:2, cat:"alkaline-earth-metal", fact:"불꽃놀이의 붉은색을 내는 원소" },
+        { n:39, s:"Y", name:"이트륨", aliases:[], period:5, group:3, cat:"transition-metal", fact:"스웨덴 이테르비 마을에서 이름 유래" },
+        { n:40, s:"Zr", name:"지르코늄", aliases:[], period:5, group:4, cat:"transition-metal", fact:"원자로 연료봉 피복재로 쓰임" },
+        { n:41, s:"Nb", name:"나이오븀", aliases:["니오브", "니오븀"], period:5, group:5, cat:"transition-metal", fact:"MRI 초전도 자석에 쓰이는 원소" },
+        { n:42, s:"Mo", name:"몰리브데넘", aliases:["몰리브덴"], period:5, group:6, cat:"transition-metal", fact:"고강도 강철에 넣는 합금 원소" },
+        { n:43, s:"Tc", name:"테크네튬", aliases:[], period:5, group:7, cat:"transition-metal", fact:"인공적으로 처음 만들어진 원소" },
+        { n:44, s:"Ru", name:"루테늄", aliases:[], period:5, group:8, cat:"transition-metal", fact:"러시아의 라틴어 이름에서 유래" },
+        { n:45, s:"Rh", name:"로듐", aliases:[], period:5, group:9, cat:"transition-metal", fact:"자동차 배기가스 정화 촉매에 사용" },
+        { n:46, s:"Pd", name:"팔라듐", aliases:[], period:5, group:10, cat:"transition-metal", fact:"자기 부피의 수백 배 수소를 흡수" },
+        { n:47, s:"Ag", name:"은", aliases:[], period:5, group:11, cat:"transition-metal", fact:"전기가 가장 잘 통하는 금속" },
+        { n:48, s:"Cd", name:"카드뮴", aliases:[], period:5, group:12, cat:"post-transition-metal", fact:"이타이이타이병의 원인 물질" },
+        { n:49, s:"In", name:"인듐", aliases:[], period:5, group:13, cat:"post-transition-metal", fact:"터치스크린 투명 전극(ITO)의 재료" },
+        { n:50, s:"Sn", name:"주석", aliases:[], period:5, group:14, cat:"post-transition-metal", fact:"통조림 깡통 도금에 쓰이는 금속" },
+        { n:51, s:"Sb", name:"안티모니", aliases:["안티몬"], period:5, group:15, cat:"metalloid", fact:"고대 이집트 눈화장에 쓰인 원소" },
+        { n:52, s:"Te", name:"텔루륨", aliases:["텔루르"], period:5, group:16, cat:"metalloid", fact:"태양 전지(CdTe)에 쓰이는 원소" },
+        { n:53, s:"I", name:"아이오딘", aliases:["요오드"], period:5, group:17, cat:"diatomic-nonmetal", fact:"갑상샘 호르몬에 필요한 원소" },
+        { n:54, s:"Xe", name:"제논", aliases:["크세논"], period:5, group:18, cat:"noble-gas", fact:"자동차 제논 헤드라이트에 사용" },
+        { n:55, s:"Cs", name:"세슘", aliases:[], period:6, group:1, cat:"alkali-metal", fact:"1초의 정의에 쓰이는 원소" },
+        { n:56, s:"Ba", name:"바륨", aliases:[], period:6, group:2, cat:"alkaline-earth-metal", fact:"위장 X선 촬영 조영제(황산 바륨)" },
+        { n:57, s:"La", name:"란타넘", aliases:["란탄"], period:6, group:3, cat:"lanthanide", fact:"하이브리드차 니켈수소 전지에 사용" },
+        { n:58, s:"Ce", name:"세륨", aliases:[], period:6, group:null, cat:"lanthanide", fact:"라이터 부싯돌의 주성분" },
+        { n:59, s:"Pr", name:"프라세오디뮴", aliases:[], period:6, group:null, cat:"lanthanide", fact:"용접 보안경 유리에 쓰이는 원소" },
+        { n:60, s:"Nd", name:"네오디뮴", aliases:[], period:6, group:null, cat:"lanthanide", fact:"가장 강한 영구 자석의 재료" },
+        { n:61, s:"Pm", name:"프로메튬", aliases:[], period:6, group:null, cat:"lanthanide", fact:"란타넘족 중 유일한 방사성 원소" },
+        { n:62, s:"Sm", name:"사마륨", aliases:[], period:6, group:null, cat:"lanthanide", fact:"사마륨-코발트 자석에 사용" },
+        { n:63, s:"Eu", name:"유로퓸", aliases:[], period:6, group:null, cat:"lanthanide", fact:"유로화 지폐 위조 방지 형광에 사용" },
+        { n:64, s:"Gd", name:"가돌리늄", aliases:[], period:6, group:null, cat:"lanthanide", fact:"MRI 조영제에 쓰이는 원소" },
+        { n:65, s:"Tb", name:"터븀", aliases:["테르븀"], period:6, group:null, cat:"lanthanide", fact:"녹색 형광체에 쓰이는 원소" },
+        { n:66, s:"Dy", name:"디스프로슘", aliases:[], period:6, group:null, cat:"lanthanide", fact:"전기차 모터 자석에 첨가" },
+        { n:67, s:"Ho", name:"홀뮴", aliases:[], period:6, group:null, cat:"lanthanide", fact:"의료용 레이저(홀뮴 레이저)에 사용" },
+        { n:68, s:"Er", name:"어븀", aliases:["에르븀"], period:6, group:null, cat:"lanthanide", fact:"광섬유 신호 증폭기에 사용" },
+        { n:69, s:"Tm", name:"툴륨", aliases:[], period:6, group:null, cat:"lanthanide", fact:"란타넘족에서 가장 드문 원소 중 하나" },
+        { n:70, s:"Yb", name:"이터븀", aliases:["이테르븀"], period:6, group:null, cat:"lanthanide", fact:"초정밀 원자시계 연구에 쓰임" },
+        { n:71, s:"Lu", name:"루테튬", aliases:[], period:6, group:null, cat:"lanthanide", fact:"란타넘족의 마지막 원소" },
+        { n:72, s:"Hf", name:"하프늄", aliases:[], period:6, group:4, cat:"transition-metal", fact:"반도체 절연막 재료로 쓰임" },
+        { n:73, s:"Ta", name:"탄탈럼", aliases:["탄탈"], period:6, group:5, cat:"transition-metal", fact:"휴대폰 콘덴서에 쓰이는 금속" },
+        { n:74, s:"W", name:"텅스텐", aliases:[], period:6, group:6, cat:"transition-metal", fact:"녹는점이 가장 높은 금속" },
+        { n:75, s:"Re", name:"레늄", aliases:[], period:6, group:7, cat:"transition-metal", fact:"가장 늦게 발견된 안정한 원소" },
+        { n:76, s:"Os", name:"오스뮴", aliases:[], period:6, group:8, cat:"transition-metal", fact:"밀도가 가장 큰 원소" },
+        { n:77, s:"Ir", name:"이리듐", aliases:[], period:6, group:9, cat:"transition-metal", fact:"부식에 가장 강한 금속" },
+        { n:78, s:"Pt", name:"백금", aliases:[], period:6, group:10, cat:"transition-metal", fact:"자동차 촉매·장신구에 쓰이는 귀금속" },
+        { n:79, s:"Au", name:"금", aliases:[], period:6, group:11, cat:"transition-metal", fact:"녹슬지 않는 노란 귀금속" },
+        { n:80, s:"Hg", name:"수은", aliases:[], period:6, group:12, cat:"post-transition-metal", fact:"상온에서 액체인 유일한 금속" },
+        { n:81, s:"Tl", name:"탈륨", aliases:[], period:6, group:13, cat:"post-transition-metal", fact:"독성이 매우 강한 금속" },
+        { n:82, s:"Pb", name:"납", aliases:[], period:6, group:14, cat:"post-transition-metal", fact:"방사선 차폐에 쓰이는 무거운 금속" },
+        { n:83, s:"Bi", name:"비스무트", aliases:[], period:6, group:15, cat:"post-transition-metal", fact:"무지갯빛 계단 모양 결정을 만듦" },
+        { n:84, s:"Po", name:"폴로늄", aliases:[], period:6, group:16, cat:"post-transition-metal", fact:"퀴리가 조국 폴란드 이름을 붙임" },
+        { n:85, s:"At", name:"아스타틴", aliases:[], period:6, group:17, cat:"metalloid", fact:"자연에 가장 적게 존재하는 원소 중 하나" },
+        { n:86, s:"Rn", name:"라돈", aliases:[], period:6, group:18, cat:"noble-gas", fact:"지하실에 쌓일 수 있는 방사성 기체" },
+        { n:87, s:"Fr", name:"프랑슘", aliases:[], period:7, group:1, cat:"alkali-metal", fact:"자연에서 매우 희귀한 방사성 금속" },
+        { n:88, s:"Ra", name:"라듐", aliases:[], period:7, group:2, cat:"alkaline-earth-metal", fact:"퀴리 부부가 발견한 방사성 원소" },
+        { n:89, s:"Ac", name:"악티늄", aliases:[], period:7, group:3, cat:"actinide", fact:"악티늄족의 이름이 된 원소" },
+        { n:90, s:"Th", name:"토륨", aliases:[], period:7, group:null, cat:"actinide", fact:"차세대 원자력 연료 후보" },
+        { n:91, s:"Pa", name:"프로트악티늄", aliases:[], period:7, group:null, cat:"actinide", fact:"우라늄 광석에 극미량 존재" },
+        { n:92, s:"U", name:"우라늄", aliases:[], period:7, group:null, cat:"actinide", fact:"원자력 발전의 연료" },
+        { n:93, s:"Np", name:"넵투늄", aliases:[], period:7, group:null, cat:"actinide", fact:"해왕성(Neptune)에서 이름 유래" },
+        { n:94, s:"Pu", name:"플루토늄", aliases:[], period:7, group:null, cat:"actinide", fact:"명왕성(Pluto)에서 이름 유래" },
+        { n:95, s:"Am", name:"아메리슘", aliases:[], period:7, group:null, cat:"actinide", fact:"연기 감지기에 쓰이는 원소" },
+        { n:96, s:"Cm", name:"퀴륨", aliases:[], period:7, group:null, cat:"actinide", fact:"퀴리 부부를 기려 붙인 이름" },
+        { n:97, s:"Bk", name:"버클륨", aliases:[], period:7, group:null, cat:"actinide", fact:"미국 버클리에서 이름 유래" },
+        { n:98, s:"Cf", name:"캘리포늄", aliases:[], period:7, group:null, cat:"actinide", fact:"미국 캘리포니아에서 이름 유래" },
+        { n:99, s:"Es", name:"아인슈타이늄", aliases:[], period:7, group:null, cat:"actinide", fact:"아인슈타인을 기려 붙인 이름" },
+        { n:100, s:"Fm", name:"페르뮴", aliases:[], period:7, group:null, cat:"actinide", fact:"물리학자 페르미를 기려 붙인 이름" },
+        { n:101, s:"Md", name:"멘델레븀", aliases:[], period:7, group:null, cat:"actinide", fact:"주기율표를 만든 멘델레예프 기림" },
+        { n:102, s:"No", name:"노벨륨", aliases:[], period:7, group:null, cat:"actinide", fact:"알프레드 노벨을 기려 붙인 이름" },
+        { n:103, s:"Lr", name:"로렌슘", aliases:[], period:7, group:null, cat:"actinide", fact:"사이클로트론 발명자 로런스 기림" },
+        { n:104, s:"Rf", name:"러더포듐", aliases:[], period:7, group:4, cat:"transition-metal", fact:"원자핵을 발견한 러더퍼드 기림" },
+        { n:105, s:"Db", name:"더브늄", aliases:[], period:7, group:5, cat:"transition-metal", fact:"러시아 두브나 연구소에서 이름 유래" },
+        { n:106, s:"Sg", name:"시보귬", aliases:[], period:7, group:6, cat:"transition-metal", fact:"살아 있는 사람 이름을 처음 붙인 원소" },
+        { n:107, s:"Bh", name:"보륨", aliases:[], period:7, group:7, cat:"transition-metal", fact:"원자 모형의 닐스 보어 기림" },
+        { n:108, s:"Hs", name:"하슘", aliases:[], period:7, group:8, cat:"transition-metal", fact:"독일 헤센주에서 이름 유래" },
+        { n:109, s:"Mt", name:"마이트너륨", aliases:[], period:7, group:9, cat:"unknown", fact:"핵분열을 설명한 마이트너 기림" },
+        { n:110, s:"Ds", name:"다름슈타튬", aliases:[], period:7, group:10, cat:"unknown", fact:"독일 다름슈타트에서 이름 유래" },
+        { n:111, s:"Rg", name:"뢴트게늄", aliases:[], period:7, group:11, cat:"unknown", fact:"X선을 발견한 뢴트겐 기림" },
+        { n:112, s:"Cn", name:"코페르니슘", aliases:[], period:7, group:12, cat:"post-transition-metal", fact:"지동설의 코페르니쿠스 기림" },
+        { n:113, s:"Nh", name:"니호늄", aliases:[], period:7, group:13, cat:"unknown", fact:"일본에서 발견, 일본(니혼) 이름" },
+        { n:114, s:"Fl", name:"플레로븀", aliases:[], period:7, group:14, cat:"unknown", fact:"러시아 플료로프 연구소에서 이름 유래" },
+        { n:115, s:"Mc", name:"모스코븀", aliases:[], period:7, group:15, cat:"unknown", fact:"모스크바에서 이름 유래" },
+        { n:116, s:"Lv", name:"리버모륨", aliases:[], period:7, group:16, cat:"unknown", fact:"미국 리버모어 연구소에서 이름 유래" },
+        { n:117, s:"Ts", name:"테네신", aliases:[], period:7, group:17, cat:"unknown", fact:"미국 테네시주에서 이름 유래" },
+        { n:118, s:"Og", name:"오가네손", aliases:[], period:7, group:18, cat:"unknown", fact:"현재 가장 무거운 원소" },
+    ];
+
+    // 영문 이름 데이터 매핑
+    const EN_NAMES = [
+        "Hydrogen", "Helium", "Lithium", "Beryllium", "Boron", "Carbon", "Nitrogen", "Oxygen", "Fluorine", "Neon",
+        "Sodium", "Magnesium", "Aluminum", "Silicon", "Phosphorus", "Sulfur", "Chlorine", "Argon", "Potassium", "Calcium",
+        "Scandium", "Titanium", "Vanadium", "Chromium", "Manganese", "Iron", "Cobalt", "Nickel", "Copper", "Zinc",
+        "Gallium", "Germanium", "Arsenic", "Selenium", "Bromine", "Krypton",
+        "Rubidium", "Strontium", "Yttrium", "Zirconium", "Niobium", "Molybdenum", "Technetium", "Ruthenium", "Rhodium", "Palladium", "Silver", "Cadmium", "Indium", "Tin", "Antimony", "Tellurium", "Iodine", "Xenon",
+        "Cesium", "Barium", "Lanthanum", "Cerium", "Praseodymium", "Neodymium", "Promethium", "Samarium", "Europium", "Gadolinium", "Terbium", "Dysprosium", "Holmium", "Erbium", "Thulium", "Ytterbium", "Lutetium",
+        "Hafnium", "Tantalum", "Tungsten", "Rhenium", "Osmium", "Iridium", "Platinum", "Gold", "Mercury", "Thallium", "Lead", "Bismuth", "Polonium", "Astatine", "Radon",
+        "Francium", "Radium", "Actinium", "Thorium", "Protactinium", "Uranium", "Neptunium", "Plutonium", "Americium", "Curium", "Berkelium", "Californium", "Einsteinium", "Fermium", "Mendelevium", "Nobelium", "Lawrencium",
+        "Rutherfordium", "Dubnium", "Seaborgium", "Bohrium", "Hassium", "Meitnerium", "Darmstadtium", "Roentgenium", "Copernicium", "Nihonium", "Flerovium", "Moscovium", "Livermorium", "Tennessine", "Oganesson"
+    ];
+    ELEMENTS.forEach((el, i) => { el.enName = EN_NAMES[i]; });   // en(전기 음성도)과 겹치지 않게 enName
+
+    const CATEGORIES = [
+        { id: 'alkali-metal',          ko: '알칼리 금속',   color: '#E8736C' },
+        { id: 'alkaline-earth-metal',  ko: '알칼리 토금속', color: '#F9D9A8' },
+        { id: 'lanthanide',            ko: '란타넘족',      color: '#F4C2F4' },
+        { id: 'actinide',              ko: '악티늄족',      color: '#E9A0D3' },
+        { id: 'transition-metal',      ko: '전이 금속',     color: '#F4B8B0' },
+        { id: 'post-transition-metal', ko: '전이후 금속',   color: '#CCCCCC' },
+        { id: 'metalloid',             ko: '준금속',        color: '#CCCC99' },
+        { id: 'diatomic-nonmetal',     ko: '이원자 비금속', color: '#F0F58C' },
+        { id: 'polyatomic-nonmetal',   ko: '다원자 비금속', color: '#A6F5C6' },
+        { id: 'noble-gas',             ko: '비활성 기체',   color: '#C3F7F7' },
+        { id: 'unknown',               ko: '성질 미확인',   color: '#E6E6E6' },
+    ];
+    const CAT_BY_ID = Object.fromEntries(CATEGORIES.map(c => [c.id, c]));
+
+    const GROUP_NAMES = { 1: '알칼리 금속', 2: '알칼리 토금속', 13: '붕소족', 14: '탄소족', 15: '질소족', 16: '산소족', 17: '할로젠', 18: '비활성 기체' };
+    const GROUP_NAME_ANSWERS = {
+        1: ['알칼리 금속', '알칼리금속'],
+        2: ['알칼리 토금속', '알칼리토금속', '알칼리 토류 금속'],
+        13: ['붕소족'], 14: ['탄소족'], 15: ['질소족'], 16: ['산소족'],
+        17: ['할로젠', '할로겐', '할로젠족', '할로겐족'],
+        18: ['비활성 기체', '비활성기체', '불활성 기체', '귀족 기체'],
+    };
+    const METAL_KO = { metal: '금속', nonmetal: '비금속', metalloid: '준금속' };
+
+    const QTYPES = [
+        { id: 'symbol-to-name',      cat: 'basic',    label: '기호 → 이름',     ex: 'Fe → 철' },
+        { id: 'name-to-symbol',      cat: 'basic',    label: '이름 → 기호',     ex: '철 → Fe' },
+        { id: 'number-to-name',      cat: 'basic',    label: '번호 → 이름',     ex: '26 → 철' },
+        { id: 'position-to-element', cat: 'position', label: '위치 → 원소',     ex: '3주기 16족 → 황' },
+        { id: 'element-to-position', cat: 'position', label: '원소 → 위치',     ex: 'Cl → 3 17' },
+        { id: 'group-name',          cat: 'position', label: '족 이름',         ex: 'K → 알칼리 금속' },
+        { id: 'ion',                 cat: 'property', label: '이온식',          ex: '마그네슘 → Mg2+' },
+        { id: 'valence',             cat: 'property', label: '원자가 전자 수',  ex: 'N → 5' },
+        { id: 'electronegativity',   cat: 'property', label: '전기 음성도 비교', ex: 'O vs Cl → O' },
+        { id: 'metal-type',          cat: 'property', label: '금속·비금속·준금속', ex: 'Si → 준금속' },
+    ];
+    const QTYPE_BY_ID = Object.fromEntries(QTYPES.map(t => [t.id, t]));
+    const TYPE_CATS = { basic: '기초', position: '위치', property: '성질' };
+
+    const EL_BY_N = new Map(ELEMENTS.map(e => [e.n, e]));
+
+    /* -------------------------------------------------------------------------
+       3. 저장소 (모든 읽기·쓰기 try/catch — 시크릿 모드 등에서도 게임은 동작)
+       ------------------------------------------------------------------------- */
+    const store = {
+        get(key, fallback) {
+            try { const v = localStorage.getItem(key); return v == null ? fallback : JSON.parse(v); }
+            catch (e) { return fallback; }
+        },
+        set(key, value) {
+            try { localStorage.setItem(key, JSON.stringify(value)); return true; }
+            catch (e) { return false; }
+        },
+    };
+
+    /* -------------------------------------------------------------------------
+       4. 설정 (저장값 → URL 쿼리 덮어쓰기, 리디렉션 없음)
+       ------------------------------------------------------------------------- */
+    function sanitizeSettings(raw) {
+        const s = Object.assign({}, DEFAULT_SETTINGS, raw || {});
+        const pick = (v, list, d) => (list.includes(v) ? v : d);
+        s.play = pick(s.play, ['basic', 'quiz'], 'basic');
+        s.time = pick(Number(s.time), CONFIG.QUIZ_TIMES, 10);
+        s.scope = pick(s.scope, ['number', 'group', 'period'], 'number');
+        s.level = pick(s.level, Object.keys(CONFIG.LEVELS), 'basic');
+        s.groups = uniqNums(s.groups).filter(g => CONFIG.GROUP_CHOICES.includes(g));
+        if (!s.groups.length) s.groups = [1];
+        s.depth = pick(Number(s.depth), CONFIG.DEPTHS, 4);
+        s.periods = uniqNums(s.periods).filter(p => CONFIG.PERIOD_CHOICES.includes(p));
+        if (!s.periods.length) s.periods = [1];
+        s.input = pick(s.input, ['name', 'symbol'], 'name');
+        s.start = pick(Number(s.start), [1, 21, 37], 1);
+        s.types = (Array.isArray(s.types) ? s.types : []).filter(t => QTYPE_BY_ID[t]);
+        if (!s.types.length) s.types = DEFAULT_SETTINGS.types.slice();
+        s.count = pick(Number(s.count), CONFIG.QUIZ_COUNTS, 20);
+        s.caseMode = DEFAULT_SETTINGS.caseMode;
+        s.naming = DEFAULT_SETTINGS.naming;
+        delete s.survival;
+        return s;
+    }
+    function uniqNums(v) {
+        const arr = Array.isArray(v) ? v : String(v || '').split(',');
+        return [...new Set(arr.map(Number).filter(Number.isFinite))].sort((a, b) => a - b);
+    }
+    function settingsFromQuery(search) {
+        const q = new URLSearchParams(search);
+        const o = {};
+        if (q.has('play')) o.play = q.get('play');
+        if (q.has('time')) o.time = q.get('time') === 'none' ? 0 : Number(q.get('time'));
+        if (q.has('scope')) o.scope = q.get('scope');
+        if (q.has('level')) o.level = q.get('level');
+        if (q.has('groups')) o.groups = q.get('groups').split(',');
+        if (q.has('depth')) o.depth = Number(q.get('depth'));
+        if (q.has('periods')) o.periods = q.get('periods').split(',');
+        if (q.has('input')) o.input = q.get('input');
+        if (q.has('start')) o.start = Number(q.get('start'));
+        if (q.has('types')) o.types = q.get('types').split(',');
+        if (q.has('count')) o.count = q.get('count') === 'all' ? 0 : Number(q.get('count'));
+        return o;
+    }
+    function settingsToQuery(s) {
+        const q = new URLSearchParams();
+        q.set('play', s.play);
+        if (s.play === 'quiz') q.set('time', s.time ? String(s.time) : 'none');
+        q.set('scope', s.scope);
+        if (s.scope === 'number') q.set('level', s.level);
+        if (s.scope === 'group') { q.set('groups', s.groups.join(',')); q.set('depth', String(s.depth)); }
+        if (s.scope === 'period') q.set('periods', s.periods.join(','));
+        if (s.play === 'basic') {
+            q.set('input', s.input);
+            if (s.scope === 'number' && validStart(s) !== 1) q.set('start', String(validStart(s)));
+        } else {
+            q.set('types', s.types.join(','));
+            q.set('count', s.count ? String(s.count) : 'all');
+        }
+        return q.toString().replace(/%2C/g, ',');
+    }
+    function validStart(s) {
+        return (CONFIG.START_POINTS[s.start] || []).includes(s.level) ? s.start : 1;
+    }
+
+    const URL_PARAMS = new URLSearchParams(location.search);
+    let S = sanitizeSettings(Object.assign({}, store.get(CONFIG.STORE.settings, {}), settingsFromQuery(location.search)));
+    function saveSettings() { store.set(CONFIG.STORE.settings, S); }
+
+    /* -------------------------------------------------------------------------
+       5. 정규화·정답 판정 (8-1)
+       ------------------------------------------------------------------------- */
+    const SUPMAP = {
+        '⁰': '0', '¹': '1', '²': '2', '³': '3', '⁴': '4', '⁵': '5', '⁶': '6', '⁷': '7', '⁸': '8', '⁹': '9', '⁺': '+', '⁻': '-',
+        '₀': '0', '₁': '1', '₂': '2', '₃': '3', '₄': '4', '₅': '5', '₆': '6', '₇': '7', '₈': '8', '₉': '9', '₊': '+', '₋': '-',
+        '−': '-', '–': '-', '－': '-', '＋': '+',
+    };
+    function normalize(str) {
+        let s = String(str == null ? '' : str).normalize('NFC');
+        s = s.replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻₀₁₂₃₄₅₆₇₈₉₊₋−–－＋]/g, ch => SUPMAP[ch] || ch);
+        return s.replace(/\s+/g, '');
+    }
+    function sameSymbol(a, b, caseMode) {
+        return caseMode === 'ignore' ? a.toLowerCase() === b.toLowerCase() : a === b;
+    }
+    function displayName(el, naming) {
+        naming = naming || S.naming;
+        if (naming === 'iupac' && (el.n === 11 || el.n === 19)) return el.aliases[0];
+        return el.name;
+    }
+    function nameAnswers(el, naming) {
+        return [...new Set([displayName(el, naming), el.name, ...el.aliases])];
+    }
+    function matchName(el, raw, naming) {
+        const v = normalize(raw);
+        if (!v) return { ok: false };
+        const disp = displayName(el, naming);
+        for (const nm of nameAnswers(el, naming)) {
+            if (normalize(nm) === v) return { ok: true, alias: nm === disp ? null : nm };
+        }
+        return { ok: false };
+    }
+    function matchSymbol(el, raw, caseMode) {
+        const v = normalize(raw);
+        return { ok: !!v && sameSymbol(v, el.s, caseMode || S.caseMode) };
+    }
+    function parseIon(raw) {
+        const m = normalize(raw).match(/^([A-Za-z]{1,3})(\d*)([+-])(\d*)$/);
+        if (!m || (m[2] && m[4])) return null;
+        const k = parseInt(m[2] || m[4] || '1', 10);
+        return k ? { sym: m[1], charge: m[3] === '+' ? k : -k } : null;
+    }
+    function matchIon(el, raw, caseMode) {
+        const want = parseIon(el.ion), got = parseIon(raw);
+        return { ok: !!got && sameSymbol(got.sym, want.sym, caseMode || S.caseMode) && got.charge === want.charge };
+    }
+    function prettyIon(ion) {
+        const p = parseIon(ion);
+        const sup = { '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
+        const k = Math.abs(p.charge);
+        return p.sym + (k > 1 ? String(k).replace(/\d/g, d => sup[d]) : '') + (p.charge > 0 ? '⁺' : '⁻');
+    }
+    function parsePosition(raw) {
+        const nums = String(raw == null ? '' : raw).normalize('NFKC').match(/\d+/g);
+        return nums && nums.length >= 2 ? { period: Number(nums[0]), group: Number(nums[1]) } : null;
+    }
+    function matchPosition(el, raw) {
+        const p = parsePosition(raw);
+        return { ok: !!p && p.period === el.period && p.group === el.group };
+    }
+    function matchGroupName(group, raw) {
+        const v = normalize(raw);
+        if (!v) return { ok: false };
+        const list = GROUP_NAME_ANSWERS[group] || [];
+        const hit = list.find(a => normalize(a) === v);
+        return { ok: !!hit, alias: hit && normalize(hit) !== normalize(list[0]) ? hit : null };
+    }
+    function matchValence(el, raw) {
+        const v = normalize(raw).replace(/개$/, '');
+        return { ok: /^\d+$/.test(v) && Number(v) === el.valence };
+    }
+    function matchMetal(el, raw) {
+        const v = normalize(raw);
+        const ok = el.metal === 'metalloid' ? (v === '준금속' || v === '비금속') : v === METAL_KO[el.metal];
+        return { ok };
+    }
+    function matchNameOrSymbol(el, raw, naming, caseMode) {
+        const r = matchName(el, raw, naming);
+        return r.ok ? r : matchSymbol(el, raw, caseMode);
+    }
+
+    /* 한글 받침 판별 → 이에요/예요 */
+    function iyeyo(word) {
+        const ch = String(word).slice(-1).charCodeAt(0);
+        if (ch >= 0xAC00 && ch <= 0xD7A3) return (ch - 0xAC00) % 28 ? '이에요' : '예요';
+        return '이에요';
+    }
+    /* 한글 자모 단위 타수 (두벌식 기준: 겹모음·겹받침은 2타) */
+    const DOUBLE_V = new Set([9, 10, 11, 14, 15, 16, 19]);
+    const DOUBLE_T = new Set([3, 5, 6, 9, 10, 11, 12, 13, 14, 15, 18]);
+    function keystrokes(str) {
+        let k = 0;
+        for (const ch of String(str)) {
+            const c = ch.charCodeAt(0);
+            if (c >= 0xAC00 && c <= 0xD7A3) {
+                const i = c - 0xAC00, v = Math.floor((i % 588) / 28), t = i % 28;
+                k += 1 + (DOUBLE_V.has(v) ? 2 : 1) + (t ? (DOUBLE_T.has(t) ? 2 : 1) : 0);
+            } else if (!/\s/.test(ch)) k += 1;
+        }
+        return k;
+    }
+
+    /* -------------------------------------------------------------------------
+       6. 범위·순서 생성 (번호 / 족 / 주기 / 사용자 지정)
+       ------------------------------------------------------------------------- */
+    function scopeElements(cfg) {
+        if (cfg.scope === 'custom') return cfg.custom.map(n => EL_BY_N.get(n));
+        if (cfg.scope === 'number') return ELEMENTS.filter(e => e.n <= CONFIG.LEVELS[cfg.level].max);
+        if (cfg.scope === 'group') {
+            const out = [];
+            for (const g of [...cfg.groups].sort((a, b) => a - b)) {
+                out.push(...ELEMENTS.filter(e => e.group === g && e.period <= cfg.depth).sort((a, b) => a.period - b.period));
+            }
+            return out;
+        }
+        const out = [];
+        for (const p of [...cfg.periods].sort((a, b) => a - b)) out.push(...ELEMENTS.filter(e => e.period === p).sort((a, b) => a.n - b.n));
+        return out;
+    }
+    function basicSequence(cfg) {
+        let list = scopeElements(cfg);
+        if (cfg.scope === 'number') {
+            const start = validStart(cfg);
+            list = list.filter(e => e.n >= start);
+        }
+        if (cfg.scope === 'custom') list = [...list].sort((a, b) => a.n - b.n);
+        return list;
+    }
+    function sectionOf(el, cfg) {
+        if (cfg.scope === 'group') return el.group + '족';
+        if (cfg.scope === 'period') return el.period + '주기';
+        return null;
+    }
+    function rangeLabel(cfg) {
+        if (cfg.scope === 'custom') return '다시 연습';
+        if (cfg.scope === 'number') {
+            const lv = CONFIG.LEVELS[cfg.level];
+            const st = cfg.play === 'basic' ? validStart(cfg) : 1;
+            return `${st}~${lv.max}번`;
+        }
+        if (cfg.scope === 'group') return cfg.groups.map(g => g + '족').join('·') + (cfg.depth === 7 ? ' (7주기까지)' : '');
+        return cfg.periods.join('·') + '주기';
+    }
+    function summaryLabel(cfg) {
+        const parts = [cfg.play === 'basic' ? '기본' : '퀴즈', rangeLabel(cfg)];
+        if (cfg.play === 'basic') parts.push(cfg.input === 'name' ? '이름' : '기호');
+        else parts.push(cfg.time ? cfg.time + '초' : '제한 없음');
+        return parts.join(' · ');
+    }
+
+    /* -------------------------------------------------------------------------
+       7. 퀴즈 문제 생성기 (10종)
+       ------------------------------------------------------------------------- */
+    function propertyAllowed(cfg) {
+        return cfg.scope !== 'number' || cfg.level === CONFIG.PROPERTY_LEVEL;
+    }
+    function shuffle(arr) {
+        const a = arr.slice();
+        for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+        return a;
+    }
+    // 전기 음성도: 원소 a마다 a보다 0.3 이상 작은 짝 b 하나 → 정답은 항상 a
+    // (정답 원소 = 문제의 원소여야 '원소당 한 문제'로 묶을 수 있음)
+    function electronegativityPairs(pool) {
+        const list = pool.filter(e => e.en != null && e.n <= CONFIG.PROPERTY_MAX_N);
+        const out = [];
+        for (const a of shuffle(list)) {
+            const b = shuffle(list.filter(x => a.en - x.en >= CONFIG.EN_MIN_DIFF - 1e-9))[0];
+            if (b) out.push([a, b]);
+        }
+        return out;
+    }
+    function candidatesFor(type, pool, cfg) {
+        const small = pool.filter(e => e.n <= CONFIG.PROPERTY_MAX_N);
+        const prop = propertyAllowed(cfg);
+        const mk = (e, p) => (p ? { type, n: e.n, p: p.n } : { type, n: e.n });
+        switch (type) {
+            case 'symbol-to-name': case 'name-to-symbol': case 'number-to-name':
+                return pool.map(e => mk(e));
+            case 'position-to-element': case 'element-to-position':
+                return pool.filter(e => e.group != null).map(e => mk(e));
+            case 'group-name':
+                if (cfg.scope === 'group' && cfg.groups.length < 2) return [];   // 족 하나면 답이 전부 같음
+                return pool.filter(e => GROUP_NAMES[e.group] && e.n !== 1).map(e => mk(e));
+            case 'ion': return prop ? small.filter(e => e.ion).map(e => mk(e)) : [];
+            case 'valence': return prop ? small.filter(e => e.valence != null).map(e => mk(e)) : [];
+            case 'metal-type': return prop ? small.filter(e => e.metal).map(e => mk(e)) : [];
+            case 'electronegativity': return prop ? electronegativityPairs(pool).map(([a, b]) => mk(a, b)) : [];
+        }
+        return [];
+    }
+    function typeUnavailableReason(type, pool, cfg) {
+        const t = QTYPE_BY_ID[type];
+        if (t.cat === 'property' && !propertyAllowed(cfg)) return '성질 문제는 🟢 기본(1~20번)에서만 출제돼요';
+        if (type === 'group-name' && cfg.scope === 'group' && cfg.groups.length < 2) return '족 이름은 족을 2개 이상 고르면 출제돼요';
+        if (candidatesFor(type, pool, cfg).length) return '';
+        if (t.cat === 'property') return '이 범위의 1~20번 원소로는 만들 수 없어요';
+        return '이 범위에서는 만들 수 없어요';
+    }
+    // 원소당 한 문제: 고른 유형 중 그 원소로 만들 수 있는 것 하나를 무작위로.
+    // 같은 원소가 다른 유형으로 다시 나오면 앞 문제·불 켜진 칸·정답 카드가 답을 알려 주기 때문
+    function buildQuizPool(cfg) {
+        const pool = scopeElements(cfg);
+        const byEl = new Map();
+        for (const t of cfg.types) {
+            for (const c of candidatesFor(t, pool, cfg)) {
+                if (!byEl.has(c.n)) byEl.set(c.n, []);
+                byEl.get(c.n).push(c);
+            }
+        }
+        return shuffle([...byEl.values()].map(list => list[Math.floor(Math.random() * list.length)]));
+    }
+
+    function makeQuestion(c, cfg) {
+        const el = EL_BY_N.get(c.n);
+        const naming = cfg.naming, caseMode = cfg.caseMode;
+        const nm = displayName(el, naming);
+        const q = { id: Math.random().toString(36).slice(2), cand: c, type: c.type, el, highlight: false, label: QTYPE_BY_ID[c.type].label, guide: '', kind: 'name', notes: [] };
+        switch (c.type) {
+            case 'symbol-to-name':
+                Object.assign(q, { big: el.s, ask: '이 원소의 이름은?', answer: nm, check: r => matchName(el, r, naming) }); break;
+            case 'name-to-symbol':
+                Object.assign(q, { big: nm, ask: '원소 기호는?', answer: el.s, kind: 'symbol', check: r => matchSymbol(el, r, caseMode) }); break;
+            case 'number-to-name':
+                Object.assign(q, { big: el.n + '번', ask: '원소의 이름은?', answer: nm, check: r => matchName(el, r, naming) }); break;
+            case 'position-to-element':
+                Object.assign(q, { big: `${el.period}주기 ${el.group}족`, ask: '이 칸의 원소는?', guide: '이름 또는 원소 기호', answer: nm, answerFull: `${nm} (${el.s})`, highlight: true, check: r => matchNameOrSymbol(el, r, naming, caseMode) }); break;
+            case 'element-to-position':
+                Object.assign(q, { big: el.s, ask: '몇 주기 몇 족?', guide: '주기 족 순서로 입력 (예: 3 17)', answer: `${el.period} ${el.group}`, kind: 'position', check: r => matchPosition(el, r) }); break;
+            case 'group-name':
+                Object.assign(q, { big: el.s, ask: '무슨 족?', answer: GROUP_NAMES[el.group], check: r => matchGroupName(el.group, r) }); break;
+            case 'ion':
+                Object.assign(q, { big: nm, ask: '이온식은?', guide: '예: Mg2+ · Cl- (Mg²⁺, Mg+2도 OK)', answer: el.ion, answerFull: prettyIon(el.ion), kind: 'symbol', check: r => matchIon(el, r, caseMode) }); break;
+            case 'valence':
+                Object.assign(q, { big: el.s, ask: '원자가 전자 수는?', guide: '숫자로 입력', answer: String(el.valence), kind: 'number', check: r => matchValence(el, r) });
+                if (el.group === 18) q.notes.push('18족은 원자가 전자 수를 0으로 봐요');
+                break;
+            case 'electronegativity': {
+                const other = EL_BY_N.get(c.p);
+                const win = el.en > other.en ? el : other;
+                const pair = Math.random() < 0.5 ? [el, other] : [other, el];
+                Object.assign(q, { el: win, big: `${pair[0].s} vs ${pair[1].s}`, ask: '전기 음성도가 더 큰 것은?', guide: '기호 또는 이름', answer: win.s, answerFull: `${win.s} (${displayName(win, naming)})`, check: r => matchNameOrSymbol(win, r, naming, caseMode) });
+                q.notes.push(`전기 음성도 ${win.s} ${win.en.toFixed(2)} > ${(win === el ? other : el).s} ${(win === el ? other : el).en.toFixed(2)}`);
+                break;
+            }
+            case 'metal-type':
+                Object.assign(q, { big: el.s, ask: '금속, 비금속, 준금속 중?', answer: METAL_KO[el.metal], check: r => matchMetal(el, r) });
+                if (el.metal === 'metalloid') { q.answerFull = '준금속'; q.notes.push('준금속(비금속으로도 분류해요)'); }
+                break;
+        }
+        return q;
+    }
+    function makeBasicQuestion(el, cfg) {
+        const nm = displayName(el, cfg.naming);
+        const isName = cfg.input === 'name';
+        return {
+            id: Math.random().toString(36).slice(2), type: isName ? 'basic-name' : 'basic-symbol', el, highlight: true,
+            kind: isName ? 'name' : 'symbol', answer: isName ? nm : el.s, notes: [],
+            check: r => (isName ? matchName(el, r, cfg.naming) : matchSymbol(el, r, cfg.caseMode)),
+        };
+    }
+
+    /* -------------------------------------------------------------------------
+       8. 주기율표 그리드 (레이아웃·칸 상태·반응형)
+       ------------------------------------------------------------------------- */
+    function cellPos(el) {
+        if (el.group != null) return { row: el.period + 1, col: el.group + 1 };
+        if (el.n >= 58 && el.n <= 71) return { row: 10, col: el.n - 53 };
+        return { row: 11, col: el.n - 85 };
+    }
+    function createTable(wrap, opts) {
+        const root = document.createElement('div');
+        root.className = 'ptable' + (opts.mini ? ' mini' : '');
+        const t = { wrap, root, opts, cells: new Map(), gHead: new Map(), pHead: new Map(), c: 0 };
+        const add = (cls, row, col, html) => {
+            const d = document.createElement('div');
+            d.className = cls; d.style.gridRow = row; d.style.gridColumn = col;
+            if (html != null) d.innerHTML = html;
+            root.appendChild(d); return d;
+        };
+        add('hd corner', 1, 1, '<span>족→</span><span>↓주기</span>');
+        for (let g = 1; g <= 18; g++) t.gHead.set(g, add('hd', 1, g + 1, g));
+        for (let p = 1; p <= 7; p++) t.pHead.set(p, add('hd', p + 1, 1, p));
+        add('star', 10, 4, '*'); add('star', 11, 4, '**');
+        for (const el of ELEMENTS) {
+            const { row, col } = cellPos(el);
+            const d = add('cell idle', row, col, `<span class="num">${el.n}</span><span class="sym">${el.s}</span><span class="nm">${displayName(el)}</span>` + (el.n === 57 ? '<span class="mark">*</span>' : el.n === 89 ? '<span class="mark">**</span>' : ''));
+            d.style.setProperty('--cat', `var(--c-${el.cat})`);
+            d.dataset.n = el.n;
+            d.title = opts.titles ? `${el.n} ${el.s} ${displayName(el)}` : '';
+            t.cells.set(el.n, d);
+        }
+        wrap.appendChild(root);
+        const ro = new ResizeObserver(() => sizeTable(t));
+        ro.observe(wrap);
+        sizeTable(t);
+        return t;
+    }
+    function sizeTable(t) {
+        const W = t.wrap.clientWidth;
+        if (!W) return;
+        const gap = W < 520 ? 1 : W < 900 ? 2 : 3;
+        let c = (W - gap * 18) / 18.55;
+        if (c * 0.55 < 12) c = (W - gap * 18 - 12) / 18;
+        c = Math.min(c, t.opts.maxCell || 64);
+        if (t.opts.fitHeight && c > CONFIG.FIT_MIN_CELL) {
+            // 표(9.85칸 높이)와 그 아래 문제 카드가 한 화면에 들어오도록
+            const tb = document.querySelector('.topbar');
+            const card = t.root.querySelector('.qcard');
+            const avail = window.innerHeight - 72 - (tb ? tb.offsetHeight + 10 : 56) - (card ? card.offsetHeight : 0) - 16;
+            const hb = (avail - gap * 11) / 9.85;
+            c = Math.max(CONFIG.FIT_MIN_CELL, Math.min(c, hb));
+        }
+        c = Math.floor(c * 10) / 10;
+        t.c = c;
+        const st = t.root.style;
+        st.setProperty('--c', c + 'px');
+        st.setProperty('--gap', gap + 'px');
+        st.setProperty('--hc', Math.max(12, c * 0.55) + 'px');
+        st.setProperty('--hh', Math.max(13, c * 0.5) + 'px');
+        t.root.classList.toggle('compact', c < CONFIG.COMPACT_CELL);
+        t.root.classList.toggle('roomy', c >= CONFIG.NAMES_MIN_CELL);
+    }
+    function renderLegend(ul) {
+        ul.innerHTML = CATEGORIES.map(c => `<li><i style="background:var(--c-${c.id})"></i>${c.ko}</li>`).join('');
+    }
+
+    /* -------------------------------------------------------------------------
+       9. 시작 화면 (옵션 UI · 범위 하이라이트 · 저장)
+       ------------------------------------------------------------------------- */
+    const $ = sel => document.querySelector(sel);
+    const $$ = sel => Array.from(document.querySelectorAll(sel));
+    let previewT = null, playT = null, miniT = null;
+
+    function buildStartOptions() {
+        $('#optLevel').innerHTML = Object.entries(CONFIG.LEVELS).map(([id, lv]) => `
+            <button type="button" class="level-card" data-level="${id}">
+                <span class="lv-emoji" aria-hidden="true">${lv.emoji}</span>
+                <span><b>${lv.label}</b><small>${lv.desc}</small></span>
+                <span class="lv-range">1~${lv.max}</span>
+            </button>`).join('');
+        $('#optGroups').innerHTML = CONFIG.GROUP_CHOICES.map(g => `
+            <span class="chip"><input type="checkbox" id="g${g}" value="${g}"><label for="g${g}">${g}족<small>${GROUP_NAMES[g]}</small></label></span>`).join('');
+        $('#optPeriods').innerHTML = CONFIG.PERIOD_CHOICES.map(p => {
+            const n = ELEMENTS.filter(e => e.period === p).length;
+            return `<span class="chip"><input type="checkbox" id="p${p}" value="${p}"><label for="p${p}">${p}주기<small>${n}개 원소</small></label></span>`;
+        }).join('');
+        $('#optTypes').innerHTML = Object.entries(TYPE_CATS).map(([cat, ko]) => `
+            <div class="type-group" data-cat="${cat}">
+                <h4>${ko}${cat === 'property' ? ' (1~20번 원소만)' : ''}</h4>
+                <div class="chips">${QTYPES.filter(t => t.cat === cat).map(t => `
+                    <span class="chip"><input type="checkbox" id="t-${t.id}" value="${t.id}"><label for="t-${t.id}">${t.label}<small>${t.ex}</small></label></span>`).join('')}
+                </div>
+                <p class="why"></p>
+            </div>`).join('');
+    }
+
+    function bindStartOptions() {
+        const onSeg = (sel, attr, apply) => {
+            $(sel).addEventListener('click', e => {
+                const b = e.target.closest(`[data-${attr}]`);
+                if (!b || b.disabled) return;
+                apply(b.dataset[attr]);
+                saveSettings(); renderStart();
+            });
+        };
+        onSeg('#optPlay', 'play', v => { S.play = v; });
+        onSeg('#optTime', 'time', v => { S.time = Number(v); });
+        onSeg('#optScope', 'scope', v => { S.scope = v; });
+        onSeg('#optLevel', 'level', v => { S.level = v; });
+        onSeg('#optDepth', 'depth', v => { S.depth = Number(v); });
+        onSeg('#optInput', 'input', v => { S.input = v; });
+        onSeg('#optStart', 'start', v => { S.start = Number(v); });
+        onSeg('#optCount', 'count', v => { S.count = Number(v); });
+        const onChecks = (sel, key) => {
+            $(sel).addEventListener('change', e => {
+                const vals = $$(`${sel} input:checked`).map(i => Number(i.value));
+                if (!vals.length) { e.target.checked = true; return; }
+                S[key] = vals; saveSettings(); renderStart();
+            });
+        };
+        onChecks('#optGroups', 'groups');
+        onChecks('#optPeriods', 'periods');
+        $('#optTypes').addEventListener('change', e => {
+            const id = e.target.value;
+            const set = new Set(S.types);
+            if (e.target.checked) set.add(id); else set.delete(id);
+            const avail = availableTypes();
+            if (![...set].some(t => avail.includes(t))) { e.target.checked = true; return; }
+            S.types = QTYPES.map(t => t.id).filter(t => set.has(t));
+            saveSettings(); renderStart();
+        });
+        $('#startBtn').addEventListener('click', () => startGame(Object.assign({}, S)));
+    }
+
+    function availableTypes(cfg) {
+        cfg = cfg || S;
+        const pool = scopeElements(cfg);
+        return QTYPES.map(t => t.id).filter(id => !typeUnavailableReason(id, pool, cfg));
+    }
+    function pressed(sel, attr, value) {
+        $$(`${sel} [data-${attr}]`).forEach(b => b.setAttribute(b.getAttribute('role') === 'tab' ? 'aria-selected' : 'aria-pressed', String(b.dataset[attr] === String(value))));
+    }
+
+    function renderStart() {
+        const quiz = S.play === 'quiz';
+        pressed('#optPlay', 'play', S.play);
+        pressed('#optTime', 'time', S.time);
+        pressed('#optScope', 'scope', S.scope);
+        pressed('#optLevel', 'level', S.level);
+        pressed('#optDepth', 'depth', S.depth);
+        pressed('#optInput', 'input', S.input);
+        pressed('#optCount', 'count', S.count);
+        $('#optTimeWrap').classList.toggle('hidden', !quiz);
+        $('#scopeNumber').classList.toggle('hidden', S.scope !== 'number');
+        $('#scopeGroup').classList.toggle('hidden', S.scope !== 'group');
+        $('#scopePeriod').classList.toggle('hidden', S.scope !== 'period');
+        $$('#optGroups input').forEach(i => { i.checked = S.groups.includes(Number(i.value)); });
+        $$('#optPeriods input').forEach(i => { i.checked = S.periods.includes(Number(i.value)); });
+        $('#detailBasic').classList.toggle('hidden', quiz);
+        $('#detailQuiz').classList.toggle('hidden', !quiz);
+        $('#stepScope').textContent = quiz ? 3 : 2;
+        $('#stepDetailB').textContent = 3; $('#stepDetailQ').textContent = 4;
+
+        $('#startWrap').classList.toggle('hidden', S.scope !== 'number');
+        const st = validStart(S);
+        $$('#optStart [data-start]').forEach(b => {
+            const ok = (CONFIG.START_POINTS[b.dataset.start] || []).includes(S.level);
+            b.disabled = !ok;
+            b.setAttribute('aria-pressed', String(Number(b.dataset.start) === st));
+        });
+        $('#startNote').textContent = '21번부터는 🟠심화·🔴지옥, 37번부터는 🔴지옥에서 고를 수 있어요.';
+
+        const pool = scopeElements(S);
+        const reasons = {};
+        for (const t of QTYPES) reasons[t.id] = typeUnavailableReason(t.id, pool, S);
+        $$('#optTypes input').forEach(i => {
+            const why = reasons[i.value];
+            i.disabled = !!why;
+            i.checked = !why && S.types.includes(i.value);
+            i.nextElementSibling.title = why;
+        });
+        $$('#optTypes .type-group').forEach(g => {
+            const ids = QTYPES.filter(t => t.cat === g.dataset.cat).map(t => t.id);
+            const whys = [...new Set(ids.map(id => reasons[id]).filter(Boolean))];
+            g.querySelector('.why').textContent = whys.join(' · ');
+        });
+
+        let n = 0, err = '';
+        if (quiz) {
+            const qpool = buildQuizPool(S);
+            n = qpool.length;
+            if (!n) err = '선택한 범위·유형으로 만들 수 있는 문제가 없어요.';
+            const cnt = S.count ? Math.min(S.count, n) : n;
+            $('#summaryLine').textContent = summaryLabel(S) + ` · ${cnt}문항`;
+        } else {
+            n = basicSequence(S).length;
+            if (!n) err = '범위에 원소가 없어요.';
+            $('#summaryLine').textContent = summaryLabel(S) + ` · ${n}개 원소`;
+        }
+        $('#startErr').textContent = err;
+        $('#startBtn').disabled = !!err;
+        paintPreview();
+    }
+
+    function paintPreview() {
+        if (!previewT) return;
+        const inRange = new Set((S.play === 'basic' ? basicSequence(S) : scopeElements(S)).map(e => e.n));
+        for (const [n, cell] of previewT.cells) cell.className = 'cell ' + (inRange.has(n) ? 'idle pick' : 'out');
+        for (const [g, h] of previewT.gHead) h.classList.toggle('on', S.scope === 'group' && S.groups.includes(g));
+        for (const [p, h] of previewT.pHead) h.classList.toggle('on', S.scope === 'period' && S.periods.includes(p));
+        $('#pvCount').textContent = `· ${inRange.size}개 원소`;
+    }
+
+    /* -------------------------------------------------------------------------
+       10. 게임 진행 (기본 / 퀴즈)
+       ------------------------------------------------------------------------- */
+    let G = null;
+    let input, sink;
+    let composing = false, pendingSubmit = null, inputLock = false, lastSubmitAt = 0;
+    let toastTimer = 0, rafId = 0;
+
+    function showScreen(id) {
+        ['startScreen', 'playScreen', 'resultScreen'].forEach(s => $('#' + s).classList.toggle('hidden', s !== id));
+        window.scrollTo(0, 0);
+        loadAds('#' + id);
+    }
+
+    function loadAds(sel) {
+        document.querySelectorAll(sel + ' ins.adsbygoogle:not([data-fr-pushed])').forEach(ins => {
+            ins.setAttribute('data-fr-pushed', '1');
+            try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) { }
+        });
+    }
+
+    function startGame(cfg) {
+        cfg = Object.assign({}, cfg);
+        const g = {
+            cfg, play: cfg.play,
+            items: [], idx: -1, q: null, records: [], lit: new Set(), missed: new Set(),
+            passesLeft: CONFIG.PASS_LIMIT, passes: 0, penaltyMs: 0, wrongSubmits: 0,
+            lock: null, startAt: 0, endAt: 0, qStartAt: 0, deadline: 0, ended: false,
+            flashN: 0, flashUntil: 0, section: null, sectionCount: 0, timeoutCount: 0,
+        };
+        if (g.play === 'basic') {
+            g.seq = basicSequence(cfg);
+            g.items = g.seq.map(el => makeBasicQuestion(el, cfg));
+            g.rangeSet = new Set(g.seq.map(e => e.n));
+        } else {
+            const pool = buildQuizPool(cfg);
+            g.pool = pool;
+            g.rangeSet = new Set(scopeElements(cfg).map(e => e.n));
+            g.items = (cfg.count ? pool.slice(0, cfg.count) : pool).map(c => makeQuestion(c, cfg));
+        }
+        if (!g.items.length) return;
+        G = g;
+        showScreen('playScreen');
+        $('#tbLeft').textContent = summaryLabel(cfg);
+        playT.root.classList.toggle('show-all', g.play === 'basic');
+        playT.root.classList.toggle('names', g.play === 'basic' && cfg.input === 'name');
+        $('#qcard').classList.toggle('basic', g.play === 'basic');
+        g.startAt = performance.now();
+        advance();
+        sizeTable(playT);   // 문제 카드 내용이 들어간 뒤 높이를 재서 맞춤
+        cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(tick);
+        setTimeout(() => { input.focus({ preventScroll: true }); ensureCardVisible(); }, 30);
+    }
+
+    function advance() {
+        G.idx++;
+        if (G.idx >= G.items.length) { finishGame('clear'); return; }
+        G.q = G.items[G.idx];
+        G.q.wrongs = 0;
+        G.lock = null;
+        if (G.play === 'basic') {
+            const sec = sectionOf(G.q.el, G.cfg);
+            if (sec !== G.section) { G.section = sec; G.q.notice = sec ? `🔔 ${sec} 시작` : null; }
+            if (G.idx === 0 && !sec && G.cfg.scope === 'number') G.q.notice = `🔔 ${G.q.el.n}번부터 시작`;
+        }
+        renderQuestion();
+        setInputMode(G.q.kind);
+        G.qStartAt = performance.now();
+        const limit = G.play === 'quiz' ? G.cfg.time : 0;
+        G.deadline = limit ? G.qStartAt + limit * 1000 : 0;
+        paintPlay();
+    }
+
+    function setInputMode(kind) {
+        const en = kind !== 'name';
+        input.setAttribute('lang', en ? 'en' : 'ko');
+        input.setAttribute('inputmode', kind === 'number' ? 'numeric' : 'text');
+        input.placeholder = { name: '한글 이름을 입력하세요', symbol: kind === 'symbol' && G.q && G.q.type === 'ion' ? '이온식 (예: Na+)' : '원소 기호를 입력하세요', position: '주기 족 (예: 3 17)', number: '숫자' }[kind] || '';
+    }
+
+    function renderQuestion() {
+        const q = G.q;
+        const label = $('#qLabel');
+        $('#qFeedback').textContent = ''; $('#qFeedback').className = 'q-feedback';
+
+        if (G.play === 'basic') {
+            renderBasicMain();
+            $('#qGuide').textContent = '';
+        } else {
+            label.textContent = q.label;
+            label.classList.remove('notice');
+            $('#qMain').innerHTML = `<span class="q-big">${esc(q.big)}</span><span class="q-ask">${esc(q.ask)}</span>`;
+            $('#qGuide').textContent = q.guide || '';
+        }
+        updateTopbar();
+        updateTools();
+    }
+
+    // 기본 모드: 은색 패널 안에 직전 단어 · 키캡(지금 칠 단어) · 다음 단어, 한글 이름 밑에 영어 이름
+    function renderBasicMain(reveal) {
+        const prev = G.items[G.idx - 1], next = G.items[G.idx + 1];
+        $('#qMain').innerHTML = `<div class="q-line-custom">`
+            + `<div class="q-side-custom prev">`
+            + (prev ? `<div class="kr-name">${esc(prev.answer)}</div><div class="en-name">${esc(prev.el.enName)}</div>` : '')
+            + `</div>`
+            + `<div class="q-side-custom target">`
+            + `<div class="key-cap ${reveal ? 'reveal' : ''}"><div class="kr-name">${esc(G.q.answer)}</div><div class="en-name">${esc(G.q.el.enName)}</div></div>`
+            + `</div>`
+            + `<div class="q-side-custom next">`
+            + (next ? `<div class="kr-name">${esc(next.answer)}</div><div class="en-name">${esc(next.el.enName)}</div>` : '')
+            + `</div></div>`;
+    }
+
+    function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
+    function updateTools() {
+        if (G.play === 'basic') return;   // 기본 모드는 패스 버튼 없음 (CSS로 숨김)
+        const passBtn = $('#passBtn');
+        passBtn.disabled = !!G.lock || G.passesLeft <= 0;
+        passBtn.querySelector('.pass-txt').textContent = ' ' + G.passesLeft;
+    }
+
+    function updateTopbar() {
+        $('#tbMid').textContent = `${Math.min(G.idx + 1, G.items.length)} / ${G.items.length}`;
+    }
+
+    function tick() {
+        if (!G || G.ended) return;
+        const now = performance.now();
+        const bar = $('#tbBar');
+        if (G.deadline) {
+            const total = G.cfg.time * 1000;
+            const left = G.lock ? (G.frozenLeft != null ? G.frozenLeft : 0) : Math.max(0, G.deadline - now);
+            bar.classList.remove('hidden');
+            const r = left / total;
+            bar.firstElementChild.style.transform = `scaleX(${r})`;
+            bar.classList.toggle('warn', r < 0.5 && r >= 0.25);
+            bar.classList.toggle('danger', r < 0.25);
+            $('#tbTime').textContent = (left / 1000).toFixed(1) + 's';
+            if (!G.lock && left <= 0) onTimeout();
+        } else {
+            bar.classList.add('hidden');
+            $('#tbTime').textContent = fmtClock(now - G.startAt + G.penaltyMs);
+        }
+        rafId = requestAnimationFrame(tick);
+    }
+    function fmtClock(ms) {
+        const s = ms / 1000;
+        return s < 60 ? s.toFixed(1) + 's' : `${Math.floor(s / 60)}:${(s % 60).toFixed(1).padStart(4, '0')}`;
+    }
+    function fmtTime(ms) {
+        const s = ms / 1000;
+        return s < 60 ? s.toFixed(1) + '초' : `${Math.floor(s / 60)}분 ${(s % 60).toFixed(1).padStart(4, '0')}초`;
+    }
+
+    function resetInput() {
+        inputLock = true;
+        pendingSubmit = null;
+        if (document.activeElement === input) sink.focus({ preventScroll: true }); else input.blur();
+        input.value = ''; sink.value = '';
+        composing = false;
+        requestAnimationFrame(() => {
+            input.value = ''; sink.value = '';
+            inputLock = false;
+            if (G && !G.ended && !$('#playScreen').classList.contains('hidden')) input.focus({ preventScroll: true });
+        });
+    }
+
+    function onSubmit() {
+        if (!G || G.ended || G.lock || inputLock) return;
+        const now = performance.now();
+        if (now - lastSubmitAt < 60) return;
+        lastSubmitAt = now;
+        const v = input.value;
+        if (!normalize(v)) return;
+        const r = G.q.check(v);
+        if (r.ok) { onCorrect(r); return; }
+        if (G.play === 'basic') {
+            G.q.wrongs++; G.wrongSubmits++;
+            input.classList.remove('shake'); void input.offsetWidth; input.classList.add('shake');
+            return;
+        }
+        onFail('wrong', v);
+    }
+    function onTimeout() {
+        if (G.play === 'quiz') G.timeoutCount++;
+        onFail('timeout', input.value);
+    }
+
+    function questionMs() { return performance.now() - G.qStartAt; }
+
+    function onCorrect(r) {
+        const q = G.q, el = q.el;
+        const typed = input.value;
+        G.records.push({ q, type: q.type, n: el.n, cand: q.cand, status: 'correct', ms: questionMs(), wrongs: q.wrongs || 0, input: typed, keys: keystrokes(normalize(typed)) });
+        G.lit.add(el.n); G.missed.delete(el.n);
+        G.flashN = el.n; G.flashUntil = performance.now() + 700;
+        const notes = [];
+        if (r.alias) notes.push(`💡 현재 표기는 ${displayName(el, G.cfg.naming)}${iyeyo(displayName(el, G.cfg.naming))}`);
+        if (q.type === 'group-name' && r.alias) notes[0] = `💡 교과서 표기는 ${GROUP_NAMES[el.group]}${iyeyo(GROUP_NAMES[el.group])}`;
+        notes.push(...q.notes);
+        if (el.n === 1 && G.cfg.scope === 'group') notes.push('수소는 1족이지만 알칼리 금속이 아니에요');
+
+        // 정답 뒤 설명이 5초 동안 보이도록 5000ms 설정 값 사용
+        showToast(el, notes, false, CONFIG.CORRECT_CARD_MS);
+        resetInput();
+
+        if (G.idx + 1 >= G.items.length) {
+            G.lock = 'done'; paintPlay();
+            setTimeout(() => finishGame('clear'), 450);
+            return;
+        }
+        advance();
+    }
+
+    function onFail(status, typed) {
+        const q = G.q, el = q.el;
+        const frozen = G.deadline ? Math.max(0, G.deadline - performance.now()) : null;
+        G.records.push({ q, type: q.type, n: el.n, cand: q.cand, status, ms: questionMs(), wrongs: q.wrongs || 0, input: typed });
+        G.lock = 'reveal'; G.frozenLeft = frozen;
+        G.missed.add(el.n);
+        const fb = $('#qFeedback');
+        fb.className = 'q-feedback bad';
+        fb.textContent = { wrong: '❌ 오답', timeout: '⏰ 시간 초과', pass: '⏭ 패스' }[status];
+        if (G.play === 'basic') renderBasicMain(true);
+        else $('#qMain').innerHTML = `<span class="q-big">${esc(q.big)}</span><span class="q-ask">정답: <b style="color:var(--bad)">${esc(q.answerFull || q.answer)}</b></span>`;
+        showToast(el, q.notes, true, CONFIG.REVEAL_MS);
+        updateTools(); paintPlay();
+        resetInput();
+        setTimeout(() => {
+            if (!G || G.ended) return;
+            if (G.idx + 1 >= G.items.length) { finishGame('clear'); return; }
+            resetInput();
+            advance();
+        }, CONFIG.REVEAL_MS);
+    }
+
+    function usePass() {
+        if (!G || G.ended || G.lock || G.passesLeft <= 0 || G.play === 'basic') return;
+        G.passesLeft--; G.passes++;
+        if (G.play === 'basic') G.penaltyMs += CONFIG.PASS_PENALTY_MS;
+        onFail('pass', input.value);
+    }
+
+    function paintPlay() {
+        const now = performance.now();
+        const cur = G.q && (G.play === 'basic' || G.q.highlight) && G.lock !== 'done' ? G.q.el.n : 0;
+        for (const [n, cell] of playT.cells) {
+            let cls = 'cell';
+            if (G.lit.has(n)) cls += ' lit';
+            else if (G.missed.has(n)) cls += ' missed';
+            else cls += G.rangeSet.has(n) ? ' idle' : ' out';
+            if (n === cur && G.lock !== 'reveal') cls += ' current' + (G.play === 'quiz' ? ' qmark' : '');
+            if (n === G.flashN && now < G.flashUntil) cls += ' flash';
+            cell.className = cls;
+        }
+    }
+
+    function showToast(el, notes, bad, ms) {
+        const wrap = $('#playWrap');
+        let t = $('#elToast');
+        if (!t) { t = document.createElement('div'); t.id = 'elToast'; t.className = 'el-toast'; t.setAttribute('aria-live', 'polite'); wrap.appendChild(t); }
+        const pos = el.group != null ? `${el.period}주기 ${el.group}족` : `${el.period}주기 · ${CAT_BY_ID[el.cat].ko}`;
+        t.innerHTML = `<div class="t1"><span>${el.n}</span><span>${pos}</span><span>${el.s}</span></div>
+            <div class="t2">${esc(displayName(el, G.cfg.naming))}</div>
+            <div class="t3">${esc(el.fact)}</div>${(notes || []).map(n => `<div class="t4">${esc(n)}</div>`).join('')}`;
+        t.style.setProperty('--cat', `var(--c-${el.cat})`);
+        t.classList.toggle('bad', !!bad);
+        t.classList.remove('hidden');
+        t.style.animation = 'none'; void t.offsetWidth; t.style.animation = '';
+
+        const cell = playT.cells.get(el.n);
+        const wr = wrap.getBoundingClientRect(), cr = cell.getBoundingClientRect();
+        const tw = t.offsetWidth, th = t.offsetHeight;
+        let x = cr.left - wr.left + cr.width / 2 - tw / 2;
+        x = Math.max(0, Math.min(wr.width - tw, x));
+        const below = el.group != null && el.period <= 5;
+        let y = below ? cr.bottom - wr.top + 6 : cr.top - wr.top - th - 6;
+        y = Math.max(0, y);
+        t.style.left = x + 'px'; t.style.top = y + 'px';
+
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => t.classList.add('hidden'), ms);
+    }
+
+    function quitGame() {
+        if (!G || G.ended) return;
+        if (!G.records.length) { G.ended = true; cancelAnimationFrame(rafId); showScreen('startScreen'); renderStart(); return; }
+        finishGame('quit');
+    }
+
+    /* -------------------------------------------------------------------------
+       11. 결과 화면 · 기록
+       ------------------------------------------------------------------------- */
+    function bestKey(cfg) {
+        if (cfg.scope === 'custom') return null;
+        const p = [cfg.play, cfg.scope];
+        if (cfg.scope === 'number') p.push(cfg.level);
+        if (cfg.scope === 'group') p.push(cfg.groups.join('.') + 'd' + cfg.depth);
+        if (cfg.scope === 'period') p.push(cfg.periods.join('.'));
+        if (cfg.play === 'basic') p.push(cfg.input, cfg.scope === 'number' ? 's' + validStart(cfg) : '');
+        else p.push('t' + cfg.time, [...cfg.types].sort().join('.'), 'c' + cfg.count, 'one');   // 'one': 원소당 한 문제 규칙 이후 기록
+        return p.join('|');
+    }
+
+    function finishGame(kind) {
+        if (!G || G.ended) return;
+        G.ended = true; G.kind = kind; G.endAt = performance.now();
+        cancelAnimationFrame(rafId);
+        clearTimeout(toastTimer);
+        const t = $('#elToast'); if (t) t.classList.add('hidden');
+        input.blur();
+        const R = computeResult();
+        G.result = R;
+        renderResult(R);
+        showScreen('resultScreen');
+    }
+
+    function computeResult() {
+        const recs = G.records;
+        const correct = recs.filter(r => r.status === 'correct');
+        const R = { kind: G.kind, cfg: G.cfg, recs, correct: correct.length, total: recs.length };
+        R.elapsed = G.endAt - G.startAt;
+        R.totalMs = R.elapsed + G.penaltyMs;
+        R.avgMs = correct.length ? correct.reduce((a, r) => a + r.ms, 0) / correct.length : 0;
+        if (G.play === 'basic') {
+            R.total = G.items.length;
+            R.clean = correct.filter(r => !r.wrongs).length;
+            R.accuracy = R.total ? R.clean / R.total : 0;
+            const activeMs = correct.reduce((a, r) => a + r.ms, 0);
+            R.cpm = activeMs > 0 ? Math.round(correct.reduce((a, r) => a + r.keys, 0) / (activeMs / 60000)) : 0;
+        } else {
+            R.accuracy = R.total ? R.correct / R.total : 0;
+            R.timeouts = recs.filter(r => r.status === 'timeout').length;
+            R.byCat = {};
+            for (const r of recs) {
+                const cat = QTYPE_BY_ID[r.type] ? QTYPE_BY_ID[r.type].cat : 'basic';
+                R.byCat[cat] = R.byCat[cat] || { ok: 0, n: 0 };
+                R.byCat[cat].n++; if (r.status === 'correct') R.byCat[cat].ok++;
+            }
+            const e2p = recs.filter(r => r.type === 'element-to-position');
+            if (e2p.length) {
+                let pOk = 0, gOk = 0;
+                for (const r of e2p) {
+                    const el = EL_BY_N.get(r.n);
+                    if (r.status === 'correct') { pOk++; gOk++; continue; }
+                    const p = parsePosition(r.input);
+                    if (p && p.period === el.period) pOk++;
+                    if (p && p.group === el.group) gOk++;
+                }
+                R.posSplit = { n: e2p.length, period: pOk / e2p.length, group: gOk / e2p.length };
+            }
+        }
+        R.slowWin = slowestWindow(recs.map(r => r.ms), Math.min(3, recs.length));
+        const rank = [...recs].sort((a, b) => (b.status !== 'correct') - (a.status !== 'correct') || b.ms - a.ms);
+        const seen = new Set(); R.top3 = [];
+        for (const r of rank) { if (seen.has(r.n)) continue; seen.add(r.n); R.top3.push(r); if (R.top3.length === 3) break; }
+
+        R.bestKey = G.kind === 'quit' ? null : bestKey(G.cfg);
+        if (R.bestKey) {
+            const all = store.get(CONFIG.STORE.best, {});
+            const prev = all[R.bestKey] || null;
+            let cur = null, better = false;
+            if (G.play === 'basic') {
+                if (G.kind === 'clear') { cur = { v: R.totalMs }; better = !prev || cur.v < prev.v; }
+            } else {
+                cur = { v: R.correct, avg: R.avgMs, total: R.total };
+                better = !prev || cur.v > prev.v || (cur.v === prev.v && cur.avg < prev.avg);
+            }
+            R.prevBest = prev; R.isBest = !!cur && better;
+            if (cur && better) { all[R.bestKey] = Object.assign(cur, { at: Date.now() }); store.set(CONFIG.STORE.best, all); }
+            R.best = better ? cur : prev;
+        }
+        return R;
+    }
+    function slowestWindow(vals, w) {
+        if (!vals.length || w < 1) return null;
+        let best = -1, at = 0;
+        for (let i = 0; i + w <= vals.length; i++) {
+            const s = vals.slice(i, i + w).reduce((a, b) => a + b, 0);
+            if (s > best) { best = s; at = i; }
+        }
+        return { from: at, to: at + w - 1 };
+    }
+    function bestText(v, R) {
+        if (!v) return '-';
+        if (R.cfg.play === 'basic') return fmtTime(v.v);
+        return `${v.v} / ${v.total} (평균 ${(v.avg / 1000).toFixed(1)}초)`;
+    }
+    function recName(r) {
+        const el = EL_BY_N.get(r.n);
+        return displayName(el, G.cfg.naming);
+    }
+
+    function renderResult(R) {
+        const cfg = R.cfg, quiz = cfg.play === 'quiz';
+        const title = R.kind === 'quit' ? '⏸ 중단한 판' : quiz ? '🎉 퀴즈 완료!' : '🎉 완주!';
+        $('#rTitle').textContent = title;
+        $('#rSub').textContent = summaryLabel(cfg);
+        const stats = [];
+        if (!quiz) {
+            stats.push([fmtTime(R.totalMs), '완주 시간 (페널티 포함)'], [Math.round(R.accuracy * 100) + '%', '정답률 (한 번에 맞힘)'],
+                [`${G.passes}회`, '패스'], [R.cpm + '타', '평균 타수 (자모/분)']);
+        } else {
+            stats.push([`${R.correct} / ${R.total}`, '점수'], [Math.round(R.accuracy * 100) + '%', '정답률'],
+                [R.timeouts + '회', '시간 초과'], [(R.avgMs / 1000).toFixed(1) + '초', '평균 반응 시간']);
+        }
+        $('#rStats').innerHTML = stats.map(([b, s]) => `<div class="stat"><b>${b}</b><span>${s}</span></div>`).join('');
+
+        const badges = [];
+        if (R.correct >= 3 && R.avgMs && R.avgMs <= CONFIG.SPEED_BADGE_MS) badges.push('<span class="r-badge">⚡ 시험장 속도 (평균 2초 이내)</span>');
+        if (R.isBest && R.prevBest) badges.push('<span class="r-badge blue">🏅 최고 기록 갱신!</span>');
+        $('#rBadges').innerHTML = badges.join('');
+
+        const tb = $('#rTypeBox');
+        tb.classList.toggle('hidden', !quiz);
+        if (quiz) {
+            $('#rTypes').innerHTML = Object.keys(TYPE_CATS).filter(c => R.byCat[c]).map(c => {
+                const v = R.byCat[c], pct = Math.round(v.ok / v.n * 100);
+                return `<div class="bar-row"><span>${TYPE_CATS[c]}</span><div class="bar"><i style="width:${pct}%"></i></div><em>${pct}% (${v.ok}/${v.n})</em></div>`;
+            }).join('');
+            $('#rPosSplit').innerHTML = R.posSplit
+                ? `<p class="best-line" style="margin:10px 0 0">📍 주기 vs 족 (원소 → 위치 ${R.posSplit.n}문항): <b>주기 정답률 ${Math.round(R.posSplit.period * 100)}%</b> · <b>족 정답률 ${Math.round(R.posSplit.group * 100)}%</b></p>`
+                : '';
+        }
+
+        $('#rGraph').innerHTML = graphSVG(R);
+
+        $('#rTop3').innerHTML = R.top3.map(r => {
+            const el = EL_BY_N.get(r.n);
+            const why = { wrong: '오답', timeout: '시간 초과', pass: '패스' }[r.status] || (r.ms / 1000).toFixed(1) + '초';
+            return `<li><span class="sw" style="--cat:var(--c-${el.cat})">${el.s}</span><span>${el.n}. <b>${esc(displayName(el, cfg.naming))}</b></span><span class="why">${why}</span></li>`;
+        }).join('') || '<li>기록이 없어요</li>';
+        $('#retryTopBtn').disabled = !R.top3.length;
+
+        if (!R.bestKey) $('#rBest').textContent = R.kind === 'quit' ? '중단한 판은 기록에 남지 않아요.' : '다시 연습 판은 최고 기록에 넣지 않아요.';
+        else if (!R.best) $('#rBest').textContent = '완주하면 최고 기록이 저장돼요.';
+        else $('#rBest').innerHTML = R.isBest
+                ? `🏅 이번 판이 최고 기록! <b>${bestText(R.best, R)}</b>` + (R.prevBest ? ` <span class="muted">(이전 ${bestText(R.prevBest, R)})</span>` : '')
+                : `최고 기록 <b>${bestText(R.best, R)}</b>`;
+
+        if (!miniT) miniT = createTable($('#miniWrap'), { mini: true, maxCell: 30, titles: true });
+        for (const [n, cell] of miniT.cells) cell.className = 'cell' + (G.lit.has(n) ? ' lit' : G.missed.has(n) ? ' missed' : '');
+    }
+
+    function graphSVG(R) {
+        const recs = R.recs;
+        if (!recs.length) return '<p class="muted">기록이 없어요.</p>';
+        const W = 640, H = 210, L = 38, Rr = 10, T = 22, B = 26;
+        const maxMs = Math.max(2000, ...recs.map(r => r.ms));
+        const xs = i => L + (recs.length === 1 ? (W - L - Rr) / 2 : i * (W - L - Rr) / (recs.length - 1));
+        const ys = ms => T + (1 - ms / maxMs) * (H - T - B);
+        let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="문항별 반응 시간 그래프">`;
+        const step = maxMs > 20000 ? 10000 : maxMs > 8000 ? 5000 : maxMs > 4000 ? 2000 : 1000;
+        for (let v = 0; v <= maxMs; v += step) s += `<line class="gl" x1="${L}" x2="${W - Rr}" y1="${ys(v)}" y2="${ys(v)}"/><text x="${L - 6}" y="${ys(v) + 3}" text-anchor="end">${v / 1000}s</text>`;
+        if (R.slowWin && recs.length >= 2) {
+            const half = recs.length > 1 ? (W - L - Rr) / (recs.length - 1) / 2 : 20;
+            const x1 = Math.max(L, xs(R.slowWin.from) - half), x2 = Math.min(W - Rr, xs(R.slowWin.to) + half);
+            const names = [...new Set(recs.slice(R.slowWin.from, R.slowWin.to + 1).map(recName))].join('·');
+            s += `<rect x="${x1}" y="${T}" width="${x2 - x1}" height="${H - T - B}" fill="rgba(239,68,68,.12)" rx="6"/>`;
+            s += `<text x="${(x1 + x2) / 2}" y="${T - 7}" text-anchor="middle" style="fill:var(--bad);font-weight:700">나의 멘붕 구간: ${esc(names)}</text>`;
+        }
+        s += `<polyline fill="none" stroke="#667eea" stroke-width="2" points="${recs.map((r, i) => `${xs(i)},${ys(r.ms)}`).join(' ')}"/>`;
+        recs.forEach((r, i) => {
+            const color = r.status === 'correct' ? (r.wrongs ? '#f59e0b' : '#10b981') : '#ef4444';
+            s += `<circle cx="${xs(i)}" cy="${ys(r.ms)}" r="${recs.length > 60 ? 2.2 : 3.5}" fill="${color}"><title>${i + 1}. ${esc(recName(r))} · ${(r.ms / 1000).toFixed(1)}초${r.status !== 'correct' ? ' · ' + ({ wrong: '오답', timeout: '시간 초과', pass: '패스' }[r.status]) : ''}</title></circle>`;
+        });
+        const lab = Math.ceil(recs.length / 10);
+        recs.forEach((r, i) => { if (i % lab === 0 || i === recs.length - 1) s += `<text x="${xs(i)}" y="${H - 8}" text-anchor="middle">${i + 1}</text>`; });
+        return s + '</svg>';
+    }
+
+    /* -------------------------------------------------------------------------
+       12. 모바일 키보드 대응 (visualViewport)
+       ------------------------------------------------------------------------- */
+    function ensureCardVisible() {
+        if (!G || G.ended || !playT) return;
+        const card = $('#qcard');
+        if (!card) return;
+        const vv = window.visualViewport;
+        const r = card.getBoundingClientRect();
+        const top = (vv ? vv.offsetTop : 0) + 64;
+        const bottom = vv ? vv.offsetTop + vv.height : window.innerHeight;
+        if (r.bottom > bottom - 6) window.scrollBy(0, r.bottom - bottom + 10);
+        else if (r.top < top) window.scrollBy(0, r.top - top - 6);
+    }
+
+    /* -------------------------------------------------------------------------
+       14. 자체 테스트 (?test=1)
+       ------------------------------------------------------------------------- */
+    function runSelfTest() {
+        const results = [];
+        const T = (name, fn) => { let ok = false, info = ''; try { const r = fn(); ok = r === true || (r && r.ok); info = r && r.info ? r.info : ''; } catch (e) { info = e.message; } results.push({ name, ok, info }); };
+        const el = s => ELEMENTS.find(e => e.s === s);
+        T('원소 118개', () => ELEMENTS.length === 118);
+        T('번호 중복 없음 (1~118)', () => ELEMENTS.every((e, i) => e.n === i + 1));
+        T('기호 중복 없음', () => new Set(ELEMENTS.map(e => e.s)).size === 118);
+        T('카테고리별 원소 수 합계 118', () => {
+            const cnt = {}; ELEMENTS.forEach(e => { cnt[e.cat] = (cnt[e.cat] || 0) + 1; });
+            const sum = Object.values(cnt).reduce((a, b) => a + b, 0);
+            return { ok: sum === 118 && Object.keys(cnt).every(k => CAT_BY_ID[k]), info: JSON.stringify(cnt) };
+        });
+        T('주기 경계 (1:1~2 … 7:87~118)', () => [[1, 1, 2], [2, 3, 10], [3, 11, 18], [4, 19, 36], [5, 37, 54], [6, 55, 86], [7, 87, 118]].every(([p, a, b]) => ELEMENTS.filter(e => e.period === p).map(e => e.n).join() === Array.from({ length: b - a + 1 }, (_, i) => a + i).join()));
+        const pg = [['Fe', 4, 8], ['Br', 4, 17], ['Xe', 5, 18], ['Cs', 6, 1], ['La', 6, 3], ['Ce', 6, null], ['Og', 7, 18], ['Ac', 7, 3], ['Lr', 7, null]];
+        T('주기·족 예시 (Fe 4·8, Br 4·17, Xe 5·18, Cs 6·1, La 6·3, Ce null, Og 7·18)', () => pg.every(([s, p, g]) => el(s).period === p && el(s).group === g));
+        T('f-블록(58~71, 90~103)만 족 null', () => ELEMENTS.filter(e => e.group == null).map(e => e.n).join() === [...Array.from({ length: 14 }, (_, i) => 58 + i), ...Array.from({ length: 14 }, (_, i) => 90 + i)].join());
+        T('별칭: 브롬→브로민, 요오드→아이오딘, 소듐→나트륨, 포타슘→칼륨', () => matchName(el('Br'), '브롬', 'kr').ok && matchName(el('I'), '요오드', 'kr').ok && matchName(el('Na'), '소듐', 'kr').ok && matchName(el('K'), '포타슘', 'kr').ok && matchName(el('Br'), '브롬', 'kr').alias === '브롬');
+        T('표기 소듐·포타슘: 표시 이름 교체, 나트륨도 정답', () => displayName(el('Na'), 'iupac') === '소듐' && displayName(el('K'), 'iupac') === '포타슘' && matchName(el('Na'), '나트륨', 'iupac').ok && matchName(el('Na'), '소듐', 'iupac').alias === null);
+        T('정규화: 공백 포함 입력', () => matchName(el('Br'), ' 브 로민 ', 'kr').ok && matchGroupName(1, '알칼리금속').ok && matchGroupName(17, '할로겐 족').ok);
+        T('정규화: NFD 입력', () => matchName(el('Mg'), '마그네슘'.normalize('NFD'), 'kr').ok);
+        T('정규화: Mg²⁺ / Mg+2 / Cl1- / Cl⁻ 이온 정답', () => matchIon(el('Mg'), 'Mg²⁺', 'strict').ok && matchIon(el('Mg'), 'Mg+2', 'strict').ok && matchIon(el('Cl'), 'Cl1-', 'strict').ok && matchIon(el('Cl'), 'Cl⁻', 'strict').ok && !matchIon(el('Mg'), 'Mg+', 'strict').ok);
+        T('대소문자: 엄격 Co 정답 / CO 오답', () => matchSymbol(el('Co'), 'Co', 'strict').ok && !matchSymbol(el('Co'), 'CO', 'strict').ok);
+        T('대소문자: 무시 모드 Co·CO 둘 다 정답', () => matchSymbol(el('Co'), 'Co', 'ignore').ok && matchSymbol(el('Co'), 'CO', 'ignore').ok);
+        T('위치 입력: 3 17 / 3,17 / 3주기 17족 / 3-17 → Cl', () => ['3 17', '3,17', '3주기 17족', '3-17'].every(v => matchPosition(el('Cl'), v).ok) && !matchPosition(el('Cl'), '17 3').ok);
+        T('전기 음성도 생성기: 차이 0.3 미만 쌍 없음 (300회)', () => {
+            const pool = ELEMENTS.filter(e => e.n <= 20);
+            for (let i = 0; i < 300; i++) for (const [a, b] of electronegativityPairs(pool)) if (Math.abs(a.en - b.en) < 0.3 - 1e-9 || a.group === 18 || b.group === 18) return false;
+            return electronegativityPairs(pool).length > 0;
+        });
+        T('족 모드 순서: 1족 + 4주기까지 = 수소→리튬→나트륨→칼륨', () => basicSequence({ scope: 'group', groups: [1], depth: 4 }).map(e => e.name).join() === '수소,리튬,나트륨,칼륨');
+        T('족 모드 순서: 1족·17족 = 1족 위→아래, 17족 위→아래', () => basicSequence({ scope: 'group', groups: [17, 1], depth: 4 }).map(e => e.s).join() === 'H,Li,Na,K,F,Cl,Br');
+        T('주기 모드: 4주기 = 칼륨~크립톤 18개', () => { const s = basicSequence({ scope: 'period', periods: [4] }); return s.length === 18 && s[0].s === 'K' && s[17].s === 'Kr'; });
+        T('성질 유형은 21번 이상으로 출제 안 됨', () => {
+            const types = ['ion', 'valence', 'electronegativity', 'metal-type'];
+            const cfgs = [{ scope: 'group', groups: CONFIG.GROUP_CHOICES, depth: 7, types }, { scope: 'period', periods: [1, 2, 3, 4], types }, { scope: 'number', level: 'basic', types }];
+            const okRange = cfgs.every(c => buildQuizPool(c).every(q => q.n <= 20 && (!q.p || q.p <= 20)));
+            const off = buildQuizPool({ scope: 'number', level: 'hell', types }).length === 0;
+            return okRange && off;
+        });
+        T('f-블록은 위치 유형에서 제외, 족 이름에서 수소 제외', () => {
+            const pool = buildQuizPool({ scope: 'number', level: 'hell', types: ['position-to-element', 'element-to-position', 'group-name'] });
+            return pool.every(q => EL_BY_N.get(q.n).group != null) && !pool.some(q => q.type === 'group-name' && q.n === 1);
+        });
+        T('원자가 전자: 18족 0, N 5, Cl 7', () => el('He').valence === 0 && el('Ar').valence === 0 && el('N').valence === 5 && el('Cl').valence === 7);
+        T('금속 분류: Si 준금속 (비금속도 정답), Al 금속', () => matchMetal(el('Si'), '준금속').ok && matchMetal(el('Si'), '비금속').ok && matchMetal(el('Al'), '금속').ok && !matchMetal(el('Al'), '비금속').ok);
+        T('URL 쿼리 ↔ 설정 왕복', () => {
+            const s = sanitizeSettings(settingsFromQuery('?play=quiz&time=5&scope=group&groups=1,17,18&types=symbol-to-name,position-to-element'));
+            const back = sanitizeSettings(settingsFromQuery('?' + settingsToQuery(s)));
+            return s.play === 'quiz' && s.time === 5 && s.groups.join() === '1,17,18' && s.types.join() === 'symbol-to-name,position-to-element' && JSON.stringify(back) === JSON.stringify(s);
+        });
+        T('퀴즈: 한 판에 같은 원소는 한 번만 (기초 3종·전체 유형, 100회)', () => {
+            const all = QTYPES.map(t => t.id);
+            for (let i = 0; i < 100; i++) for (const types of [['symbol-to-name', 'name-to-symbol', 'number-to-name'], all]) {
+                const q = buildQuizPool({ scope: 'number', level: 'basic', types });
+                if (q.length !== 20 || new Set(q.map(c => c.n)).size !== q.length) return false;
+            }
+            return true;
+        });
+        T('전기 음성도: 정답 원소가 문제 원소와 같음', () => electronegativityPairs(ELEMENTS.filter(e => e.n <= 20)).every(([a, b]) => a.en > b.en));
+        T('족 하나만 고르면 족 이름 유형 없음', () => !buildQuizPool({ scope: 'group', groups: [17], depth: 7, types: ['group-name'] }).length && buildQuizPool({ scope: 'group', groups: [1, 17], depth: 4, types: ['group-name'] }).length === 6);
+        T('모든 원소에 fact 존재', () => ELEMENTS.every(e => typeof e.fact === 'string'));
+
+        const pass = results.filter(r => r.ok).length;
+        console.group(`[periodic self-test] ${pass}/${results.length} 통과`);
+        console.table(results);
+        console.groupEnd();
+        const panel = $('#testPanel');
+        panel.classList.remove('hidden');
+        panel.classList.toggle('fail', pass !== results.length);
+        panel.innerHTML = `<b>🧪 자체 테스트: ${pass} / ${results.length} 통과</b><ul>${results.map(r => `<li class="${r.ok ? 'ok' : 'ng'}">${esc(r.name)}${r.ok ? '' : ' — ' + esc(r.info)}</li>`).join('')}</ul>`;
+        window.__periodicTest = { pass, total: results.length, results };
+        return results;
+    }
+
+    /* -------------------------------------------------------------------------
+       15. 초기화
+       ------------------------------------------------------------------------- */
+    function init() {
+        buildStartOptions();
+        bindStartOptions();
+        previewT = createTable($('#previewWrap'), { maxCell: 64, titles: false });
+        previewT.root.classList.add('reveal');
+        playT = createTable($('#playWrap'), { maxCell: 64, fitHeight: true });
+        playT.root.appendChild($('#qcardTpl').content.cloneNode(true));
+        renderLegend($('#legendStart')); renderLegend($('#legendPlay'));
+        input = $('#qInput'); sink = $('#sinkInput');
+
+        input.addEventListener('compositionstart', () => { composing = true; });
+        input.addEventListener('compositionend', () => {
+            composing = false;
+            if (pendingSubmit && G && G.q && pendingSubmit === G.q.id) {
+                const qid = pendingSubmit; pendingSubmit = null;
+                setTimeout(() => { if (G && G.q && G.q.id === qid) onSubmit(); }, 0);
+            }
+        });
+        input.addEventListener('keydown', e => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                if (e.isComposing || e.keyCode === 229 || composing) { pendingSubmit = G && G.q ? G.q.id : null; return; }
+                onSubmit();
+            } else if (e.altKey && e.code === 'KeyP') { e.preventDefault(); usePass(); }
+        });
+        input.addEventListener('animationend', () => input.classList.remove('shake'));
+        input.addEventListener('focus', () => setTimeout(ensureCardVisible, 250));
+        $('#passBtn').addEventListener('click', usePass);
+        $('#enterBtn').addEventListener('click', onSubmit);   // » 버튼 = Enter (조합 중인 글자도 input.value에 들어 있음)
+        $('#quitBtn').addEventListener('click', quitGame);
+        $('#playWrap').addEventListener('mousedown', e => { if (e.target !== input && G && !G.ended) { e.preventDefault(); input.focus({ preventScroll: true }); } });
+        document.addEventListener('keydown', e => {
+            if (!G || G.ended || $('#playScreen').classList.contains('hidden')) return;
+            if (document.activeElement !== input && !e.ctrlKey && !e.metaKey && (e.key.length === 1 || e.key === 'Process')) input.focus({ preventScroll: true });
+        });
+        $('#againBtn').addEventListener('click', () => startGame(G.cfg));
+        $('#settingsBtn').addEventListener('click', () => { showScreen('startScreen'); renderStart(); });
+        $('#retryTopBtn').addEventListener('click', () => {
+            const ns = G.result.top3.map(r => r.n);
+            const base = Object.assign({}, G.cfg, { scope: 'custom', custom: ns, count: 0 });
+            if (base.play === 'quiz') {
+                const pool = ns.map(n => EL_BY_N.get(n));
+                let types = G.cfg.types.filter(t => candidatesFor(t, pool, base).length);
+                if (!types.length) types = DEFAULT_SETTINGS.types.slice();
+                base.types = types;
+            }
+            startGame(base);
+        });
+        if (window.visualViewport) window.visualViewport.addEventListener('resize', () => { if (document.activeElement === input) ensureCardVisible(); });
+        window.addEventListener('resize', () => { if (playT) sizeTable(playT); });
+
+        renderStart();
+        saveSettings();
+        loadAds('#startScreen');
+        if (URL_PARAMS.get('test') === '1') runSelfTest();
+    }
+
+    function goProfile(e) {
+        e.preventDefault();
+        let loggedIn = false;
+        try { loggedIn = localStorage.getItem('isLoggedIn') === 'true'; } catch (err) { }
+        window.location.href = loggedIn ? '../mypage.html' : '../login.html';
+    }
+
+    init();
+</script>
+</body>
+</html>
